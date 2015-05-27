@@ -29,6 +29,9 @@ gem 'bcrypt', '~> 3.1.7'
 # use thin as the app server
 gem 'thin'
 
+gem 'postmark-rails'
+gem 'pony'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
