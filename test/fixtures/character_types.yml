@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  power_stat: MyString
+  resource: MyString
+  morality: MyString
+
+two:
+  name: MyString
+  power_stat: MyString
+  resource: MyString
+  morality: MyString

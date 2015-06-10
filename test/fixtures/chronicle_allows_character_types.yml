@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chronicle_id: 1
+  character_type_id: 1
+
+two:
+  chronicle_id: 1
+  character_type_id: 1
