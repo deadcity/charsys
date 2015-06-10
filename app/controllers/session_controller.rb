@@ -1,14 +1,17 @@
 class SessionController < ApplicationController
 	def login
+	end
+
+	def new
 		@user = User.find_by_username(params[:username])
-		if @user.password == params[:password]
+		if @user.authenticate(params[:password])
 			give_token
 		else
 			redirect_to home_url
 		end
 	end
 
-	def logout
+	def destroy
 		
 	end
 

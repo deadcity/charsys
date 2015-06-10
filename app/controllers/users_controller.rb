@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
 	def create
-		@user = User.new(params[:user])
-		@user.password = params[:password]
+		@user = User.new(username: params[:user][:username], name: params[:user][:name], email: params[:user][:email], password: params[:password])
 		@user.save!
+		give_token
+		redirect_to home_url
 	end
 
 	def edit

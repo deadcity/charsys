@@ -1,0 +1,21 @@
+<h1>Register</h1>
+
+<%= form_tag do %>
+	<div class="form-group">
+		<label for="user[username]">Username</label>
+		<input type="text" class="form-control" name="user[username]" id="username" placeholder="Username" />
+	</div>
+	<div class="form-group">
+		<label for="user[name]">Display Name</label>
+		<input type="text" class="form-control" name="user[name]" id="name" placeholder="Display Name" />
+	</div>
+	<div class="form-group">
+		<label for="user[email]">Email Address</label>
+		<input type="email" class="form-control" name="user[email]" id="email" placeholder="Email" />
+	</div>
+	<div class="form-group">
+		<label for="password">Password</label>
+		<input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+	</div>
+	<button type="submit" class="btn btn-primary">Register</button>
+<% end %>
