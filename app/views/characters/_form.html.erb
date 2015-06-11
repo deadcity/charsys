@@ -1,4 +1,3 @@
-<%= form_for @character, url: {action: 'create'} do |f| %>
 	<table width="100%">
 		<tr>
 			<td>
@@ -17,7 +16,7 @@
 		<tr>
 			<td>
 				<%= f.label :user_id, "Player" %>
-				<%= f.hidden :user_id, session[:user_id] %>
+				<%= hidden_field_tag :user_id, session[:user_id] %>
 				<%= @user.name %>
 			</td>
 			<td>
@@ -32,7 +31,7 @@
 		<tr>
 			<td>
 				<%= f.label :chronicle_id, "Chronicle" %>
-				<%= f.hidden :chronicle_id, @chronicle.id %>
+				<%= hidden_field_tag :chronicle_id, @chronicle.id %>
 			</td>
 			<td>
 				<%= f.label :concept %>
@@ -49,4 +48,3 @@
 			</td>
 		</tr>
 	</table>
-<% end %>
