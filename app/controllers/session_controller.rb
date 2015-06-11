@@ -5,14 +5,18 @@ class SessionController < ApplicationController
 	def new
 		@user = User.find_by_username(params[:username])
 		if @user.authenticate(params[:password])
-			give_token
+			session[:user_id] = @user.id
+			flash[:success] = "You have been successfully logged in."
 		else
-			redirect_to home_url
+			flash[:error] = "There was an error logging you in. Please try again."
 		end
+			redirect_to :root
 	end
 
 	def destroy
-		
+		session[:user_id] = nil
+		flash[:notice] = "You have been logged out."
+		redirect_to :root
 	end
 
 	def forgot_password
