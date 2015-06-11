@@ -6,7 +6,7 @@ class ChroniclesController < ApplicationController
 	def create
 		@chronicle = Chronicle.new(title: params[:chronicle][:title])
 		if @chronicle.save!
-			flash[:success] = "New chronicle %{@chronicle.title} successfully created."
+			flash[:success] = "New chronicle #{@chronicle.title} successfully created."
 			session[:current_chronicle] = @chronicle.id
 			redirect_to :root
 		else

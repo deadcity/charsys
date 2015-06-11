@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	def create
-		@user = User.new(username: params[:user][:username], name: params[:user][:name], email: params[:user][:email], password: params[:password])
+		@user = User.new(params[:user])
 		@user.save!
 		session[:user_id] = @user.id
 		redirect_to :root
@@ -8,5 +8,11 @@ class UsersController < ApplicationController
 
 	def edit
 
+	end
+
+	private
+
+	def user_params
+		params.require(:user).permit(:username, :name, :email, :password)
 	end
 end

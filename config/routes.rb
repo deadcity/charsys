@@ -18,6 +18,19 @@ Rails.application.routes.draw do
   get 'settings', to: 'user#edit', as: :edit_user
   post 'settings', to: 'user#update'
 
+  namespace :admin do
+    resources :character_types
+    resources :attributes
+    resources :skills
+    resources :lineages
+    resources :powers
+    resources :power_types
+    resources :skill_categories
+    resources :attribute_categories
+    resources :affiliations
+  end
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
