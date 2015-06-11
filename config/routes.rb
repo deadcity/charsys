@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   get 'register', to: 'users#new'
   post 'register', to: 'users#create'
-  get 'login', to: 'session#login'
+  get 'login', to: 'session#login', as: :login
   post 'login', to: 'session#new'
-  get 'logout', to: 'session#destroy'
+  get 'logout', to: 'session#destroy', as: :logout
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
