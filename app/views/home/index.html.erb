@@ -1,0 +1,42 @@
+<h1>Chronicle: <%= @chronicle.title %></h1>
+
+<%= form_tag do %>
+	<label for="current_chronicle">Select Chronicle</label>
+	<%= collection_select(:current_chronicle, :id, Chronicle.all, :id, :title) %>
+	<button class="btn btn-primary" type="submit">Go</button>
+	<%= link_to "Create New", new_chronicle_path, class: "btn btn-primary" %>
+<% end %>
+
+<% if @characters.present? %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Player</th>
+				<th>Character Name</th>
+				<th>Creature Type</th>
+				<th>Lineage</th>
+				<th>Affiliation</th>
+				<th>Status</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @characters.each do |character| %>
+				<tr>
+					<td><%= character.user.name %></td>
+					<td><%= link_to character.name, show_character_path(character) %></td>
+					<td><%= character.character_type %></td>
+					<td><%= character.lineage %></td>
+					<td><%= character.affiliation %></td>
+					<td></td>
+					<td><%= link_to "edit", edit_character_path(character), class: "btn" %></td>
+					<td><%= link_to "delete", delete_character_path(character), class: "btn btn-danger" %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% else %>
+	<center>No characters have been created for this chronicle yet.</center>
+<% end %>
+<%= link_to "New Character", new_character_path, class: "btn btn-primary" %>

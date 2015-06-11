@@ -1,0 +1,7 @@
+<%= form_for @chronicle, url: {action: "create"} do |f| %>
+	<div class="form-group">
+		<%= f.label :title %>
+		<%= f.text_field :title, class: "form-control" %>
+	</div>
+	<button class="btn btn-primary" type="submit">Create</button>
+<% end %>

@@ -5,15 +5,23 @@ class HomeController < ApplicationController
   	end
 
   	@user = User.find(session[:user_id])
+    @chronicles = Chronicle.all
 
-  	if session[:current_chronicle].nil?
-  		session[:current_chronicle] = Chronicle.last
-  	end
+    if @chronicles.present?
 
-		if @user.chronicles.include?(session[:current_chronicle])
-			@characters = Character.find(chronicle_id: session[:current_chronicle])
-		else
-			@characters = Character.find(user_id: @user.id, chronicle_id: session[:current_chronicle])
-		end
+    	if session[:current_chronicle].nil?
+    		session[:current_chronicle] = Chronicle.last
+    	end
+
+      @chronicle = Chronicle.find(session[:current_chronicle])
+
+  		if @user.chronicles.include?(session[:current_chronicle])
+  			@characters = Character.where(chronicle_id: session[:current_chronicle])
+  		else
+  			@characters = Character.where(user_id: @user.id, chronicle_id: session[:current_chronicle])
+  		end
+    else
+      @characters = nil
+    end
   end
 end

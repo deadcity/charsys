@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  user_id: 1
+  lineage_id: 1
+  affiliation_id: 1
+  sublineage: MyString
+  behavior_primary: MyString
+  behavior_secondary: MyString
+  size: 1
+  defense: 1
+  initiative_mod: 1
+  armor: 1
+  speed: 1
+  power_stat: 1
+  morality: 1
+  health: 1
+  willpower: 1
+  max_resource: 1
+
+two:
+  name: MyString
+  user_id: 1
+  lineage_id: 1
+  affiliation_id: 1
+  sublineage: MyString
+  behavior_primary: MyString
+  behavior_secondary: MyString
+  size: 1
+  defense: 1
+  initiative_mod: 1
+  armor: 1
+  speed: 1
+  power_stat: 1
+  morality: 1
+  health: 1
+  willpower: 1
+  max_resource: 1
