@@ -28,7 +28,10 @@ module Admin
 		end
 
 		def destroy
-			
+			@character_type = CharacterType.find(params[:id])
+			flash[:success] = "The #{@character_type.name} character type has been deleted."
+			@character_type.delete
+			redirect_to admin_character_types_path
 		end
 
 		private

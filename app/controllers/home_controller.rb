@@ -24,4 +24,8 @@ class HomeController < ApplicationController
       @characters = nil
     end
   end
+
+  def select_chronicle
+
+  end
 end

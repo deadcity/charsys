@@ -1,16 +1,16 @@
-	<table width="100%">
+	<table width="100" class="table">
 		<tr>
 			<td>
 				<%= f.label :name %>
-				<%= f.text_field :name %>
+				<%= f.text_field :name, class: 'form-control' %>
 			</td>
 			<td>
 				<%= f.label :behavior_primary, "Mask" %>
-				<%= f.text_field :behavior_primary %>
+				<%= f.text_field :behavior_primary, class: 'form-control' %>
 			</td>
 			<td>
 				<%= f.label :lineage, "Clan" %>
-				collection goes here
+				<%= collection_select(:lineage, :lineage_id, Lineage.all, :id, :name, {}, {class: 'form-control'}) %>
 			</td>
 		</tr>
 		<tr>
@@ -21,11 +21,11 @@
 			</td>
 			<td>
 				<%= f.label :behavior_secondary, "Dirge" %>
-				<%= f.text_field :behavior_secondary %>
+				<%= f.text_field :behavior_secondary, class: 'form-control' %>
 			</td>
 			<td>
 				<%= f.label :sublineage, "Bloodline" %>
-				<%= f.text_field :sublineage %>
+				<%= f.text_field :sublineage, class: 'form-control' %>
 			</td>
 		</tr>
 		<tr>
@@ -35,16 +35,35 @@
 			</td>
 			<td>
 				<%= f.label :concept %>
-				<%= f.text_field :concept %>
+				<%= f.text_field :concept, class: 'form-control' %>
 			</td>
 			<td>
 				<%= f.label :affiliation, "Covenant" %>
-				collection goes here
+				<%= collection_select(:affiliation, :affiliation_id, Affiliation.all, :id, :name, {}, {class: 'form-control'}) %>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="3">
 				<h2>Attributes</h2>
+				<table width="100%" class="table">
+					<tr>
+						<th></th>
+						<th>Mental</th>
+						<th>Social</th>
+						<th>Physical</th>
+					</tr>
+					<tr>
+						<th>Power</th>
+						<td>
+						</td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
 	</table>
