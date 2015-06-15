@@ -11,4 +11,12 @@ class ApplicationController < ActionController::Base
 		end
 		return false
 	end
+
+	def is_admin?
+
+	end
+
+	def is_storyteller?
+		
+	end
 end

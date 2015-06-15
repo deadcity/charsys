@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'settings', to: 'user#edit', as: :edit_user
   post 'settings', to: 'user#update'
 
+  get 'admin', to: 'admin#index'
+
   namespace :admin do
     resources :character_types
     resources :attributes

@@ -14,4 +14,10 @@ class ChroniclesController < ApplicationController
 			redirect_to new_chronicle_path
 		end
 	end
+
+	private
+
+	def chronicles_params
+		params.require(:chronicle).permit(:title)
+	end
 end

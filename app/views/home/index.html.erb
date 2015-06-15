@@ -2,11 +2,12 @@
 
 <%= form_tag do %>
 	<label for="current_chronicle">Select Chronicle</label>
-	<%= collection_select(:current_chronicle, :id, Chronicle.all, :id, :title) %>
-	<button class="btn btn-primary" type="submit">Go</button>
-	<%= link_to "Create New", new_chronicle_path, class: "btn btn-primary" %>
+	<%= collection_select(:current_chronicle, :id, Chronicle.all, :id, :title, {}, {class: 'form-control'}) %>
+	<p class="text-right"><button class="btn btn-primary" type="submit">Go</button>
+	<%= link_to "Create New", new_chronicle_path, class: "btn btn-primary" %></p>
 <% end %>
 
+<h2>Characters</h2>
 <% if @characters.present? %>
 	<table class="table">
 		<thead>
@@ -39,4 +40,4 @@
 <% else %>
 	<center>No characters have been created for this chronicle yet.</center>
 <% end %>
-<%= link_to "New Character", new_character_path, class: "btn btn-primary" %>
+<p class="text-right"><%= link_to "New Character", new_character_path, class: "btn btn-primary" %></p>
