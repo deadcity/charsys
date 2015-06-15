@@ -12,10 +12,10 @@ module Admin
 			@character_type = CharacterType.new(character_types_params)
 			if @character_type.save!
 				flash[:success] = "Your new character type was created."
-				redirect_to new_character_types_path
+				redirect_to admin_character_types_path
 			else
 				flash[:error] = "There was an error creating your new character type."
-				redirect_to new_character_types_path
+				redirect_to new_admin_character_types_path
 			end
 		end
 
