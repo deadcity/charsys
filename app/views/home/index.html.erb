@@ -40,4 +40,9 @@
 <% else %>
 	<center>No characters have been created for this chronicle yet.</center>
 <% end %>
-<p class="text-right"><%= link_to "New Character", new_character_path, class: "btn btn-primary" %></p>
+
+<% form_tag('/characters/new', method: :post, class: 'form-inline text-right') do %>
+	<label for="character_type">Character Type</label>
+	<%= collection_select(:character_type, :chronicle_id, CharacterType.find_by(chronicle: session[:current_chronicle]), :id, :name, {}, {class: 'form-control'}) %>
+	<button class="btn btn-primary" type="submit">New Character</button>
+<% end %>

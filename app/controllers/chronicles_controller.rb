@@ -15,9 +15,25 @@ class ChroniclesController < ApplicationController
 		end
 	end
 
+	def edit
+		@chronicle = Chronicle.find(params[:id])
+	end
+
+	def update
+		@chronicle = Chronicle.find(params[:id])
+		params[:chronicle][:character_types].delete("")
+		if @chronicle.update!(params[:chronicle])
+			flash[:success] = "The chronicle has been updated."
+			redirect_to edit_chronicle_path
+		else
+			flash[:error] = "There was an error saving your chronicle."
+			redirect_to edit_chronicle_path
+		end
+	end
+
 	private
 
 	def chronicles_params
-		params.require(:chronicle).permit(:title)
+		params.require(:chronicle).permit(:title, :character_types)
 	end
 end
