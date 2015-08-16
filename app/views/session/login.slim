@@ -1,0 +1,20 @@
+.row
+	.small-12.small-centered.medium-7.large-5.columns		
+		= form_tag do
+			fieldset
+				legend Log In
+				<div class="form-group">
+					<label for="username">Username</label>
+					<input type="text" name="username" class="form-control" id="name" placeholder="Username" />
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" name="password" class="form-control" id="password" placeholder="Password" />
+				</div>
+				.row
+					.small-9.small-centered.columns
+						ul.button-group
+							li
+								button class="button" type="submit" Log in
+							li
+								= link_to "Sign up", register_path, :class => "button"
