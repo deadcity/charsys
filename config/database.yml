@@ -19,8 +19,3 @@ development:
 test:
   <<: *default
   database: charsys_test
-
-production:
-  <<: *default
-  database: DATABASE_URL
-  port: 5432

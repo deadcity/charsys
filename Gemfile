@@ -1,3 +1,4 @@
+ruby '2.1.0'
 source 'https://rubygems.org'
 
 
@@ -39,6 +40,7 @@ gem 'foundation_rails_helper'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 
 gem "font-awesome-rails"
+gem "puma"
 
 # Use Unicorn as the app server
 # gem 'unicorn'
