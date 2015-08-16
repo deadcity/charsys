@@ -16,6 +16,11 @@
     <header>
       <%= render "layouts/navbar" %>
     </header>
+    <div class="flash-messages">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: "alert-box #{name} radius" %>
+      <% end %>
+    </div>
     <%= yield %>
 
   </body>
