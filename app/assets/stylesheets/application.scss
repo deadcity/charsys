@@ -4,3 +4,18 @@
 @import "font-awesome";
 @import "utilities/*";
 @import "components/*";
+
+@import "characters";
+@import "chronicle";
+@import "home";
+@import "session";
+@import "users";
+
+button, .button {
+  background-color: $purple;
+  color: white;
+
+  &:hover {
+    background-color: $magenta;
+  }
+}
