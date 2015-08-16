@@ -16,11 +16,11 @@ class ChroniclesController < ApplicationController
 	end
 
 	def edit
-		@chronicle = Chronicle.find(params[:id])
+		@chronicle = Chronicle.find_by_id(params[:id])
 	end
 
 	def update
-		@chronicle = Chronicle.find(params[:id])
+		@chronicle = Chronicle.find_by_id(params[:id])
 		params[:chronicle][:character_types].delete("")
 		if @chronicle.update!(params[:chronicle])
 			flash[:success] = "The chronicle has been updated."
