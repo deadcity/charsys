@@ -11,6 +11,12 @@ character system for dead city productions, new and improved
 6. go to localhost:3000
 7. magic!
 
-some other stuff:
+# notes
 
-we're using heroku, go to heroku.com for to get heroku tools
+The attribute model is called "attribs" because rails already reserves the keyword "attributes", just roll with it
+
+# other useful stuff
+
+You may want to use something like [Postico](https://eggerapps.at/postico/) to browse the Postgres database; basically just leave all the default settings and the database name is "charsys", very easy. (There is a "buy" link but the only limitation on the free beta is the number of databases you can have open at once, I think.)
+
+Also: acquire the [Heroku Toolbelt](http://toolbelt.heroku.com/) and make a Heroku account so I can give you the ability to push code to the production environment (also tell me (carly) when you have done that)
