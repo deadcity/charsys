@@ -3,8 +3,8 @@ require 'bcrypt'
 class User < ActiveRecord::Base
 	has_secure_password
 
-	validates :username, :name, presence: true
-	validates :email, uniqueness: true, presence: true
+	validates :name, presence: true
+	validates :username, :email, uniqueness: true, presence: true
 
 	has_many :characters
 	has_many :user_administers_chronicles
