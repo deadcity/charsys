@@ -9,13 +9,14 @@
 
   <section class="top-bar-section">
     <ul class="right">
-      <!--  if current_user  -->
-      <li><%= link_to "Characters", characters_path %></li>
-      <li><%= link_to "Chronicles", chronicles_path %></li>
-      <li><%= link_to "Logout", logout_path %></li>
-      <!--  else  -->
-      <li><%= link_to "Login", login_path %></li>
-      <!--  end  -->
+      <% if current_user %>
+        <li><%= link_to "Characters", characters_path %></li>
+        <li><%= link_to "Chronicles", chronicles_path %></li>
+        <li><%= link_to "Log Out", logout_path %></li>
+      <% else %>
+        <li><%= link_to "Log In", login_path %></li>
+        <li><%= link_to "Create Account", register_path %></li>
+      <% end %>
     </ul>
 
   </section>
