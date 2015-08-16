@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150816031051) do
+ActiveRecord::Schema.define(version: 20150816032221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20150816031051) do
     t.integer  "size"
     t.integer  "defense"
     t.integer  "initiative_mod"
-    t.integer  "armor"
+    t.integer  "armor_ballistic"
     t.integer  "speed"
     t.integer  "power_stat"
     t.integer  "morality"
@@ -101,7 +101,18 @@ ActiveRecord::Schema.define(version: 20150816031051) do
     t.datetime "updated_at",         null: false
     t.integer  "character_type_id"
     t.integer  "chronicle_id"
-    t.string   "concept"
+    t.string   "misc"
+    t.text     "answer1"
+    t.text     "answer2"
+    t.text     "answer3"
+    t.text     "answer4"
+    t.text     "answer5"
+    t.text     "answer6"
+    t.text     "answer7"
+    t.text     "answer8"
+    t.integer  "armor_general"
+    t.text     "st_notes"
+    t.text     "printed_notes"
   end
 
   create_table "chronicle_allows_character_types", force: :cascade do |t|
