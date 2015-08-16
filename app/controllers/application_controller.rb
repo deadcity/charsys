@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def is_logged_in?
-		if User.find(session[:user_id])
+		if User.find_by_id(session[:user_id])
 			return true
 		end
 		return false
@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
 	end
 
 	def is_storyteller?
-		
+
 	end
 end

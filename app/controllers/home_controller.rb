@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   		redirect_to login_path
   	end
 
-  	@user = User.find(session[:user_id])
+  	@user = User.find_by_id(session[:user_id])
     @chronicles = Chronicle.all
 
     if @chronicles.present?
@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     		session[:current_chronicle] = Chronicle.last
     	end
 
-      @chronicle = Chronicle.find(session[:current_chronicle])
+      @chronicle = Chronicle.find_by_id(session[:current_chronicle])
 
   		if @user.chronicles.include?(session[:current_chronicle])
   			@characters = Character.where(chronicle_id: session[:current_chronicle])
