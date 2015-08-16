@@ -24,6 +24,6 @@ module Charsys
     config.active_record.raise_in_transactional_callbacks = true
 
     config.action_mailer.delivery_method = :postmark
-    config.action_mailer.postmark_settings = { :api_token => "6f6b3f80-87a2-4986-a61d-79b91dffef96" }
+    config.action_mailer.postmark_settings = { :api_token => POSTMARK_API_TOKEN }
   end
 end

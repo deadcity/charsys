@@ -22,8 +22,5 @@ test:
 
 production:
   <<: *default
-  database: dbmujlta84u5os
-  host: ec2-174-129-26-115.compute-1.amazonaws.com
-  user: sphdzjqvncxtga
-  password: Ve87hmwKPnmyF8WR1hSU3xuMc4
+  database: DATABASE_URL
   port: 5432
