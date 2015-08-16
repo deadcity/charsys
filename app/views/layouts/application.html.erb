@@ -1,58 +1,20 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Dead City Productions Character System</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	<header>
-		<nav class="navbar navbar-default">
-		  <div class="container-fluid">
-		    <!-- Brand and toggle get grouped for better mobile display -->
-		    <div class="navbar-header">
-		    	<%= link_to "DCP Character System", root_path, class: "navbar-brand" %>
-		    </div>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		    <!-- Collect the nav links, forms, and other content for toggling -->
-		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <ul class="nav navbar-nav navbar-right">
-		        <li><%= link_to "Admin", admin_path %></li>
-		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="caret"></span></a>
-		          <ul class="dropdown-menu" role="menu">
-		          	<% if session[:user_id].present? %>
-		          	<li><%= link_to "Account Settings", edit_user_path %></li>
-		            <li class="divider"></li>
-		            <li><%= link_to "Log Out", logout_path %></li>
-		            <% else %>
-		            <li><%= link_to "Log In", login_path %></li>
-		            <% end %>
-		          </ul>
-		        </li>
-		      </ul>
-		    </div><!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
-		</nav>
-	</header>
-	<div id="page" class="container">
-		<% if flash[:success] %>
-			<div class="alert alert-success"><%= flash[:success] %></div>
-		<% end %>
-		<% if flash[:error] %>
-			<div class="alert alert-danger"><%= flash[:error] %></div>
-		<% end %>
-		<% if flash[:notice] %>
-			<div class="alert alert-info"><%= flash[:notice] %></div>
-		<% end %>
-		<%= yield %>
-	</div>
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
-	<footer>
-		footer goes here
-	</footer>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
-</body>
+  <body>
+
+    <%= yield %>
+
+  </body>
 </html>
