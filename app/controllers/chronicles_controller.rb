@@ -1,4 +1,7 @@
 class ChroniclesController < ApplicationController
+	def index
+	end
+	
 	def new
 		@chronicle = Chronicle.new
 	end
