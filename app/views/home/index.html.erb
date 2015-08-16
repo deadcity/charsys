@@ -1,4 +1,4 @@
-<h1>Chronicle: <%= @chronicle.title %></h1>
+<% if @chronicle.present? %><h1>Chronicle: <%= @chronicle.title %></h1><% end %>
 
 <%= form_tag('/chronicle_select', method: :post, class: 'form-inline') do %>
 	<label for="current_chronicle">Select Chronicle</label>
@@ -43,6 +43,6 @@
 
 <% form_tag('/characters/new', method: :post, class: 'form-inline text-right') do %>
 	<label for="character_type">Character Type</label>
-	<%= collection_select(:character_type, :chronicle_id, CharacterType.find_by(chronicle: session[:current_chronicle]), :id, :name, {}, {class: 'form-control'}) %>
+	I'll fix this collection select later
 	<button class="btn btn-primary" type="submit">New Character</button>
 <% end %>
