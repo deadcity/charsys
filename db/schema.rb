@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150615162651) do
+ActiveRecord::Schema.define(version: 20150816031051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,15 +39,25 @@ ActiveRecord::Schema.define(version: 20150615162651) do
   create_table "character_has_attributes", force: :cascade do |t|
     t.integer  "attribute_id"
     t.integer  "character_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "value",        default: 1
+  end
+
+  create_table "character_has_merit", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "merit_id"
+    t.string  "specification"
+    t.text    "description"
+    t.integer "rating"
   end
 
   create_table "character_has_skills", force: :cascade do |t|
     t.integer  "skill_id"
     t.integer  "character_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "value",        default: 0
   end
 
   create_table "character_types", force: :cascade do |t|
@@ -59,6 +69,14 @@ ActiveRecord::Schema.define(version: 20150615162651) do
     t.datetime "updated_at",         null: false
     t.string   "behavior_primary"
     t.string   "behavior_secondary"
+    t.string   "question1"
+    t.string   "question2"
+    t.string   "question3"
+    t.string   "question4"
+    t.string   "question5"
+    t.string   "question6"
+    t.string   "question7"
+    t.string   "question8"
   end
 
   create_table "characters", force: :cascade do |t|
@@ -104,6 +122,18 @@ ActiveRecord::Schema.define(version: 20150615162651) do
     t.integer  "character_type_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+  end
+
+  create_table "merits", force: :cascade do |t|
+    t.string  "name"
+    t.boolean "has_specification"
+    t.boolean "has_description"
+    t.string  "allowed_ratings"
+  end
+
+  create_table "power_groups", force: :cascade do |t|
+    t.string  "name"
+    t.integer "power_type_id"
   end
 
   create_table "power_types", force: :cascade do |t|
