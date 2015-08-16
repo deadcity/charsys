@@ -4,7 +4,7 @@ class SessionController < ApplicationController
 
 	def new
 		@user = User.find_by_username(params[:username])
-		if @user.authenticate(params[:password])
+		if @user.present? and @user.authenticate(params[:password])
 			session[:user_id] = @user.id
 			flash[:success] = "You have been successfully logged in."
 		else
