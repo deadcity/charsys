@@ -23,10 +23,10 @@ class UsersController < ApplicationController
 		end
 		if @user.update_attributes!(user_params)
 			flash[:success] = "Your account has been updated."
-			redirect_to edit_user_path
 		else
 			flash[:alert] = "There was an error changing your account settings."
 		end
+		redirect_to edit_user_path
 	end
 
 	private
