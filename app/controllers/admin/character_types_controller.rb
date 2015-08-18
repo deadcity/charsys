@@ -25,6 +25,13 @@ module Admin
 
 		def edit
 			@character_type = CharacterType.find(params[:id])
+			if @character_type.update_attributes!(character_types_params)
+				flash[:success] = "The #{@character_type.name} character type has been updated."
+				redirect_to admin_character_types_path
+			else
+				flash[:alert] = "There was an error editing the #{@character_type.name} character type."
+				redirect_to admin_edit_character_types_path
+			end
 		end
 
 		def destroy
