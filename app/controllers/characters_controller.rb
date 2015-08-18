@@ -4,7 +4,8 @@ class CharactersController < ApplicationController
 	
 	def new
 		@user = User.find_by_id(session[:user_id])
-		@chronicle = Chronicle.find_by_id(session[:current_chronicle].id)
+		@chronicle = Chronicle.first
+		@character_type = CharacterType.first
 		@character = Character.new
 	end
 

@@ -1,4 +1,4 @@
-	<table width="100" class="table">
+	<table width="100%" class="table">
 		<tr>
 			<td>
 				<%= f.label :name %>
@@ -32,10 +32,10 @@
 			<td>
 				<%= f.label :chronicle_id, "Chronicle" %>
 				<%= hidden_field_tag :chronicle_id, @chronicle.id %>
+				<%= @chronicle.title %>
 			</td>
 			<td>
-				<%= f.label :concept %>
-				<%= f.text_field :concept, class: 'form-control' %>
+				
 			</td>
 			<td>
 				<%= f.label :affiliation, "Covenant" %>
@@ -63,7 +63,115 @@
 
 						</td>
 					</tr>
+					<tr>
+						<th>Finesse</th>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th>Resistance</th>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
 				</table>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top">
+				<h2>Skills</h2>
+				<h3>Mental</h3>
+				<table width="100%">
+					<tr>
+						<td>Skill</td>
+						<td>Rating</td>
+					</tr>
+				</table>
+				specialties go here
+				<h3>Social</h3>
+				<table width="100%">
+					<tr>
+						<td>Skill</td>
+						<td>Rating</td>
+					</tr>
+				</table>
+				<h3>Physical</h3>
+				<table width="100%">
+					<tr>
+						<td>Skill</td>
+						<td>Rating</td>
+					</tr>
+				</table>
+			</td>
+			<td colspan="2" valign="top">
+				<h2>Other Traits</h2>
+				<table width="100%">
+					<tr>
+						<td valign="top">
+							<h3>Merits</h3>
+							<div class="row">
+								<%= f.text_field :size %>
+							</div>
+							<div class="row">
+								<%= f.text_field :speed %>
+							</div>
+							<div class="row">
+								<%= f.text_field :defense %>
+							</div>
+							<div class="row">
+								<%= f.text_field :armor_ballistic %>
+							</div>
+							<div class="row">
+								<%= f.text_field :armor_general %>
+							</div>
+						</td>
+						<td valign="top">
+							<h3>Health</h3>
+							<%= f.text_field :health %>
+							<h3>Willpower</h3>
+							<%= f.text_field :willpower %>
+							<h3>Power Stat</h3>
+							<h3>Resource</h3>
+							<h3>Morality</h3>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							notes or equipment or something?
+						</td>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<div class="row">
+					<h2>Questionnaire</h2>
+					<h3>Question1</h3>
+					<%= f.text_area :answer1 %>
+					<h3>Question2</h3>
+					<%= f.text_area :answer2 %>
+					<h3>Question3</h3>
+					<%= f.text_area :answer3 %>
+					<h3>Question4</h3>
+					<%= f.text_area :answer4 %>
+					<h3>Question5</h3>
+					<%= f.text_area :answer5 %>
+					<h3>Question6</h3>
+					<%= f.text_area :answer6 %>
+					<h3>Question7</h3>
+					<%= f.text_area :answer7 %>
+					<h3>Question8</h3>
+					<%= f.text_area :answer8 %>
+				</div>
+				<div class="row">
+					<h2>Printed Notes</h2>
+					<%= f.text_area :printed_notes %>
+				</div>
+				<div class="row">
+					<h2>Storyteller Notes</h2>
+					<%= f.text_area :st_notes %>
+				</div>
 			</td>
 		</tr>
 	</table>
