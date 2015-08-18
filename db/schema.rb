@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150816032221) do
+ActiveRecord::Schema.define(version: 20150615162651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,25 +39,15 @@ ActiveRecord::Schema.define(version: 20150816032221) do
   create_table "character_has_attributes", force: :cascade do |t|
     t.integer  "attribute_id"
     t.integer  "character_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "value",        default: 1
-  end
-
-  create_table "character_has_merit", force: :cascade do |t|
-    t.integer "character_id"
-    t.integer "merit_id"
-    t.string  "specification"
-    t.text    "description"
-    t.integer "rating"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "character_has_skills", force: :cascade do |t|
     t.integer  "skill_id"
     t.integer  "character_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "value",        default: 0
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "character_types", force: :cascade do |t|
@@ -69,14 +59,6 @@ ActiveRecord::Schema.define(version: 20150816032221) do
     t.datetime "updated_at",         null: false
     t.string   "behavior_primary"
     t.string   "behavior_secondary"
-    t.string   "question1"
-    t.string   "question2"
-    t.string   "question3"
-    t.string   "question4"
-    t.string   "question5"
-    t.string   "question6"
-    t.string   "question7"
-    t.string   "question8"
   end
 
   create_table "characters", force: :cascade do |t|
@@ -90,7 +72,7 @@ ActiveRecord::Schema.define(version: 20150816032221) do
     t.integer  "size"
     t.integer  "defense"
     t.integer  "initiative_mod"
-    t.integer  "armor_ballistic"
+    t.integer  "armor"
     t.integer  "speed"
     t.integer  "power_stat"
     t.integer  "morality"
@@ -101,18 +83,7 @@ ActiveRecord::Schema.define(version: 20150816032221) do
     t.datetime "updated_at",         null: false
     t.integer  "character_type_id"
     t.integer  "chronicle_id"
-    t.string   "misc"
-    t.text     "answer1"
-    t.text     "answer2"
-    t.text     "answer3"
-    t.text     "answer4"
-    t.text     "answer5"
-    t.text     "answer6"
-    t.text     "answer7"
-    t.text     "answer8"
-    t.integer  "armor_general"
-    t.text     "st_notes"
-    t.text     "printed_notes"
+    t.string   "concept"
   end
 
   create_table "chronicle_allows_character_types", force: :cascade do |t|
@@ -133,18 +104,6 @@ ActiveRecord::Schema.define(version: 20150816032221) do
     t.integer  "character_type_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-  end
-
-  create_table "merits", force: :cascade do |t|
-    t.string  "name"
-    t.boolean "has_specification"
-    t.boolean "has_description"
-    t.string  "allowed_ratings"
-  end
-
-  create_table "power_groups", force: :cascade do |t|
-    t.string  "name"
-    t.integer "power_type_id"
   end
 
   create_table "power_types", force: :cascade do |t|
