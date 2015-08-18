@@ -219,5 +219,6 @@ table.dataTable thead .sorting_desc_disabled {
 .paginate_button.current {
   a {
     color:white !important;
+		background-color: $purple !important;
   }
 }
