@@ -9,5 +9,9 @@ class CharacterType < ActiveRecord::Base
 	has_many :character_type_has_lineages
 	has_many :lineages, through: :character_type_has_lineage
 	has_many :character_type_has_affiliations
-	has_many :affiliations, thorugh: :character_type_has_affiliation
+	has_many :affiliations, through: :character_type_has_affiliation
+	has_many :character_type_has_behavior_primaries
+	has_many :character_type_has_behavior_secondaries
+	has_many :behavior_primaries, through: :character_type_has_behavior_primary
+	has_many :behavior_secondaries, through: :character_type_has_behavior_secondary
 end

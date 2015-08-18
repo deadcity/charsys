@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818173201) do
+ActiveRecord::Schema.define(version: 20150818185428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20150818173201) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "behavior_primaries", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "behavior_secondaries", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "character_has_attributes", force: :cascade do |t|
     t.integer  "attrib_id"
     t.integer  "character_id"
@@ -43,7 +51,7 @@ ActiveRecord::Schema.define(version: 20150818173201) do
     t.integer  "value",        default: 1
   end
 
-  create_table "character_has_merit", force: :cascade do |t|
+  create_table "character_has_merits", force: :cascade do |t|
     t.integer "character_id"
     t.integer "merit_id"
     t.string  "specification"
@@ -59,12 +67,22 @@ ActiveRecord::Schema.define(version: 20150818173201) do
     t.integer  "value",        default: 0
   end
 
-  create_table "character_type_has_affiliation", force: :cascade do |t|
+  create_table "character_type_has_affiliations", force: :cascade do |t|
     t.integer "character_type_id"
     t.integer "affiliation_id"
   end
 
-  create_table "character_type_has_lineage", force: :cascade do |t|
+  create_table "character_type_has_behavior_primaries", force: :cascade do |t|
+    t.integer "character_type_id"
+    t.integer "behavior_primary_id"
+  end
+
+  create_table "character_type_has_behavior_secondaries", force: :cascade do |t|
+    t.integer "character_type_id"
+    t.integer "behavior_secondary_id"
+  end
+
+  create_table "character_type_has_lineages", force: :cascade do |t|
     t.integer "character_type_id"
     t.integer "lineage_id"
   end
@@ -171,10 +189,10 @@ ActiveRecord::Schema.define(version: 20150818173201) do
 
   create_table "powers", force: :cascade do |t|
     t.string   "name"
+    t.integer  "power_group_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "rating"
-    t.integer  "power_type_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
   end
 
   create_table "skill_categories", force: :cascade do |t|

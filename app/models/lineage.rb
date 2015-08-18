@@ -1,3 +1,4 @@
 class Lineage < ActiveRecord::Base
-	belongs_to :character_type
+	has_many :character_type_has_lineages
+	has_many :character_types, through: :character_type_has_lineage
 end
