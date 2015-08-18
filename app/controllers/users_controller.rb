@@ -13,7 +13,20 @@ class UsersController < ApplicationController
 	end
 
 	def edit
+		@user = current_user
+	end
 
+	def update
+		@user = current_user
+		if params[:user][:password].empty?
+			params.delete(:password)
+		end
+		if @user.update_attributes!(user_params)
+			flash[:success] = "Your account has been updated."
+			redirect_to edit_user_path
+		else
+			flash[:alert] = "There was an error changing your account settings."
+		end
 	end
 
 	private
