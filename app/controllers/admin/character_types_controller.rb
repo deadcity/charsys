@@ -37,7 +37,7 @@ module Admin
 		private
 
 		def character_types_params
-			params.require(:character_type).permit(:name, :power_stat, :resource, :morality, :behavior_primary, :behavior_secondary)
+			params.require(:character_type).permit(:name, :power_stat, :resource, :morality, :behavior_primary, :behavior_secondary, :question1, :question2, :question3, :question4, :question5, :question6, :question7, :question8)
 		end
 	end
 end
