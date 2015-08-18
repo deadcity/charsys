@@ -1,0 +1,27 @@
+.row.character_index_page
+	.small-12.small-centered.columns
+		h2 
+			| My Characters 
+			= link_to "Create a Character", new_character_path, class: "button create_character_button"
+		- if @characters[0]
+			table#character_index_table
+				thead
+					tr 
+						th Name
+						th Chronicle
+						th Affiliation
+						th Lineage
+				tbody
+					- @characters.each do |character|
+						tr
+							td
+								= link_to character.name, character_path(id: character.id)
+							td
+								= character.chronicle.title
+							td
+								= Affiliation.find_by(id: character.affiliation_id).name
+							td
+								= Lineage.find_by(id: character.lineage_id).name
+							
+		- else
+			| You don't have any characters yet! Try <a href="#{new_character_path}">making one now</a>!

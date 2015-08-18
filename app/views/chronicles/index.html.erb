@@ -7,16 +7,14 @@
       <th>Chronicle Title</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @chronicles.each do |chronicle| %>
     <tr>
-      <td><%= link_to chronicle.title, show_chronicle_path(chronicle) %></td>
+      <td><%= link_to chronicle.title, chronicle_path(chronicle) %></td>
       <td></td>
       <td><%= link_to "edit", edit_chronicle_path(chronicle), class: "btn btn-xs" %></td>
-      <td><%= link_to "delete", delete_chronicle_path(chronicle), class: "btn btn-xs btn-danger" %></td>
     </tr>
     <% end %>
   </tbody>

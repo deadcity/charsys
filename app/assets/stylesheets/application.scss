@@ -19,3 +19,11 @@ button, .button {
     background-color: $magenta;
   }
 }
+
+a {
+  color: darken($magenta, 10%);
+
+  &:hover {
+    color: $magenta;
+  }
+}
