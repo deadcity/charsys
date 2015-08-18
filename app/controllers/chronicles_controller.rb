@@ -1,5 +1,6 @@
 class ChroniclesController < ApplicationController
 	def index
+		@chronicles = Chronicle.all
 	end
 	
 	def new
