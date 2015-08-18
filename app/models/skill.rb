@@ -1,5 +1,5 @@
 class Skill < ActiveRecord::Base
 	belongs_to :skill_category
-	belongs_to :character
-	belongs_to :character, :through => :character_has_skill
+	has_many :character
+	has_many :character, :through => :character_has_skill
 end
