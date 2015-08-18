@@ -127,13 +127,25 @@
 							</div>
 						</td>
 						<td valign="top">
-							<h3>Health</h3>
-							<%= f.text_field :health %>
-							<h3>Willpower</h3>
-							<%= f.text_field :willpower %>
-							<h3>Power Stat</h3>
-							<h3>Resource</h3>
-							<h3>Morality</h3>
+							<div class="row">
+								<h3>Health</h3>
+								<%= f.text_field :health %>
+							</div>
+							<div class="row">
+								<h3>Willpower</h3>
+								<%= f.text_field :willpower %>
+							</div>
+							<div class="row">
+								<h3>Power Stat</h3>
+								<%= f.text_field :power_stat %>
+							</div>
+							<div class="row">
+								<h3>Resource</h3>
+								<%= f.text_field :max_resource %>
+							</div>
+							<div class="row">
+								<h3>Morality</h3>
+							</div>
 						</td>
 					</tr>
 					<tr>
