@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   get 'login', to: 'session#login', as: :login
   post 'login', to: 'session#new'
   get 'logout', to: 'session#destroy', as: :logout
-  get 'settings', to: 'user#edit', as: :edit_user
-  post 'settings', to: 'user#update'
+  get 'settings', to: 'users#edit', as: :edit_user
+  post 'settings', to: 'users#update'
 
   get 'admin', to: 'admin#index'
 
