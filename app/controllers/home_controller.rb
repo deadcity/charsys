@@ -9,11 +9,12 @@ class HomeController < ApplicationController
 
     if @chronicles.present?
 
-    	if session[:current_chronicle].nil?
-    		session[:current_chronicle] = Chronicle.last
+    	if session[:current_chronicle].empty?
+    		@chronicle = Chronicle.last
+        session[:current_chronicle] = @chronicle.id
+      else 
+        @chronicle = Chronicle.find_by_id(session[:current_chronicle])
     	end
-
-      @chronicle = Chronicle.find_by_id(session[:current_chronicle])
 
   		if @user.chronicles.include?(session[:current_chronicle])
   			@characters = Character.where(chronicle_id: session[:current_chronicle])

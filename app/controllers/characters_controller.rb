@@ -1,6 +1,7 @@
 class CharactersController < ApplicationController
 	def index
-		@characters = current_user.characters.all
+		@characters = Character.find_by_user_id(current_user.id)
+		@chronicles = Chronicle.all
 	end
 
 	def new
