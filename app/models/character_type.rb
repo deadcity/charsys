@@ -1,4 +1,6 @@
 class CharacterType < ActiveRecord::Base
+	validates :name, presence: true
+
 	has_many :chronicles
 	has_many :chronicles, :through => :chronicle_allows_character_type
 	has_many :chronicle_allows_character_type

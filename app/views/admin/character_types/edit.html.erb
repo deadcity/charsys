@@ -1,3 +1,5 @@
+<h2>Edit Character Type: <%= @character_type.name %></h2>
+
 <%= form_for @character_type, url: {action: 'update'} do |f| %>
 	<%= render partial: 'form', locals: {f: f} %>
 <% end %>

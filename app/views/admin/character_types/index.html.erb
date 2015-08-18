@@ -1,3 +1,5 @@
+<h2>Character Types</h2>
+
 <table class="table">
 	<% @character_types.each do |character_type| %>
 		<tr>
@@ -7,3 +9,5 @@
 		</tr>
 	<% end %>
 </table>
+
+<%= link_to "New Character Type", new_admin_character_type_path, class: "button" %>
