@@ -1,0 +1,21 @@
+h2 Account Settings
+
+.small-12.small-centered.medium-7.large-5.columns		
+	= form_tag
+		fieldset
+			legend Update your account
+			<div class="row">
+				= label_tag :name
+				<input type="text" name="user[name]" id="name" placeholder="Name" value="#{@user.name}" />
+			</div>
+			<div class="row">
+				= label_tag :current_password
+				= text_field_tag :current_password
+			</div>
+			<div class="row">
+				= label_tag :password, "New Password"
+				<input type="password" name="user[password]" id="password" placeholder="Password" />
+			</div>
+			<div class="row">
+				= submit_tag "Update", class: 'button'
+			</div>

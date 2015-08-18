@@ -42,6 +42,8 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 gem "font-awesome-rails"
 gem "puma"
 
+gem 'rails_12factor', group: :production
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
