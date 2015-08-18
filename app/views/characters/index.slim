@@ -1,0 +1,22 @@
+- if @characters[0]
+	table
+		thead
+			tr 
+				th Name
+				th Chronicle
+				th Affiliation
+				th Lineage
+		tbody
+			- @characters.each do |character|
+				tr
+					td
+						= character.name
+					td
+						= character.chronicle.title
+					td
+						= Affiliation.find_by(id: character.affiliation_id).name
+					td
+						= Lineage.find_by(id: character.lineage_id).name
+					
+- else
+	| You don't have any characters yet! Try <a href="#{new_character_path}">making one now</a>!
