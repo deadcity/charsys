@@ -1,3 +1,20 @@
 // Place all the styles related to the Chronicle controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.chronicle_index_page {
+  h2 {
+    font-size: 1.5em;
+    color: $purple;
+    margin-top: .5em;
+  }
+
+  .create_chronicle_button {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 2em;
+    top: -.2em;
+    border-radius: 3px;
+  }
+}
