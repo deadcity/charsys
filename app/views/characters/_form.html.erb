@@ -1,45 +1,43 @@
 	<table width="100%" class="table">
 		<tr>
-			<td>
-				<%= f.label :name %>
-				<%= f.text_field :name, class: 'form-control' %>
+			<td valign="top">
+				<%= f.text_field :name %>
 			</td>
-			<td>
-				<%= f.label :behavior_primary, "Mask" %>
-				<%= f.text_field :behavior_primary, class: 'form-control' %>
+			<td valign="top">
+				<%= f.label :behavior_primary, @character_type.behavior_primary %>
+				<%= f.text_field :behavior_primary, label: false %>
 			</td>
-			<td>
-				<%= f.label :lineage, "Clan" %>
-				<%= collection_select(:lineage, :lineage_id, Lineage.all, :id, :name, {}, {class: 'form-control'}) %>
+			<td valign="top">
+				<%= f.label :lineage, @character_type.lineage %>
+				<%= collection_select(:lineage, :lineage_id, Lineage.all, :id, :name, {}) %>
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td valign="top">
 				<%= f.label :user_id, "Player" %>
 				<%= hidden_field_tag :user_id, session[:user_id] %>
 				<%= @user.name %>
 			</td>
-			<td>
-				<%= f.label :behavior_secondary, "Dirge" %>
-				<%= f.text_field :behavior_secondary, class: 'form-control' %>
+			<td valign="top">
+				<%= f.label :behavior_secondary, @character_type.behavior_secondary %>
+				<%= f.text_field :behavior_secondary, label: false %>
 			</td>
-			<td>
-				<%= f.label :sublineage, "Bloodline" %>
-				<%= f.text_field :sublineage, class: 'form-control' %>
+			<td valign="top">
+				<%= f.label :sublineage, @character_type.sublineage %>
+				<%= f.text_field :sublineage, label: false %>
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td valign="top">
 				<%= f.label :chronicle_id, "Chronicle" %>
-				<%= hidden_field_tag :chronicle_id, @chronicle.id %>
-				<%= @chronicle.title %>
+				<%= collection_select(:chronicle, :chronicle_id, Chronicle.all, :id, :title, {}) %>
 			</td>
-			<td>
+			<td valign="top">
 				
 			</td>
-			<td>
-				<%= f.label :affiliation, "Covenant" %>
-				<%= collection_select(:affiliation, :affiliation_id, Affiliation.all, :id, :name, {}, {class: 'form-control'}) %>
+			<td valign="top">
+				<%= f.label :affiliation, @character_type.affiliation %>
+				<%= collection_select(:affiliation, :affiliation_id, Affiliation.all, :id, :name, {}) %>
 			</td>
 		</tr>
 		<tr>
@@ -55,25 +53,137 @@
 					<tr>
 						<th>Power</th>
 						<td>
+							<table width="100%">
+								<tr>
+									<th>Intelligence</th>
+									<td>
+										<input type="radio" value="1" name="character[attribs][1]" />
+										<input type="radio" value="2" name="character[attribs][1]" />
+										<input type="radio" value="3" name="character[attribs][1]" />
+										<input type="radio" value="4" name="character[attribs][1]" />
+										<input type="radio" value="5" name="character[attribs][1]" />
+									</td>
+								</tr>
+							</table>
 						</td>
 						<td>
-
+							<table width="100%">
+								<tr>
+									<th>Strength</th>
+									<td>
+										<input type="radio" value="1" name="character[attribs][4]" />
+										<input type="radio" value="2" name="character[attribs][4]" />
+										<input type="radio" value="3" name="character[attribs][4]" />
+										<input type="radio" value="4" name="character[attribs][4]" />
+										<input type="radio" value="5" name="character[attribs][4]" />
+									</td>
+								</tr>
+							</table>
 						</td>
 						<td>
-
+							<table width="100%">
+								<tr>
+									<th>Presence</th>
+									<td>
+										<input type="radio" value="1" name="character[attribs][7]" />
+										<input type="radio" value="2" name="character[attribs][7]" />
+										<input type="radio" value="3" name="character[attribs][7]" />
+										<input type="radio" value="4" name="character[attribs][7]" />
+										<input type="radio" value="5" name="character[attribs][7]" />
+									</td>
+								</tr>
+							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>Finesse</th>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Wits</th>
+									<td>
+										<input type="radio" value="1" name="character[attribs][2]" />
+										<input type="radio" value="2" name="character[attribs][2]" />
+										<input type="radio" value="3" name="character[attribs][2]" />
+										<input type="radio" value="4" name="character[attribs][2]" />
+										<input type="radio" value="5" name="character[attribs][2]" />
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Dexterity</th>
+									<td>
+										<input type="radio" value="1" name="character[attribs][5]" />
+										<input type="radio" value="2" name="character[attribs][5]" />
+										<input type="radio" value="3" name="character[attribs][5]" />
+										<input type="radio" value="4" name="character[attribs][5]" />
+										<input type="radio" value="5" name="character[attribs][5]" />
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Manipulation</th>
+									<td>
+										<input type="radio" value="1" name="character[attribs][8]" />
+										<input type="radio" value="2" name="character[attribs][8]" />
+										<input type="radio" value="3" name="character[attribs][8]" />
+										<input type="radio" value="4" name="character[attribs][8]" />
+										<input type="radio" value="5" name="character[attribs][8]" />
+									</td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 					<tr>
 						<th>Resistance</th>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Resolve</th>
+									<td>
+										<input type="radio" value="1" name="character[attribs][3]" />
+										<input type="radio" value="2" name="character[attribs][3]" />
+										<input type="radio" value="3" name="character[attribs][3]" />
+										<input type="radio" value="4" name="character[attribs][3]" />
+										<input type="radio" value="5" name="character[attribs][3]" />
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Stamina</th>
+									<td>
+										<input type="radio" value="1" name="character[attribs][6]" />
+										<input type="radio" value="2" name="character[attribs][6]" />
+										<input type="radio" value="3" name="character[attribs][6]" />
+										<input type="radio" value="4" name="character[attribs][6]" />
+										<input type="radio" value="5" name="character[attribs][6]" />
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Composure</th>
+									<td>
+										<input type="radio" value="1" name="character[attribs][9]" />
+										<input type="radio" value="2" name="character[attribs][9]" />
+										<input type="radio" value="3" name="character[attribs][9]" />
+										<input type="radio" value="4" name="character[attribs][9]" />
+										<input type="radio" value="5" name="character[attribs][9]" />
+									</td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 				</table>
 			</td>
@@ -83,25 +193,49 @@
 				<h2>Skills</h2>
 				<h3>Mental</h3>
 				<table width="100%">
-					<tr>
-						<td>Skill</td>
-						<td>Rating</td>
-					</tr>
+					<% @mental_skills.each do |skill| %>
+						<tr>
+							<th><%= skill.name %></th>
+							<td>
+								<input type="radio" value="1" name="character[skills][<%= skill.id %>" />
+								<input type="radio" value="2" name="character[skills][<%= skill.id %>" />
+								<input type="radio" value="3" name="character[skills][<%= skill.id %>" />
+								<input type="radio" value="4" name="character[skills][<%= skill.id %>" />
+								<input type="radio" value="5" name="character[skills][<%= skill.id %>" />
+							</td>
+						</tr>
+					<% end %>
 				</table>
 				specialties go here
-				<h3>Social</h3>
-				<table width="100%">
-					<tr>
-						<td>Skill</td>
-						<td>Rating</td>
-					</tr>
-				</table>
 				<h3>Physical</h3>
 				<table width="100%">
-					<tr>
-						<td>Skill</td>
-						<td>Rating</td>
-					</tr>
+					<% @physical_skills.each do |skill| %>
+						<tr>
+							<th><%= skill.name %></th>
+							<td>
+								<input type="radio" value="1" name="character[skills][<%= skill.id %>" />
+								<input type="radio" value="2" name="character[skills][<%= skill.id %>" />
+								<input type="radio" value="3" name="character[skills][<%= skill.id %>" />
+								<input type="radio" value="4" name="character[skills][<%= skill.id %>" />
+								<input type="radio" value="5" name="character[skills][<%= skill.id %>" />
+							</td>
+						</tr>
+					<% end %>
+				</table>
+				<h3>Social</h3>
+				<table width="100%">
+					<% @social_skills.each do |skill| %>
+						<tr>
+							<th><%= skill.name %></th>
+							<td>
+								<input type="radio" value="1" name="character[skills][<%= skill.id %>" />
+								<input type="radio" value="2" name="character[skills][<%= skill.id %>" />
+								<input type="radio" value="3" name="character[skills][<%= skill.id %>" />
+								<input type="radio" value="4" name="character[skills][<%= skill.id %>" />
+								<input type="radio" value="5" name="character[skills][<%= skill.id %>" />
+							</td>
+						</tr>
+					<% end %>
 				</table>
 			</td>
 			<td colspan="2" valign="top">
@@ -109,7 +243,12 @@
 				<table width="100%">
 					<tr>
 						<td valign="top">
+							<% @character_type.power_types.each do |power_type| %>
+								<h3><%= power_type.name %></h3>
+								<%= grouped_collection_select(power_type.name, nil, power_type.power_groups, :powers, :name, :id, :name) %>
+							<% end %>
 							<h3>Merits</h3>
+							<%= collection_select(:merit, nil, Merit.all, :id, :name) %>
 							<div class="row">
 								<%= f.text_field :size %>
 							</div>

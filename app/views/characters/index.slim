@@ -25,11 +25,3 @@
 							
 		- else
 			| You don't have any characters yet! Try <a href="#{new_character_path}">making one now</a>!
-		= form_tag(new_character_path, method: 'GET')
-			fieldset
-				legend Create a new character
-				.row
-					label Character Type
-				.row
-					= hidden_field_tag 'chronicle', 1
-					= button_tag 'New Character', type: 'submit', class: 'button'
