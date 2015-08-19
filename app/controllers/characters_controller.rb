@@ -1,12 +1,20 @@
 class CharactersController < ApplicationController
 	def index
-		@characters = current_user.characters.all
+		if current_user
+			@characters = current_user.characters.all
+		else
+			redirect_to login_path
+		end
 	end
 
 	def new
-		@user = User.find_by_id(session[:user_id])
-		@chronicle = Chronicle.find_by_id(session[:current_chronicle].id)
-		@character = Character.new
+		if current_user
+			@user = User.find_by_id(session[:user_id])
+			@chronicle = Chronicle.find_by_id(session[:current_chronicle].id)
+			@character = Character.new
+		else
+			redirect_to login_path
+		end
 	end
 
 	def create
@@ -22,10 +30,12 @@ class CharactersController < ApplicationController
 
 	def show
 		@character = Character.find_by_id(params[:id])
+		redirect_to index_path if @character.user != current_user
 	end
 
 	def edit
 		@character = Character.find_by_id(params[:id])
+		redirect_to index_path if @character.user != current_user
 	end
 
 	def update
