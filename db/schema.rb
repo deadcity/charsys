@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818185428) do
+ActiveRecord::Schema.define(version: 20150819060912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,11 +169,16 @@ ActiveRecord::Schema.define(version: 20150818185428) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "merit_categories", force: :cascade do |t|
+    t.string "merit_category"
+  end
+
   create_table "merits", force: :cascade do |t|
     t.string  "name"
     t.boolean "has_specification"
     t.boolean "has_description"
     t.string  "allowed_ratings"
+    t.integer "merit_category_id"
   end
 
   create_table "power_groups", force: :cascade do |t|
