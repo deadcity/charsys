@@ -10,7 +10,7 @@ class CharactersController < ApplicationController
 	def new
 		if current_user
 			@user = User.find_by_id(session[:user_id])
-			@chronicle = Chronicle.find_by_id(session[:current_chronicle].id)
+			@chronicle = Chronicle.last
 			@character = Character.new
 			@user = User.find_by_id(session[:user_id])
 			@chronicles = Chronicle.all
