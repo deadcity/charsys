@@ -20,11 +20,14 @@ class ChroniclesController < ApplicationController
 		if @chronicle.save!
 			flash[:success] = "New chronicle #{@chronicle.title} successfully created."
 			session[:current_chronicle] = @chronicle.id
-			redirect_to :root
+			redirect_to chronicles_path
 		else
 			flash[:error] = "There was an error creating your chronicle."
 			redirect_to new_chronicle_path
 		end
+	end
+
+	def show
 	end
 
 	def edit

@@ -1,0 +1,6 @@
+.row.chronicle_new_page
+	.small-12.medium-8.large-6.small-centered.columns
+		h2 Create a Chronicle
+		= form_for @chronicle, url: {action: "create"} do |f| 
+			= render partial: 'form', locals: {f: f}
+		p Don't worry, you'll be able to declare your rules and assign additional storytellers later.
