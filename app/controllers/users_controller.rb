@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
 	def edit
 		@user = current_user
+		redirect_to index_path if @user != current_user
 	end
 
 	def update

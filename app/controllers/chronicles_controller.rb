@@ -1,10 +1,18 @@
 class ChroniclesController < ApplicationController
 	def index
-		@chronicles = Chronicle.all
+		if current_user
+			@chronicles = current_user.chronicles.all
+		else
+			redirect_to login_path
+		end
 	end
-	
+
 	def new
-		@chronicle = Chronicle.new
+		if current_user
+			@chronicle = Chronicle.new
+		else
+			redirect_to login_path
+		end
 	end
 
 	def create
@@ -21,6 +29,7 @@ class ChroniclesController < ApplicationController
 
 	def edit
 		@chronicle = Chronicle.find_by_id(params[:id])
+		redirect_to index_path if @chronicle.user != current_user
 	end
 
 	def update
