@@ -16,7 +16,7 @@ class ChroniclesController < ApplicationController
 	end
 
 	def create
-		@chronicle = Chronicle.new(title: params[:chronicle][:title])
+		@chronicle = current_user.chronicles.create(title: params[:chronicle][:title])
 		if @chronicle.save!
 			flash[:success] = "New chronicle #{@chronicle.title} successfully created."
 			session[:current_chronicle] = @chronicle.id
