@@ -1,4 +1,6 @@
 class Chronicle < ActiveRecord::Base
+	validates :title, presence: true
+	
 	has_many :characters
 	has_many :user_administers_chronicles
 	has_many :users, :through => :user_administers_chronicles

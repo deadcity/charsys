@@ -1,4 +1,6 @@
 class Character < ActiveRecord::Base
+	validates :user, :chronicle, :name, presence: true
+
 	has_many :attribs
 	has_many :character_has_attributes
 	has_many :character_has_skills
