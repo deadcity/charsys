@@ -56,6 +56,7 @@ class CharactersController < ApplicationController
 		@mental_skills = Skill.where({skill_category: 1})
 		@physical_skills = Skill.where({skill_category: 2})
 		@social_skills = Skill.where({skill_category: 3})
+		@mental_attributes = Attrib.where({attribute_category: 1})
 		@merit_categories = MeritCategory.all
 		@merits = Merit.all
 		redirect_to index_path if @character.user != current_user
