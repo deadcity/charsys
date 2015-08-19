@@ -11,16 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818021927) do
+ActiveRecord::Schema.define(version: 20150818185428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "affiliations", force: :cascade do |t|
     t.string   "name"
-    t.integer  "character_type_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "attribs", force: :cascade do |t|
@@ -36,6 +35,14 @@ ActiveRecord::Schema.define(version: 20150818021927) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "behavior_primaries", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "behavior_secondaries", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "character_has_attributes", force: :cascade do |t|
     t.integer  "attrib_id"
     t.integer  "character_id"
@@ -44,7 +51,7 @@ ActiveRecord::Schema.define(version: 20150818021927) do
     t.integer  "value",        default: 1
   end
 
-  create_table "character_has_merit", force: :cascade do |t|
+  create_table "character_has_merits", force: :cascade do |t|
     t.integer "character_id"
     t.integer "merit_id"
     t.string  "specification"
@@ -58,6 +65,31 @@ ActiveRecord::Schema.define(version: 20150818021927) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "value",        default: 0
+  end
+
+  create_table "character_type_has_affiliations", force: :cascade do |t|
+    t.integer "character_type_id"
+    t.integer "affiliation_id"
+  end
+
+  create_table "character_type_has_behavior_primaries", force: :cascade do |t|
+    t.integer "character_type_id"
+    t.integer "behavior_primary_id"
+  end
+
+  create_table "character_type_has_behavior_secondaries", force: :cascade do |t|
+    t.integer "character_type_id"
+    t.integer "behavior_secondary_id"
+  end
+
+  create_table "character_type_has_lineages", force: :cascade do |t|
+    t.integer "character_type_id"
+    t.integer "lineage_id"
+  end
+
+  create_table "character_type_has_power_types", force: :cascade do |t|
+    t.integer "character_type_id"
+    t.integer "power_type_id"
   end
 
   create_table "character_types", force: :cascade do |t|
@@ -77,6 +109,9 @@ ActiveRecord::Schema.define(version: 20150818021927) do
     t.string   "question6"
     t.string   "question7"
     t.string   "question8"
+    t.string   "lineage"
+    t.string   "affiliation"
+    t.string   "sublineage"
   end
 
   create_table "characters", force: :cascade do |t|
@@ -130,9 +165,8 @@ ActiveRecord::Schema.define(version: 20150818021927) do
 
   create_table "lineages", force: :cascade do |t|
     t.string   "name"
-    t.integer  "character_type_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "merits", force: :cascade do |t|
@@ -149,17 +183,16 @@ ActiveRecord::Schema.define(version: 20150818021927) do
 
   create_table "power_types", force: :cascade do |t|
     t.string   "name"
-    t.integer  "character_type_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "powers", force: :cascade do |t|
     t.string   "name"
+    t.integer  "power_group_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "rating"
-    t.integer  "power_type_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
   end
 
   create_table "skill_categories", force: :cascade do |t|

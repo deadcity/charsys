@@ -1,3 +1,3 @@
 class Power < ActiveRecord::Base
-	has_one :power_type
+	belongs_to :power_group
 end
