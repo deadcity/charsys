@@ -242,6 +242,7 @@ affiliations = Affiliation.create([
 	{name: 'Invictus'},
 	{name: 'Lancea et Sanctum'},
 	{name: 'Ordo Dracul'}
+	{name: 'Unaligned'}
 	])
 
 character_type_has_lineages = CharacterTypeHasLineage.create([
@@ -263,11 +264,13 @@ character_type_has_affiliations = CharacterTypeHasAffiliation.create([
 	{character_type_id: 1, affiliation_id: 3},
 	{character_type_id: 1, affiliation_id: 4},
 	{character_type_id: 1, affiliation_id: 5},
+	{character_type_id: 1, affiliation_id: 6},
 	{character_type_id: 2, affiliation_id: 1},
 	{character_type_id: 2, affiliation_id: 2},
 	{character_type_id: 2, affiliation_id: 3},
 	{character_type_id: 2, affiliation_id: 4},
-	{character_type_id: 2, affiliation_id: 5}
+	{character_type_id: 2, affiliation_id: 5},
+	{character_type_id: 2, affiliation_id: 6}
 	])
 
 behavior_primaries = BehaviorPrimary.create([
