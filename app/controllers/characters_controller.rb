@@ -12,6 +12,15 @@ class CharactersController < ApplicationController
 			@user = User.find_by_id(session[:user_id])
 			@chronicle = Chronicle.find_by_id(session[:current_chronicle].id)
 			@character = Character.new
+			@user = User.find_by_id(session[:user_id])
+			@chronicles = Chronicle.all
+			@character_type = CharacterType.first
+			@character_types = CharacterType.all
+			@mental_skills = Skill.where({skill_category: 1})
+			@physical_skills = Skill.where({skill_category: 2})
+			@social_skills = Skill.where({skill_category: 3})
+			@merits = Merit.all
+			@character = Character.new
 		else
 			redirect_to login_path
 		end
