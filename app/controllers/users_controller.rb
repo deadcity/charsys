@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 		else
 			flash[:alert] = "There was an error creating your account."
 		end
-		redirect_to register_path
+		redirect_to :root
 	end
 
 	def edit
