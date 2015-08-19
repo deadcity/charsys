@@ -1,0 +1,25 @@
+table
+	tr
+		th Merit Name
+		td
+			= f.text_field :name, label: false
+	tr
+		th Category
+		td
+			= collection_select(:merit, :merit_category_id, MeritCategory.all, :id, :merit_category)
+	tr
+		th Allowed Ratings
+		td
+			= f.text_field :allowed_ratings, label: false
+	tr
+		th Has Specification?
+		td
+			= f.check_box :has_specification, label: false
+	tr
+		th Has Description?
+		td
+			= f.check_box :has_description, label: false
+	tr
+		td colspan=2
+			= f.hidden_field :id
+			= f.button "Save", type: 'submit', class: 'button'

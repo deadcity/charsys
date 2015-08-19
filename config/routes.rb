@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :skill_categories
     resources :attribute_categories
     resources :affiliations
+    resources :merits
   end
 
 

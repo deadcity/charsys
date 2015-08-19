@@ -1,0 +1,16 @@
+h2 Merit: #{@merit.name}
+
+p
+	strong Category:
+	= @merit.merit_category.merit_category
+p
+	strong Allowed Ratings:
+	= @merit.allowed_ratings
+p	
+	strong Has Specification?
+	= @merit.has_specification
+p
+	strong Has Description?
+	= @merit.has_description
+
+= link_to "Edit Merit", edit_admin_merit_path(@merit.id), class: 'button'
