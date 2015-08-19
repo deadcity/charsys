@@ -19,7 +19,8 @@ power_types = PowerType.create([
 	{name: 'Scales of the Dragon'},
 	{name: 'Theban Sorcery Rituals'},
 	{name: 'Manifestations'},
-	{name: 'Keys'}
+	{name: 'Keys'},
+	{name: 'Devotions'}
 	])
 
 power_groups = PowerGroup.create([
@@ -42,7 +43,25 @@ power_groups = PowerGroup.create([
 	{name: 'The Caul', power_type_id: 5},
 	{name: 'The Pale', power_type_id: 5},
 	{name: 'The Monument', power_type_id: 5},
-	{name: 'Keys', power_type_id: 6}
+	{name: 'Keys', power_type_id: 6},
+	{name: 'Theban Sorcery 1', power_type_id: 4},
+	{name: 'Theban Sorcery 2', power_type_id: 4},
+	{name: 'Theban Sorcery 3', power_type_id: 4},
+	{name: 'Theban Sorcery 4', power_type_id: 4},
+	{name: 'Theban Sorcery 5', power_type_id: 4},
+	{name: 'Crúac 1', power_type_id: 2},
+	{name: 'Crúac 2', power_type_id: 2},
+	{name: 'Crúac 3', power_type_id: 2},
+	{name: 'Crúac 4', power_type_id: 2},
+	{name: 'Crúac 5', power_type_id: 2},
+	{name: 'Mystery of the Ascendant', power_type_id: 3},
+	{name: 'Mystery of the Wyrm', power_type_id: 3},
+	{name: 'Mystery of the Voivode', power_type_id: 3},
+	{name: 'Atomics', power_type_id: 1},
+	{name: 'General', power_type_id: 7},
+	{name: 'Sangmelier', power_type_id: 7},
+	{name: 'Showmen', power_type_id: 7},
+	{name: 'Psu\'ho-wurv', power_type_id: 7}
 	])
 
 powers = Power.create([
@@ -151,7 +170,28 @@ powers = Power.create([
 	{name: 'Pyre-Flame', rating: 1, power_group_id: 20},
 	{name: 'Stigmata', rating: 1, power_group_id: 20},
 	{name: 'Stillness', rating: 1, power_group_id: 20},
-	{name: 'Tear-Stained', rating: 1, power_group_id: 20}
+	{name: 'Tear-Stained', rating: 1, power_group_id: 20},
+	{name: 'Blood Scourge', rating: 1, power_group_id: 21},
+	{name: 'Vitae Reliquary', rating: 1, power_group_id: 21},
+	{name: 'Hauberk of Blood', rating: 1, power_group_id: 21},
+	{name: 'Curse of Babel', rating: 2, power_group_id: 22},
+	{name: 'Liar\'s Plague', rating: 2, power_group_id: 22},
+	{name: 'Blandishment of Sin', rating: 3, power_group_id: 23},
+	{name: 'Malediction of Despair', rating: 3, power_group_id: 23},
+	{name: 'Gift of Lazarus', rating: 4, power_group_id: 24},
+	{name: 'Stigmata', rating: 4, power_group_id: 24},
+	{name: 'Transubstantiation', rating: 5, power_group_id: 25},
+	{name: 'Pangs of Proserpina', rating: 1, power_group_id: 26},
+	{name: 'Rigor Mortis', rating: 1, power_group_id: 26},
+	{name: 'Maiden, Mother, Crone', rating: 1, power_group_id: 26},
+	{name: 'Cheval', rating: 2, power_group_id: 27},
+	{name: 'The Hydra\'s Vitae', rating: 2, power_group_id: 27},
+	{name: 'Deflection of Wooden Doom', rating: 3, power_group_id: 28},
+	{name: 'Touch of the Morrigan', rating: 3, power_group_id: 28},
+	{name: 'Blood Price', rating: 4, power_group_id: 29},
+	{name: 'Willful Vitae', rating: 4, power_group_id: 29},
+	{name: 'Blood Blight', rating: 4, power_group_id: 29},
+	{name: 'Feeding the Crone', rating: 4, power_group_id: 30},
 	])
 
 character_type_has_power_type = CharacterTypeHasPowerType.create([
