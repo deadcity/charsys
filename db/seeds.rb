@@ -241,7 +241,7 @@ affiliations = Affiliation.create([
 	{name: 'Circle of the Crone'},
 	{name: 'Invictus'},
 	{name: 'Lancea et Sanctum'},
-	{name: 'Ordo Dracul'}
+	{name: 'Ordo Dracul'},
 	{name: 'Unaligned'}
 	])
 
@@ -556,6 +556,18 @@ skills = Skill.create([
 	{name: 'Socialize', skill_category_id: 3},
 	{name: 'Streetwise', skill_category_id: 3},
 	{name: 'Subterfuge', skill_category_id: 3},
+	])
+
+merit_categories = MeritCategory.create([
+	{merit_category: 'General'},
+	{merit_category: 'Ghoul'},
+	{merit_category: 'Mortal'},
+	{merit_category: 'Sin-Eater'},
+	{merit_category: 'Carthian Law'},
+	{merit_category: 'Invictus Oaths'},
+	{merit_category: 'Sangmellier'},
+	{merit_category: 'Showmen'},
+	{merit_category: 'Psu\'ho-wurv'}
 	])
 
 merits = Merit.create([
