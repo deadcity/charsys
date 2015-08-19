@@ -1,4 +1,6 @@
 class CharactersController < ApplicationController
+	CHARACTER_STATUS = ['In Progress', 'Submitted', 'Approved', 'Active', 'Deceased', 'Inactive']
+
 	def index
 		if current_user
 			@characters = current_user.characters.all

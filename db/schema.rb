@@ -132,8 +132,8 @@ ActiveRecord::Schema.define(version: 20150819060912) do
     t.integer  "health"
     t.integer  "willpower"
     t.integer  "max_resource"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "character_type_id"
     t.integer  "chronicle_id"
     t.string   "misc"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 20150819060912) do
     t.integer  "armor_general"
     t.text     "st_notes"
     t.text     "printed_notes"
+    t.integer  "status",             default: 0
   end
 
   create_table "chronicle_allows_character_types", force: :cascade do |t|
