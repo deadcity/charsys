@@ -12,7 +12,7 @@
 					- @chronicles.each do |chronicle|
 						tr
 							td
-								= link_to chronicle.name, chronicle_path(id: chronicle.id)
+								= link_to chronicle.title, chronicle_path(id: chronicle.id)
 							
 		- else
 			| You don't have any chronicles yet! Try <a href="#{new_chronicle_path}">making one now</a>!
