@@ -267,7 +267,7 @@
 								<%= button_tag 'Add', type: 'submit', class: 'button', id: "#{power_type.name.downcase.underscore}_add" %>
 							<% end %>
 							<h3>Merits</h3>
-							<%= collection_select(:merit, nil, Merit.all, :id, :name) %>
+							<%= grouped_collection_select(:merit_category, nil, MeritCategory.all, :merits, :merit_category, :id, :name) %>
 							<%= button_tag 'Add', type: 'submit', class: 'button', id: "merits-add" %>
 						</td>
 						<td valign="top">
