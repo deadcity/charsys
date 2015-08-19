@@ -5,7 +5,7 @@
 			</td>
 			<td valign="top">
 				<%= f.label :behavior_primary, @character_type.behavior_primary %>
-				<%= f.text_field :behavior_primary, label: false %>
+				<%= collection_select(:character, :behavior_primary, @character_type.behavior_primaries, :id, :name) %>
 			</td>
 			<td valign="top">
 				<%= f.label :lineage, @character_type.lineage %>
@@ -15,12 +15,12 @@
 		<tr>
 			<td valign="top">
 				<%= f.label :user_id, "Player" %>
-				<%= hidden_field_tag :user_id, session[:user_id] %>
+				<%= f.hidden_field :user_id, value: current_user.id %>
 				<%= @user.name %>
 			</td>
 			<td valign="top">
 				<%= f.label :behavior_secondary, @character_type.behavior_secondary %>
-				<%= f.text_field :behavior_secondary, label: false %>
+				<%= collection_select(:character, :behavior_secondary, @character_type.behavior_secondaries, :id, :name) %>
 			</td>
 			<td valign="top">
 				<%= f.label :sublineage, @character_type.sublineage %>

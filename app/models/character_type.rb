@@ -12,6 +12,6 @@ class CharacterType < ActiveRecord::Base
 	has_many :affiliations, through: :character_type_has_affiliation
 	has_many :character_type_has_behavior_primaries
 	has_many :character_type_has_behavior_secondaries
-	has_many :behavior_primaries, through: :character_type_has_behavior_primary
-	has_many :behavior_secondaries, through: :character_type_has_behavior_secondary
+	has_many :behavior_primaries, through: :character_type_has_behavior_primaries
+	has_many :behavior_secondaries, through: :character_type_has_behavior_secondaries
 end
