@@ -207,12 +207,16 @@
 						</tr>
 					<% end %>
 				</table>
-				<%= collection_select(:skill, :skill_id, @mental_skills, :id, :name) %>
+				<%= collection_select(:skill, :skill_id, @mental_skills, :id, :name, {}, {id: 'mental-skills', name: 'mental-skills'}) %>
 				<%= text_field_tag :mental_skill_specialty %>
-				<%= button_tag 'Add', id: 'add-mental-specialty' %>
-				<div id="mental-skill-specialties">
-
-				</div>
+				<%= button_tag 'Add', id: 'add-mental-specialty', type: '' %>
+				<ul id="mental-skill-specialties">
+					<% @character.skill_specialties.each do |specialty| %>
+						<li>
+							<%= specialty.skill.name %> (<%= specialty.specialty %>)
+						</li>
+					<% end %>
+				</ul>
 				<h3>Physical</h3>
 				<table width="100%">
 					<% @physical_skills.each do |skill| %>
@@ -419,5 +423,13 @@
 	<script type="text/javascript">
 	// WELCOME TO HELL
 
+	$('#add-mental-specialty').click(function (e) {
+		e.preventDefault();
+		var specialty = $('#mental_skill_specialty').val();
+		var skill = $('#mental-skills option:selected').text();
+		var skillId = $('#mental-skills').val();
 
+		var newItem = "<li>"+skill+" ("+specialty+") - <input type='checkbox' name='character[skill_specialties][][_destroy]' value='' /> delete?<input type='hidden' name='character[skill_specialties][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties][][character_id]' value='"+<%= @character.id %>+"'</li>";
+		$('#mental-skill-specialties').append(newItem);
+	});
 	</script>

@@ -10,9 +10,10 @@ class Character < ActiveRecord::Base
 	has_many :skills, :through => :character_has_skills
 	has_many :powers, :through => :character_has_powers
 	has_many :merits, through: :character_has_merits
+	has_many :skill_specialties
 	has_one :character_type
 	belongs_to :user
 	belongs_to :chronicle
 
-	accepts_nested_attributes_for :skills, :powers, :attribs
+	accepts_nested_attributes_for :skills, :powers, :attribs, :merits, :skill_specialties, allow_destroy: true
 end

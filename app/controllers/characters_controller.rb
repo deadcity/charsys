@@ -64,8 +64,19 @@ class CharactersController < ApplicationController
 
 	def update
 		@character = Character.find_by_id(params[:character][:id])
-		if @character.update!(characters_params)
+		specialties = []
+		params[:character][:skill_specialties].each do |specialty|
+			specialties << SkillSpecialty.new({skill_id: specialty[:skill_id], specialty: specialty[:specialty], character_id: @character.id})
+		end
+		params[:character][:skill_specialties] = specialties
+		puts params[:character]
+		if @character.update_attributes!(characters_params)
 			flash[:success] = "Your changes to your character were saved."
+			if specialties.present?
+				specialties.each do |specialty|
+					specialty.save!
+				end
+			end
 			redirect_to character_path(@character)
 		else
 			flash[:alert] = "There was an error saving changes to your character."
@@ -80,6 +91,6 @@ class CharactersController < ApplicationController
 	private
 
 	def characters_params
-		params.require(:character).permit(:name, :behavior_primary, :behavior_secondary, :lineage_id, :affiliation_id, :user_id, :chronicle_id, :character_type_id, :attribs, :skills, :merits, :health, :willpower, :powers, :power_stat, :morality, :size, :speed, :armor_ballistic, :armor_general, :defense, :answer1, :answer2, :answer3, :answer4, :answer5, :answer6, :answer7, :answer8, :printed_notes, :st_notes, :misc, :skill_specialties)
+		params.require(:character).permit(:name, :behavior_primary, :behavior_secondary, :lineage_id, :affiliation_id, :user_id, :chronicle_id, :character_type_id, :attribs, :skills, :merits, :health, :willpower, :powers, :power_stat, :morality, :size, :speed, :armor_ballistic, :armor_general, :defense, :answer1, :answer2, :answer3, :answer4, :answer5, :answer6, :answer7, :answer8, :printed_notes, :st_notes, :misc, skill_specialties: [:skill_id, :specialty, :character_id])
 	end
 end
