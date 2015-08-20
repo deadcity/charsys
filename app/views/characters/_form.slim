@@ -187,7 +187,7 @@
 		div id="social-skill-specialties"
 
 / OTHER TRAITS 
-td colspan="2" valign="top"
+.row
 	h2 Other Traits
 	table width="100%"
 		tr
@@ -282,15 +282,10 @@ td colspan="2" valign="top"
 				
 				div class="row"
 					= f.text_field :armor_general
-				
-			
-		
-	
 
-
-tr
-td colspan="3"
-	div class="row"
+/ QUESTIONNAIRE
+.row
+	.small-12.columns
 		h2 Questionnaire
 		h3
 			= @character_type.question1
@@ -317,11 +312,13 @@ td colspan="3"
 			= @character_type.question8
 		= f.text_area :answer8, label: false
 	
-	div class="row"
+.row
+	.small-12.columns
 		h2 Printed Notes
 		= f.text_area :printed_notes, label: false
 	
-	div class="row"
+.row
+	.small-12.columns
 		h2 Storyteller Notes
 		= f.text_area :st_notes, label: false
 	
