@@ -46,4 +46,18 @@
       white-space: nowrap;
     }
   }
+
+  .skill_tables {
+    tr {
+      white-space: nowrap;
+    }
+  }
+
+  .add_specialty_button {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 3px;
+  }
 }
