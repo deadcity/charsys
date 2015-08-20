@@ -1,5 +1,10 @@
 class CharactersController < ApplicationController
 	CHARACTER_STATUS = ['In Progress', 'Submitted', 'Approved', 'Active', 'Deceased', 'Inactive']
+	def get_status(status)
+		return CHARACTER_STATUS[status]
+	end
+	helper_method :get_status
+
 
 	def index
 		if current_user
