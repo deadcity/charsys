@@ -1,0 +1,36 @@
+h2
+  = @chronicle.title
+  h3
+  | Current Storytellers
+  - if @chronicle.sts
+    table#sts_info
+     tbody
+       tr
+         td
+	   = @chronicle.sts
+	 td
+	   |Add Storytellers using this button!
+  - if @characters[0]
+    table#character_index_table
+      thead
+        tr
+	  th Name
+	  th Username
+	  th Affiliation
+	  th Lineage
+	  th Status
+      tbody
+        - @characters.each do |character|
+	  tr
+	    td
+	      = link_to character.name, character_path(id: character.id)
+	    td
+	      = character.user.username
+	    td
+	      = Affiliation.find_by(id: character.affiliation_id.name)
+	    td
+	      = Lineage.find_by(id: character.lineage_id.name)
+	    td
+	      = character.status
+  - else
+   | There are no characters in this chronicle yet!
