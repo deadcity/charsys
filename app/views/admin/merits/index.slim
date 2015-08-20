@@ -1,0 +1,33 @@
+.row.character_index_page
+	.small-12.small-centered.columns
+		h2 
+			| Merits 
+			= link_to "New Merit", new_admin_merit_path, class: "button new_merit_button"
+		- if @merits
+			table#merit_index_table
+				thead
+					tr 
+						th Name
+						th Category
+						th Allowed Ratings
+						th Has Specification?
+						th Has Description?
+						th
+				tbody
+					- @merits.each do |merit|
+						tr
+							td
+								= link_to merit.name, admin_merit_path(id: merit.id)
+							td
+								= merit.merit_category.merit_category
+							td
+								= merit.allowed_ratings
+							td
+								= merit.has_specification?
+							td
+								= merit.has_description?
+							td
+								= link_to "Edit", edit_admin_merit_path(id: merit.id)
+							
+		- else
+			| There are no merits entered yet. <a href="#{new_admin_merit_path}">Create one now!</a>
