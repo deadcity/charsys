@@ -1,0 +1,403 @@
+table
+	tr
+		td
+			= f.text_field :name
+		
+		td valign="top"
+			= f.label :behavior_primary, @character_type.behavior_primary
+			= f.text_field :behavior_primary, label: false
+		
+		td valign="top"
+			= f.label :lineage, @character_type.lineage
+			= collection_select(:character, :lineage_id, Lineage.all, :id, :name, {})
+		
+	
+	tr
+		td valign="top"
+			= f.label :user_id, "Player"
+			= hidden_field_tag :user_id, session[:user_id]
+			= @user.name
+		
+		td valign="top"
+			= f.label :behavior_secondary, @character_type.behavior_secondary
+			= f.text_field :behavior_secondary, label: false
+		
+		td valign="top"
+			= f.label :sublineage, @character_type.sublineage
+			= f.text_field :sublineage, label: false
+		
+	
+	tr
+		td valign="top"
+			= f.label :chronicle_id, "Chronicle"
+			= collection_select(:character, :chronicle_id, Chronicle.all, :id, :title, {})
+		
+		td valign="top"
+			= f.label :character_type
+			= collection_select(:character, :character_type_id, CharacterType.all, :id, :name, {})
+		
+		td valign="top"
+			= f.label :affiliation, @character_type.affiliation
+			= collection_select(:character, :affiliation_id, Affiliation.all, :id, :name, {})
+		
+	
+	tr
+		td colspan="3"
+			h2 Attributes
+			table width="100%" class="table"
+				tr
+					th
+					th Mental
+					th Social
+					th Physical
+				
+				tr
+					th Power
+					td
+						table width="100%"
+							tr
+								th Intelligence
+								td
+									input type="radio" value="1" name="character[attribs][1]" 
+									input type="radio" value="2" name="character[attribs][1]" 
+									input type="radio" value="3" name="character[attribs][1]" 
+									input type="radio" value="4" name="character[attribs][1]" 
+									input type="radio" value="5" name="character[attribs][1]" 
+								
+							
+						
+					
+					td
+						table width="100%"
+							tr
+								th Strength
+								td
+									input type="radio" value="1" name="character[attribs][4]" 
+									input type="radio" value="2" name="character[attribs][4]" 
+									input type="radio" value="3" name="character[attribs][4]" 
+									input type="radio" value="4" name="character[attribs][4]" 
+									input type="radio" value="5" name="character[attribs][4]" 
+								
+							
+						
+					
+					td
+						table width="100%"
+							tr
+								th Presence
+								td
+									input type="radio" value="1" name="character[attribs][7]" 
+									input type="radio" value="2" name="character[attribs][7]" 
+									input type="radio" value="3" name="character[attribs][7]" 
+									input type="radio" value="4" name="character[attribs][7]" 
+									input type="radio" value="5" name="character[attribs][7]" 
+								
+							
+						
+					
+				
+				tr
+					th Finesse
+					td
+						table width="100%"
+							tr
+								th Wits
+								td
+									input type="radio" value="1" name="character[attribs][2]" 
+									input type="radio" value="2" name="character[attribs][2]" 
+									input type="radio" value="3" name="character[attribs][2]" 
+									input type="radio" value="4" name="character[attribs][2]" 
+									input type="radio" value="5" name="character[attribs][2]" 
+								
+							
+						
+					
+					td
+						table width="100%"
+							tr
+								th Dexterity
+								td
+									input type="radio" value="1" name="character[attribs][5]" 
+									input type="radio" value="2" name="character[attribs][5]" 
+									input type="radio" value="3" name="character[attribs][5]" 
+									input type="radio" value="4" name="character[attribs][5]" 
+									input type="radio" value="5" name="character[attribs][5]" 
+								
+							
+						
+					
+					td
+						table width="100%"
+							tr
+								th Manipulation
+								td
+									input type="radio" value="1" name="character[attribs][8]" 
+									input type="radio" value="2" name="character[attribs][8]" 
+									input type="radio" value="3" name="character[attribs][8]" 
+									input type="radio" value="4" name="character[attribs][8]" 
+									input type="radio" value="5" name="character[attribs][8]" 
+								
+							
+						
+					
+				
+				tr
+					th Resistance
+					td
+						table width="100%"
+							tr
+								th Resolve
+								td
+									input type="radio" value="1" name="character[attribs][3]" 
+									input type="radio" value="2" name="character[attribs][3]" 
+									input type="radio" value="3" name="character[attribs][3]" 
+									input type="radio" value="4" name="character[attribs][3]" 
+									input type="radio" value="5" name="character[attribs][3]" 
+								
+							
+						
+					
+					td
+						table width="100%"
+							tr
+								th Stamina
+								td
+									input type="radio" value="1" name="character[attribs][6]" 
+									input type="radio" value="2" name="character[attribs][6]" 
+									input type="radio" value="3" name="character[attribs][6]" 
+									input type="radio" value="4" name="character[attribs][6]" 
+									input type="radio" value="5" name="character[attribs][6]" 
+								
+							
+						
+					
+					td
+						table width="100%"
+							tr
+								th Composure
+								td
+									input type="radio" value="1" name="character[attribs][9]" 
+									input type="radio" value="2" name="character[attribs][9]" 
+									input type="radio" value="3" name="character[attribs][9]" 
+									input type="radio" value="4" name="character[attribs][9]" 
+									input type="radio" value="5" name="character[attribs][9]" 
+								
+							
+						
+					
+				
+			
+		
+	
+	tr
+		td valign="top"
+			h2 Skills
+			h3 Mental
+			table width="100%"
+				- @mental_skills.each do |skill|
+					tr
+						th
+							= skill.name
+						td
+							input type="radio" value="1" name="character[skills][= skill.id" 
+							input type="radio" value="2" name="character[skills][= skill.id" 
+							input type="radio" value="3" name="character[skills][= skill.id" 
+							input type="radio" value="4" name="character[skills][= skill.id" 
+							input type="radio" value="5" name="character[skills][= skill.id" 
+						
+					
+				 
+			
+			= collection_select(:skill, :skill_id, @mental_skills, :id, :name)
+			= text_field_tag :mental_skill_specialty
+			= button_tag 'Add', id: 'add-mental-specialty'
+			div id="mental-skill-specialties"
+
+			
+			h3 Physical
+			table width="100%"
+				- @physical_skills.each do |skill|
+					tr
+						th
+							= skill.name
+						td
+							input type="radio" value="1" name="character[skills][= skill.id" 
+							input type="radio" value="2" name="character[skills][= skill.id" 
+							input type="radio" value="3" name="character[skills][= skill.id" 
+							input type="radio" value="4" name="character[skills][= skill.id" 
+							input type="radio" value="5" name="character[skills][= skill.id" 
+						
+					
+				 
+			
+			= collection_select(:skill, :skill_id, @physical_skills, :id, :name)
+			= text_field_tag :physical_skill_specialty
+			= button_tag 'Add', id: 'add-physical-specialty'
+			div id="physical-skill-specialties"
+
+			
+			h3 Social
+			table width="100%"
+				- @social_skills.each do |skill|
+					tr
+						th
+							= skill.name
+						td
+							input type="radio" value="1" name="character[skills][= skill.id" 
+							input type="radio" value="2" name="character[skills][= skill.id" 
+							input type="radio" value="3" name="character[skills][= skill.id" 
+							input type="radio" value="4" name="character[skills][= skill.id" 
+							input type="radio" value="5" name="character[skills][= skill.id" 
+						
+					
+				 
+			
+			= collection_select(:skill, :skill_id, @social_skills, :id, :name)
+			= text_field_tag :social_skill_specialty
+			= button_tag 'Add', id: 'add-social-specialty'
+			div id="social-skill-specialties"
+
+			
+		
+		td colspan="2" valign="top"
+			h2 Other Traits
+			table width="100%"
+				tr
+					td valign="top"
+						- @character_type.power_types.each do |power_type|
+							h3
+								= power_type.name
+							= grouped_collection_select(power_type.name, nil, power_type.power_groups, :powers, :name, :id, :name)
+							= button_tag 'Add', type: 'submit', class: 'button', id: "#{power_type.name.downcase.underscore}_add"
+						 
+						h3 Merits
+						= collection_select(:merit, nil, Merit.all, :id, :name)
+						= button_tag 'Add', type: 'submit', class: 'button', id: "merits-add"
+					
+					td valign="top"
+						div class="row"
+							h3 Health
+							= f.radio_button :health, "1", label: false
+							= f.radio_button :health, "2", label: false
+							= f.radio_button :health, "3", label: false
+							= f.radio_button :health, "4", label: false
+							= f.radio_button :health, "5", label: false
+							= f.radio_button :health, "6", label: false
+							= f.radio_button :health, "7", label: false
+							= f.radio_button :health, "8", label: false
+							= f.radio_button :health, "9", label: false
+							= f.radio_button :health, "10", label: false
+							= f.radio_button :health, "11", label: false
+							= f.radio_button :health, "12", label: false
+							= f.radio_button :health, "13", label: false
+							= f.radio_button :health, "14", label: false
+							= f.radio_button :health, "15", label: false
+						
+						div class="row"
+							h3 Willpower
+							= f.radio_button :willpower, "1", label: false
+							= f.radio_button :willpower, "2", label: false
+							= f.radio_button :willpower, "3", label: false
+							= f.radio_button :willpower, "4", label: false
+							= f.radio_button :willpower, "5", label: false
+							= f.radio_button :willpower, "6", label: false
+							= f.radio_button :willpower, "7", label: false
+							= f.radio_button :willpower, "8", label: false
+							= f.radio_button :willpower, "9", label: false
+							= f.radio_button :willpower, "10", label: false
+						
+						div class="row"
+							h3
+								= @character_type.power_stat
+							= f.radio_button :power_stat, "1", label: false
+							= f.radio_button :power_stat, "2", label: false
+							= f.radio_button :power_stat, "3", label: false
+							= f.radio_button :power_stat, "4", label: false
+							= f.radio_button :power_stat, "5", label: false
+							= f.radio_button :power_stat, "6", label: false
+							= f.radio_button :power_stat, "7", label: false
+							= f.radio_button :power_stat, "8", label: false
+							= f.radio_button :power_stat, "9", label: false
+							= f.radio_button :power_stat, "10", label: false
+						
+						div class="row"
+							h3
+								= @character_type.resource
+							= f.text_field :max_resource, label: false
+						
+						div class="row"
+							h3
+								= @character_type.morality
+							= f.radio_button :morality, "1", label: false
+							= f.radio_button :morality, "2", label: false
+							= f.radio_button :morality, "3", label: false
+							= f.radio_button :morality, "4", label: false
+							= f.radio_button :morality, "5", label: false
+							= f.radio_button :morality, "6", label: false
+							= f.radio_button :morality, "7", label: false
+							= f.radio_button :morality, "8", label: false
+							= f.radio_button :morality, "9", label: false
+							= f.radio_button :morality, "10", label: false
+						
+
+						div class="row"
+							= f.text_field :size
+						
+						div class="row"
+							= f.text_field :speed
+						
+						div class="row"
+							= f.text_field :defense
+						
+						div class="row"
+							= f.text_field :armor_ballistic
+						
+						div class="row"
+							= f.text_field :armor_general
+						
+					
+				
+			
+		
+	
+	tr
+		td colspan="3"
+			div class="row"
+				h2 Questionnaire
+				h3
+					= @character_type.question1
+				= f.text_area :answer1, label: false
+				h3
+					= @character_type.question2
+				= f.text_area :answer2, label: false
+				h3
+					= @character_type.question3
+				= f.text_area :answer3, label: false
+				h3
+					= @character_type.question4
+				= f.text_area :answer4, label: false
+				h3
+					= @character_type.question5
+				= f.text_area :answer5, label: false
+				h3
+					= @character_type.question6
+				= f.text_area :answer6, label: false
+				h3
+					= @character_type.question7
+				= f.text_area :answer7, label: false
+				h3
+					= @character_type.question8
+				= f.text_area :answer8, label: false
+			
+			div class="row"
+				h2 Printed Notes
+				= f.text_area :printed_notes, label: false
+			
+			div class="row"
+				h2 Storyteller Notes
+				= f.text_area :st_notes, label: false
+			
+		
+	
+
+= f.button 'Save', type: 'submit', class: 'button'
