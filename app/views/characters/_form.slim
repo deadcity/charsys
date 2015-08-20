@@ -192,10 +192,12 @@
 								option value="#{power.id}" #{power.rating} - #{power.name}
 				= button_tag 'Add', type: 'submit', class: 'mini-button', id: "#{power_type.name.downcase.underscore}_add"
 
-				ul.power-list
-					- @character.powers.where(power_type: power_type.id)
-						li #{power.name}
-							<i class="fa fa-trash-o live-delete"></i>
+		ul#power-list
+			- @character.powers
+				li #{power.name}
+					input type="hidden" value="#{power.id}" name="character[powers][][id]"
+					<i class="fa fa-trash-o live-delete"></i>
+					input type="checkbox" class="hide" name="character[merits][][_delete]"
 .row
 	.small-8.small-centered.columns
 		h3 Merits
@@ -216,8 +218,10 @@
 						span.description #{merit.description}
 						textarea value="#{merit.description}" name="character[merits][][description]" class="hide"
 					input type="hidden" value="#{merit.id}" name="character[merits][][id]"
+					input type="hidden" value="#{@character.id}" name="character[merits][][character_id]"
 					<i class="fa fa-pencil live-edit"></i>
 					<i class="fa fa-trash-o live-delete"></i>
+					input type="checkbox" class="hide" name="character[merits][][_delete]"
 .row
 	.small-6.large-4.large-offset-2.columns
 		h3 Health
@@ -368,7 +372,7 @@ javascript:
 
 		var newItem = "<li>"+powerName+" <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[powers][][power_id] /><input type='hidden' name='character[powers][][character_id]' value='#{@character.id}' /></li>";
 
-		$(this).nextAll('.power-list').append(newItem);
+		$('#power-list').append(newItem);
 	});
 
 	$('#merits-add').on('click', function(e) {
