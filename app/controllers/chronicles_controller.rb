@@ -28,6 +28,8 @@ class ChroniclesController < ApplicationController
 	end
 
 	def show
+		@chronicle = Chronicle.find_by_id(params[:id])
+		@characters = @chronicle.characters.all
 	end
 
 	def edit

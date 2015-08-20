@@ -1,16 +1,17 @@
 .row.character_index_page
 	.small-12.small-centered.columns
-		h2 
-			| My Characters 
-			= link_to "Create a Character", new_character_path, class: "button create_character_button"
-		- if @characters
+		h2
+			| My Characters
+			= link_to "Create a Character", new_character_path, class: "button create_character_button mini-button"
+		- if @characters[0]
 			table#character_index_table
 				thead
-					tr 
+					tr
 						th Name
 						th Chronicle
 						th Affiliation
 						th Lineage
+						th Status
 						th
 				tbody
 					- @characters.each do |character|
@@ -24,7 +25,9 @@
 							td
 								= Lineage.find_by(id: character.lineage_id).name
 							td
+							  = character.status
+							td
 								= link_to "Edit", edit_character_path(character)
-							
+
 		- else
 			| You don't have any characters yet! Try <a href="#{new_character_path}">making one now</a>!
