@@ -169,7 +169,10 @@
 		= grouped_collection_select(:skill, :skill_id, @skill_categories, :skills, :name, :id, :name, {}, {id: "skills", name: "skills"})
 		= text_field_tag :skill_specialty
 		= button_tag 'Add Specialty', id: 'add-specialty', class: "mini-button", type: ''
-		div id="skill-specialties"
+		ul id="skill-specialties"
+			- @character.skill_specialties.each do |specialty|
+				li #{specialty.skill.name} (#{specialty.specialty})
+					<i class="fa fa-trash-o live-delete"></i>
 	
 	.small-8.columns
 
@@ -192,7 +195,7 @@
 				ul.power-list
 					- @character.powers.where(power_type: power_type.id)
 						li #{power.name}
-							i.fa.fa-trash-o.live-delete
+							<i class="fa fa-trash-o live-delete"></i>
 .row
 	.small-8.small-centered.columns
 		h3 Merits
@@ -206,8 +209,15 @@
 		ul#merits-list
 			- @character.merits.each do |merit|
 				li #{merit.name} #{merit.rating}
-					i.fa.fa-pencil.live-edit
-					i.fa.fa-trash-o.live-delete
+					- if merit.specification.present?
+						span.specification (#{merit.specification})
+						input type="text" value="#{merit.specification}" name="character[merits][][specification]" class="hide"
+					- if merit.description.present?
+						span.description #{merit.description}
+						textarea value="#{merit.description}" name="character[merits][][description]" class="hide"
+					input type="hidden" value="#{merit.id}" name="character[merits][][id]"
+					<i class="fa fa-pencil live-edit"></i>
+					<i class="fa fa-trash-o live-delete"></i>
 .row
 	.small-6.large-4.large-offset-2.columns
 		h3 Health
@@ -334,6 +344,10 @@ javascript:
 
 	$('body').on('click', '.temp-delete', function() {
 		$(this).parent().remove();
+	});
+
+	$('body').on('click', '.live-delete', function() {
+		$(this).next(input[type='checkbox']).click();
 	});
 
 	$('#add-specialty').on('click', function (e) {
