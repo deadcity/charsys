@@ -53,11 +53,15 @@
     }
   }
 
-  .add_specialty_button {
+  .mini-button {
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 5px;
     padding-right: 5px;
     border-radius: 3px;
+  }
+
+  textarea {
+    height: 150px;
   }
 }
