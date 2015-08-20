@@ -15,5 +15,5 @@ class Character < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :chronicle
 
-	accepts_nested_attributes_for :skills, :powers, :attribs, :merits, :skill_specialties, allow_destroy: true
+	accepts_nested_attributes_for :character_has_powers, :character_has_merits, :skill_specialties, allow_destroy: true
 end

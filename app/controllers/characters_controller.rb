@@ -99,6 +99,6 @@ class CharactersController < ApplicationController
 	private
 
 	def characters_params
-		params.require(:character).permit(:name, :behavior_primary, :behavior_secondary, :lineage_id, :affiliation_id, :user_id, :chronicle_id, :character_type_id, :attribs, :skills, :merits, :health, :willpower, :powers, :power_stat, :morality, :size, :speed, :armor_ballistic, :armor_general, :defense, :answer1, :answer2, :answer3, :answer4, :answer5, :answer6, :answer7, :answer8, :printed_notes, :st_notes, :misc, skill_specialties: [:skill_id, :specialty, :character_id])
+		params.require(:character).permit(:name, :behavior_primary, :behavior_secondary, :lineage_id, :affiliation_id, :user_id, :chronicle_id, :character_type_id, :attribs, :skills, :merits, :health, :willpower, :power_stat, :morality, :size, :speed, :armor_ballistic, :armor_general, :defense, :answer1, :answer2, :answer3, :answer4, :answer5, :answer6, :answer7, :answer8, :printed_notes, :st_notes, :misc, skill_specialties: [:skill_id, :specialty, :character_id], character_has_powers: [:character_id, :power_id])
 	end
 end

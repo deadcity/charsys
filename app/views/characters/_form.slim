@@ -193,11 +193,11 @@
 				= button_tag 'Add', type: 'submit', class: 'mini-button', id: "#{power_type.name.downcase.underscore}_add"
 
 		ul#power-list
-			- @character.powers
+			- @character.powers.each do |power|
 				li #{power.name}
-					input type="hidden" value="#{power.id}" name="character[powers][][id]"
 					<i class="fa fa-trash-o live-delete"></i>
-					input type="checkbox" class="hide" name="character[merits][][_delete]"
+					= fields_for :character_has_power do |char_power|
+						= render "power_fields", :f => char_power
 .row
 	.small-8.small-centered.columns
 		h3 Merits
@@ -337,11 +337,14 @@
 	.small-12.columns
 		h2 Storyteller Notes
 		= f.text_area :st_notes, label: false
-	
-
 
 
 = f.button 'Save', type: 'submit', class: 'button'
+
+
+#power-template.hide
+	= fields_for :character_has_power do |char_power|
+		= render "power_fields", :f => char_power
 
 javascript:
 	// WELCOME TO HELL
@@ -368,9 +371,10 @@ javascript:
 	$('#powers-add button').click(function(e) {
 		e.preventDefault();
 		var power = $(this).prevAll('select').val();
-		var powerName = $(this).prevAll('select').find('option:selected').text();
+		var powerName = $(this).prevAll('select').find('option:selected').text().replace(/[0-9\- ]+/, "");
+		var powerGroup = $(this).prevAll('select').find('option:selected').parent().attr("label");
 
-		var newItem = "<li>"+powerName+" <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[powers][][power_id] /><input type='hidden' name='character[powers][][character_id]' value='#{@character.id}' /></li>";
+		var newItem = "<li>"+powerGroup+": "+powerName+" <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[character_has_powers][][power_id] /><input type='hidden' name='character[character_has_powers][][character_id]' value='#{@character.id}' /></li>";
 
 		$('#power-list').append(newItem);
 	});
