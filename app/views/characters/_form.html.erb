@@ -263,11 +263,30 @@
 						<td valign="top">
 							<% @character_type.power_types.each do |power_type| %>
 								<h3><%= power_type.name %></h3>
-								<%= grouped_collection_select(power_type.name, nil, power_type.power_groups, :powers, :name, :id, :name) %>
+								<select id="<%= power_type.name.downcase.gsub(' ', '_').dasherize %>" name="<%= power_type.name.downcase.gsub(' ', '_').dasherize %>">
+									<% power_type.power_groups.each do |power_group| %>
+										<optgroup label="<%= power_group.name %>">
+											<% power_group.powers.each do |power| %>
+												<option value="<%= power.id %>"><%= power.rating %> - <%= power.name %></option>
+											<% end %>
+										</optgroup>
+									<% end %>
+								</select>
 								<%= button_tag 'Add', type: 'submit', class: 'button', id: "#{power_type.name.downcase.gsub(' ', '_')}_add" %>
+								<ul id="#{power_type.name.downcase.gsub(' ', '_')}">
+
+								</ul>
 							<% end %>
 							<h3>Merits</h3>
-							<%= grouped_collection_select(:merit_category, nil, MeritCategory.all, :merits, :merit_category, :id, :name) %>
+							<select name="merits" id="merits">
+								<% @merit_categories.each do |merit_category| %>
+									<optgroup label="<%= merit_category.merit_category %>">
+										<% merit_category.merits.each do |merit| %>
+											<option value="<%= merit.id %>" data-allowed-ratings="<%= merit.allowed_ratings %>" data-has-specification="<%= merit.has_specification %>" data-has-description="<%= merit.has_description %>" %><%= merit.name %> <%= merit.allowed_ratings %></option>
+										<% end %>
+									</optgroup>
+								<% end %>
+							</select>
 							<%= button_tag 'Add', type: 'submit', class: 'button', id: "merits-add" %>
 							<ul id="merits">
 								<% @character.merits.each do |merit| %>
@@ -396,3 +415,9 @@
 		</tr>
 	</table>
 	<%= f.button 'Save', type: 'submit', class: 'button' %>
+
+	<script type="text/javascript">
+	// WELCOME TO HELL
+
+
+	</script>
