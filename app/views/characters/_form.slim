@@ -326,11 +326,11 @@
 javascript:
 	// WELCOME TO HELL
 
-	$('.temp-delete').on('click', function() {
-		$(this).parent().delet
+	$('body').on('click', function() {
+		$(this).parent().remove();
 	});
 
-	$('#add-specialty').on('click', function (e) {
+	$('#add-specialty').on('click', '.temp-delete', function (e) {
 		e.preventDefault();
 		var specialty = $('#skill_specialty').val();
 		var skill = $('#skills option:selected').text();
