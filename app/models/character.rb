@@ -11,7 +11,7 @@ class Character < ActiveRecord::Base
 	has_many :powers, :through => :character_has_powers
 	has_many :merits, through: :character_has_merits
 	has_many :skill_specialties
-	has_one :character_type
+	belongs_to :character_type
 	belongs_to :user
 	belongs_to :chronicle
 

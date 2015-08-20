@@ -51,7 +51,7 @@ class CharactersController < ApplicationController
 		@chronicle = @character.chronicle
 		@user = User.find_by_id(session[:user_id])
 		@chronicles = Chronicle.all
-		@character_type = CharacterType.first
+		@character_type = @character.character_type
 		@character_types = CharacterType.all
 		@mental_skills = Skill.where({skill_category: 1})
 		@physical_skills = Skill.where({skill_category: 2})
@@ -65,9 +65,11 @@ class CharactersController < ApplicationController
 
 	def update
 		@character = Character.find_by_id(params[:character][:id])
-		specialties = []
-		params[:character][:skill_specialties].each do |specialty|
-			specialties << SkillSpecialty.new({skill_id: specialty[:skill_id], specialty: specialty[:specialty], character_id: @character.id})
+		if params[:character][:skill_specialties].present?
+			specialties = []
+			params[:character][:skill_specialties].each do |specialty|
+				specialties << SkillSpecialty.new({skill_id: specialty[:skill_id], specialty: specialty[:specialty], character_id: @character.id})
+			end
 		end
 		params[:character][:skill_specialties] = specialties
 		puts params[:character]

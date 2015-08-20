@@ -22,10 +22,10 @@
 .row
 	.small-4.columns
 		= f.label :behavior_primary, @character_type.behavior_primary
-		= f.text_field :behavior_primary, label: false
+		= collection_select(:character, :behavior_primary, BehaviorPrimary.all, :id, :name)
 	.small-4.columns
 		= f.label :behavior_secondary, @character_type.behavior_secondary
-		= f.text_field :behavior_secondary, label: false
+		= collection_select(:character, :behavior_secondary, BehaviorSecondary.all, :id, :name)
 	.small-4.columns
 		= f.label :chronicle_id, "Chronicle"
 		= collection_select(:character, :chronicle_id, Chronicle.all, :id, :title, {})
@@ -166,36 +166,30 @@
 .row
 	h2 Skill Specialties
 	.small-4.columns
-		h3 Mental
-		= collection_select(:skill, :skill_id, @mental_skills, :id, :name)
-		= text_field_tag :mental_skill_specialty
-		= button_tag 'Add Specialty', id: 'add-mental-specialty', class: "mini-button"
-		div id="mental-skill-specialties"
+		= grouped_collection_select(:skill, :skill_id, @skill_categories, :skills, :name, :id, :name, {}, {id: "skills", name: "skills"})
+		= text_field_tag :skill_specialty
+		= button_tag 'Add Specialty', id: 'add-specialty', class: "mini-button", type: ''
+		div id="skill-specialties"
 	
-	.small-4.columns
-		h3 Physical
-		= collection_select(:skill, :skill_id, @physical_skills, :id, :name)
-		= text_field_tag :physical_skill_specialty
-		= button_tag 'Add Specialty', id: 'add-physical-specialty', class: "mini-button"
-		div id="physical-skill-specialties"
-	
-	.small-4.columns
-		h3 Social
-		= collection_select(:skill, :skill_id, @social_skills, :id, :name)
-		= text_field_tag :social_skill_specialty
-		= button_tag 'Add Specialty', id: 'add-social-specialty', class: "mini-button"
-		div id="social-skill-specialties"
+	.small-8.columns
 
 / OTHER TRAITS 
 .row
 	h2 Other Traits
 .row
-	- @character_type.power_types.each do |power_type|
-		.small-6.columns
-			h3
-				= power_type.name
-			= grouped_collection_select(power_type.name, nil, power_type.power_groups, :powers, :name, :id, :name)
-			= button_tag 'Add', type: 'submit', class: 'mini-button', id: "#{power_type.name.downcase.underscore}_add"
+	#powers-add
+		- @character_type.power_types.each do |power_type|
+			.small-6.columns
+				h3
+					= power_type.name
+				select name="#{power_type.name.downcase.underscore}" id="#{power_type.name.downcase.underscore}"
+					- power_type.power_groups.each do |power_group|
+						optgroup label="#{power_group.name}"
+							- power_group.powers.each do |power|
+								option value="#{power.id}" #{power.rating} - #{power.name}
+				= button_tag 'Add', type: 'submit', class: 'mini-button', id: "#{power_type.name.downcase.underscore}_add"
+
+				ul class="power-list"
 .row
 	.small-8.small-centered.columns
 		h3 Merits
@@ -322,3 +316,27 @@
 
 
 = f.button 'Save', type: 'submit', class: 'button'
+
+javascript:
+	// WELCOME TO HELL
+
+	$('#add-specialty').click(function (e) {
+		e.preventDefault();
+		var specialty = $('#skill_specialty').val();
+		var skill = $('#skills option:selected').text();
+		var skillId = $('#skills').val();
+
+		var newItem = "<li>"+skill+" ("+specialty+") - <input type='checkbox' name='character[skill_specialties][][_destroy]' value='' /> delete?<input type='hidden' name='character[skill_specialties][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties][][character_id]' value='#{@character.id}'</li>";
+		console.log(newItem);
+		$('#skill-specialties').append(newItem);
+	});
+
+	$('#powers-add button').click(function(e) {
+		e.preventDefault();
+		var power = $(this).prevAll('select').val();
+		var powerName = $(this).prevAll('select').find('option:selected').text();
+
+		var newItem = "<li>"+powerName+"<input type='hidden' name='character[powers][][power_id] /><input type='hidden' name='character[powers][][character_id]' value='#{@character.id}' /></li>";
+
+		$(this).nextAll('.power-list').append(newItem);
+	})
