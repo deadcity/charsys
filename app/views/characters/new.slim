@@ -1,6 +1,7 @@
 .row.character_new_page
-	h1
-		| New Character
+	.small-12.columns
+		h1
+			| New Character
 
-	= form_for @character, url: {action: 'create'} do |f|
-		= render partial: 'form', locals: {f: f}
+		= form_for @character, url: {action: 'create'} do |f|
+			= render partial: 'form', locals: {f: f}

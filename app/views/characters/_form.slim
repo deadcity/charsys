@@ -1,46 +1,34 @@
 table
-	tr
-		td
+	.row
+		.small-4.columns
 			= f.text_field :name
-		
-		td valign="top"
-			= f.label :behavior_primary, @character_type.behavior_primary
-			= f.text_field :behavior_primary, label: false
-		
-		td valign="top"
-			= f.label :lineage, @character_type.lineage
-			= collection_select(:character, :lineage_id, Lineage.all, :id, :name, {})
-		
-	
-	tr
-		td valign="top"
+		.small-4.columns
+			= f.label :character_type
+			= collection_select(:character, :character_type_id, CharacterType.all, :id, :name, {})
+		.small-4.columns
 			= f.label :user_id, "Player"
 			= hidden_field_tag :user_id, session[:user_id]
 			= @user.name
-		
-		td valign="top"
-			= f.label :behavior_secondary, @character_type.behavior_secondary
-			= f.text_field :behavior_secondary, label: false
-		
-		td valign="top"
+	.row
+		.small-4.columns
+			= f.label :lineage, @character_type.lineage
+			= collection_select(:character, :lineage_id, Lineage.all, :id, :name, {})
+		.small-4.columns
 			= f.label :sublineage, @character_type.sublineage
 			= f.text_field :sublineage, label: false
-		
-	
-	tr
-		td valign="top"
-			= f.label :chronicle_id, "Chronicle"
-			= collection_select(:character, :chronicle_id, Chronicle.all, :id, :title, {})
-		
-		td valign="top"
-			= f.label :character_type
-			= collection_select(:character, :character_type_id, CharacterType.all, :id, :name, {})
-		
-		td valign="top"
+		.small-4.columns
 			= f.label :affiliation, @character_type.affiliation
 			= collection_select(:character, :affiliation_id, Affiliation.all, :id, :name, {})
-		
-	
+	.row
+		.small-4.columns
+			= f.label :behavior_primary, @character_type.behavior_primary
+			= f.text_field :behavior_primary, label: false
+		.small-4.columns
+			= f.label :behavior_secondary, @character_type.behavior_secondary
+			= f.text_field :behavior_secondary, label: false
+		.small-4.columns
+			= f.label :chronicle_id, "Chronicle"
+			= collection_select(:character, :chronicle_id, Chronicle.all, :id, :title, {})	
 	tr
 		td colspan="3"
 			h2 Attributes

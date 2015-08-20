@@ -23,6 +23,16 @@
 .character_new_page {
   h1 {
     font-size: 1.3em;
-    margin-left: 1em;
+    color: $purple;
+  }
+
+  h2 {
+    font-size: 1.2em;
+    color: $purple;
+  }
+
+  h3 {
+    font-size: 1em;
+    color: $purple;
   }
 }
