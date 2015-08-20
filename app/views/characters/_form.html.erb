@@ -432,4 +432,24 @@
 		var newItem = "<li>"+skill+" ("+specialty+") - <input type='checkbox' name='character[skill_specialties][][_destroy]' value='' /> delete?<input type='hidden' name='character[skill_specialties][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties][][character_id]' value='"+<%= @character.id %>+"'</li>";
 		$('#mental-skill-specialties').append(newItem);
 	});
+
+	$('#add-physical-specialty').click(function (e) {
+		e.preventDefault();
+		var specialty = $('#physical_skill_specialty').val();
+		var skill = $('#physical-skills option:selected').text();
+		var skillId = $('#physical-skills').val();
+
+		var newItem = "<li>"+skill+" ("+specialty+") - <input type='checkbox' name='character[skill_specialties][][_destroy]' value='' /> delete?<input type='hidden' name='character[skill_specialties][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties][][character_id]' value='"+<%= @character.id %>+"'</li>";
+		$('#physical-skill-specialties').append(newItem);
+	});
+
+	$('#add-social-specialty').click(function (e) {
+		e.preventDefault();
+		var specialty = $('#social_skill_specialty').val();
+		var skill = $('#social-skills option:selected').text();
+		var skillId = $('#social-skills').val();
+
+		var newItem = "<li>"+skill+" ("+specialty+") - <input type='checkbox' name='character[skill_specialties][][_destroy]' value='' /> delete?<input type='hidden' name='character[skill_specialties][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties][][character_id]' value='"+<%= @character.id %>+"'</li>";
+		$('#social-skill-specialties').append(newItem);
+	});
 	</script>
