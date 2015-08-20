@@ -25,7 +25,7 @@
 							td
 								= Lineage.find_by(id: character.lineage_id).name
 							td
-							  = character.status
+							  = get_status(character.status)
 							td
 								= link_to "Edit", edit_character_path(character)
 

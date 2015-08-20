@@ -28,6 +28,6 @@ h2
         td
           = Lineage.find_by(id: character.lineage_id).name
         td
-          = character.status
+          = get_status(character.status)
   - else
    | There are no characters in this chronicle yet!
