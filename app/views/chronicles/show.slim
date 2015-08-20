@@ -3,15 +3,9 @@ h2
   h3
   | Current Storytellers
   - if @chronicle.sts
-    table#sts_info
-     tbody
-       tr
-         td
-	   = @chronicle.sts
-	 td
-	   |Add Storytellers using this button!
+    = @chronicle.sts
   - if @characters[0]
-    table#character_index_table
+    table
       thead
         tr
 	  th Name
