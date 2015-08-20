@@ -193,8 +193,14 @@
 .row
 	.small-8.small-centered.columns
 		h3 Merits
-		= collection_select(:merit, nil, Merit.all, :id, :name)
-		= button_tag 'Add', type: 'submit', class: 'mini-button', id: "merits-add"
+		select name="merits" id="merits"
+			- @merit_categories.each do |merit_category|
+				optgroup label="#{merit_category.merit_category}"
+					- merit_category.merits.each do |merit|
+						option value="#{merit.id}" data-allowed-ratings="#{merit.allowed_ratings}" data-has-specification="#{merit.has_specification}" data-has-description="#{merit.has_description}" #{merit.name} #{merit.allowed_ratings}
+		= button_tag 'Add', type: '', class: 'mini-button', id: "merits-add"
+
+		ul#merits-list
 			
 .row
 	.small-6.large-4.large-offset-2.columns
@@ -320,13 +326,17 @@
 javascript:
 	// WELCOME TO HELL
 
-	$('#add-specialty').click(function (e) {
+	$('.temp-delete').on('click', function() {
+		$(this).parent().delet
+	});
+
+	$('#add-specialty').on('click', function (e) {
 		e.preventDefault();
 		var specialty = $('#skill_specialty').val();
 		var skill = $('#skills option:selected').text();
 		var skillId = $('#skills').val();
 
-		var newItem = "<li>"+skill+" ("+specialty+") - <input type='checkbox' name='character[skill_specialties][][_destroy]' value='' /> delete?<input type='hidden' name='character[skill_specialties][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties][][character_id]' value='#{@character.id}'</li>";
+		var newItem = "<li>"+skill+" ("+specialty+") <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[skill_specialties][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties][][character_id]' value='#{@character.id}'</li>";
 		console.log(newItem);
 		$('#skill-specialties').append(newItem);
 	});
@@ -336,7 +346,21 @@ javascript:
 		var power = $(this).prevAll('select').val();
 		var powerName = $(this).prevAll('select').find('option:selected').text();
 
-		var newItem = "<li>"+powerName+"<input type='hidden' name='character[powers][][power_id] /><input type='hidden' name='character[powers][][character_id]' value='#{@character.id}' /></li>";
+		var newItem = "<li>"+powerName+" <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[powers][][power_id] /><input type='hidden' name='character[powers][][character_id]' value='#{@character.id}' /></li>";
 
 		$(this).nextAll('.power-list').append(newItem);
-	})
+	});
+
+	$('#merits-add').on('click', function(e) {
+		e.preventDefault();
+		var meritId = $('#merits').val();
+		var $selected = $('#merits option:selected')
+		var meritName = $selected.text().replace(/[\[0-9\,\]]+/, " ");
+		var meritRatings = $.parseJSON($selected.attr('data-allowed-ratings'));
+		var meritSpec = $selected.attr('data-has-specification');
+		var meritDesc = $selected.attr('data-has-description');
+
+		var newItem = "<li>"+meritName+"</li>";
+
+		$('#merits-list').append(newItem);
+	});
