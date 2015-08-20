@@ -4,6 +4,7 @@ h2
   | Current Storytellers
   - if @chronicle.sts
     = @chronicle.sts
+  = link_to "Edit Chronicle", edit_chronicle_path(id: @chronicle.id)
   - if @characters[0]
     table
       thead
@@ -14,17 +15,17 @@ h2
 	  th Lineage
 	  th Status
       tbody
-        - @characters.each do |character|
-	  tr
-	    td
-	      = link_to character.name, character_path(id: character.id)
-	    td
-	      = character.user.username
-	    td
-	      = Affiliation.find_by(id: character.affiliation_id.name)
-	    td
-	      = Lineage.find_by(id: character.lineage_id.name)
-	    td
-	      = character.status
+    - @characters.each do |character|
+      tr
+        td
+          = link_to character.name, character_path(character)
+        td
+          = character.user.username
+        td
+          = Affiliation.find_by(id: character.affiliation_id).name
+        td
+          = Lineage.find_by(id: character.lineage_id).name
+        td
+          = character.status
   - else
    | There are no characters in this chronicle yet!
