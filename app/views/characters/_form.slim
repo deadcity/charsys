@@ -189,7 +189,10 @@
 								option value="#{power.id}" #{power.rating} - #{power.name}
 				= button_tag 'Add', type: 'submit', class: 'mini-button', id: "#{power_type.name.downcase.underscore}_add"
 
-				ul class="power-list"
+				ul.power-list
+					- @character.powers.where(power_type: power_type.id)
+						li #{power.name}
+							i.fa.fa-trash-o.live-delete
 .row
 	.small-8.small-centered.columns
 		h3 Merits
@@ -201,7 +204,10 @@
 		= button_tag 'Add', type: '', class: 'mini-button', id: "merits-add"
 
 		ul#merits-list
-			
+			- @character.merits.each do |merit|
+				li #{merit.name} #{merit.rating}
+					i.fa.fa-pencil.live-edit
+					i.fa.fa-trash-o.live-delete
 .row
 	.small-6.large-4.large-offset-2.columns
 		h3 Health
@@ -326,11 +332,11 @@
 javascript:
 	// WELCOME TO HELL
 
-	$('body').on('click', function() {
+	$('body').on('click', '.temp-delete', function() {
 		$(this).parent().remove();
 	});
 
-	$('#add-specialty').on('click', '.temp-delete', function (e) {
+	$('#add-specialty').on('click', function (e) {
 		e.preventDefault();
 		var specialty = $('#skill_specialty').val();
 		var skill = $('#skills option:selected').text();
