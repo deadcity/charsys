@@ -3,7 +3,9 @@ h2
   h3
   | Current Storytellers
   - if @chronicle.sts
-    = @chronicle.sts
+    - @chronicle.sts.each do |storytellers|
+      p
+        = storytellers.name
   = link_to "Edit Chronicle", edit_chronicle_path(id: @chronicle.id)
   - if @characters[0]
     table
