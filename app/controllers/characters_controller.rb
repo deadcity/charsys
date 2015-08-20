@@ -56,6 +56,7 @@ class CharactersController < ApplicationController
 		@mental_skills = Skill.where({skill_category: 1})
 		@physical_skills = Skill.where({skill_category: 2})
 		@social_skills = Skill.where({skill_category: 3})
+		@skill_categories = SkillCategory.all
 		@mental_attributes = Attrib.where({attribute_category: 1})
 		@merit_categories = MeritCategory.all
 		@merits = Merit.all

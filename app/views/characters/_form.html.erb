@@ -207,16 +207,6 @@
 						</tr>
 					<% end %>
 				</table>
-				<%= collection_select(:skill, :skill_id, @mental_skills, :id, :name, {}, {id: 'mental-skills', name: 'mental-skills'}) %>
-				<%= text_field_tag :mental_skill_specialty %>
-				<%= button_tag 'Add', id: 'add-mental-specialty', type: '' %>
-				<ul id="mental-skill-specialties">
-					<% @character.skill_specialties.each do |specialty| %>
-						<li>
-							<%= specialty.skill.name %> (<%= specialty.specialty %>)
-						</li>
-					<% end %>
-				</ul>
 				<h3>Physical</h3>
 				<table width="100%">
 					<% @physical_skills.each do |skill| %>
@@ -232,12 +222,6 @@
 						</tr>
 					<% end %>
 				</table>
-				<%= collection_select(:skill, :skill_id, @physical_skills, :id, :name) %>
-				<%= text_field_tag :physical_skill_specialty %>
-				<%= button_tag 'Add', id: 'add-physical-specialty' %>
-				<div id="physical-skill-specialties">
-
-				</div>
 				<h3>Social</h3>
 				<table width="100%">
 					<% @social_skills.each do |skill| %>
@@ -253,11 +237,17 @@
 						</tr>
 					<% end %>
 				</table>
-				<%= collection_select(:skill, :skill_id, @social_skills, :id, :name) %>
-				<%= text_field_tag :social_skill_specialty %>
-				<%= button_tag 'Add', id: 'add-social-specialty' %>
-				<div id="social-skill-specialties">
-
+				<h3>Skill Specialties</h3>
+				<%= grouped_collection_select(:skill_specialties, :skill_id, SkillCategory.all, :skills, :name, :id, :name, {}, {id: 'skills', name: 'skills'}) %>
+				<%= text_field_tag :skill_specialty %>
+				<%= button_tag 'Add', id: 'add-specialty' %>
+				<ul id="skill-specialties">
+					<% @character.skill_specialties.each do |specialty| %>
+						<li>
+							<%= specialty.skill.name %> (<%= specialty.specialty %>)
+						</li>
+					<% end %>
+				</ul>
 				</div>
 			</td>
 			<td colspan="2" valign="top">
@@ -423,33 +413,14 @@
 	<script type="text/javascript">
 	// WELCOME TO HELL
 
-	$('#add-mental-specialty').click(function (e) {
+	$('#add-specialty').click(function (e) {
 		e.preventDefault();
-		var specialty = $('#mental_skill_specialty').val();
-		var skill = $('#mental-skills option:selected').text();
-		var skillId = $('#mental-skills').val();
+		var specialty = $('#skill_specialty').val();
+		var skill = $('#skills option:selected').text();
+		var skillId = $('#skills').val();
 
 		var newItem = "<li>"+skill+" ("+specialty+") - <input type='checkbox' name='character[skill_specialties][][_destroy]' value='' /> delete?<input type='hidden' name='character[skill_specialties][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties][][character_id]' value='"+<%= @character.id %>+"'</li>";
-		$('#mental-skill-specialties').append(newItem);
-	});
-
-	$('#add-physical-specialty').click(function (e) {
-		e.preventDefault();
-		var specialty = $('#physical_skill_specialty').val();
-		var skill = $('#physical-skills option:selected').text();
-		var skillId = $('#physical-skills').val();
-
-		var newItem = "<li>"+skill+" ("+specialty+") - <input type='checkbox' name='character[skill_specialties][][_destroy]' value='' /> delete?<input type='hidden' name='character[skill_specialties][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties][][character_id]' value='"+<%= @character.id %>+"'</li>";
-		$('#physical-skill-specialties').append(newItem);
-	});
-
-	$('#add-social-specialty').click(function (e) {
-		e.preventDefault();
-		var specialty = $('#social_skill_specialty').val();
-		var skill = $('#social-skills option:selected').text();
-		var skillId = $('#social-skills').val();
-
-		var newItem = "<li>"+skill+" ("+specialty+") - <input type='checkbox' name='character[skill_specialties][][_destroy]' value='' /> delete?<input type='hidden' name='character[skill_specialties][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties][][character_id]' value='"+<%= @character.id %>+"'</li>";
-		$('#social-skill-specialties').append(newItem);
+		console.log(newItem);
+		$('#skill-specialties').append(newItem);
 	});
 	</script>
