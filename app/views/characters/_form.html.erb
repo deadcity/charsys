@@ -5,7 +5,7 @@
 			</td>
 			<td valign="top">
 				<%= f.label :behavior_primary, @character_type.behavior_primary %>
-				<%= f.text_field :behavior_primary, label: false %>
+				<%= collection_select(:character, :behavior_primary, @character_type.behavior_primaries, :id, :name) %>
 			</td>
 			<td valign="top">
 				<%= f.label :lineage, @character_type.lineage %>
@@ -15,12 +15,12 @@
 		<tr>
 			<td valign="top">
 				<%= f.label :user_id, "Player" %>
-				<%= hidden_field_tag :user_id, session[:user_id] %>
+				<%= f.hidden_field :user_id, value: current_user.id %>
 				<%= @user.name %>
 			</td>
 			<td valign="top">
 				<%= f.label :behavior_secondary, @character_type.behavior_secondary %>
-				<%= f.text_field :behavior_secondary, label: false %>
+				<%= collection_select(:character, :behavior_secondary, @character_type.behavior_secondaries, :id, :name) %>
 			</td>
 			<td valign="top">
 				<%= f.label :sublineage, @character_type.sublineage %>
@@ -58,11 +58,11 @@
 								<tr>
 									<th>Intelligence</th>
 									<td>
-										<input type="radio" value="1" name="character[attribs][1]" />
-										<input type="radio" value="2" name="character[attribs][1]" />
-										<input type="radio" value="3" name="character[attribs][1]" />
-										<input type="radio" value="4" name="character[attribs][1]" />
-										<input type="radio" value="5" name="character[attribs][1]" />
+										<%= f.radio_button :intelligence, "1", label: false %>
+										<%= f.radio_button :intelligence, "2", label: false %>
+										<%= f.radio_button :intelligence, "3", label: false %>
+										<%= f.radio_button :intelligence, "4", label: false %>
+										<%= f.radio_button :intelligence, "5", label: false %>
 									</td>
 								</tr>
 							</table>
@@ -72,11 +72,11 @@
 								<tr>
 									<th>Strength</th>
 									<td>
-										<input type="radio" value="1" name="character[attribs][4]" />
-										<input type="radio" value="2" name="character[attribs][4]" />
-										<input type="radio" value="3" name="character[attribs][4]" />
-										<input type="radio" value="4" name="character[attribs][4]" />
-										<input type="radio" value="5" name="character[attribs][4]" />
+										<%= f.radio_button :strength, "1", label: false %>
+										<%= f.radio_button :strength, "2", label: false %>
+										<%= f.radio_button :strength, "3", label: false %>
+										<%= f.radio_button :strength, "4", label: false %>
+										<%= f.radio_button :strength, "5", label: false %>
 									</td>
 								</tr>
 							</table>
@@ -86,11 +86,11 @@
 								<tr>
 									<th>Presence</th>
 									<td>
-										<input type="radio" value="1" name="character[attribs][7]" />
-										<input type="radio" value="2" name="character[attribs][7]" />
-										<input type="radio" value="3" name="character[attribs][7]" />
-										<input type="radio" value="4" name="character[attribs][7]" />
-										<input type="radio" value="5" name="character[attribs][7]" />
+										<%= f.radio_button :presence, "1", label: false %>
+										<%= f.radio_button :presence, "2", label: false %>
+										<%= f.radio_button :presence, "3", label: false %>
+										<%= f.radio_button :presence, "4", label: false %>
+										<%= f.radio_button :presence, "5", label: false %>
 									</td>
 								</tr>
 							</table>
@@ -103,11 +103,11 @@
 								<tr>
 									<th>Wits</th>
 									<td>
-										<input type="radio" value="1" name="character[attribs][2]" />
-										<input type="radio" value="2" name="character[attribs][2]" />
-										<input type="radio" value="3" name="character[attribs][2]" />
-										<input type="radio" value="4" name="character[attribs][2]" />
-										<input type="radio" value="5" name="character[attribs][2]" />
+										<%= f.radio_button :wits, "1", label: false %>
+										<%= f.radio_button :wits, "2", label: false %>
+										<%= f.radio_button :wits, "3", label: false %>
+										<%= f.radio_button :wits, "4", label: false %>
+										<%= f.radio_button :wits, "5", label: false %>
 									</td>
 								</tr>
 							</table>
@@ -117,11 +117,11 @@
 								<tr>
 									<th>Dexterity</th>
 									<td>
-										<input type="radio" value="1" name="character[attribs][5]" />
-										<input type="radio" value="2" name="character[attribs][5]" />
-										<input type="radio" value="3" name="character[attribs][5]" />
-										<input type="radio" value="4" name="character[attribs][5]" />
-										<input type="radio" value="5" name="character[attribs][5]" />
+										<%= f.radio_button :dexterity, "1", label: false %>
+										<%= f.radio_button :dexterity, "2", label: false %>
+										<%= f.radio_button :dexterity, "3", label: false %>
+										<%= f.radio_button :dexterity, "4", label: false %>
+										<%= f.radio_button :dexterity, "5", label: false %>
 									</td>
 								</tr>
 							</table>
@@ -131,11 +131,11 @@
 								<tr>
 									<th>Manipulation</th>
 									<td>
-										<input type="radio" value="1" name="character[attribs][8]" />
-										<input type="radio" value="2" name="character[attribs][8]" />
-										<input type="radio" value="3" name="character[attribs][8]" />
-										<input type="radio" value="4" name="character[attribs][8]" />
-										<input type="radio" value="5" name="character[attribs][8]" />
+										<%= f.radio_button :manipulation, "1", label: false %>
+										<%= f.radio_button :manipulation, "2", label: false %>
+										<%= f.radio_button :manipulation, "3", label: false %>
+										<%= f.radio_button :manipulation, "4", label: false %>
+										<%= f.radio_button :manipulation, "5", label: false %>
 									</td>
 								</tr>
 							</table>
@@ -148,11 +148,11 @@
 								<tr>
 									<th>Resolve</th>
 									<td>
-										<input type="radio" value="1" name="character[attribs][3]" />
-										<input type="radio" value="2" name="character[attribs][3]" />
-										<input type="radio" value="3" name="character[attribs][3]" />
-										<input type="radio" value="4" name="character[attribs][3]" />
-										<input type="radio" value="5" name="character[attribs][3]" />
+										<%= f.radio_button :resolve, "1", label: false %>
+										<%= f.radio_button :resolve, "2", label: false %>
+										<%= f.radio_button :resolve, "3", label: false %>
+										<%= f.radio_button :resolve, "4", label: false %>
+										<%= f.radio_button :resolve, "5", label: false %>
 									</td>
 								</tr>
 							</table>
@@ -162,11 +162,11 @@
 								<tr>
 									<th>Stamina</th>
 									<td>
-										<input type="radio" value="1" name="character[attribs][6]" />
-										<input type="radio" value="2" name="character[attribs][6]" />
-										<input type="radio" value="3" name="character[attribs][6]" />
-										<input type="radio" value="4" name="character[attribs][6]" />
-										<input type="radio" value="5" name="character[attribs][6]" />
+										<%= f.radio_button :stamina, "1", label: false %>
+										<%= f.radio_button :stamina, "2", label: false %>
+										<%= f.radio_button :stamina, "3", label: false %>
+										<%= f.radio_button :stamina, "4", label: false %>
+										<%= f.radio_button :stamina, "5", label: false %>
 									</td>
 								</tr>
 							</table>
@@ -176,11 +176,11 @@
 								<tr>
 									<th>Composure</th>
 									<td>
-										<input type="radio" value="1" name="character[attribs][9]" />
-										<input type="radio" value="2" name="character[attribs][9]" />
-										<input type="radio" value="3" name="character[attribs][9]" />
-										<input type="radio" value="4" name="character[attribs][9]" />
-										<input type="radio" value="5" name="character[attribs][9]" />
+										<%= f.radio_button :composure, "1", label: false %>
+										<%= f.radio_button :composure, "2", label: false %>
+										<%= f.radio_button :composure, "3", label: false %>
+										<%= f.radio_button :composure, "4", label: false %>
+										<%= f.radio_button :composure, "5", label: false %>
 									</td>
 								</tr>
 							</table>
@@ -198,11 +198,11 @@
 						<tr>
 							<th><%= skill.name %></th>
 							<td>
-								<input type="radio" value="1" name="character[skills][<%= skill.id %>" />
-								<input type="radio" value="2" name="character[skills][<%= skill.id %>" />
-								<input type="radio" value="3" name="character[skills][<%= skill.id %>" />
-								<input type="radio" value="4" name="character[skills][<%= skill.id %>" />
-								<input type="radio" value="5" name="character[skills][<%= skill.id %>" />
+								<%= f.radio_button skill.name.gsub(' ', '_').downcase.to_sym, "1", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "2", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "3", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "4", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "5", label: false %>
 							</td>
 						</tr>
 					<% end %>
@@ -219,11 +219,11 @@
 						<tr>
 							<th><%= skill.name %></th>
 							<td>
-								<input type="radio" value="1" name="character[skills][<%= skill.id %>" />
-								<input type="radio" value="2" name="character[skills][<%= skill.id %>" />
-								<input type="radio" value="3" name="character[skills][<%= skill.id %>" />
-								<input type="radio" value="4" name="character[skills][<%= skill.id %>" />
-								<input type="radio" value="5" name="character[skills][<%= skill.id %>" />
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "1", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "2", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "3", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "4", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "5", label: false %>
 							</td>
 						</tr>
 					<% end %>
@@ -240,11 +240,11 @@
 						<tr>
 							<th><%= skill.name %></th>
 							<td>
-								<input type="radio" value="1" name="character[skills][<%= skill.id %>" />
-								<input type="radio" value="2" name="character[skills][<%= skill.id %>" />
-								<input type="radio" value="3" name="character[skills][<%= skill.id %>" />
-								<input type="radio" value="4" name="character[skills][<%= skill.id %>" />
-								<input type="radio" value="5" name="character[skills][<%= skill.id %>" />
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "1", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "2", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "3", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "4", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "5", label: false %>
 							</td>
 						</tr>
 					<% end %>
@@ -264,11 +264,21 @@
 							<% @character_type.power_types.each do |power_type| %>
 								<h3><%= power_type.name %></h3>
 								<%= grouped_collection_select(power_type.name, nil, power_type.power_groups, :powers, :name, :id, :name) %>
-								<%= button_tag 'Add', type: 'submit', class: 'button', id: "#{power_type.name.downcase.underscore}_add" %>
+								<%= button_tag 'Add', type: 'submit', class: 'button', id: "#{power_type.name.downcase.gsub(' ', '_')}_add" %>
 							<% end %>
 							<h3>Merits</h3>
 							<%= grouped_collection_select(:merit_category, nil, MeritCategory.all, :merits, :merit_category, :id, :name) %>
 							<%= button_tag 'Add', type: 'submit', class: 'button', id: "merits-add" %>
+							<ul id="merits">
+								<% @character.merits.each do |merit| %>
+									<li>
+										<%= merit.name %> <%= merit.rating %><% if merit.merit.has_specification %> (<%= merit.specification %>)<% end %>
+										<div class="description">
+											<%= merit.description %>
+										</div>
+									</li>
+								<% end %>
+							</ul>
 						</td>
 						<td valign="top">
 							<div class="row">
