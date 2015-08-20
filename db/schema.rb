@@ -51,14 +51,6 @@ ActiveRecord::Schema.define(version: 20150820010308) do
     t.integer  "value",        default: 1
   end
 
-  create_table "character_has_merit", force: :cascade do |t|
-    t.integer "character_id"
-    t.integer "merit_id"
-    t.string  "specification"
-    t.text    "description"
-    t.integer "rating"
-  end
-
   create_table "character_has_merits", force: :cascade do |t|
     t.integer "character_id"
     t.integer "merit_id"
