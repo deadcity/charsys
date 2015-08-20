@@ -1,0 +1,398 @@
+	<table width="100%" class="table">
+		<tr>
+			<td valign="top">
+				<%= f.text_field :name %>
+			</td>
+			<td valign="top">
+				<%= f.label :behavior_primary, @character_type.behavior_primary %>
+				<%= collection_select(:character, :behavior_primary, @character_type.behavior_primaries, :id, :name) %>
+			</td>
+			<td valign="top">
+				<%= f.label :lineage, @character_type.lineage %>
+				<%= collection_select(:character, :lineage_id, Lineage.all, :id, :name, {}) %>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top">
+				<%= f.label :user_id, "Player" %>
+				<%= f.hidden_field :user_id, value: current_user.id %>
+				<%= @user.name %>
+			</td>
+			<td valign="top">
+				<%= f.label :behavior_secondary, @character_type.behavior_secondary %>
+				<%= collection_select(:character, :behavior_secondary, @character_type.behavior_secondaries, :id, :name) %>
+			</td>
+			<td valign="top">
+				<%= f.label :sublineage, @character_type.sublineage %>
+				<%= f.text_field :sublineage, label: false %>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top">
+				<%= f.label :chronicle_id, "Chronicle" %>
+				<%= collection_select(:character, :chronicle_id, Chronicle.all, :id, :title, {}) %>
+			</td>
+			<td valign="top">
+				<%= f.label :character_type %>
+				<%= collection_select(:character, :character_type_id, CharacterType.all, :id, :name, {}) %>
+			</td>
+			<td valign="top">
+				<%= f.label :affiliation, @character_type.affiliation %>
+				<%= collection_select(:character, :affiliation_id, Affiliation.all, :id, :name, {}) %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<h2>Attributes</h2>
+				<table width="100%" class="table">
+					<tr>
+						<th></th>
+						<th>Mental</th>
+						<th>Social</th>
+						<th>Physical</th>
+					</tr>
+					<tr>
+						<th>Power</th>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Intelligence</th>
+									<td>
+										<%= f.radio_button :intelligence, "1", label: false %>
+										<%= f.radio_button :intelligence, "2", label: false %>
+										<%= f.radio_button :intelligence, "3", label: false %>
+										<%= f.radio_button :intelligence, "4", label: false %>
+										<%= f.radio_button :intelligence, "5", label: false %>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Strength</th>
+									<td>
+										<%= f.radio_button :strength, "1", label: false %>
+										<%= f.radio_button :strength, "2", label: false %>
+										<%= f.radio_button :strength, "3", label: false %>
+										<%= f.radio_button :strength, "4", label: false %>
+										<%= f.radio_button :strength, "5", label: false %>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Presence</th>
+									<td>
+										<%= f.radio_button :presence, "1", label: false %>
+										<%= f.radio_button :presence, "2", label: false %>
+										<%= f.radio_button :presence, "3", label: false %>
+										<%= f.radio_button :presence, "4", label: false %>
+										<%= f.radio_button :presence, "5", label: false %>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Finesse</th>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Wits</th>
+									<td>
+										<%= f.radio_button :wits, "1", label: false %>
+										<%= f.radio_button :wits, "2", label: false %>
+										<%= f.radio_button :wits, "3", label: false %>
+										<%= f.radio_button :wits, "4", label: false %>
+										<%= f.radio_button :wits, "5", label: false %>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Dexterity</th>
+									<td>
+										<%= f.radio_button :dexterity, "1", label: false %>
+										<%= f.radio_button :dexterity, "2", label: false %>
+										<%= f.radio_button :dexterity, "3", label: false %>
+										<%= f.radio_button :dexterity, "4", label: false %>
+										<%= f.radio_button :dexterity, "5", label: false %>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Manipulation</th>
+									<td>
+										<%= f.radio_button :manipulation, "1", label: false %>
+										<%= f.radio_button :manipulation, "2", label: false %>
+										<%= f.radio_button :manipulation, "3", label: false %>
+										<%= f.radio_button :manipulation, "4", label: false %>
+										<%= f.radio_button :manipulation, "5", label: false %>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resistance</th>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Resolve</th>
+									<td>
+										<%= f.radio_button :resolve, "1", label: false %>
+										<%= f.radio_button :resolve, "2", label: false %>
+										<%= f.radio_button :resolve, "3", label: false %>
+										<%= f.radio_button :resolve, "4", label: false %>
+										<%= f.radio_button :resolve, "5", label: false %>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Stamina</th>
+									<td>
+										<%= f.radio_button :stamina, "1", label: false %>
+										<%= f.radio_button :stamina, "2", label: false %>
+										<%= f.radio_button :stamina, "3", label: false %>
+										<%= f.radio_button :stamina, "4", label: false %>
+										<%= f.radio_button :stamina, "5", label: false %>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<table width="100%">
+								<tr>
+									<th>Composure</th>
+									<td>
+										<%= f.radio_button :composure, "1", label: false %>
+										<%= f.radio_button :composure, "2", label: false %>
+										<%= f.radio_button :composure, "3", label: false %>
+										<%= f.radio_button :composure, "4", label: false %>
+										<%= f.radio_button :composure, "5", label: false %>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top">
+				<h2>Skills</h2>
+				<h3>Mental</h3>
+				<table width="100%">
+					<% @mental_skills.each do |skill| %>
+						<tr>
+							<th><%= skill.name %></th>
+							<td>
+								<%= f.radio_button skill.name.gsub(' ', '_').downcase.to_sym, "1", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "2", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "3", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "4", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "5", label: false %>
+							</td>
+						</tr>
+					<% end %>
+				</table>
+				<%= collection_select(:skill, :skill_id, @mental_skills, :id, :name) %>
+				<%= text_field_tag :mental_skill_specialty %>
+				<%= button_tag 'Add', id: 'add-mental-specialty' %>
+				<div id="mental-skill-specialties">
+
+				</div>
+				<h3>Physical</h3>
+				<table width="100%">
+					<% @physical_skills.each do |skill| %>
+						<tr>
+							<th><%= skill.name %></th>
+							<td>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "1", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "2", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "3", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "4", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "5", label: false %>
+							</td>
+						</tr>
+					<% end %>
+				</table>
+				<%= collection_select(:skill, :skill_id, @physical_skills, :id, :name) %>
+				<%= text_field_tag :physical_skill_specialty %>
+				<%= button_tag 'Add', id: 'add-physical-specialty' %>
+				<div id="physical-skill-specialties">
+
+				</div>
+				<h3>Social</h3>
+				<table width="100%">
+					<% @social_skills.each do |skill| %>
+						<tr>
+							<th><%= skill.name %></th>
+							<td>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "1", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "2", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "3", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "4", label: false %>
+								<%= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "5", label: false %>
+							</td>
+						</tr>
+					<% end %>
+				</table>
+				<%= collection_select(:skill, :skill_id, @social_skills, :id, :name) %>
+				<%= text_field_tag :social_skill_specialty %>
+				<%= button_tag 'Add', id: 'add-social-specialty' %>
+				<div id="social-skill-specialties">
+
+				</div>
+			</td>
+			<td colspan="2" valign="top">
+				<h2>Other Traits</h2>
+				<table width="100%">
+					<tr>
+						<td valign="top">
+							<% @character_type.power_types.each do |power_type| %>
+								<h3><%= power_type.name %></h3>
+								<%= grouped_collection_select(power_type.name, nil, power_type.power_groups, :powers, :name, :id, :name) %>
+								<%= button_tag 'Add', type: 'submit', class: 'button', id: "#{power_type.name.downcase.gsub(' ', '_')}_add" %>
+							<% end %>
+							<h3>Merits</h3>
+							<%= grouped_collection_select(:merit_category, nil, MeritCategory.all, :merits, :merit_category, :id, :name) %>
+							<%= button_tag 'Add', type: 'submit', class: 'button', id: "merits-add" %>
+							<ul id="merits">
+								<% @character.merits.each do |merit| %>
+									<li>
+										<%= merit.name %> <%= merit.rating %><% if merit.merit.has_specification %> (<%= merit.specification %>)<% end %>
+										<div class="description">
+											<%= merit.description %>
+										</div>
+									</li>
+								<% end %>
+							</ul>
+						</td>
+						<td valign="top">
+							<div class="row">
+								<h3>Health</h3>
+								<%= f.radio_button :health, "1", label: false %>
+								<%= f.radio_button :health, "2", label: false %>
+								<%= f.radio_button :health, "3", label: false %>
+								<%= f.radio_button :health, "4", label: false %>
+								<%= f.radio_button :health, "5", label: false %>
+								<%= f.radio_button :health, "6", label: false %>
+								<%= f.radio_button :health, "7", label: false %>
+								<%= f.radio_button :health, "8", label: false %>
+								<%= f.radio_button :health, "9", label: false %>
+								<%= f.radio_button :health, "10", label: false %>
+								<%= f.radio_button :health, "11", label: false %>
+								<%= f.radio_button :health, "12", label: false %>
+								<%= f.radio_button :health, "13", label: false %>
+								<%= f.radio_button :health, "14", label: false %>
+								<%= f.radio_button :health, "15", label: false %>
+							</div>
+							<div class="row">
+								<h3>Willpower</h3>
+								<%= f.radio_button :willpower, "1", label: false %>
+								<%= f.radio_button :willpower, "2", label: false %>
+								<%= f.radio_button :willpower, "3", label: false %>
+								<%= f.radio_button :willpower, "4", label: false %>
+								<%= f.radio_button :willpower, "5", label: false %>
+								<%= f.radio_button :willpower, "6", label: false %>
+								<%= f.radio_button :willpower, "7", label: false %>
+								<%= f.radio_button :willpower, "8", label: false %>
+								<%= f.radio_button :willpower, "9", label: false %>
+								<%= f.radio_button :willpower, "10", label: false %>
+							</div>
+							<div class="row">
+								<h3><%= @character_type.power_stat %></h3>
+								<%= f.radio_button :power_stat, "1", label: false %>
+								<%= f.radio_button :power_stat, "2", label: false %>
+								<%= f.radio_button :power_stat, "3", label: false %>
+								<%= f.radio_button :power_stat, "4", label: false %>
+								<%= f.radio_button :power_stat, "5", label: false %>
+								<%= f.radio_button :power_stat, "6", label: false %>
+								<%= f.radio_button :power_stat, "7", label: false %>
+								<%= f.radio_button :power_stat, "8", label: false %>
+								<%= f.radio_button :power_stat, "9", label: false %>
+								<%= f.radio_button :power_stat, "10", label: false %>
+							</div>
+							<div class="row">
+								<h3><%= @character_type.resource %></h3>
+								<%= f.text_field :max_resource, label: false %>
+							</div>
+							<div class="row">
+								<h3><%= @character_type.morality %></h3>
+								<%= f.radio_button :morality, "1", label: false %>
+								<%= f.radio_button :morality, "2", label: false %>
+								<%= f.radio_button :morality, "3", label: false %>
+								<%= f.radio_button :morality, "4", label: false %>
+								<%= f.radio_button :morality, "5", label: false %>
+								<%= f.radio_button :morality, "6", label: false %>
+								<%= f.radio_button :morality, "7", label: false %>
+								<%= f.radio_button :morality, "8", label: false %>
+								<%= f.radio_button :morality, "9", label: false %>
+								<%= f.radio_button :morality, "10", label: false %>
+							</div>
+
+							<div class="row">
+								<%= f.text_field :size %>
+							</div>
+							<div class="row">
+								<%= f.text_field :speed %>
+							</div>
+							<div class="row">
+								<%= f.text_field :defense %>
+							</div>
+							<div class="row">
+								<%= f.text_field :armor_ballistic %>
+							</div>
+							<div class="row">
+								<%= f.text_field :armor_general %>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<div class="row">
+					<h2>Questionnaire</h2>
+					<h3><%= @character_type.question1 %></h3>
+					<%= f.text_area :answer1, label: false %>
+					<h3><%= @character_type.question2 %></h3>
+					<%= f.text_area :answer2, label: false %>
+					<h3><%= @character_type.question3 %></h3>
+					<%= f.text_area :answer3, label: false %>
+					<h3><%= @character_type.question4 %></h3>
+					<%= f.text_area :answer4, label: false %>
+					<h3><%= @character_type.question5 %></h3>
+					<%= f.text_area :answer5, label: false %>
+					<h3><%= @character_type.question6 %></h3>
+					<%= f.text_area :answer6, label: false %>
+					<h3><%= @character_type.question7 %></h3>
+					<%= f.text_area :answer7, label: false %>
+					<h3><%= @character_type.question8 %></h3>
+					<%= f.text_area :answer8, label: false %>
+				</div>
+				<div class="row">
+					<h2>Printed Notes</h2>
+					<%= f.text_area :printed_notes, label: false %>
+				</div>
+				<div class="row">
+					<h2>Storyteller Notes</h2>
+					<%= f.text_area :st_notes, label: false %>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<%= f.button 'Save', type: 'submit', class: 'button' %>

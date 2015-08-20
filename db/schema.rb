@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818185428) do
+ActiveRecord::Schema.define(version: 20150820010308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20150818185428) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "value",        default: 1
+  end
+
+  create_table "character_has_merit", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "merit_id"
+    t.string  "specification"
+    t.text    "description"
+    t.integer "rating"
   end
 
   create_table "character_has_merits", force: :cascade do |t|
@@ -132,8 +140,8 @@ ActiveRecord::Schema.define(version: 20150818185428) do
     t.integer  "health"
     t.integer  "willpower"
     t.integer  "max_resource"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "character_type_id"
     t.integer  "chronicle_id"
     t.string   "misc"
@@ -148,6 +156,40 @@ ActiveRecord::Schema.define(version: 20150818185428) do
     t.integer  "armor_general"
     t.text     "st_notes"
     t.text     "printed_notes"
+    t.integer  "status",             default: 0
+    t.integer  "intelligence",       default: 1
+    t.integer  "wits",               default: 1
+    t.integer  "resolve",            default: 1
+    t.integer  "strength",           default: 1
+    t.integer  "dexterity",          default: 1
+    t.integer  "stamina",            default: 1
+    t.integer  "presence",           default: 1
+    t.integer  "manipulation",       default: 1
+    t.integer  "composure",          default: 1
+    t.integer  "academics",          default: 1
+    t.integer  "computer",           default: 1
+    t.integer  "crafts",             default: 1
+    t.integer  "investigation",      default: 1
+    t.integer  "medicine",           default: 1
+    t.integer  "occult",             default: 1
+    t.integer  "politics",           default: 1
+    t.integer  "science",            default: 1
+    t.integer  "athletics",          default: 1
+    t.integer  "brawl",              default: 1
+    t.integer  "drive",              default: 1
+    t.integer  "firearms",           default: 1
+    t.integer  "larceny",            default: 1
+    t.integer  "stealth",            default: 1
+    t.integer  "survival",           default: 1
+    t.integer  "weaponry",           default: 1
+    t.integer  "animal_ken",         default: 1
+    t.integer  "empathy",            default: 1
+    t.integer  "expression",         default: 1
+    t.integer  "intimidation",       default: 1
+    t.integer  "persuasion",         default: 1
+    t.integer  "socialize",          default: 1
+    t.integer  "streetwise",         default: 1
+    t.integer  "subterfuge",         default: 1
   end
 
   create_table "chronicle_allows_character_types", force: :cascade do |t|
@@ -169,11 +211,16 @@ ActiveRecord::Schema.define(version: 20150818185428) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "merit_categories", force: :cascade do |t|
+    t.string "merit_category"
+  end
+
   create_table "merits", force: :cascade do |t|
     t.string  "name"
     t.boolean "has_specification"
     t.boolean "has_description"
     t.string  "allowed_ratings"
+    t.integer "merit_category_id"
   end
 
   create_table "power_groups", force: :cascade do |t|
