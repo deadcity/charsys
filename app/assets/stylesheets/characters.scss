@@ -35,4 +35,15 @@
     font-size: 1em;
     color: $purple;
   }
+
+  input[type="radio"]{
+    margin-left: .2em;
+  }
+
+  #attributes_table {
+    thead, tr {
+      background-color: white !important;
+      white-space: nowrap;
+    }
+  }
 }
