@@ -47,79 +47,79 @@
 			td
 				| Intelligence
 			td
-				input type="radio" value="1" name="character[attribs][1]" 
-				input type="radio" value="2" name="character[attribs][1]" 
-				input type="radio" value="3" name="character[attribs][1]" 
-				input type="radio" value="4" name="character[attribs][1]" 
-				input type="radio" value="5" name="character[attribs][1]"
+				= f.radio_button :intelligence, "1", label: false
+				= f.radio_button :intelligence, "2", label: false
+				= f.radio_button :intelligence, "3", label: false
+				= f.radio_button :intelligence, "4", label: false
+				= f.radio_button :intelligence, "5", label: false
 			td
 				| Strength
 			td
-				input type="radio" value="1" name="character[attribs][4]" 
-				input type="radio" value="2" name="character[attribs][4]" 
-				input type="radio" value="3" name="character[attribs][4]" 
-				input type="radio" value="4" name="character[attribs][4]" 
-				input type="radio" value="5" name="character[attribs][4]" 
+				= f.radio_button :strength, "1", label: false
+				= f.radio_button :strength, "2", label: false
+				= f.radio_button :strength, "3", label: false
+				= f.radio_button :strength, "4", label: false
+				= f.radio_button :strength, "5", label: false
 			td
 				| Presence
 			td
-				input type="radio" value="1" name="character[attribs][7]" 
-				input type="radio" value="2" name="character[attribs][7]" 
-				input type="radio" value="3" name="character[attribs][7]" 
-				input type="radio" value="4" name="character[attribs][7]" 
-				input type="radio" value="5" name="character[attribs][7]"
+				= f.radio_button :presence, "1", label: false
+				= f.radio_button :presence, "2", label: false
+				= f.radio_button :presence, "3", label: false
+				= f.radio_button :presence, "4", label: false
+				= f.radio_button :presence, "5", label: false
 		tr
 			th Finesse
 			td
 				| Wits
 			td
-				input type="radio" value="1" name="character[attribs][2]" 
-				input type="radio" value="2" name="character[attribs][2]" 
-				input type="radio" value="3" name="character[attribs][2]" 
-				input type="radio" value="4" name="character[attribs][2]" 
-				input type="radio" value="5" name="character[attribs][2]" 
+				= f.radio_button :wits, "1", label: false
+				= f.radio_button :wits, "2", label: false
+				= f.radio_button :wits, "3", label: false
+				= f.radio_button :wits, "4", label: false
+				= f.radio_button :wits, "5", label: false
 			td
 				| Dexterity
 			td
-				input type="radio" value="1" name="character[attribs][5]" 
-				input type="radio" value="2" name="character[attribs][5]" 
-				input type="radio" value="3" name="character[attribs][5]" 
-				input type="radio" value="4" name="character[attribs][5]" 
-				input type="radio" value="5" name="character[attribs][5]" 
+				= f.radio_button :dexterity, "1", label: false
+				= f.radio_button :dexterity, "2", label: false
+				= f.radio_button :dexterity, "3", label: false
+				= f.radio_button :dexterity, "4", label: false
+				= f.radio_button :dexterity, "5", label: false
 			td
 				| Manipulation
 			td
-				input type="radio" value="1" name="character[attribs][8]" 
-				input type="radio" value="2" name="character[attribs][8]" 
-				input type="radio" value="3" name="character[attribs][8]" 
-				input type="radio" value="4" name="character[attribs][8]" 
-				input type="radio" value="5" name="character[attribs][8]" 
+				= f.radio_button :manipulation, "1", label: false
+				= f.radio_button :manipulation, "2", label: false
+				= f.radio_button :manipulation, "3", label: false
+				= f.radio_button :manipulation, "4", label: false
+				= f.radio_button :manipulation, "5", label: false 
 		tr
 			th Resistance
 			td
 				| Resolve
 			td
-				input type="radio" value="1" name="character[attribs][3]" 
-				input type="radio" value="2" name="character[attribs][3]" 
-				input type="radio" value="3" name="character[attribs][3]" 
-				input type="radio" value="4" name="character[attribs][3]" 
-				input type="radio" value="5" name="character[attribs][3]" 
+				= f.radio_button :resolve, "1", label: false
+				= f.radio_button :resolve, "2", label: false
+				= f.radio_button :resolve, "3", label: false
+				= f.radio_button :resolve, "4", label: false
+				= f.radio_button :resolve, "5", label: false
 			td
 				| Stamina
 			td
-				input type="radio" value="1" name="character[attribs][6]" 
-				input type="radio" value="2" name="character[attribs][6]" 
-				input type="radio" value="3" name="character[attribs][6]" 
-				input type="radio" value="4" name="character[attribs][6]" 
-				input type="radio" value="5" name="character[attribs][6]" 
+				= f.radio_button :stamina, "1", label: false
+				= f.radio_button :stamina, "2", label: false
+				= f.radio_button :stamina, "3", label: false
+				= f.radio_button :stamina, "4", label: false
+				= f.radio_button :stamina, "5", label: false
 			td
 				| Composure
 			td
-				input type="radio" value="1" name="character[attribs][9]" 
-				input type="radio" value="2" name="character[attribs][9]" 
-				input type="radio" value="3" name="character[attribs][9]" 
-				input type="radio" value="4" name="character[attribs][9]" 
-				input type="radio" value="5" name="character[attribs][9]" 
+				= f.radio_button :composure, "1", label: false
+				= f.radio_button :composure, "2", label: false
+				= f.radio_button :composure, "3", label: false
+				= f.radio_button :composure, "4", label: false
+				= f.radio_button :composure, "5", label: false
 	
 / SKILLS
 .row
@@ -199,8 +199,9 @@
 
 		ul#power-list
 			- @character.character_has_powers.each do |power|
-				li #{power.power.name}
+				li #{power.power.power_group.name}: #{power.power.name}
 					<i class="fa fa-trash-o live-delete"></i>
+					<input type="hidden" name="character[character_has_powers_attributes][][power_id]" value="#{power.power.id}" />
 					<input type="hidden" name="character[character_has_powers_attributes][][character_id]" value="#{@character.id}" />
 					<input type="hidden" name="character[character_has_powers_attributes][][id]" value="#{power.id}" />
 					<input type="checkbox" class="hide" name="character[character_has_powers_attributes][][_destroy]" />
