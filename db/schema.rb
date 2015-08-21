@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820191032) do
+ActiveRecord::Schema.define(version: 20150821234105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20150820191032) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "value",        default: 1
+  end
+
+  create_table "character_has_merit", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "merit_id"
+    t.string  "specification"
+    t.text    "description"
+    t.integer "rating"
   end
 
   create_table "character_has_merits", force: :cascade do |t|
@@ -134,13 +142,13 @@ ActiveRecord::Schema.define(version: 20150820191032) do
     t.integer  "initiative_mod"
     t.integer  "armor_ballistic"
     t.integer  "speed"
-    t.integer  "power_stat"
+    t.integer  "power_stat",         default: 1
     t.integer  "morality"
-    t.integer  "health"
-    t.integer  "willpower"
-    t.integer  "max_resource"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "health",             default: 6
+    t.integer  "willpower",          default: 2
+    t.integer  "max_resource",       default: 10
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "character_type_id"
     t.integer  "chronicle_id"
     t.string   "misc"
@@ -164,30 +172,30 @@ ActiveRecord::Schema.define(version: 20150820191032) do
     t.integer  "presence",           default: 1
     t.integer  "manipulation",       default: 1
     t.integer  "composure",          default: 1
-    t.integer  "academics",          default: 1
-    t.integer  "computer",           default: 1
-    t.integer  "crafts",             default: 1
-    t.integer  "investigation",      default: 1
-    t.integer  "medicine",           default: 1
-    t.integer  "occult",             default: 1
-    t.integer  "politics",           default: 1
-    t.integer  "science",            default: 1
-    t.integer  "athletics",          default: 1
-    t.integer  "brawl",              default: 1
-    t.integer  "drive",              default: 1
-    t.integer  "firearms",           default: 1
-    t.integer  "larceny",            default: 1
-    t.integer  "stealth",            default: 1
-    t.integer  "survival",           default: 1
-    t.integer  "weaponry",           default: 1
-    t.integer  "animal_ken",         default: 1
-    t.integer  "empathy",            default: 1
-    t.integer  "expression",         default: 1
-    t.integer  "intimidation",       default: 1
-    t.integer  "persuasion",         default: 1
-    t.integer  "socialize",          default: 1
-    t.integer  "streetwise",         default: 1
-    t.integer  "subterfuge",         default: 1
+    t.integer  "academics",          default: 0
+    t.integer  "computer",           default: 0
+    t.integer  "crafts",             default: 0
+    t.integer  "investigation",      default: 0
+    t.integer  "medicine",           default: 0
+    t.integer  "occult",             default: 0
+    t.integer  "politics",           default: 0
+    t.integer  "science",            default: 0
+    t.integer  "athletics",          default: 0
+    t.integer  "brawl",              default: 0
+    t.integer  "drive",              default: 0
+    t.integer  "firearms",           default: 0
+    t.integer  "larceny",            default: 0
+    t.integer  "stealth",            default: 0
+    t.integer  "survival",           default: 0
+    t.integer  "weaponry",           default: 0
+    t.integer  "animal_ken",         default: 0
+    t.integer  "empathy",            default: 0
+    t.integer  "expression",         default: 0
+    t.integer  "intimidation",       default: 0
+    t.integer  "persuasion",         default: 0
+    t.integer  "socialize",          default: 0
+    t.integer  "streetwise",         default: 0
+    t.integer  "subterfuge",         default: 0
     t.integer  "status",             default: 0
   end
 

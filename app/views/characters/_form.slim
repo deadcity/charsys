@@ -7,7 +7,7 @@
 		= collection_select(:character, :character_type_id, CharacterType.all, :id, :name, {})
 	.small-4.columns
 		= f.label :user_id, "Player"
-		= hidden_field_tag :user_id, session[:user_id]
+		= f.hidden_field :user_id, value: current_user.id
 		= @user.name
 .row
 	.small-4.columns
@@ -172,7 +172,11 @@
 .row
 	h2 Skill Specialties
 	.small-4.columns
-		= grouped_collection_select(:skill, :skill_id, @skill_categories, :skills, :name, :id, :name, {}, {id: "skills", name: "skills"})
+		select id="skills" name="skills"
+			- @skill_categories.each do |category|
+				optgroup label="#{category.name}"
+					- category.skills.each do |skill|
+						option value="#{skill.id}" #{skill.name}
 		= text_field_tag :skill_specialty
 		= button_tag 'Add Specialty', id: 'add-specialty', class: "mini-button", type: ''
 		ul id="skill-specialties"

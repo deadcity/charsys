@@ -26,6 +26,7 @@ class CharactersController < ApplicationController
 			@mental_skills = Skill.where({skill_category: 1})
 			@physical_skills = Skill.where({skill_category: 2})
 			@social_skills = Skill.where({skill_category: 3})
+			@skill_categories = SkillCategory.all
 			@merit_categories = MeritCategory.all
 			@merits = Merit.all
 			@character = Character.new
@@ -36,6 +37,7 @@ class CharactersController < ApplicationController
 
 	def create
 		@character = Character.new(characters_params)
+		puts @character.inspect
 		if @character.save!
 			flash[:success] = "Your character was saved."
 			redirect_to character_path(@character)
@@ -47,6 +49,9 @@ class CharactersController < ApplicationController
 
 	def show
 		@character = Character.find_by_id(params[:id])
+		@mental_skills = Skill.where({skill_category: 1})
+		@physical_skills = Skill.where({skill_category: 2})
+		@social_skills = Skill.where({skill_category: 3})
 		redirect_to index_path if @character.user != current_user
 	end
 
