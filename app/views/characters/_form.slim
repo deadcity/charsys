@@ -365,7 +365,6 @@ javascript:
 	});
 
 	$('body').on('click', '.live-delete', function() {
-		console.log('it\'s working!');
 		$(this).nextAll('input[type="checkbox"]').attr("checked", "checked");
 		$(this).parent().hide();
 	});
@@ -400,8 +399,6 @@ javascript:
 		var meritSpec = $selected.attr('data-has-specification');
 		var meritDesc = $selected.attr('data-has-description');
 
-		console.log(meritRatings);
-
 		var newItem = "<li>"+meritName;
 
 		if (meritRatings.length > 1) {
@@ -429,8 +426,6 @@ javascript:
 	});
 
 	$('.skill-reset').click(function() {
-		console.log('event fired');
-		console.log($(this).parent().find('input'));
 		$(this).parent().find('input').removeAttr("checked");
 		$(this).parent().find('input[type="hidden"]').val("0");
 	});
