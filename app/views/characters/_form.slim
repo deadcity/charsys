@@ -173,6 +173,11 @@
 			- @character.skill_specialties.each do |specialty|
 				li #{specialty.skill.name} (#{specialty.specialty})
 					<i class="fa fa-trash-o live-delete"></i>
+					<input type="hidden" name="character[skill_specialties_attributes][][id]" value="#{specialty.id}" />
+					<input type="hidden" name="character[skill_specialties_attributes][][specialty]" value="#{specialty.specialty}" />
+					<input type="hidden" name="character[skill_specialties_attributes][][skill_id]" value="#{specialty.skill_id}" />
+					<input type="hidden" name="character[skill_specialties_attributes][][character_id]" value="#{@character.id}" />
+					<input type="checkbox" class="hide" name="character[skill_specialties_attributes][][_destroy]" />
 	
 	.small-8.columns
 
@@ -193,11 +198,12 @@
 				= button_tag 'Add', type: 'submit', class: 'mini-button', id: "#{power_type.name.downcase.underscore}_add"
 
 		ul#power-list
-			- @character.powers.each do |power|
-				li #{power.name}
+			- @character.character_has_powers.each do |power|
+				li #{power.power.name}
 					<i class="fa fa-trash-o live-delete"></i>
-					= fields_for :character_has_power do |char_power|
-						= render "power_fields", :f => char_power
+					<input type="hidden" name="character[character_has_powers_attributes][][character_id]" value="#{@character.id}" />
+					<input type="hidden" name="character[character_has_powers_attributes][][id]" value="#{power.id}" />
+					<input type="checkbox" class="hide" name="character[character_has_powers_attributes][][_destroy]" />
 .row
 	.small-8.small-centered.columns
 		h3 Merits
@@ -209,19 +215,19 @@
 		= button_tag 'Add', type: '', class: 'mini-button', id: "merits-add"
 
 		ul#merits-list
-			- @character.merits.each do |merit|
-				li #{merit.name} #{merit.rating}
+			- @character.character_has_merits.each do |merit|
+				li #{merit.merit.name} #{merit.rating}
 					- if merit.specification.present?
 						span.specification (#{merit.specification})
-						input type="text" value="#{merit.specification}" name="character[merits][][specification]" class="hide"
+						input type="text" value="#{merit.specification}" name="character[character_has_merits_attributes][power.id][specification]" class="hide"
 					- if merit.description.present?
 						span.description #{merit.description}
-						textarea value="#{merit.description}" name="character[merits][][description]" class="hide"
-					input type="hidden" value="#{merit.id}" name="character[merits][][id]"
-					input type="hidden" value="#{@character.id}" name="character[merits][][character_id]"
+						textarea value="#{merit.description}" name="character[character_has_merits_attributes][power.id][description]" class="hide"
+					<input type="hidden" value="#{merit.id}" name="character[character_has_merits_attributes][power.id][id]" />
+					<input type="hidden" value="#{@character.id}" name="character[character_has_merits_attributes][power.id][character_id]" />
 					<i class="fa fa-pencil live-edit"></i>
 					<i class="fa fa-trash-o live-delete"></i>
-					input type="checkbox" class="hide" name="character[merits][][_delete]"
+					<input type="checkbox" class="hide" name="character[character_has_merits_attributes][power.id][_destroy]" />
 .row
 	.small-6.large-4.large-offset-2.columns
 		h3 Health
@@ -341,11 +347,6 @@
 
 = f.button 'Save', type: 'submit', class: 'button'
 
-
-#power-template.hide
-	= fields_for :character_has_power do |char_power|
-		= render "power_fields", :f => char_power
-
 javascript:
 	// WELCOME TO HELL
 
@@ -354,7 +355,9 @@ javascript:
 	});
 
 	$('body').on('click', '.live-delete', function() {
-		$(this).next(input[type='checkbox']).click();
+		console.log('it\'s working!');
+		$(this).nextAll('input[type="checkbox"]').attr("checked", "checked");
+		$(this).parent().hide();
 	});
 
 	$('#add-specialty').on('click', function (e) {
@@ -363,8 +366,7 @@ javascript:
 		var skill = $('#skills option:selected').text();
 		var skillId = $('#skills').val();
 
-		var newItem = "<li>"+skill+" ("+specialty+") <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[skill_specialties][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties][][character_id]' value='#{@character.id}'</li>";
-		console.log(newItem);
+		var newItem = "<li>"+skill+" ("+specialty+") <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[skill_specialties_attributes][][id]' /><input type='hidden' name='character[skill_specialties_attributes][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties_attributes][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties_attributes][][character_id]' value='#{@character.id}'</li>";
 		$('#skill-specialties').append(newItem);
 	});
 
@@ -374,7 +376,7 @@ javascript:
 		var powerName = $(this).prevAll('select').find('option:selected').text().replace(/[0-9\- ]+/, "");
 		var powerGroup = $(this).prevAll('select').find('option:selected').parent().attr("label");
 
-		var newItem = "<li>"+powerGroup+": "+powerName+" <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[character_has_powers][][power_id] /><input type='hidden' name='character[character_has_powers][][character_id]' value='#{@character.id}' /></li>";
+		var newItem = "<li>"+powerGroup+": "+powerName+" <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[character_has_powers_attributes][][power_id]' value='"+power+"' /><input type='hidden' name='character[character_has_powers_attributes][][character_id]' value='#{@character.id}' /></li>";
 
 		$('#power-list').append(newItem);
 	});
@@ -388,7 +390,30 @@ javascript:
 		var meritSpec = $selected.attr('data-has-specification');
 		var meritDesc = $selected.attr('data-has-description');
 
-		var newItem = "<li>"+meritName+"</li>";
+		console.log(meritRatings);
+
+		var newItem = "<li>"+meritName;
+
+		if (meritRatings.length > 1) {
+			var step = meritRatings[1] - meritRatings[0];
+			newItem += "<input type='number' min='"+meritRatings[0]+"' max='"+meritRatings[meritRatings.length-1]+"' value='"+meritRatings[0]+"' step='"+step+"' name='character[character_has_merits_attributes][][rating]' />";
+		} else {
+			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][rating]' value='"+meritRatings[0]+"' />";
+		}
+
+		if (meritSpec == "true") {
+			newItem += "<input type='text' name='character[character_has_merits_attributes][][specification]' placeholder='Specification' />";
+		} else {
+			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][specification]' value='' />";
+		}
+
+		if (meritDesc == "true") {
+			newItem += "<textarea name='character[character_has_merits_attributes][][description]'></textarea>";
+		} else {
+			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][description]' value='' />";
+		}
+
+		newItem += "<input type='hidden' name='character[character_has_merits_attributes][][merit_id]' value='"+meritId+"'</li>"
 
 		$('#merits-list').append(newItem);
 	});
