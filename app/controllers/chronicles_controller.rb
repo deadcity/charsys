@@ -1,4 +1,10 @@
 class ChroniclesController < ApplicationController
+	CHARACTER_STATUS = ['In Progress', 'Submitted', 'Approved', 'Active', 'Deceased', 'Inactive']
+	def get_status(status)
+		return CHARACTER_STATUS[status]
+	end
+	helper_method :get_status
+
 	def index
 		if current_user
 			@chronicles = current_user.chronicles.all
@@ -28,6 +34,8 @@ class ChroniclesController < ApplicationController
 	end
 
 	def show
+		@chronicle = Chronicle.find_by_id(params[:id])
+		@characters = @chronicle.characters.all
 	end
 
 	def edit

@@ -10,12 +10,45 @@
   }
 
   .create_character_button {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
     margin-left: 2em;
     top: -.2em;
-    border-radius: 3px;
+  }
+}
+
+.character_new_page {
+  h1 {
+    font-size: 1.3em;
+    color: $purple;
+  }
+
+  h2 {
+    font-size: 1.2em;
+    color: $purple;
+  }
+
+  h3 {
+    font-size: 1em;
+    color: $purple;
+  }
+
+  input[type="radio"]{
+    margin-left: .2em;
+  }
+
+  #attributes_table {
+    thead, tr {
+      background-color: white !important;
+      white-space: nowrap;
+    }
+  }
+
+  .skill_tables {
+    tr {
+      white-space: nowrap;
+    }
+  }
+
+  textarea {
+    height: 150px;
   }
 }
