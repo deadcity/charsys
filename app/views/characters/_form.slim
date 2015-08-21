@@ -132,11 +132,13 @@
 					th
 						= skill.name
 					td
-						input type="radio" value="1" name="character[skills][= skill.id" 
-						input type="radio" value="2" name="character[skills][= skill.id" 
-						input type="radio" value="3" name="character[skills][= skill.id" 
-						input type="radio" value="4" name="character[skills][= skill.id" 
-						input type="radio" value="5" name="character[skills][= skill.id" 
+						<i class="fa fa-dot-circle-o skill-reset"></i>
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "1", label: false 
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "2", label: false 
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "3", label: false 
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "4", label: false 
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "5", label: false 
+						= f.hidden_field skill.name.downcase.gsub(' ', '_').to_sym
 	.small-4.columns
 		h3 Physical
 		table.skill_tables width="100%"
@@ -145,11 +147,13 @@
 					th
 						= skill.name
 					td
-						input type="radio" value="1" name="character[skills][= skill.id" 
-						input type="radio" value="2" name="character[skills][= skill.id" 
-						input type="radio" value="3" name="character[skills][= skill.id" 
-						input type="radio" value="4" name="character[skills][= skill.id" 
-						input type="radio" value="5" name="character[skills][= skill.id" 
+						<i class="fa fa-dot-circle-o skill-reset"></i>
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "1", label: false 
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "2", label: false 
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "3", label: false 
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "4", label: false 
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "5", label: false 
+						= f.hidden_field skill.name.downcase.gsub(' ', '_').to_sym
 	.small-4.columns
 		h3 Social
 		table.skill_tables width="100%"
@@ -158,11 +162,13 @@
 					th
 						= skill.name
 					td
-						input type="radio" value="1" name="character[skills][= skill.id" 
-						input type="radio" value="2" name="character[skills][= skill.id" 
-						input type="radio" value="3" name="character[skills][= skill.id" 
-						input type="radio" value="4" name="character[skills][= skill.id" 
-						input type="radio" value="5" name="character[skills][= skill.id" 
+						<i class="fa fa-dot-circle-o skill-reset"></i>
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "1", label: false 
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "2", label: false 
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "3", label: false 
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "4", label: false 
+						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "5", label: false 
+						= f.hidden_field skill.name.downcase.gsub(' ', '_').to_sym
 .row
 	h2 Skill Specialties
 	.small-4.columns
@@ -420,4 +426,11 @@ javascript:
 		newItem += "<input type='hidden' name='character[character_has_merits_attributes][][merit_id]' value='"+meritId+"'</li>"
 
 		$('#merits-list').append(newItem);
+	});
+
+	$('.skill-reset').click(function() {
+		console.log('event fired');
+		console.log($(this).parent().find('input'));
+		$(this).parent().find('input').removeAttr("checked");
+		$(this).parent().find('input[type="hidden"]').val("0");
 	});
