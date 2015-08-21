@@ -1,0 +1,394 @@
+/ BASIC INFO FOR CHARACTER
+.row
+	.small-4.columns
+		= f.text_field :name
+	.small-4.columns
+		= f.label :character_type
+		= collection_select(:character, :character_type_id, CharacterType.all, :id, :name, {})
+	.small-4.columns
+		= f.label :user_id, "Player"
+		= hidden_field_tag :user_id, session[:user_id]
+		= @user.name
+.row
+	.small-4.columns
+		= f.label :lineage, @character_type.lineage
+		= collection_select(:character, :lineage_id, Lineage.all, :id, :name, {})
+	.small-4.columns
+		= f.label :sublineage, @character_type.sublineage
+		= f.text_field :sublineage, label: false
+	.small-4.columns
+		= f.label :affiliation, @character_type.affiliation
+		= collection_select(:character, :affiliation_id, Affiliation.all, :id, :name, {})
+.row
+	.small-4.columns
+		= f.label :behavior_primary, @character_type.behavior_primary
+		= collection_select(:character, :behavior_primary, BehaviorPrimary.all, :id, :name)
+	.small-4.columns
+		= f.label :behavior_secondary, @character_type.behavior_secondary
+		= collection_select(:character, :behavior_secondary, BehaviorSecondary.all, :id, :name)
+	.small-4.columns
+		= f.label :chronicle_id, "Chronicle"
+		= collection_select(:character, :chronicle_id, Chronicle.all, :id, :title, {})
+		
+/ ATTRIBUTES
+.row
+	h2 Attributes
+	table#attributes_table width="100%" 
+		thead
+			th
+			th Mental
+			th
+			th Social
+			th
+			th Physical
+			th
+		tr
+			th Power
+			td
+				| Intelligence
+			td
+				input type="radio" value="1" name="character[attribs][1]" 
+				input type="radio" value="2" name="character[attribs][1]" 
+				input type="radio" value="3" name="character[attribs][1]" 
+				input type="radio" value="4" name="character[attribs][1]" 
+				input type="radio" value="5" name="character[attribs][1]"
+			td
+				| Strength
+			td
+				input type="radio" value="1" name="character[attribs][4]" 
+				input type="radio" value="2" name="character[attribs][4]" 
+				input type="radio" value="3" name="character[attribs][4]" 
+				input type="radio" value="4" name="character[attribs][4]" 
+				input type="radio" value="5" name="character[attribs][4]" 
+			td
+				| Presence
+			td
+				input type="radio" value="1" name="character[attribs][7]" 
+				input type="radio" value="2" name="character[attribs][7]" 
+				input type="radio" value="3" name="character[attribs][7]" 
+				input type="radio" value="4" name="character[attribs][7]" 
+				input type="radio" value="5" name="character[attribs][7]"
+		tr
+			th Finesse
+			td
+				| Wits
+			td
+				input type="radio" value="1" name="character[attribs][2]" 
+				input type="radio" value="2" name="character[attribs][2]" 
+				input type="radio" value="3" name="character[attribs][2]" 
+				input type="radio" value="4" name="character[attribs][2]" 
+				input type="radio" value="5" name="character[attribs][2]" 
+			td
+				| Dexterity
+			td
+				input type="radio" value="1" name="character[attribs][5]" 
+				input type="radio" value="2" name="character[attribs][5]" 
+				input type="radio" value="3" name="character[attribs][5]" 
+				input type="radio" value="4" name="character[attribs][5]" 
+				input type="radio" value="5" name="character[attribs][5]" 
+			td
+				| Manipulation
+			td
+				input type="radio" value="1" name="character[attribs][8]" 
+				input type="radio" value="2" name="character[attribs][8]" 
+				input type="radio" value="3" name="character[attribs][8]" 
+				input type="radio" value="4" name="character[attribs][8]" 
+				input type="radio" value="5" name="character[attribs][8]" 
+		tr
+			th Resistance
+			td
+				| Resolve
+			td
+				input type="radio" value="1" name="character[attribs][3]" 
+				input type="radio" value="2" name="character[attribs][3]" 
+				input type="radio" value="3" name="character[attribs][3]" 
+				input type="radio" value="4" name="character[attribs][3]" 
+				input type="radio" value="5" name="character[attribs][3]" 
+			td
+				| Stamina
+			td
+				input type="radio" value="1" name="character[attribs][6]" 
+				input type="radio" value="2" name="character[attribs][6]" 
+				input type="radio" value="3" name="character[attribs][6]" 
+				input type="radio" value="4" name="character[attribs][6]" 
+				input type="radio" value="5" name="character[attribs][6]" 
+			td
+				| Composure
+			td
+				input type="radio" value="1" name="character[attribs][9]" 
+				input type="radio" value="2" name="character[attribs][9]" 
+				input type="radio" value="3" name="character[attribs][9]" 
+				input type="radio" value="4" name="character[attribs][9]" 
+				input type="radio" value="5" name="character[attribs][9]" 
+	
+/ SKILLS
+.row
+	h2 Skills
+	.small-4.columns
+		h3 Mental
+		table.skill_tables width="100%"
+			- @mental_skills.each do |skill|
+				tr
+					th
+						= skill.name
+					td
+						input type="radio" value="1" name="character[skills][= skill.id" 
+						input type="radio" value="2" name="character[skills][= skill.id" 
+						input type="radio" value="3" name="character[skills][= skill.id" 
+						input type="radio" value="4" name="character[skills][= skill.id" 
+						input type="radio" value="5" name="character[skills][= skill.id" 
+	.small-4.columns
+		h3 Physical
+		table.skill_tables width="100%"
+			- @physical_skills.each do |skill|
+				tr
+					th
+						= skill.name
+					td
+						input type="radio" value="1" name="character[skills][= skill.id" 
+						input type="radio" value="2" name="character[skills][= skill.id" 
+						input type="radio" value="3" name="character[skills][= skill.id" 
+						input type="radio" value="4" name="character[skills][= skill.id" 
+						input type="radio" value="5" name="character[skills][= skill.id" 
+	.small-4.columns
+		h3 Social
+		table.skill_tables width="100%"
+			- @social_skills.each do |skill|
+				tr
+					th
+						= skill.name
+					td
+						input type="radio" value="1" name="character[skills][= skill.id" 
+						input type="radio" value="2" name="character[skills][= skill.id" 
+						input type="radio" value="3" name="character[skills][= skill.id" 
+						input type="radio" value="4" name="character[skills][= skill.id" 
+						input type="radio" value="5" name="character[skills][= skill.id" 
+.row
+	h2 Skill Specialties
+	.small-4.columns
+		= grouped_collection_select(:skill, :skill_id, @skill_categories, :skills, :name, :id, :name, {}, {id: "skills", name: "skills"})
+		= text_field_tag :skill_specialty
+		= button_tag 'Add Specialty', id: 'add-specialty', class: "mini-button", type: ''
+		ul id="skill-specialties"
+			- @character.skill_specialties.each do |specialty|
+				li #{specialty.skill.name} (#{specialty.specialty})
+					<i class="fa fa-trash-o live-delete"></i>
+	
+	.small-8.columns
+
+/ OTHER TRAITS 
+.row
+	h2 Other Traits
+.row
+	#powers-add
+		- @character_type.power_types.each do |power_type|
+			.small-6.columns
+				h3
+					= power_type.name
+				select name="#{power_type.name.downcase.underscore}" id="#{power_type.name.downcase.underscore}"
+					- power_type.power_groups.each do |power_group|
+						optgroup label="#{power_group.name}"
+							- power_group.powers.each do |power|
+								option value="#{power.id}" #{power.rating} - #{power.name}
+				= button_tag 'Add', type: 'submit', class: 'mini-button', id: "#{power_type.name.downcase.underscore}_add"
+
+		ul#power-list
+			- @character.powers.each do |power|
+				li #{power.name}
+					<i class="fa fa-trash-o live-delete"></i>
+					= fields_for :character_has_power do |char_power|
+						= render "power_fields", :f => char_power
+.row
+	.small-8.small-centered.columns
+		h3 Merits
+		select name="merits" id="merits"
+			- @merit_categories.each do |merit_category|
+				optgroup label="#{merit_category.merit_category}"
+					- merit_category.merits.each do |merit|
+						option value="#{merit.id}" data-allowed-ratings="#{merit.allowed_ratings}" data-has-specification="#{merit.has_specification}" data-has-description="#{merit.has_description}" #{merit.name} #{merit.allowed_ratings}
+		= button_tag 'Add', type: '', class: 'mini-button', id: "merits-add"
+
+		ul#merits-list
+			- @character.merits.each do |merit|
+				li #{merit.name} #{merit.rating}
+					- if merit.specification.present?
+						span.specification (#{merit.specification})
+						input type="text" value="#{merit.specification}" name="character[merits][][specification]" class="hide"
+					- if merit.description.present?
+						span.description #{merit.description}
+						textarea value="#{merit.description}" name="character[merits][][description]" class="hide"
+					input type="hidden" value="#{merit.id}" name="character[merits][][id]"
+					input type="hidden" value="#{@character.id}" name="character[merits][][character_id]"
+					<i class="fa fa-pencil live-edit"></i>
+					<i class="fa fa-trash-o live-delete"></i>
+					input type="checkbox" class="hide" name="character[merits][][_delete]"
+.row
+	.small-6.large-4.large-offset-2.columns
+		h3 Health
+		= f.radio_button :health, "1", label: false
+		= f.radio_button :health, "2", label: false
+		= f.radio_button :health, "3", label: false
+		= f.radio_button :health, "4", label: false
+		= f.radio_button :health, "5", label: false
+		= f.radio_button :health, "6", label: false
+		= f.radio_button :health, "7", label: false
+		= f.radio_button :health, "8", label: false
+		= f.radio_button :health, "9", label: false
+		= f.radio_button :health, "10", label: false
+		= f.radio_button :health, "11", label: false
+		= f.radio_button :health, "12", label: false
+		= f.radio_button :health, "13", label: false
+		= f.radio_button :health, "14", label: false
+		= f.radio_button :health, "15", label: false
+	.small-6.columns
+		h3 Willpower
+		= f.radio_button :willpower, "1", label: false
+		= f.radio_button :willpower, "2", label: false
+		= f.radio_button :willpower, "3", label: false
+		= f.radio_button :willpower, "4", label: false
+		= f.radio_button :willpower, "5", label: false
+		= f.radio_button :willpower, "6", label: false
+		= f.radio_button :willpower, "7", label: false
+		= f.radio_button :willpower, "8", label: false
+		= f.radio_button :willpower, "9", label: false
+		= f.radio_button :willpower, "10", label: false
+				
+.row
+	.small-4.large-3.large-offset-2.columns
+		h3
+			= @character_type.power_stat
+		= f.radio_button :power_stat, "1", label: false
+		= f.radio_button :power_stat, "2", label: false
+		= f.radio_button :power_stat, "3", label: false
+		= f.radio_button :power_stat, "4", label: false
+		= f.radio_button :power_stat, "5", label: false
+		= f.radio_button :power_stat, "6", label: false
+		= f.radio_button :power_stat, "7", label: false
+		= f.radio_button :power_stat, "8", label: false
+		= f.radio_button :power_stat, "9", label: false
+		= f.radio_button :power_stat, "10", label: false
+	.small-4.large-3.large-offset-1.columns
+		h3
+			= @character_type.morality
+		= f.radio_button :morality, "1", label: false
+		= f.radio_button :morality, "2", label: false
+		= f.radio_button :morality, "3", label: false
+		= f.radio_button :morality, "4", label: false
+		= f.radio_button :morality, "5", label: false
+		= f.radio_button :morality, "6", label: false
+		= f.radio_button :morality, "7", label: false
+		= f.radio_button :morality, "8", label: false
+		= f.radio_button :morality, "9", label: false
+		= f.radio_button :morality, "10", label: false
+	.small-4.large-3.columns
+		h3
+			= @character_type.resource
+		= f.text_field :max_resource, label: false
+				
+.row
+	.small-2.small-offset-1.columns
+		= f.text_field :size
+	.small-2.columns
+		= f.text_field :speed
+	.small-2.columns
+		= f.text_field :defense
+	.small-2.columns
+		= f.text_field :armor_ballistic
+	.small-2.columns
+		= f.text_field :armor_general
+	.small-1.columns
+
+
+/ QUESTIONNAIRE
+.row
+	.small-12.columns
+		h2 Questionnaire
+		h3
+			= @character_type.question1
+		= f.text_area :answer1, label: false
+		h3
+			= @character_type.question2
+		= f.text_area :answer2, label: false
+		h3
+			= @character_type.question3
+		= f.text_area :answer3, label: false
+		h3
+			= @character_type.question4
+		= f.text_area :answer4, label: false
+		h3
+			= @character_type.question5
+		= f.text_area :answer5, label: false
+		h3
+			= @character_type.question6
+		= f.text_area :answer6, label: false
+		h3
+			= @character_type.question7
+		= f.text_area :answer7, label: false
+		h3
+			= @character_type.question8
+		= f.text_area :answer8, label: false
+	
+.row
+	.small-12.columns
+		h2 Printed Notes
+		= f.text_area :printed_notes, label: false
+	
+.row
+	.small-12.columns
+		h2 Storyteller Notes
+		= f.text_area :st_notes, label: false
+
+
+= f.button 'Save', type: 'submit', class: 'button'
+
+
+#power-template.hide
+	= fields_for :character_has_power do |char_power|
+		= render "power_fields", :f => char_power
+
+javascript:
+	// WELCOME TO HELL
+
+	$('body').on('click', '.temp-delete', function() {
+		$(this).parent().remove();
+	});
+
+	$('body').on('click', '.live-delete', function() {
+		$(this).next(input[type='checkbox']).click();
+	});
+
+	$('#add-specialty').on('click', function (e) {
+		e.preventDefault();
+		var specialty = $('#skill_specialty').val();
+		var skill = $('#skills option:selected').text();
+		var skillId = $('#skills').val();
+
+		var newItem = "<li>"+skill+" ("+specialty+") <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[skill_specialties][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties][][character_id]' value='#{@character.id}'</li>";
+		console.log(newItem);
+		$('#skill-specialties').append(newItem);
+	});
+
+	$('#powers-add button').click(function(e) {
+		e.preventDefault();
+		var power = $(this).prevAll('select').val();
+		var powerName = $(this).prevAll('select').find('option:selected').text().replace(/[0-9\- ]+/, "");
+		var powerGroup = $(this).prevAll('select').find('option:selected').parent().attr("label");
+
+		var newItem = "<li>"+powerGroup+": "+powerName+" <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[character_has_powers][][power_id] /><input type='hidden' name='character[character_has_powers][][character_id]' value='#{@character.id}' /></li>";
+
+		$('#power-list').append(newItem);
+	});
+
+	$('#merits-add').on('click', function(e) {
+		e.preventDefault();
+		var meritId = $('#merits').val();
+		var $selected = $('#merits option:selected')
+		var meritName = $selected.text().replace(/[\[0-9\,\]]+/, " ");
+		var meritRatings = $.parseJSON($selected.attr('data-allowed-ratings'));
+		var meritSpec = $selected.attr('data-has-specification');
+		var meritDesc = $selected.attr('data-has-description');
+
+		var newItem = "<li>"+meritName+"</li>";
+
+		$('#merits-list').append(newItem);
+	});

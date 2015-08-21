@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820025454) do
+ActiveRecord::Schema.define(version: 20150820191032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20150820025454) do
     t.integer  "value",        default: 1
   end
 
-  create_table "character_has_merit", force: :cascade do |t|
+  create_table "character_has_merits", force: :cascade do |t|
     t.integer "character_id"
     t.integer "merit_id"
     t.string  "specification"
@@ -59,12 +59,11 @@ ActiveRecord::Schema.define(version: 20150820025454) do
     t.integer "rating"
   end
 
-  create_table "character_has_merits", force: :cascade do |t|
-    t.integer "character_id"
-    t.integer "merit_id"
-    t.string  "specification"
-    t.text    "description"
-    t.integer "rating"
+  create_table "character_has_powers", force: :cascade do |t|
+    t.integer  "character_id"
+    t.integer  "power_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "character_has_skills", force: :cascade do |t|
@@ -156,7 +155,6 @@ ActiveRecord::Schema.define(version: 20150820025454) do
     t.integer  "armor_general"
     t.text     "st_notes"
     t.text     "printed_notes"
-    t.integer  "status",             default: 0
     t.integer  "intelligence",       default: 1
     t.integer  "wits",               default: 1
     t.integer  "resolve",            default: 1
@@ -190,6 +188,7 @@ ActiveRecord::Schema.define(version: 20150820025454) do
     t.integer  "socialize",          default: 1
     t.integer  "streetwise",         default: 1
     t.integer  "subterfuge",         default: 1
+    t.integer  "status",             default: 0
   end
 
   create_table "chronicle_allows_character_types", force: :cascade do |t|

@@ -1,5 +1,10 @@
 class CharactersController < ApplicationController
 	CHARACTER_STATUS = ['In Progress', 'Submitted', 'Approved', 'Active', 'Deceased', 'Inactive']
+	def get_status(status)
+		return CHARACTER_STATUS[status]
+	end
+	helper_method :get_status
+
 
 	def index
 		if current_user
@@ -51,7 +56,7 @@ class CharactersController < ApplicationController
 		@chronicle = @character.chronicle
 		@user = User.find_by_id(session[:user_id])
 		@chronicles = Chronicle.all
-		@character_type = CharacterType.first
+		@character_type = @character.character_type
 		@character_types = CharacterType.all
 		@mental_skills = Skill.where({skill_category: 1})
 		@physical_skills = Skill.where({skill_category: 2})
@@ -65,9 +70,11 @@ class CharactersController < ApplicationController
 
 	def update
 		@character = Character.find_by_id(params[:character][:id])
-		specialties = []
-		params[:character][:skill_specialties].each do |specialty|
-			specialties << SkillSpecialty.new({skill_id: specialty[:skill_id], specialty: specialty[:specialty], character_id: @character.id})
+		if params[:character][:skill_specialties].present?
+			specialties = []
+			params[:character][:skill_specialties].each do |specialty|
+				specialties << SkillSpecialty.new({skill_id: specialty[:skill_id], specialty: specialty[:specialty], character_id: @character.id})
+			end
 		end
 		params[:character][:skill_specialties] = specialties
 		puts params[:character]
@@ -92,6 +99,6 @@ class CharactersController < ApplicationController
 	private
 
 	def characters_params
-		params.require(:character).permit(:name, :behavior_primary, :behavior_secondary, :lineage_id, :affiliation_id, :user_id, :chronicle_id, :character_type_id, :attribs, :skills, :merits, :health, :willpower, :powers, :power_stat, :morality, :size, :speed, :armor_ballistic, :armor_general, :defense, :answer1, :answer2, :answer3, :answer4, :answer5, :answer6, :answer7, :answer8, :printed_notes, :st_notes, :misc, skill_specialties: [:skill_id, :specialty, :character_id])
+		params.require(:character).permit(:name, :behavior_primary, :behavior_secondary, :lineage_id, :affiliation_id, :user_id, :chronicle_id, :character_type_id, :attribs, :skills, :merits, :health, :willpower, :power_stat, :morality, :size, :speed, :armor_ballistic, :armor_general, :defense, :answer1, :answer2, :answer3, :answer4, :answer5, :answer6, :answer7, :answer8, :printed_notes, :st_notes, :misc, skill_specialties: [:skill_id, :specialty, :character_id], character_has_powers: [:character_id, :power_id])
 	end
 end
