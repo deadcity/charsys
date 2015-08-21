@@ -216,16 +216,19 @@
 
 		ul#merits-list
 			- @character.character_has_merits.each do |merit|
-				li #{merit.merit.name} #{merit.rating}
-					- if merit.specification.present?
-						span.specification (#{merit.specification})
-						input type="text" value="#{merit.specification}" name="character[character_has_merits_attributes][power.id][specification]" class="hide"
-					- if merit.description.present?
-						span.description #{merit.description}
-						textarea value="#{merit.description}" name="character[character_has_merits_attributes][power.id][description]" class="hide"
+				li
+					= "#{merit.merit.name} #{merit.rating} "
+					- if merit.merit.has_specification
+						span.specification
+							= "(#{merit.specification}) "
+							input type="text" value="#{merit.specification}" name="character[|character_has_merits_attributes][power.id][specification]" class="hide"
+					- if merit.merit.has_description
+						span.description
+							= "#{merit.description}"
+							textarea value="#{merit.description}" name="character[character_has_merits_attributes][power.id][description]" class="hide"
 					<input type="hidden" value="#{merit.id}" name="character[character_has_merits_attributes][power.id][id]" />
 					<input type="hidden" value="#{@character.id}" name="character[character_has_merits_attributes][power.id][character_id]" />
-					<i class="fa fa-pencil live-edit"></i>
+					<i class="fa fa-pencil live-edit"></i> 
 					<i class="fa fa-trash-o live-delete"></i>
 					<input type="checkbox" class="hide" name="character[character_has_merits_attributes][power.id][_destroy]" />
 .row
