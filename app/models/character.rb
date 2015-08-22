@@ -14,6 +14,8 @@ class Character < ActiveRecord::Base
 	belongs_to :lineage
 	belongs_to :affiliation
 	belongs_to :character_type
+	belongs_to :behavior_primary
+	belongs_to :behavior_secondary
 	belongs_to :user
 	belongs_to :chronicle
 

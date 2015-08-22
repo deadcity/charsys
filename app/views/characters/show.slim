@@ -22,10 +22,10 @@
 .row
 	.small-4.columns
 		= label_tag @character.character_type.behavior_primary
-		= @character.behavior_primary
+		= @character.behavior_primary.name
 	.small-4.columns
 		= label_tag @character.character_type.behavior_secondary
-		= @character.behavior_secondary
+		= @character.behavior_secondary.name
 	.small-4.columns
 		= label_tag :chronicle
 		= @character.chronicle.title
