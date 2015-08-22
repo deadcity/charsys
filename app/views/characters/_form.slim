@@ -435,26 +435,40 @@ javascript:
 
 		var newItem = "<li>"+meritName;
 
+		if (meritSpec == "true") {
+			newItem += " <span class='specification'></span>";
+		}
+		if (meritSpec == "true" || meritDesc == "true" || meritRatings.length > 1) {
+			newItem += "<i class='fa fa-pencil edit'></i>";
+		}
+		newItem += "<i class='fa fa-trash-o temp-delete'></i>";
+		if (meritDesc == "true") {
+			newItem += "<div class='description'></div>";
+		}
+
+		newItem += "<div class='edit-form'>";
 		if (meritRatings.length > 1) {
 			var step = meritRatings[1] - meritRatings[0];
 			newItem += "<input type='number' min='"+meritRatings[0]+"' max='"+meritRatings[meritRatings.length-1]+"' value='"+meritRatings[0]+"' step='"+step+"' name='character[character_has_merits_attributes][][rating]' />";
 		} else {
-			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][rating]' value='"+meritRatings[0]+"' />";
+			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][rating]' value='"+meritRatings[0]+"' class='rating-field' />";
 		}
 
 		if (meritSpec == "true") {
-			newItem += "<input type='text' name='character[character_has_merits_attributes][][specification]' placeholder='Specification' />";
+			newItem += "<input type='text' name='character[character_has_merits_attributes][][specification]' placeholder='Specification' class='spec-field' />";
 		} else {
 			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][specification]' value='' />";
 		}
 
 		if (meritDesc == "true") {
-			newItem += "<textarea name='character[character_has_merits_attributes][][description]'></textarea>";
+			newItem += "<textarea name='character[character_has_merits_attributes][][description]' class='desc-field'>Description</textarea>";
 		} else {
 			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][description]' value='' />";
 		}
 
-		newItem += "<input type='hidden' name='character[character_has_merits_attributes][][merit_id]' value='"+meritId+"'</li>"
+		newItem += "<input type='hidden' name='character[character_has_merits_attributes][][merit_id]' value='"+meritId+"' /><button class='save-edits mini-button'>Save</button></div>";
+
+		newItem += "</li>"
 
 		$('#merits-list').append(newItem);
 	});
