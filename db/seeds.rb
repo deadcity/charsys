@@ -20,7 +20,8 @@ power_types = PowerType.create([
 	{name: 'Theban Sorcery Rituals'},
 	{name: 'Manifestations'},
 	{name: 'Keys'},
-	{name: 'Devotions'}
+	{name: 'Devotions'},
+	{name: 'Thanatology'}
 	])
 
 power_groups = PowerGroup.create([
@@ -61,7 +62,9 @@ power_groups = PowerGroup.create([
 	{name: 'General', power_type_id: 7},
 	{name: 'Sangmelier', power_type_id: 7},
 	{name: 'Showmen', power_type_id: 7},
-	{name: 'Psu\'ho-wurv', power_type_id: 7}
+	{name: 'Psu\'ho-wurv', power_type_id: 7},
+	{name: 'Shrouding', power_type_id: 8},
+	{name: 'Entropics', power_type_id: 8}
 	])
 
 powers = Power.create([
@@ -216,7 +219,27 @@ powers = Power.create([
 	{name: 'Grasp of Decay', rating: 2, power_group_id: 34},
 	{name: 'Disrupt the Flow', rating: 3, power_group_id: 34},
 	{name: 'Thermal Bath', rating: 4, power_group_id: 34},
-	{name: 'I Am Become Death...', rating: 5, power_group_id: 34}
+	{name: 'I Am Become Death...', rating: 5, power_group_id: 34},
+	{name: 'Disbelief', rating: 1, power_group_id: 35},
+	{name: 'Chill Cloak', rating: 1, power_group_id: 35},
+	{name: 'Playing Possum', rating: 1, power_group_id: 35},
+	{name: 'Mirror Sight', rating: 2, power_group_id: 35},
+	{name: 'Shield of Death', rating: 2, power_group_id: 35},
+	{name: 'Shed the Mortal Coil', rating: 3, power_group_id: 35},
+	{name: 'Pass Object', rating: 3, power_group_id: 35},
+	{name: 'Create Haunt', rating: 4, power_group_id: 35},
+	{name: 'Forget the Pain', rating: 4, power_group_id: 35},
+	{name: 'Cthonic Journey', rating: 5, power_group_id: 35},
+	{name: 'Locate Anchor', rating: 1, power_group_id: 36},
+	{name: 'Ghost Knife', rating: 1, power_group_id: 36},
+	{name: 'Ghost Trap', rating: 1, power_group_id: 36},
+	{name: 'Call Entity', rating: 2, power_group_id: 36},
+	{name: 'Channel', rating: 2, power_group_id: 36},
+	{name: 'Command Shade', rating: 3, power_group_id: 36},
+	{name: 'Plasmic Manifestation', rating: 3, power_group_id: 36},
+	{name: 'Malefic Animation', rating: 4, power_group_id: 36},
+	{name: 'Specter Chains', rating: 4, power_group_id: 36},
+	{name: 'Resurrection', rating: 5, power_group_id: 36}
 	])
 
 character_type_has_power_type = CharacterTypeHasPowerType.create([
