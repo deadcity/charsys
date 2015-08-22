@@ -1,3 +1,5 @@
+require 'json'
+
 class CharactersController < ApplicationController
 	CHARACTER_STATUS = ['In Progress', 'Submitted', 'Approved', 'Active', 'Deceased', 'Inactive']
 	def get_status(status)

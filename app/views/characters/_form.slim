@@ -228,20 +228,33 @@
 		ul#merits-list
 			- @character.character_has_merits.each do |merit|
 				li
-					= "#{merit.merit.name} #{merit.rating} "
+					= "#{merit.merit.name} "
+					- if JSON.parse(merit.merit.allowed_ratings).length > 1
+						span.rating
+							= " #{merit.rating} "
 					- if merit.merit.has_specification
 						span.specification
-							= "(#{merit.specification}) "
-							input type="text" value="#{merit.specification}" name="character[|character_has_merits_attributes][power.id][specification]" class="hide"
-					- if merit.merit.has_description
-						span.description
-							= "#{merit.description}"
-							textarea value="#{merit.description}" name="character[character_has_merits_attributes][power.id][description]" class="hide"
-					<input type="hidden" value="#{merit.id}" name="character[character_has_merits_attributes][power.id][id]" />
-					<input type="hidden" value="#{@character.id}" name="character[character_has_merits_attributes][power.id][character_id]" />
-					<i class="fa fa-pencil live-edit"></i> 
+							= " (#{merit.specification}) "
+					- if JSON.parse(merit.merit.allowed_ratings).length > 1 or merit.merit.has_description or merit.merit.has_specification
+						<i class="fa fa-pencil edit"></i> 
 					<i class="fa fa-trash-o live-delete"></i>
+					- if merit.merit.has_description
+						div.description
+							= "#{merit.description}"
 					<input type="checkbox" class="hide" name="character[character_has_merits_attributes][power.id][_destroy]" />
+					.edit-form.hide
+						- if JSON.parse(merit.merit.allowed_ratings).length > 1
+							input type="number" value="#{merit.rating}" name="character[character_has_merits_attributes][power.id][rating]" class="rating-field"
+						- else
+							input type="hidden" value="#{merit.rating}" name="character[character_has_merits_attributes][power.id][rating]"
+						- if merit.merit.has_specification
+							input type="text" value="#{merit.specification}" name="character[character_has_merits_attributes][power.id][specification]" class="spec-field"
+						- if merit.merit.has_description
+							textarea name="character[character_has_merits_attributes][power.id][description]" class="desc-field" #{merit.description}
+						<input type="hidden" value="#{merit.id}" name="character[character_has_merits_attributes][power.id][id]" />
+						<input type="hidden" value="#{@character.id}" name="character[character_has_merits_attributes][power.id][character_id]" />
+						= button_tag 'Save', type: '', class: 'mini-button save-edits'
+					
 .row
 	.small-6.large-4.large-offset-2.columns
 		h3 Health
@@ -371,6 +384,22 @@ javascript:
 	$('body').on('click', '.live-delete', function() {
 		$(this).nextAll('input[type="checkbox"]').attr("checked", "checked");
 		$(this).parent().hide();
+	});
+
+	$('body').on('click', '.edit', function() {
+		$(this).nextAll('.edit-form').show();
+	});
+
+	$('body').on('click', '.save-edits', function(e) {
+		e.preventDefault();
+		var $parentNode = $(this).parents('li');
+		var newRating = $(this).prevAll('.rating-field').val();
+		var newSpec = $(this).prevAll('.spec-field').val();
+		var newDesc = $(this).prevAll('.desc-field').val();
+		$parentNode.find('.rating').text(newRating);
+		$parentNode.find('.specification').text("("+newSpec+")");
+		$parentNode.find('.description').text(newDesc);
+		$(this).parent('.edit-form').hide();
 	});
 
 	$('#add-specialty').on('click', function (e) {
