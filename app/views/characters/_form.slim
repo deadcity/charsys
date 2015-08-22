@@ -398,7 +398,7 @@ javascript:
 		var newSpec = $(this).prevAll('.spec-field').val();
 		var newDesc = $(this).prevAll('.desc-field').val();
 		$parentNode.find('.rating').text(newRating);
-		$parentNode.find('.specification').text("("+newSpec+")");
+		$parentNode.find('.specification').text(" ("+newSpec+") ");
 		$parentNode.find('.description').text(newDesc);
 		$(this).parent('.edit-form').hide();
 	});
