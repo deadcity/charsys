@@ -185,12 +185,14 @@
 		ul#merits-list
 			- @character.character_has_merits.each do |merit|
 				li
-					= "#{merit.merit.name} #{merit.rating} "
+					= "#{merit.merit.name} "
+					- if JSON.parse(merit.merit.allowed_ratings).length > 1
+						= " #{merit.rating} "
 					- if merit.merit.has_specification
 						span.specification
 							= "(#{merit.specification}) "
 					- if merit.merit.has_description
-						span.description
+						div.description
 							= "#{merit.description}"
 .row
 	.small-6.large-4.large-offset-2.columns
