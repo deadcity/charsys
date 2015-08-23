@@ -23,7 +23,7 @@ class ChroniclesController < ApplicationController
 
 	def create
 		@chronicle = current_user.chronicles.create(title: params[:chronicle][:title])
-		if @chronicle.save!
+		if @chronicle.save
 			flash[:success] = "New chronicle #{@chronicle.title} successfully created."
 			session[:current_chronicle] = @chronicle.id
 			redirect_to chronicles_path
@@ -40,7 +40,10 @@ class ChroniclesController < ApplicationController
 
 	def edit
 		@chronicle = Chronicle.find_by_id(params[:id])
-		redirect_to index_path if @chronicle.user != current_user
+		if !(@chronicle.users.include? current_user)
+			redirect_to chronicles_path
+			flash[:error] = "You do not have permission to edit this chronicle."
+		end
 	end
 
 	def update
