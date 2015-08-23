@@ -54,14 +54,13 @@ class CharactersController < ApplicationController
 		@mental_skills = Skill.where({skill_category: 1})
 		@physical_skills = Skill.where({skill_category: 2})
 		@social_skills = Skill.where({skill_category: 3})
-		redirect_to index_path if @character.user != current_user
+		redirect_to index_path if @character.user != current_user && @chronicle.sts.exclude?(current_user)
 	end
 
 	def edit
 		@character = Character.find_by_id(params[:id])
 		@user = User.find_by_id(session[:user_id])
 		@chronicle = @character.chronicle
-		@user = User.find_by_id(session[:user_id])
 		@chronicles = Chronicle.all
 		@character_type = @character.character_type
 		@character_types = CharacterType.all
@@ -72,12 +71,12 @@ class CharactersController < ApplicationController
 		@mental_attributes = Attrib.where({attribute_category: 1})
 		@merit_categories = MeritCategory.all
 		@merits = Merit.all
-		redirect_to index_path if @character.user != current_user
+		redirect_to index_path if @character.user != current_user && @chronicle.sts.exclude?(current_user)
+		redirect_to character_path(@character) if @character.status != 0 && current_user == @user
 	end
 
 	def update
 		@character = Character.find_by_id(params[:character][:id])
-		puts params[:character][:character_has_merits_attributes]
 		if @character.update_attributes!(characters_params)
 			flash[:success] = "Your changes to your character were saved."
 			redirect_to character_path(@character)
