@@ -1,5 +1,14 @@
 # charsys
-character system for dead city productions, new and improved
+character system for [dead city productions](http://deadcityproductions.com/), new and improved
+
+# bugs? comments? concerns?
+
+Contact any member of the dev team:
+  - [Carly Ho](https://github.com/cmho) - yaysunshine@gmail.com
+  - [Stephanie Marx](https://github.com/stephmarx) - stephanie.n.marx@gmail.com
+  - [Korey Enright](https://github.com/korey-enright) - kenright19@gmail.com
+
+Additionally, this project is open source. We welcome contributions and enhancement suggestions.
 
 # setup
 
