@@ -22,10 +22,10 @@
 .row
 	.small-4.columns
 		= f.label :behavior_primary, @character_type.behavior_primary
-		= collection_select(:character, :behavior_primary_id, BehaviorPrimary.all, :id, :name)
+		= collection_select(:character, :behavior_primary_id, @character_type.behavior_primaries, :id, :name)
 	.small-4.columns
 		= f.label :behavior_secondary, @character_type.behavior_secondary
-		= collection_select(:character, :behavior_secondary_id, BehaviorSecondary.all, :id, :name)
+		= collection_select(:character, :behavior_secondary_id, @character_type.behavior_secondaries, :id, :name)
 	.small-4.columns
 		= f.label :chronicle_id, "Chronicle"
 		= collection_select(:character, :chronicle_id, Chronicle.all, :id, :title, {})
