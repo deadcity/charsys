@@ -12,13 +12,13 @@
 .row
 	.small-4.columns
 		= f.label :lineage, @character_type.lineage
-		= collection_select(:character, :lineage_id, Lineage.all, :id, :name, {})
+		= collection_select(:character, :lineage_id, @character_type.lineages, :id, :name, {})
 	.small-4.columns
 		= f.label :sublineage, @character_type.sublineage
 		= f.text_field :sublineage, label: false
 	.small-4.columns
 		= f.label :affiliation, @character_type.affiliation
-		= collection_select(:character, :affiliation_id, Affiliation.all, :id, :name, {})
+		= collection_select(:character, :affiliation_id, @character_type.affiliations, :id, :name, {})
 .row
 	.small-4.columns
 		= f.label :behavior_primary, @character_type.behavior_primary
