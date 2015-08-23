@@ -16,8 +16,6 @@
 //= require dataTables/jquery.dataTables.foundation
 //= require foundation
 //= require foundation/foundation.topbar.js
-//= require jquery.turbolinks
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
-//= require turbolinks
