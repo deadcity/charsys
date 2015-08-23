@@ -51,28 +51,36 @@ class CharactersController < ApplicationController
 
 	def show
 		@character = Character.find_by_id(params[:id])
-		@mental_skills = Skill.where({skill_category: 1})
-		@physical_skills = Skill.where({skill_category: 2})
-		@social_skills = Skill.where({skill_category: 3})
-		redirect_to index_path if @character.user != current_user && @chronicle.sts.exclude?(current_user)
+		if @character.nil?
+			raise ActionController::RoutingError.new('Not Found')
+		else
+			@mental_skills = Skill.where({skill_category: 1})
+			@physical_skills = Skill.where({skill_category: 2})
+			@social_skills = Skill.where({skill_category: 3})
+			redirect_to index_path if @character.user != current_user && @chronicle.sts.exclude?(current_user)
+		end
 	end
 
 	def edit
 		@character = Character.find_by_id(params[:id])
-		@user = User.find_by_id(session[:user_id])
-		@chronicle = @character.chronicle
-		@chronicles = Chronicle.all
-		@character_type = @character.character_type
-		@character_types = CharacterType.all
-		@mental_skills = Skill.where({skill_category: 1})
-		@physical_skills = Skill.where({skill_category: 2})
-		@social_skills = Skill.where({skill_category: 3})
-		@skill_categories = SkillCategory.all
-		@mental_attributes = Attrib.where({attribute_category: 1})
-		@merit_categories = MeritCategory.all
-		@merits = Merit.all
-		redirect_to index_path if @character.user != current_user && @chronicle.sts.exclude?(current_user)
-		redirect_to character_path(@character) if @character.status != 0 && current_user == @user
+		if @character.nil?
+			raise ActionController::RoutingError.new('Not Found')
+		else
+			@user = User.find_by_id(session[:user_id])
+			@chronicle = @character.chronicle
+			@chronicles = Chronicle.all
+			@character_type = @character.character_type
+			@character_types = CharacterType.all
+			@mental_skills = Skill.where({skill_category: 1})
+			@physical_skills = Skill.where({skill_category: 2})
+			@social_skills = Skill.where({skill_category: 3})
+			@skill_categories = SkillCategory.all
+			@mental_attributes = Attrib.where({attribute_category: 1})
+			@merit_categories = MeritCategory.all
+			@merits = Merit.all
+			redirect_to index_path if @character.user != current_user && @chronicle.sts.exclude?(current_user)
+			redirect_to character_path(@character) if @character.status != 0 && current_user == @user
+		end
 	end
 
 	def update
