@@ -72,7 +72,7 @@ class CharactersController < ApplicationController
 		@merit_categories = MeritCategory.all
 		@merits = Merit.all
 		redirect_to index_path if @character.user != current_user && @chronicle.sts.exclude?(current_user)
-		redirect_to character_path(@character) if @character.status != 0 && current_user == @user
+		redirect_to character_path(@character) if @character.status != 0 && current_user == @user && @chronicle.sts.exclude?(current_user)
 	end
 
 	def update
