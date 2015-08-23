@@ -6,3 +6,11 @@
 		= form_for @character, url: {action: 'update'} do |f|
 			= f.hidden_field :id
 			= render partial: 'form', locals: {f: f}
+- if @chronicle.sts.include? current_user
+	.row
+		.small-12.columns
+			h2 Character Status
+			select name="character[status]" id="character_status"
+				- for i in 0..5
+						option value = "#{i}"
+							= get_status(i)
