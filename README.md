@@ -1,6 +1,8 @@
 # charsys
 character system for [dead city productions](http://deadcityproductions.com/), new and improved
 
+currently deployed: [version 1.0](http://characters.deadcityproductions.com/)
+
 # bugs? comments? concerns?
 
 Contact any member of the dev team:
