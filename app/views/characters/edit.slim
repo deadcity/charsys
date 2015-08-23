@@ -1,0 +1,8 @@
+.row.character_form_page
+	.small-12.columns
+		h1
+			| Edit Character
+
+		= form_for @character, url: {action: 'update'} do |f|
+			= f.hidden_field :id
+			= render partial: 'form', locals: {f: f}

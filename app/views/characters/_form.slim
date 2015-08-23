@@ -29,6 +29,7 @@
 	.small-4.columns
 		= f.label :chronicle_id, "Chronicle"
 		= collection_select(:character, :chronicle_id, Chronicle.all, :id, :title, {})
+		= f.hidden_field :status
 		
 / ATTRIBUTES
 .row
@@ -379,11 +380,19 @@
 					option value = "#{i}"
 						= get_status(i)
 					
-
 = f.button 'Save', type: 'submit', class: 'button'
+- if @character.status == 0
+	= f.button 'Save and Submit for Approval', type: 'submit', class: 'button', id: 'submit-button'
 
 javascript:
 	// WELCOME TO HELL
+
+	$('#submit-button').click(function (e) {
+		e.preventDefault();
+		$('#character_status').val('1');
+		console.log($('#character_status').val());
+		$(this).parents('form').submit();
+	});
 
 	$('body').on('click', '.temp-delete', function() {
 		$(this).parent().remove();

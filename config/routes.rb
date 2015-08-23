@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'logout', to: 'session#destroy', as: :logout
   get 'settings', to: 'users#edit', as: :edit_user
   post 'settings', to: 'users#update'
+  get 'forgot_password', to: 'session#forgot_password', as: :forgot_password
+  post 'reset_password', to: 'session#reset_password', as: :reset_password
 
   get 'admin', to: 'admin#index'
 
