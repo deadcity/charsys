@@ -35,11 +35,20 @@ class ChroniclesController < ApplicationController
 
 	def show
 		@chronicle = Chronicle.find_by_id(params[:id])
-		@characters = @chronicle.characters.all
+		if @chronicle.nil?
+			raise ActionController::RoutingError.new('Not Found')
+		else
+			@characters = @chronicle.characters.all
+		end
 	end
 
 	def edit
 		@chronicle = Chronicle.find_by_id(params[:id])
+		if @chronicle.nil?
+			raise ActionController::RoutingError.new('Not Found')
+		else
+			@characters = @chronicle.characters.all
+		end
 		if !(@chronicle.users.include? current_user)
 			redirect_to chronicles_path
 			flash[:error] = "You do not have permission to edit this chronicle."
