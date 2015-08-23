@@ -40,11 +40,12 @@ class CharactersController < ApplicationController
 	def create
 		@character = Character.new(characters_params)
 		puts @character.inspect
-		if @character.save!
+		if @character.save
 			flash[:success] = "Your character was saved."
 			redirect_to character_path(@character)
 		else
-			flash[:error] = "There was an error saving your character"
+			@error = @character.errors.messages
+			flash[:error] = @error
 			redirect_to new_character_path
 		end
 	end
