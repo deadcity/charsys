@@ -20,4 +20,7 @@
 //= require turbolinks
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function(){ $(document).foundation();
+  $('.toggle-topbar').on('click',function(){
+  });
+ });
