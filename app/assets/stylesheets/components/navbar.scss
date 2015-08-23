@@ -1,6 +1,10 @@
 .top-bar {
   background-color: $dark-purple;
 
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+   -moz-box-shadow: 0 8px 6px -6px #999;
+        box-shadow: 0 8px 6px -6px #999;
+
   .name h1 a {
     font-size: 1.3em;
   }
