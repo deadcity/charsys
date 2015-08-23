@@ -12,13 +12,13 @@
 .row
 	.small-4.columns
 		= f.label :lineage, @character_type.lineage
-		= collection_select(:character, :lineage_id, Lineage.all, :id, :name, {})
+		= collection_select(:character, :lineage_id, @character_type.lineages, :id, :name, {})
 	.small-4.columns
 		= f.label :sublineage, @character_type.sublineage
 		= f.text_field :sublineage, label: false
 	.small-4.columns
 		= f.label :affiliation, @character_type.affiliation
-		= collection_select(:character, :affiliation_id, Affiliation.all, :id, :name, {})
+		= collection_select(:character, :affiliation_id, @character_type.affiliations, :id, :name, {})
 .row
 	.small-4.columns
 		= f.label :behavior_primary, @character_type.behavior_primary
@@ -134,12 +134,12 @@
 						= skill.name
 					td
 						<i class="fa fa-dot-circle-o skill-reset"></i>
+						= f.hidden_field skill.name.downcase.gsub(' ', '_').to_sym
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "1", label: false 
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "2", label: false 
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "3", label: false 
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "4", label: false 
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "5", label: false 
-						= f.hidden_field skill.name.downcase.gsub(' ', '_').to_sym
 	.small-4.columns
 		h3 Physical
 		table.skill_tables width="100%"
@@ -149,12 +149,12 @@
 						= skill.name
 					td
 						<i class="fa fa-dot-circle-o skill-reset"></i>
+						= f.hidden_field skill.name.downcase.gsub(' ', '_').to_sym
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "1", label: false 
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "2", label: false 
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "3", label: false 
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "4", label: false 
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "5", label: false 
-						= f.hidden_field skill.name.downcase.gsub(' ', '_').to_sym
 	.small-4.columns
 		h3 Social
 		table.skill_tables width="100%"
@@ -164,12 +164,12 @@
 						= skill.name
 					td
 						<i class="fa fa-dot-circle-o skill-reset"></i>
+						= f.hidden_field skill.name.downcase.gsub(' ', '_').to_sym
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "1", label: false 
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "2", label: false 
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "3", label: false 
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "4", label: false 
 						= f.radio_button skill.name.downcase.gsub(' ', '_').to_sym, "5", label: false 
-						= f.hidden_field skill.name.downcase.gsub(' ', '_').to_sym
 .row
 	h2 Skill Specialties
 	.small-4.columns
