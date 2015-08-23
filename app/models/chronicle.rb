@@ -7,6 +7,8 @@ class Chronicle < ActiveRecord::Base
 	has_many :chronicle_allows_character_types
 	has_many :character_types, :through => :chronicle_allows_character_types
 
+	accepts_nested_attributes_for :user_administers_chronicles
+
 	def sts
 		self.users
 	end
