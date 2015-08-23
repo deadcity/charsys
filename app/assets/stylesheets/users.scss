@@ -10,3 +10,19 @@
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   }
 }
+
+.login_page {
+  h3, p {
+    text-align: center;
+  }
+
+  h3 {
+    color: $magenta;
+    text-shadow: 1px 2px lighten($magenta, 30%);
+  }
+
+  p {
+    color: lighten($purple, 10%);
+  }
+
+}
