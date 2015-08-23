@@ -1,0 +1,12 @@
+#footer {
+  a {
+    margin-left: .3em;
+    color: $purple;
+    opacity: 0.3;
+
+    &:hover {
+      color: $purple;
+      opacity: 1;
+    }
+  }
+}
