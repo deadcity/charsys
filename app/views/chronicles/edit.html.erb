@@ -2,3 +2,7 @@
 <%= form_for @chronicle, url: {action: "update"} do |f| %>
 	<%= render partial: 'form', locals: {f: f} %>
 <% end %>
+
+<script type="text/javascript">
+	$('input[type="checkbox"][value="'+<%= @chronicle.sts.first.id %>+'"]').attr("disabled", "true");
+</script>
