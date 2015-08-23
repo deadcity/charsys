@@ -17,9 +17,7 @@
 //= require foundation
 //= require foundation/foundation.topbar.js
 //= require jquery.turbolinks
-//= require turbolinks
 //= require_tree .
 
-window.onload = function() {
-  $(document).foundation();
-};
+$(function(){ $(document).foundation(); });
+//= require turbolinks
