@@ -2,6 +2,7 @@ class CharacterType < ActiveRecord::Base
 	validates :name, presence: true
 
 	has_many :chronicles
+	has_many :characters
 	has_many :chronicle_allows_character_types
 	has_many :chronicles, :through => :chronicle_allows_character_types
 	has_many :character_type_has_power_types
