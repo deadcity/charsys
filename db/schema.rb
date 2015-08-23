@@ -51,14 +51,6 @@ ActiveRecord::Schema.define(version: 20150822064337) do
     t.integer  "value",        default: 1
   end
 
-  create_table "character_has_merit", force: :cascade do |t|
-    t.integer "character_id"
-    t.integer "merit_id"
-    t.string  "specification"
-    t.text    "description"
-    t.integer "rating"
-  end
-
   create_table "character_has_merits", force: :cascade do |t|
     t.integer "character_id"
     t.integer "merit_id"
@@ -163,6 +155,7 @@ ActiveRecord::Schema.define(version: 20150822064337) do
     t.integer  "armor_general"
     t.text     "st_notes"
     t.text     "printed_notes"
+    t.integer  "status",                default: 0
     t.integer  "intelligence",          default: 1
     t.integer  "wits",                  default: 1
     t.integer  "resolve",               default: 1
@@ -196,7 +189,6 @@ ActiveRecord::Schema.define(version: 20150822064337) do
     t.integer  "socialize",             default: 0
     t.integer  "streetwise",            default: 0
     t.integer  "subterfuge",            default: 0
-    t.integer  "status",                default: 0
   end
 
   create_table "chronicle_allows_character_types", force: :cascade do |t|
