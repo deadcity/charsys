@@ -1,2 +1,10 @@
 <%= f.text_field :title, class: 'form-control' %>
+
+<%= label_tag "Storytellers" %>
+<%= collection_check_boxes :chronicle, :user_ids, User.all, :id, :name, {}, {multiple: 'multiple', name: 'chronicle[user_administers_chronicles_attributes][][user_id]', id: 'chronicle_user_administers_chronicles_attributes'} %>
+
 <%= f.submit "Submit", class: "button" %>
+
+<script type="text/javascript">
+	$('input[type="checkbox"][value="'+<%= @chronicle.sts.first.id %>+'"]').attr("disabled", "true");
+</script>

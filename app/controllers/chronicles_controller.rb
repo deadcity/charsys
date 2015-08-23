@@ -57,8 +57,8 @@ class ChroniclesController < ApplicationController
 
 	def update
 		@chronicle = Chronicle.find_by_id(params[:id])
-		params[:chronicle][:character_types].delete("")
-		if @chronicle.update!(params[:chronicle])
+		puts params[:chronicle]
+		if @chronicle.update!(chronicles_params)
 			flash[:success] = "The chronicle has been updated."
 			redirect_to edit_chronicle_path
 		else
@@ -70,6 +70,6 @@ class ChroniclesController < ApplicationController
 	private
 
 	def chronicles_params
-		params.require(:chronicle).permit(:title, :character_types)
+		params.require(:chronicle).permit(:title, chronicle_has_character_types_attributes: [:character_type_id, :chronicle_id, :id], user_administers_chronicles_attributes: [:user_id, :chronicle_id, :id])
 	end
 end
