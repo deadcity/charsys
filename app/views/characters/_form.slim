@@ -372,10 +372,13 @@
 	.small-12.columns
 		h2 Storyteller Notes
 		= f.text_area :st_notes, label: false
-					
-= f.button 'Save', type: 'submit', class: 'button'
-- if @character.status == 0
-	= f.button 'Save and Submit for Approval', type: 'submit', class: 'button', id: 'submit-button'
+
+ul.button-group.radius
+	li
+		= f.button 'Save', type: 'submit', class: 'button'
+	li
+		- if @character.status == 0
+			= f.button 'Save and Submit for Approval', type: 'submit', class: 'button', id: 'submit-button'
 
 javascript:
 	// WELCOME TO HELL

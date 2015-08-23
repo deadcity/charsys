@@ -1,3 +1,28 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.settings_page {
+  img {
+    border: 6px solid $purple;
+    border-radius: 3px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  }
+}
+
+.login_page {
+  h3, p {
+    text-align: center;
+  }
+
+  h3 {
+    color: $magenta;
+    text-shadow: 1px 2px lighten($magenta, 30%);
+  }
+
+  p {
+    color: lighten($purple, 10%);
+  }
+
+}
