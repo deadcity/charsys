@@ -27,7 +27,8 @@
 							td
 							  = get_status(character.status)
 							td
-								= link_to "Edit", edit_character_path(character)
+								- if character.status == 0 || character.chronicle.sts.include?(current_user)
+									= link_to "Edit", edit_character_path(character)
 
 		- else
 			| You don't have any characters yet! Try <a href="#{new_character_path}">making one now</a>!
