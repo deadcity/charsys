@@ -54,6 +54,7 @@ class CharactersController < ApplicationController
 		if @character.nil?
 			raise ActionController::RoutingError.new('Not Found')
 		else
+			@chronicle = @character.chronicle
 			@mental_skills = Skill.where({skill_category: 1})
 			@physical_skills = Skill.where({skill_category: 2})
 			@social_skills = Skill.where({skill_category: 3})
