@@ -40,7 +40,7 @@ class CharactersController < ApplicationController
 	def create
 		@character = Character.new(characters_params)
 		puts @character.inspect
-		if @character.save!
+		if @character.save
 			flash[:success] = "Your character was saved."
 			redirect_to character_path(@character)
 		else
