@@ -371,7 +371,14 @@
 	.small-12.columns
 		h2 Storyteller Notes
 		= f.text_area :st_notes, label: false
-
+.row
+	.small-12.columns
+		h2 Character Status
+		select name="character[status]" id="character_status"
+			- for i in 0..5
+					option value = "#{i}"
+						= get_status(i)
+					
 
 = f.button 'Save', type: 'submit', class: 'button'
 
