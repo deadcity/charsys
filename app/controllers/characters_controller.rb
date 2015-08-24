@@ -95,8 +95,10 @@ class CharactersController < ApplicationController
 		end
 	end
 
-	def delete
+	def destroy
 		@character = Character.find_by_id(params[:id])
+		@character.delete
+		redirect_to characters_path
 	end
 
 	private

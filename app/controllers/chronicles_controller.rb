@@ -58,7 +58,6 @@ class ChroniclesController < ApplicationController
 
 	def update
 		@chronicle = Chronicle.find_by_id(params[:id])
-		puts params[:chronicle]
 		if @chronicle.update!(chronicles_params)
 			flash[:success] = "The chronicle has been updated."
 			redirect_to edit_chronicle_path
@@ -66,6 +65,12 @@ class ChroniclesController < ApplicationController
 			flash[:error] = "There was an error saving your chronicle."
 			redirect_to edit_chronicle_path
 		end
+	end
+
+	def destroy
+		@chronicle = Chronicle.find_by_id(params[:id])
+		@chronicle.delete
+		redirect_to chronicles_path
 	end
 
 	private
