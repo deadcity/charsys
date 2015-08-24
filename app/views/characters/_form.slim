@@ -427,6 +427,8 @@ javascript:
 
 		var newItem = "<li>"+skill+" ("+specialty+") <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[skill_specialties_attributes][][id]' /><input type='hidden' name='character[skill_specialties_attributes][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties_attributes][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties_attributes][][character_id]' value='#{@character.id}'</li>";
 		$('#skill-specialties').append(newItem);
+
+		$('#skill_specialty').val("");
 	});
 
 	$('#powers-add button').click(function(e) {
