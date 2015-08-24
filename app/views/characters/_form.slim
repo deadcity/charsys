@@ -4,7 +4,8 @@
 		= f.text_field :name
 	.small-4.columns
 		= f.label :character_type
-		= collection_select(:character, :character_type_id, CharacterType.all, :id, :name, {})
+		= collection_select(:character, :character_type_id, CharacterType.all, :id, :name, {}, {:"aria-describedby" => 'characterTypeHelp'})
+		p#characterTypeHelp.help-text.hide It's recommended that you save your character and reload this form after changing character type.
 	.small-4.columns
 		= f.label :user_id, "Player"
 		= f.hidden_field :user_id, value: current_user.id
@@ -14,6 +15,7 @@
 		- if @character_type.lineage.present?
 			= f.label :lineage, @character_type.lineage
 			= collection_select(:character, :lineage_id, @character_type.lineages, :id, :name, {})
+			
 	.small-4.columns
 		- if @character_type.sublineage.present?
 			= f.label :sublineage, @character_type.sublineage
@@ -492,4 +494,8 @@ javascript:
 	$('.skill-reset').click(function() {
 		$(this).parent().find('input').removeAttr("checked");
 		$(this).parent().find('input[type="hidden"]').val("0");
+	});
+
+	$('#character_character_type_id').change(function () {
+		$('#characterTypeHelp').slideDown('slow');
 	});
