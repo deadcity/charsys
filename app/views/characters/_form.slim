@@ -11,14 +11,17 @@
 		= @user.name
 .row
 	.small-4.columns
-		= f.label :lineage, @character_type.lineage
-		= collection_select(:character, :lineage_id, @character_type.lineages, :id, :name, {})
+		- if @character_type.lineage.present?
+			= f.label :lineage, @character_type.lineage
+			= collection_select(:character, :lineage_id, @character_type.lineages, :id, :name, {})
 	.small-4.columns
-		= f.label :sublineage, @character_type.sublineage
-		= f.text_field :sublineage, label: false
+		- if @character_type.sublineage.present?
+			= f.label :sublineage, @character_type.sublineage
+			= f.text_field :sublineage, label: false
 	.small-4.columns
-		= f.label :affiliation, @character_type.affiliation
-		= collection_select(:character, :affiliation_id, @character_type.affiliations, :id, :name, {})
+		- if @character_type.affiliation.present?
+			= f.label :affiliation, @character_type.affiliation
+			= collection_select(:character, :affiliation_id, @character_type.affiliations, :id, :name, {})
 .row
 	.small-4.columns
 		= f.label :behavior_primary, @character_type.behavior_primary
@@ -316,9 +319,10 @@
 		= f.radio_button :morality, "9", label: false
 		= f.radio_button :morality, "10", label: false
 	.small-4.large-3.columns
-		h3
-			= @character_type.resource
-		= f.text_field :max_resource, label: false
+		- if @character_type.resource.present?
+			h3
+				= @character_type.resource
+			= f.text_field :max_resource, label: false
 				
 .row
 	.small-2.small-offset-1.columns
