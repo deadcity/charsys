@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823025145) do
+ActiveRecord::Schema.define(version: 20150824184240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,7 +153,6 @@ ActiveRecord::Schema.define(version: 20150823025145) do
     t.integer  "armor_general"
     t.text     "st_notes"
     t.text     "printed_notes"
-    t.integer  "status",                default: 0
     t.integer  "intelligence",          default: 1
     t.integer  "wits",                  default: 1
     t.integer  "resolve",               default: 1
@@ -187,6 +186,7 @@ ActiveRecord::Schema.define(version: 20150823025145) do
     t.integer  "socialize",             default: 0
     t.integer  "streetwise",            default: 0
     t.integer  "subterfuge",            default: 0
+    t.integer  "status",                default: 0
     t.integer  "behavior_primary_id"
     t.integer  "behavior_secondary_id"
   end
@@ -282,6 +282,14 @@ ActiveRecord::Schema.define(version: 20150823025145) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "xp_records", force: :cascade do |t|
+    t.integer  "character_id"
+    t.integer  "amount"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

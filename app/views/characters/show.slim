@@ -304,3 +304,24 @@
 			.small-12.columns
 				h2 Storyteller Notes
 				= @character.st_notes
+
+	.row
+		.small-12.columns
+			h2 Experience
+			table
+				tr
+					th
+					th Amount
+					th Notes
+					th Date Added
+				- @character.xp_records.each do |xp|
+					tr
+						td
+						td #{xp.amount}
+						td #{xp.note}
+						td #{xp.created_at}
+				tr
+					th Total
+					td #{@xp_total.to_i}
+					td
+					td

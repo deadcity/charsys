@@ -22,6 +22,13 @@ Rails.application.routes.draw do
 
   get 'admin', to: 'admin#index'
 
+  get 'chronicles/:id/xp_records', to: 'chronicles#xp_records', as: :xp_records
+  get 'chronicles/:id/xp_records/new', to: 'chronicles#new_xp_record', as: :new_xp_record
+  get 'chronicles/:id/xp_records/new_multiple', to: 'chronicles#new_xp_records', as: :new_xp_records
+  post 'chronicles/:id/xp_records/new', to: 'chronicles#create_xp_record', as: :create_xp_record
+  post 'chronicles/:id/xp_records/new_multiple', to: 'chronicles#create_xp_records', as: :create_xp_records
+  delete 'chronicles/:id/xp_records/:xp_record_id', to: 'chronicles#destroy_xp_record', as: :destroy_xp_record
+
   namespace :admin do
     resources :character_types
     resources :attributes
