@@ -47,6 +47,9 @@ gem "foreman"
 
 gem 'rails_12factor', group: :production
 
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

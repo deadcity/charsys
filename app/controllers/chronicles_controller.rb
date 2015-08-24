@@ -73,6 +73,23 @@ class ChroniclesController < ApplicationController
 		redirect_to chronicles_path
 	end
 
+	def print_all
+		@chronicle = Chronicle.find_by_id(params[:id])
+		@characters = @chronicle.characters
+		puts @characters.inspect
+		@mental_skills = Skill.where(skill_category: 1)
+		@physical_skills = Skill.where(skill_category: 2)
+		@social_skills = Skill.where(skill_category: 3)
+		respond_to do |format|
+			format.html do
+				render layout: 'print'
+			end
+			format.pdf do
+				render pdf: "#{@chronicle.title.parameterize}"
+			end
+		end
+	end
+
 	private
 
 	def chronicles_params

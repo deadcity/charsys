@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get 'admin', to: 'admin#index'
 
+  get 'chronicles/:id/print_all', to: 'chronicles#print_all', as: :print_all
+
   namespace :admin do
     resources :character_types
     resources :attributes
