@@ -35,6 +35,7 @@ class ChroniclesController < ApplicationController
 
 	def show
 		@chronicle = Chronicle.find_by_id(params[:id])
+		redirect_to chronicles_path if @chronicle.sts.exclude?(current_user)
 		if @chronicle.nil?
 			raise ActionController::RoutingError.new('Not Found')
 		else
