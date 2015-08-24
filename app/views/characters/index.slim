@@ -13,6 +13,7 @@
 						th Lineage
 						th Status
 						th
+						th
 				tbody
 					- @characters.each do |character|
 						tr
@@ -29,6 +30,9 @@
 							td
 								- if character.status == 0 || character.chronicle.sts.include?(current_user)
 									= link_to "Edit", edit_character_path(character)
+							td
+								= form_tag(character_path(character), method: 'DELETE') do
+									= button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to delete this character?");', class: 'button tiny alert'
 
 		- else
 			| You don't have any characters yet! Try <a href="#{new_character_path}">making one now</a>!

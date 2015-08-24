@@ -16,11 +16,13 @@
       table#character_index_table
         thead
           tr
-        	  th Name
-        	  th Player
-        	  th Affiliation
-        	  th Lineage
-        	  th Status
+            th Name
+            th Player
+            th Affiliation
+            th Lineage
+            th Status
+            th 
+            th 
         tbody
           - @characters.each do |character|
             tr
@@ -34,5 +36,11 @@
                 = Lineage.find_by(id: character.lineage_id).name
               td
                 = get_status(character.status)
+              td
+                = link_to "Edit", edit_character_path(character)
+              td
+                - if character.user(current_user)
+                  = form_tag(character_path(character), method: 'DELETE') do
+                    = button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to delete this character?");', class: 'button tiny alert'
     - else
      | There are no characters in this chronicle yet!
