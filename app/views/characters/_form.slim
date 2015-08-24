@@ -215,10 +215,10 @@
 			- @character.character_has_powers.each do |power|
 				li #{power.power.power_group.name}: #{power.power.name}
 					<i class="fa fa-trash-o live-delete"></i>
-					input type="hidden" name="character[character_has_powers_attributes][][power_id]" value="#{power.power.id}"
-					input type="hidden" name="character[character_has_powers_attributes][][character_id]" value="#{@character.id}"
-					input type="hidden" name="character[character_has_powers_attributes][][id]" value="#{power.id}"
-					input type="checkbox" class="hide" name="character[character_has_powers_attributes][][_destroy]"
+					<input type="hidden" name="character[character_has_powers_attributes][][power_id]" value="#{power.power.id}" />
+					<input type="hidden" name="character[character_has_powers_attributes][][character_id]" value="#{@character.id}" />
+					<input type="hidden" name="character[character_has_powers_attributes][][id]" value="#{power.id}" />
+					<input type="checkbox" class="hide" name="character[character_has_powers_attributes][][_destroy]" />
 .row
 	.small-8.small-centered.columns
 		h3 Merits
