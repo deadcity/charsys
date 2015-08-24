@@ -4,7 +4,8 @@
 		= f.text_field :name
 	.small-4.columns
 		= f.label :character_type
-		= collection_select(:character, :character_type_id, CharacterType.all, :id, :name, {})
+		= collection_select(:character, :character_type_id, CharacterType.all, :id, :name, {}, {:"aria-describedby" => 'characterTypeHelp'})
+		p#characterTypeHelp.help-text.hide It's recommended that you save your character and reload this form after changing character type.
 	.small-4.columns
 		= f.label :user_id, "Player"
 		= f.hidden_field :user_id, value: current_user.id
@@ -14,6 +15,7 @@
 		- if @character_type.lineage.present?
 			= f.label :lineage, @character_type.lineage
 			= collection_select(:character, :lineage_id, @character_type.lineages, :id, :name, {})
+			
 	.small-4.columns
 		- if @character_type.sublineage.present?
 			= f.label :sublineage, @character_type.sublineage
@@ -215,10 +217,10 @@
 			- @character.character_has_powers.each do |power|
 				li #{power.power.power_group.name}: #{power.power.name}
 					<i class="fa fa-trash-o live-delete"></i>
-					input type="hidden" name="character[character_has_powers_attributes][][power_id]" value="#{power.power.id}"
-					input type="hidden" name="character[character_has_powers_attributes][][character_id]" value="#{@character.id}"
-					input type="hidden" name="character[character_has_powers_attributes][][id]" value="#{power.id}"
-					input type="checkbox" class="hide" name="character[character_has_powers_attributes][][_destroy]"
+					<input type="hidden" name="character[character_has_powers_attributes][][power_id]" value="#{power.power.id}" />
+					<input type="hidden" name="character[character_has_powers_attributes][][character_id]" value="#{@character.id}" />
+					<input type="hidden" name="character[character_has_powers_attributes][][id]" value="#{power.id}" />
+					<input type="checkbox" class="hide" name="character[character_has_powers_attributes][][_destroy]" />
 .row
 	.small-8.small-centered.columns
 		h3 Merits
@@ -427,6 +429,8 @@ javascript:
 
 		var newItem = "<li>"+skill+" ("+specialty+") <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[skill_specialties_attributes][][id]' /><input type='hidden' name='character[skill_specialties_attributes][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties_attributes][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties_attributes][][character_id]' value='#{@character.id}'</li>";
 		$('#skill-specialties').append(newItem);
+
+		$('#skill_specialty').val("");
 	});
 
 	$('#powers-add button').click(function(e) {
@@ -492,4 +496,8 @@ javascript:
 	$('.skill-reset').click(function() {
 		$(this).parent().find('input').removeAttr("checked");
 		$(this).parent().find('input[type="hidden"]').val("0");
+	});
+
+	$('#character_character_type_id').change(function () {
+		$('#characterTypeHelp').slideDown('slow');
 	});
