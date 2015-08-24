@@ -233,13 +233,14 @@
 			h3 Health
 			- @character.health.times do |i|
 				<i class="fa fa-square-o"></i> 
-			h3
-				= @character.character_type.power_stat
-			- (1..10).each do |i|
-				- if i <= @character.power_stat
-					<i class="fa fa-circle"></i> 
-				- else
-					<i class="fa fa-circle-o"></i> 
+			- if @character.character_type.power_stat.present?
+				h3
+					= @character.character_type.power_stat
+				- (1..10).each do |i|
+					- if i <= @character.power_stat
+						<i class="fa fa-circle"></i> 
+					- else
+						<i class="fa fa-circle-o"></i> 
 
 		.small-4.columns
 			h3 Willpower
