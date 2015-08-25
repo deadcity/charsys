@@ -327,7 +327,7 @@
 			= f.text_field :max_resource, label: false
 				
 .row
-	.small-2.small-offset-1.columns
+	.small-2.columns
 		= f.text_field :size
 	.small-2.columns
 		= f.text_field :speed
@@ -337,7 +337,8 @@
 		= f.text_field :armor_ballistic
 	.small-2.columns
 		= f.text_field :armor_general
-	.small-1.columns
+	.small-2.columns
+		= f.text_field :initiative_mod
 
 
 / QUESTIONNAIRE
@@ -517,5 +518,15 @@ javascript:
 		$('[name="character[resolve]"], [name="character[composure]"]').change(function () {
 			var willpower = parseInt($('[name="character[resolve]"]:checked').val()) + parseInt($('[name="character[composure]"]:checked').val());
 			$('[name="character[willpower]"][value="'+willpower+'"]').attr("checked", "checked");
+		});
+
+		$('[name="character[strength]"], [name="character[dexterity]"]').change(function () {
+			var speed = parseInt($('[name="character[strength]"]:checked').val()) + parseInt($('[name="character[dexterity]"]:checked').val()) + 5;
+			$('[name="character[speed]"]').val(speed);
+		});
+
+		$('[name="character[strength]"], [name="character[dexterity]"]').change(function () {
+			var initiative = parseInt($('[name="character[strength]"]:checked').val()) + parseInt($('[name="character[dexterity]"]:checked').val());
+			$('[name="character[initiative_mod]"]').val(initiative);
 		});
 	});
