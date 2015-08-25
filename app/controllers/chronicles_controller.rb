@@ -73,6 +73,72 @@ class ChroniclesController < ApplicationController
 		redirect_to chronicles_path
 	end
 
+	def xp_records
+		@chronicle = Chronicle.find_by_id(params[:id])
+		if @chronicle.sts.include?(current_user)
+			@characters = @chronicle.characters.collect {|c| c.id }
+			if @characters.present?
+				@xp_records = XpRecord.where(character_id: @characters)
+			else
+				@xp_records = []
+			end
+		else
+			redirect_to index_path
+	end
+
+	def new_xp_record
+		@chronicle = Chronicle.find_by_id(params[:id])
+		if @chronicle.sts.include?(current_user)
+			@characters = Character.find_by_chronicle_id(params[:id])
+			@xp_record = XpRecord.new
+		else
+			redirect_to index_path
+		end
+	end
+
+	def new_xp_records
+		@chronicle = Chronicle.find_by_id(params[:id])
+		if @chronicle.sts.include?(current_user)
+			@characters = Character.where(chronicle_id: params[:id], status: 3)
+		else
+			redirect_to index_path
+		end
+	end
+
+	def create_xp_record
+		@xp_record = XpRecord.new(amount: params[:amount], character_id: params[:character_id], note: params[:note])
+		if @xp_record.save
+			redirect_to xp_records_path(params[:id])
+		else
+			redirect_to new_xp_record_path(params[:id])
+		end
+	end
+
+	def create_xp_records
+		@error = []
+		params[:character_id].each do |character|
+			@xp_record = XpRecord.new(amount: params[:amount], character_id: character, note: params[:note])
+			if @xp_record.save
+			else
+				@error << @character.errors.messages
+			end
+		end
+
+		unless @error.nil?
+			flash[:success] = "Experience was successfully added to all records."
+			redirect_to xp_records_path(params[:id])
+		else
+			flash[:error] = @error
+			redirect_to new_xp_records_path(params[:id])
+		end
+	end
+
+	def destroy_xp_record
+		@xp_record = XpRecord.find_by_id(params[:xp_record_id])
+		@xp_record.delete
+		redirect_to xp_records_path(params[:id])
+	end
+
 	private
 
 	def chronicles_params

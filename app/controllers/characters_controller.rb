@@ -58,6 +58,7 @@ class CharactersController < ApplicationController
 			@mental_skills = Skill.where({skill_category: 1})
 			@physical_skills = Skill.where({skill_category: 2})
 			@social_skills = Skill.where({skill_category: 3})
+			@xp_total = @character.xp_records.sum(:amount)
 			redirect_to index_path if @character.user != current_user && @chronicle.sts.exclude?(current_user)
 		end
 	end

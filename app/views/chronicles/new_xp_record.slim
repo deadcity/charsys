@@ -1,0 +1,16 @@
+.row.chronicle_show_page
+  .small-12.small-centered.columns
+  	h2 Grant Experience
+
+  	= form_tag("/chronicles/#{params[:id]}/xp_records/new", method: 'POST') do |f|
+  		.row
+  			= label_tag :amount
+  			= text_field_tag :amount
+  		.row
+  			= label_tag :character
+  			= collection_select(:xp_record, :character_id, Character.where(chronicle: @chronicle.id), :id, :name, {}, {name: 'character_id', id: 'character_id'})
+  		.row
+  			= label_tag :note
+  			= text_field_tag :note
+
+  		= button_tag "Add", type: 'submit', class: 'button'
