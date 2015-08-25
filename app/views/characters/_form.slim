@@ -394,115 +394,128 @@ ul.button-group.radius
 javascript:
 	// WELCOME TO HELL
 
-	$('#submit-button').click(function (e) {
-		e.preventDefault();
-		$('#character_status').val('1');
-		console.log($('#character_status').val());
-		$(this).parents('form').submit();
-	});
+	$(document).ready(function () {
 
-	$('body').on('click', '.temp-delete', function() {
-		$(this).parent().remove();
-	});
+		$('#submit-button').click(function (e) {
+			e.preventDefault();
+			$('#character_status').val('1');
+			console.log($('#character_status').val());
+			$(this).parents('form').submit();
+		});
 
-	$('body').on('click', '.live-delete', function() {
-		$(this).nextAll('input[type="checkbox"]').attr("checked", "checked");
-		$(this).parent().hide();
-	});
+		$('body').on('click', '.temp-delete', function() {
+			$(this).parent().remove();
+		});
 
-	$('body').on('click', '.edit', function() {
-		$(this).nextAll('.edit-form').show();
-	});
+		$('body').on('click', '.live-delete', function() {
+			$(this).nextAll('input[type="checkbox"]').attr("checked", "checked");
+			$(this).parent().hide();
+		});
 
-	$('body').on('click', '.save-edits', function(e) {
-		e.preventDefault();
-		var $parentNode = $(this).parents('li');
-		var newRating = $(this).prevAll('.rating-field').val();
-		var newSpec = $(this).prevAll('.spec-field').val();
-		var newDesc = $(this).prevAll('.desc-field').val();
-		$parentNode.find('.rating').text(newRating);
-		$parentNode.find('.specification').text(" ("+newSpec+") ");
-		$parentNode.find('.description').text(newDesc);
-		$(this).parent('.edit-form').hide();
-	});
+		$('body').on('click', '.edit', function() {
+			$(this).nextAll('.edit-form').show();
+		});
 
-	$('#add-specialty').on('click', function (e) {
-		e.preventDefault();
-		var specialty = $('#skill_specialty').val();
-		var skill = $('#skills option:selected').text();
-		var skillId = $('#skills').val();
+		$('body').on('click', '.save-edits', function(e) {
+			e.preventDefault();
+			var $parentNode = $(this).parents('li');
+			var newRating = $(this).prevAll('.rating-field').val();
+			var newSpec = $(this).prevAll('.spec-field').val();
+			var newDesc = $(this).prevAll('.desc-field').val();
+			$parentNode.find('.rating').text(newRating);
+			$parentNode.find('.specification').text(" ("+newSpec+") ");
+			$parentNode.find('.description').text(newDesc);
+			$(this).parent('.edit-form').hide();
+		});
 
-		var newItem = "<li>"+skill+" ("+specialty+") <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[skill_specialties_attributes][][id]' /><input type='hidden' name='character[skill_specialties_attributes][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties_attributes][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties_attributes][][character_id]' value='#{@character.id}'</li>";
-		$('#skill-specialties').append(newItem);
+		$('#add-specialty').on('click', function (e) {
+			e.preventDefault();
+			var specialty = $('#skill_specialty').val();
+			var skill = $('#skills option:selected').text();
+			var skillId = $('#skills').val();
 
-		$('#skill_specialty').val("");
-	});
+			var newItem = "<li>"+skill+" ("+specialty+") <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[skill_specialties_attributes][][id]' /><input type='hidden' name='character[skill_specialties_attributes][][skill_id]' value='"+skillId+"' /><input type='hidden' name='character[skill_specialties_attributes][][specialty]' value='"+specialty+"'/><input type='hidden' name='character[skill_specialties_attributes][][character_id]' value='#{@character.id}'</li>";
+			$('#skill-specialties').append(newItem);
 
-	$('#powers-add button').click(function(e) {
-		e.preventDefault();
-		var power = $(this).prevAll('select').val();
-		var powerName = $(this).prevAll('select').find('option:selected').text().replace(/[0-9\- ]+/, "");
-		var powerGroup = $(this).prevAll('select').find('option:selected').parent().attr("label");
+			$('#skill_specialty').val("");
+		});
 
-		var newItem = "<li>"+powerGroup+": "+powerName+" <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[character_has_powers_attributes][][power_id]' value='"+power+"' /><input type='hidden' name='character[character_has_powers_attributes][][character_id]' value='#{@character.id}' /></li>";
+		$('#powers-add button').click(function(e) {
+			e.preventDefault();
+			var power = $(this).prevAll('select').val();
+			var powerName = $(this).prevAll('select').find('option:selected').text().replace(/[0-9\- ]+/, "");
+			var powerGroup = $(this).prevAll('select').find('option:selected').parent().attr("label");
 
-		$('#power-list').append(newItem);
-	});
+			var newItem = "<li>"+powerGroup+": "+powerName+" <i class='fa fa-trash-o temp-delete'></i><input type='hidden' name='character[character_has_powers_attributes][][power_id]' value='"+power+"' /><input type='hidden' name='character[character_has_powers_attributes][][character_id]' value='#{@character.id}' /></li>";
 
-	$('#merits-add').on('click', function(e) {
-		e.preventDefault();
-		var meritId = $('#merits').val();
-		var $selected = $('#merits option:selected')
-		var meritName = $selected.text().replace(/[\[0-9\,\]]+/, " ");
-		var meritRatings = $.parseJSON($selected.attr('data-allowed-ratings'));
-		var meritSpec = $selected.attr('data-has-specification');
-		var meritDesc = $selected.attr('data-has-description');
+			$('#power-list').append(newItem);
+		});
 
-		var newItem = "<li>"+meritName;
+		$('#merits-add').on('click', function(e) {
+			e.preventDefault();
+			var meritId = $('#merits').val();
+			var $selected = $('#merits option:selected')
+			var meritName = $selected.text().replace(/[\[0-9\,\]]+/, " ");
+			var meritRatings = $.parseJSON($selected.attr('data-allowed-ratings'));
+			var meritSpec = $selected.attr('data-has-specification');
+			var meritDesc = $selected.attr('data-has-description');
 
-		if (meritSpec == "true") {
-			newItem += " <span class='specification'></span>";
-		}
-		if (meritSpec == "true" || meritDesc == "true" || meritRatings.length > 1) {
-			newItem += " <i class='fa fa-pencil edit'></i> ";
-		}
-		newItem += "<i class='fa fa-trash-o temp-delete'></i>";
-		if (meritDesc == "true") {
-			newItem += "<div class='description'></div>";
-		}
+			var newItem = "<li>"+meritName;
 
-		newItem += "<div class='edit-form'>";
-		if (meritRatings.length > 1) {
-			var step = meritRatings[1] - meritRatings[0];
-			newItem += "<input type='number' min='"+meritRatings[0]+"' max='"+meritRatings[meritRatings.length-1]+"' value='"+meritRatings[0]+"' step='"+step+"' name='character[character_has_merits_attributes][][rating]' />";
-		} else {
-			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][rating]' value='"+meritRatings[0]+"' class='rating-field' />";
-		}
+			if (meritSpec == "true") {
+				newItem += " <span class='specification'></span>";
+			}
+			if (meritSpec == "true" || meritDesc == "true" || meritRatings.length > 1) {
+				newItem += " <i class='fa fa-pencil edit'></i> ";
+			}
+			newItem += "<i class='fa fa-trash-o temp-delete'></i>";
+			if (meritDesc == "true") {
+				newItem += "<div class='description'></div>";
+			}
 
-		if (meritSpec == "true") {
-			newItem += "<input type='text' name='character[character_has_merits_attributes][][specification]' placeholder='Specification' class='spec-field' />";
-		} else {
-			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][specification]' value='' />";
-		}
+			newItem += "<div class='edit-form'>";
+			if (meritRatings.length > 1) {
+				var step = meritRatings[1] - meritRatings[0];
+				newItem += "<input type='number' min='"+meritRatings[0]+"' max='"+meritRatings[meritRatings.length-1]+"' value='"+meritRatings[0]+"' step='"+step+"' name='character[character_has_merits_attributes][][rating]' />";
+			} else {
+				newItem += "<input type='hidden' name='character[character_has_merits_attributes][][rating]' value='"+meritRatings[0]+"' class='rating-field' />";
+			}
 
-		if (meritDesc == "true") {
-			newItem += "<textarea name='character[character_has_merits_attributes][][description]' class='desc-field'>Description</textarea>";
-		} else {
-			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][description]' value='' />";
-		}
+			if (meritSpec == "true") {
+				newItem += "<input type='text' name='character[character_has_merits_attributes][][specification]' placeholder='Specification' class='spec-field' />";
+			} else {
+				newItem += "<input type='hidden' name='character[character_has_merits_attributes][][specification]' value='' />";
+			}
 
-		newItem += "<input type='hidden' name='character[character_has_merits_attributes][][merit_id]' value='"+meritId+"' /><button class='save-edits mini-button'>Save</button></div>";
+			if (meritDesc == "true") {
+				newItem += "<textarea name='character[character_has_merits_attributes][][description]' class='desc-field'>Description</textarea>";
+			} else {
+				newItem += "<input type='hidden' name='character[character_has_merits_attributes][][description]' value='' />";
+			}
 
-		newItem += "</li>"
+			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][merit_id]' value='"+meritId+"' /><button class='save-edits mini-button'>Save</button></div>";
 
-		$('#merits-list').append(newItem);
-	});
+			newItem += "</li>"
 
-	$('.skill-reset').click(function() {
-		$(this).parent().find('input').removeAttr("checked");
-		$(this).parent().find('input[type="hidden"]').val("0");
-	});
+			$('#merits-list').append(newItem);
+		});
 
-	$('#character_character_type_id').change(function () {
-		$('#characterTypeHelp').slideDown('slow');
+		$('.skill-reset').click(function() {
+			$(this).parent().find('input').removeAttr("checked");
+			$(this).parent().find('input[type="hidden"]').val("0");
+		});
+
+		$('#character_character_type_id').change(function () {
+			$('#characterTypeHelp').slideDown('slow');
+		});
+
+		$('[name="character[stamina]"], #character_size').change(function() {
+			var health = parseInt($('#character_size').val()) + parseInt($('[name="character[stamina]"]:checked').val());
+			$('[name="character[health]"][value="'+health+'"]').attr("checked", "checked");
+		});
+
+		$('[name="character[resolve]"], [name="character[composure]"]').change(function () {
+			var willpower = parseInt($('[name="character[resolve]"]:checked').val()) + parseInt($('[name="character[composure]"]:checked').val());
+			$('[name="character[willpower]"][value="'+willpower+'"]').attr("checked", "checked");
+		});
 	});
