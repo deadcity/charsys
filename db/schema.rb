@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824184240) do
+ActiveRecord::Schema.define(version: 20150824211433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(version: 20150824184240) do
     t.integer  "status",                default: 0
     t.integer  "behavior_primary_id"
     t.integer  "behavior_secondary_id"
+    t.text     "wishlist"
   end
 
   create_table "chronicle_allows_character_types", force: :cascade do |t|
