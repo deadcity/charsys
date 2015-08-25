@@ -51,8 +51,8 @@ class ChroniclesController < ApplicationController
 			@characters = @chronicle.characters.all
 		end
 		if !(@chronicle.users.include? current_user)
-			redirect_to chronicles_path
 			flash[:error] = "You do not have permission to edit this chronicle."
+			redirect_to chronicles_path
 		end
 	end
 
@@ -84,6 +84,7 @@ class ChroniclesController < ApplicationController
 			end
 		else
 			redirect_to index_path
+		end
 	end
 
 	def new_xp_record
