@@ -22,9 +22,11 @@
 							td
 								= character.chronicle.title
 							td
-								= Affiliation.find_by(id: character.affiliation_id).name
+								- if character.character_type.affiliation.present?
+									= Affiliation.find_by(id: character.affiliation_id).name
 							td
-								= Lineage.find_by(id: character.lineage_id).name
+								- if character.character_type.lineage.present?
+									= Lineage.find_by(id: character.lineage_id).name
 							td
 							  = get_status(character.status)
 							td
