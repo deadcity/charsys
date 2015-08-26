@@ -12,6 +12,7 @@ class Character < ActiveRecord::Base
 	has_many :merits, through: :character_has_merits
 	has_many :skill_specialties
 	has_many :xp_records
+	has_many :downtime_actions
 	belongs_to :lineage
 	belongs_to :affiliation
 	belongs_to :character_type
@@ -20,5 +21,5 @@ class Character < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :chronicle
 
-	accepts_nested_attributes_for :character_has_powers, :character_has_merits, :skill_specialties, allow_destroy: true
+	accepts_nested_attributes_for :character_has_powers, :character_has_merits, :skill_specialties, :downtime_actions, allow_destroy: true
 end

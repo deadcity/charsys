@@ -91,7 +91,8 @@ class CharactersController < ApplicationController
 			flash[:success] = "Your changes to your character were saved."
 			redirect_to character_path(@character)
 		else
-			flash[:alert] = "There was an error saving changes to your character."
+			@error = @character.errors.messages
+			flash[:error] = @error
 			redirect_to edit_character_path(@character)
 		end
 	end
@@ -102,9 +103,71 @@ class CharactersController < ApplicationController
 		redirect_to characters_path
 	end
 
+	def downtime_actions
+		@character = Character.find_by_id(params[:id])
+		@downtime_actions = @character.downtime_actions
+	end
+
+	def downtime_action
+		@character = Character.find_by_id(params[:id])
+		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
+	end
+
+	def new_downtime_action
+		@character = Character.find_by_id(params[:id])
+		@downtime_action = DowntimeAction.new
+	end
+
+	def create_downtime_action
+		@character = Character.find_by_id(params[:id])
+		@downtime_action = DowntimeAction.new(downtime_actions_params)
+		if @downtime_action.save
+			flash[:success] = "Your downtime action has been saved."
+			redirect_to character_downtime_actions_path(@character)
+		else
+			@error = @character.errors.messages
+			flash[:error] = @error
+			redirect_to character_new_downtime_action_path
+		end
+	end
+
+	def edit_downtime_action
+		@character = Character.find_by_id(params[:id])
+		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
+	end
+
+	def update_downtime_action
+		@character = Character.find_by_id(params[:id])
+		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
+		if @downtime_action.update_attributes(downtime_actions_params)
+			flash[:success] = "Your downtime action has been saved."
+			redirect_to character_downtime_actions_path(@character)
+		else
+			@error = @character.errors.messages
+			flash[:error] = @error
+			redirect_to character_edit_downtime_action_path(@character)
+		end
+	end
+
+	def destroy_downtime_action
+		@character = Character.find_by_id(params[:id])
+		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
+		if @downtime_action.delete
+			flash[:success] = "Your downtime action was deleted."
+		else
+			@error = @character.errors.messages
+			flash[:error] = @error
+		end
+		redirect_to character_downtime_actions_path(@character)
+	end
+
 	private
 
 	def characters_params
 		params.require(:character).permit(:name, :sublineage, :max_resource, :behavior_primary_id, :behavior_secondary_id, :lineage_id, :affiliation_id, :user_id, :chronicle_id, :character_type_id, :attribs, :skills, :merits, :health, :willpower, :power_stat, :morality, :size, :speed, :armor_ballistic, :armor_general, :defense, :answer1, :answer2, :answer3, :answer4, :answer5, :answer6, :answer7, :answer8, :printed_notes, :st_notes, :misc, :intelligence, :wits, :resolve, :strength, :dexterity, :stamina, :presence, :manipulation, :composure, :academics, :computer, :crafts, :computer, :investigation, :medicine, :occult, :politics, :science, :athletics, :brawl, :drive, :firearms, :larceny, :stealth, :survival, :weaponry, :animal_ken, :empathy, :expression, :intimidation, :persuasion, :streetwise, :subterfuge, :status, :wishlist, skill_specialties_attributes: [:skill_id, :specialty, :character_id, :id, :_destroy], character_has_powers_attributes: [:character_id, :power_id, :id, :_destroy], character_has_merits_attributes: [:character_id, :merit_id, :specification, :description, :rating, :id])
+	end
+
+	def downtime_actions_params
+		params.require(:downtime_action).permit(:character_id, :game_id, :title, :assets, :points_spent, :description)
 	end
 end

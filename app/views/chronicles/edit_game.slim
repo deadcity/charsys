@@ -1,0 +1,6 @@
+.row.character_index_page
+	.small-12.small-centered.columns
+		h2 Edit #{@chronicle.title}: #{@game.title}
+
+		= form_for @game, url: {action: 'update_game', method: 'post'} do |f|
+			= render partial: 'game_form', locals: {f: f}

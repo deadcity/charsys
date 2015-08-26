@@ -1,0 +1,21 @@
+.row.character_index_page
+	.small-12.small-centered.columns
+		h2
+			| Games for #{@chronicle.title}
+			= link_to "New Game", new_game_path(@chronicle), class: 'button mini-button'
+
+		- if @games[0]
+			table
+				tr
+					th Game Title
+					th Game Number
+					th
+					th
+				- @games.each do |game|
+					tr
+						td #{game.title}
+						td #{game.game_number}
+						td
+							= link_to "Edit", edit_game_path(@chronicle, game), class: 'button mini-button'
+						td
+							= link_to "Delete", destroy_game_path(@chronicle, game), class: 'button mini-button', onClick: 'confirm("Are you sure you want to delete this game?"'

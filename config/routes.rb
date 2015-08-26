@@ -29,6 +29,25 @@ Rails.application.routes.draw do
   post 'chronicles/:id/xp_records/new_multiple', to: 'chronicles#create_xp_records', as: :create_xp_records
   delete 'chronicles/:id/xp_records/:xp_record_id', to: 'chronicles#destroy_xp_record', as: :destroy_xp_record
 
+  get 'chronicles/:id/downtime_actions', to: 'chronicles#downtime_actions', as: :downtime_actions
+  get 'chronicles/:id/downtime_actions/:downtime_action_id', to: 'chronicles#show_downtime_action', as: :show_downtime_action
+  post 'chronicles/:id/downtime_actions/:downtime_action_id', to: 'chronicles#process_downtime_action', as: :process_downtime_action
+
+  get 'chronicles/:id/games', to: 'chronicles#games', as: :games
+  get 'chronicles/:id/games/new', to: 'chronicles#new_game', as: :new_game
+  post 'chronicles/:id/game/new', to: 'chronicles#create_game', as: :create_game
+  get 'chronicles/:id/game/:game_id/edit', to: 'chronicles#edit_game', as: :edit_game
+  post 'chronicles/:id/game/:game_id/edit', to: 'chronicles#update_game', as: :update_game
+  delete 'chronicles/:id/game/:game_id', to: 'chronicles#destroy_game', as: :destroy_game
+
+  get 'characters/:id/downtime_actions', to: 'characters#downtime_actions', as: :character_downtime_actions
+  get 'characters/:id/downtime_action/new', to: 'characters#new_downtime_action', as: :character_new_downtime_action
+  get 'characters/:id/downtime_action/:downtime_action_id', to: 'characters#downtime_action', as: :character_downtime_action
+  get 'characters/:id/edit_downtime_action', to: 'characters#edit_downtime_action', as: :character_edit_downtime_action
+  post 'characters/:id/downtime_action/new', to: 'characters#create_downtime_action', as: :character_create_downtime_action
+  post 'characters/:id/downtime_action/:downtime_action_id/edit', to: 'characters#update_downtime_action', as: :character_update_downtime_action
+  delete 'characters/:id/downtime_action/:downtime_action_id', to: 'characters#destroy_downtime_action', as: :character_destroy_downtime_action
+
   namespace :admin do
     resources :character_types
     resources :attributes
@@ -41,54 +60,4 @@ Rails.application.routes.draw do
     resources :affiliations
     resources :merits
   end
-
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end
