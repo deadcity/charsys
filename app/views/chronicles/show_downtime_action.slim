@@ -1,5 +1,6 @@
 .row.character_index_page
 	.small-12.small-centered.columns
+
 		h2
 			| #{@downtime_action.character.name}: #{@downtime_action.title}
 
@@ -19,4 +20,4 @@
 
 		= form_for @downtime_action, url: {action: 'process_downtime_action'}, method: 'post' do |f|
 			= f.text_field :response
-			= f.button "Submit", class: 'button, mini-button'
+			= f.button "Save", class: 'button mini-button'
