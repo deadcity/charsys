@@ -379,11 +379,12 @@
 	.small-12.columns
 		h2 Printed Notes
 		= f.text_area :printed_notes, label: false
-	
-.row
-	.small-12.columns
-		h2 Storyteller Notes
-		= f.text_area :st_notes, label: false
+
+- if @chronicle.sts.include?(current_user)
+	.row
+		.small-12.columns
+			h2 Storyteller Notes
+			= f.text_area :st_notes, label: false
 
 ul.button-group.radius
 	li
