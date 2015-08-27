@@ -80,6 +80,12 @@
       margin-left: 50px;
     }
   }
+
+  #health_track, #power_stat_track, #willpower_track, #morality_track {
+    .dot {
+      height: 20px;
+    }
+  }
 }
 
 .character_show_page {

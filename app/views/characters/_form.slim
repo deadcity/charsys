@@ -385,61 +385,156 @@
 .row
 	.small-6.large-4.large-offset-2.columns
 		h3 Health
-		= f.radio_button :health, "1", label: false
-		= f.radio_button :health, "2", label: false
-		= f.radio_button :health, "3", label: false
-		= f.radio_button :health, "4", label: false
-		= f.radio_button :health, "5", label: false
-		= f.radio_button :health, "6", label: false
-		= f.radio_button :health, "7", label: false
-		= f.radio_button :health, "8", label: false
-		= f.radio_button :health, "9", label: false
-		= f.radio_button :health, "10", label: false
-		= f.radio_button :health, "11", label: false
-		= f.radio_button :health, "12", label: false
-		= f.radio_button :health, "13", label: false
-		= f.radio_button :health, "14", label: false
-		= f.radio_button :health, "15", label: false
+		#health_track
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "1", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "2", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "3", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "4", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "5", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "6", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "7", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "8", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "9", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "10", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "11", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "12", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "13", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "14", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :health, "15", label: false
 	.small-6.columns
 		h3 Willpower
-		= f.radio_button :willpower, "1", label: false
-		= f.radio_button :willpower, "2", label: false
-		= f.radio_button :willpower, "3", label: false
-		= f.radio_button :willpower, "4", label: false
-		= f.radio_button :willpower, "5", label: false
-		= f.radio_button :willpower, "6", label: false
-		= f.radio_button :willpower, "7", label: false
-		= f.radio_button :willpower, "8", label: false
-		= f.radio_button :willpower, "9", label: false
-		= f.radio_button :willpower, "10", label: false
+		#willpower_track
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :willpower, "1", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :willpower, "2", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :willpower, "3", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :willpower, "4", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :willpower, "5", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :willpower, "6", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :willpower, "7", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :willpower, "8", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :willpower, "9", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :willpower, "10", label: false
 				
 .row
 	.small-4.large-3.large-offset-2.columns
-		h3
-			= @character_type.power_stat
-		= f.radio_button :power_stat, "1", label: false
-		= f.radio_button :power_stat, "2", label: false
-		= f.radio_button :power_stat, "3", label: false
-		= f.radio_button :power_stat, "4", label: false
-		= f.radio_button :power_stat, "5", label: false
-		= f.radio_button :power_stat, "6", label: false
-		= f.radio_button :power_stat, "7", label: false
-		= f.radio_button :power_stat, "8", label: false
-		= f.radio_button :power_stat, "9", label: false
-		= f.radio_button :power_stat, "10", label: false
+		- if @character_type.power_stat.present?
+			h3
+				= @character_type.power_stat
+			#power_stat_track
+				span.dot
+					<i class="fa fa-circle-o"></i>
+					= f.radio_button :power_stat, "1", label: false
+				span.dot
+					<i class="fa fa-circle-o"></i>
+					= f.radio_button :power_stat, "2", label: false
+				span.dot
+					<i class="fa fa-circle-o"></i>
+					= f.radio_button :power_stat, "3", label: false
+				span.dot
+					<i class="fa fa-circle-o"></i>
+					= f.radio_button :power_stat, "4", label: false
+				span.dot
+					<i class="fa fa-circle-o"></i>
+					= f.radio_button :power_stat, "5", label: false
+				span.dot
+					<i class="fa fa-circle-o"></i>
+					= f.radio_button :power_stat, "6", label: false
+				span.dot
+					<i class="fa fa-circle-o"></i>
+					= f.radio_button :power_stat, "7", label: false
+				span.dot
+					<i class="fa fa-circle-o"></i>
+					= f.radio_button :power_stat, "8", label: false
+				span.dot
+					<i class="fa fa-circle-o"></i>
+					= f.radio_button :power_stat, "9", label: false
+				span.dot
+					<i class="fa fa-circle-o"></i>
+					= f.radio_button :power_stat, "10", label: false
 	.small-4.large-3.large-offset-1.columns
 		h3
 			= @character_type.morality
-		= f.radio_button :morality, "1", label: false
-		= f.radio_button :morality, "2", label: false
-		= f.radio_button :morality, "3", label: false
-		= f.radio_button :morality, "4", label: false
-		= f.radio_button :morality, "5", label: false
-		= f.radio_button :morality, "6", label: false
-		= f.radio_button :morality, "7", label: false
-		= f.radio_button :morality, "8", label: false
-		= f.radio_button :morality, "9", label: false
-		= f.radio_button :morality, "10", label: false
+		#morality_track
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :morality, "1", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :morality, "2", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :morality, "3", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :morality, "4", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :morality, "5", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :morality, "6", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :morality, "7", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :morality, "8", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :morality, "9", label: false
+			span.dot
+				<i class="fa fa-circle-o"></i>
+				= f.radio_button :morality, "10", label: false
 	.small-4.large-3.columns
 		- if @character_type.resource.present?
 			h3
