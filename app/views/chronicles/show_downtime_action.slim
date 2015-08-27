@@ -17,7 +17,6 @@
 
 		h3 Storyteller Response
 
-		= form_tag(process_downtime_action_path(@chronicle, @downtime_action)) do
-			= label_tag :response
-			= text_field_tag :response, @downtime_action.response
-			= button_tag "Submit", class: 'button, mini-button'
+		= form_for @downtime_action, url: {action: 'process_downtime_action'}, method: 'post' do |f|
+			= f.text_field :response
+			= f.button "Submit", class: 'button, mini-button'

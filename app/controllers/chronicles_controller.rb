@@ -142,12 +142,8 @@ class ChroniclesController < ApplicationController
 
 	def downtime_actions
 		@chronicle = Chronicle.find_by_id(params[:id])
-		@characters = @chronicle.characters.collect {|c| c.id }
-		if @characters.present?
-			@downtime_actions = DowntimeAction.where(character_id: @characters)
-		else
-			@downtime_actions = []
-		end
+		@game = Game.find_by_id(params[:game_id])
+		@downtime_actions = @game.downtime_actions
 	end
 
 	def show_downtime_action
@@ -157,20 +153,21 @@ class ChroniclesController < ApplicationController
 
 	def process_downtime_action
 		@chronicle = Chronicle.find_by_id(params[:id])
+		@game = Game.find_by_id(params[:game_id])
 		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
-		if @downtime_action.update_attributes(response: params[:response])
+		if @downtime_action.update_attributes(response: params[:downtime_action][:response])
 			flash[:success] = "Downtime response saved."
 		else
 			@error = @character.errors.messages
 			flash[:error] = @error
 		end
-		redirect_to show_downtime_action_path(@chronicle, @downtime_action)
+		redirect_to show_downtime_action_path(@chronicle, @game, @downtime_action)
 	end
 
 	def print_downtime_actions
 		@chronicle = Chronicle.find_by_id(params[:id])
 		@game = Game.find_by_id(params[:game_id])
-		@downtime_actions = @game.downtime_actions
+		@characters = @chronicle.characters
 	end
 
 	def games
