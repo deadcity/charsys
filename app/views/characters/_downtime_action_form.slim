@@ -5,4 +5,16 @@
 = f.text_field :assets
 = f.text_area :description
 = f.hidden_field :character_id, value: @character.id
-= f.button "Save", class: 'button'
+= f.hidden_field :submitted, value: 'false'
+ul.button-group
+	li
+		= f.button "Save", class: 'button'
+	li
+		= f.button "Save and Submit", class: 'button', id: 'submit-button'
+
+javascript:
+	$('#submit-button').click(function(e) {
+		e.preventDefault();
+		$('#downtime_action_submitted').val('true');
+		$(this).parents('form').submit();
+	});

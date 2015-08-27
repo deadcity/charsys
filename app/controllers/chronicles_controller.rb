@@ -167,6 +167,12 @@ class ChroniclesController < ApplicationController
 		redirect_to show_downtime_action_path(@chronicle, @downtime_action)
 	end
 
+	def print_downtime_actions
+		@chronicle = Chronicle.find_by_id(params[:id])
+		@game = Game.find_by_id(params[:game_id])
+		@downtime_actions = @game.downtime_actions
+	end
+
 	def games
 		@chronicle = Chronicle.find_by_id(params[:id])
 		@games = Game.where(chronicle: params[:id])

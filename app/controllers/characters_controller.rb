@@ -135,6 +135,7 @@ class CharactersController < ApplicationController
 	def edit_downtime_action
 		@character = Character.find_by_id(params[:id])
 		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
+		@games = Game.where(chronicle: @character.chronicle, active: true)
 	end
 
 	def update_downtime_action
@@ -169,6 +170,6 @@ class CharactersController < ApplicationController
 	end
 
 	def downtime_actions_params
-		params.require(:downtime_action).permit(:character_id, :game_id, :title, :assets, :points_spent, :description)
+		params.require(:downtime_action).permit(:character_id, :game_id, :title, :assets, :points_spent, :description, :submitted)
 	end
 end
