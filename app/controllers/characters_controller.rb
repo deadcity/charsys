@@ -105,16 +105,19 @@ class CharactersController < ApplicationController
 
 	def downtime_actions
 		@character = Character.find_by_id(params[:id])
+		redirect_to index_path if @character.user != current_user
 		@downtime_actions = @character.downtime_actions
 	end
 
 	def downtime_action
 		@character = Character.find_by_id(params[:id])
+		redirect_to index_path if @character.user != current_user
 		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
 	end
 
 	def new_downtime_action
 		@character = Character.find_by_id(params[:id])
+		redirect_to index_path if @character.user != current_user
 		@downtime_action = DowntimeAction.new
 		@games = Game.where(chronicle: @character.chronicle, active: true)
 	end
@@ -134,6 +137,7 @@ class CharactersController < ApplicationController
 
 	def edit_downtime_action
 		@character = Character.find_by_id(params[:id])
+		redirect_to index_path if @character.user != current_user
 		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
 		@games = Game.where(chronicle: @character.chronicle, active: true)
 	end

@@ -75,6 +75,7 @@ class ChroniclesController < ApplicationController
 
 	def xp_records
 		@chronicle = Chronicle.find_by_id(params[:id])
+		redirect_to index_path if @chronicle.sts.exclude?(current_user)
 		if @chronicle.sts.include?(current_user)
 			@characters = @chronicle.characters.collect {|c| c.id }
 			if @characters.present?
@@ -89,6 +90,7 @@ class ChroniclesController < ApplicationController
 
 	def new_xp_record
 		@chronicle = Chronicle.find_by_id(params[:id])
+		redirect_to index_path if @chronicle.sts.exclude?(current_user)
 		if @chronicle.sts.include?(current_user)
 			@characters = Character.find_by_chronicle_id(params[:id])
 			@xp_record = XpRecord.new
@@ -99,6 +101,7 @@ class ChroniclesController < ApplicationController
 
 	def new_xp_records
 		@chronicle = Chronicle.find_by_id(params[:id])
+		redirect_to index_path if @chronicle.sts.exclude?(current_user)
 		if @chronicle.sts.include?(current_user)
 			@characters = Character.where(chronicle_id: params[:id], status: 3)
 		else
@@ -142,17 +145,20 @@ class ChroniclesController < ApplicationController
 
 	def downtime_actions
 		@chronicle = Chronicle.find_by_id(params[:id])
+		redirect_to index_path if @chronicle.sts.exclude?(current_user)
 		@game = Game.find_by_id(params[:game_id])
 		@downtime_actions = @game.downtime_actions
 	end
 
 	def show_downtime_action
 		@chronicle = Chronicle.find_by_id(params[:id])
+		redirect_to index_path if @chronicle.sts.exclude?(current_user)
 		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
 	end
 
 	def process_downtime_action
 		@chronicle = Chronicle.find_by_id(params[:id])
+		redirect_to index_path if @chronicle.sts.exclude?(current_user)
 		@game = Game.find_by_id(params[:game_id])
 		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
 		if @downtime_action.update_attributes(response: params[:downtime_action][:response])
@@ -166,17 +172,20 @@ class ChroniclesController < ApplicationController
 
 	def print_downtime_actions
 		@chronicle = Chronicle.find_by_id(params[:id])
+		redirect_to index_path if @chronicle.sts.exclude?(current_user)
 		@game = Game.find_by_id(params[:game_id])
 		@characters = @chronicle.characters
 	end
 
 	def games
 		@chronicle = Chronicle.find_by_id(params[:id])
+		redirect_to index_path if @chronicle.sts.exclude?(current_user)
 		@games = Game.where(chronicle: params[:id])
 	end
 
 	def new_game
 		@chronicle = Chronicle.find_by_id(params[:id])
+		redirect_to index_path if @chronicle.sts.exclude?(current_user)
 		@game = Game.new
 	end
 
@@ -195,11 +204,13 @@ class ChroniclesController < ApplicationController
 
 	def edit_game
 		@chronicle = Chronicle.find_by_id(params[:id])
+		redirect_to index_path if @chronicle.sts.exclude?(current_user)
 		@game = Game.find_by_id(params[:game_id])
 	end
 
 	def update_game
 		@chronicle = Chronicle.find_by_id(params[:id])
+		redirect_to index_path if @chronicle.sts.exclude?(current_user)
 		@game = Game.find_by_id(params[:game_id])
 		if @game.update_attributes(games_params)
 			flash[:success] = "Your game was updated."
