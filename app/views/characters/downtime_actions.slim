@@ -1,0 +1,27 @@
+.row.character_index_page
+	.small-12.small-centered.columns
+		h2
+			| #{@character.name}: Downtime Actions
+			= link_to "New Downtime Action", character_new_downtime_action_path(@character), class: "button create_character_button mini-button"
+		- if @downtime_actions[0]
+			table
+				tr
+					th Title
+					th Game
+					th 
+					th
+				- @downtime_actions.each do |downtime_action|
+					tr
+						td #{downtime_action.title}
+						td #{downtime_action.game.title}
+						- if downtime_action.submitted
+							td colspan="2"
+								Submitted
+						- else
+							td
+								= link_to "Edit", character_edit_downtime_action_path(@character, downtime_action)
+							td
+								= link_to "Delete", character_destroy_downtime_action_path(@character, downtime_action), onClick: 'confirm("Are you sure you want to permanently delete this downtime action?"'
+
+
+

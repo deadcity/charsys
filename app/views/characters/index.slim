@@ -32,6 +32,8 @@
 							td
 								- if character.status == 0 || character.chronicle.sts.include?(current_user)
 									= link_to "Edit", edit_character_path(character)
+								- elsif character.status == 3
+									= link_to "Downtime Actions", character_downtime_actions_path(character)
 							td
 								= form_tag(character_path(character), method: 'DELETE') do
 									= button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to delete this character?");', class: 'button tiny alert'

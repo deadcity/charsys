@@ -2,7 +2,13 @@
   .small-12.small-centered.columns
     h2
       = @chronicle.title
-      = link_to "Edit Chronicle", edit_chronicle_path(id: @chronicle.id), class: "button edit_chronicle_button mini-button"  
+      ul.button-group
+        li
+          = link_to "Edit Chronicle", edit_chronicle_path(id: @chronicle.id), class: "button edit_chronicle_button mini-button" 
+        li
+          = link_to "Grant Experience", new_xp_records_path(@chronicle), class: 'button mini-button grant_experience_button'
+        li
+          = link_to "Manage Games", games_path(@chronicle), class: 'button mini-button manage_games_button'
     h3
     | Current Storytellers: 
     - if @chronicle.sts
