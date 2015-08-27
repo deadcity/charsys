@@ -13,6 +13,15 @@
     top: -.2em;
   }
 
+  .manage_games_button, .grant_experience_button, .process_downtimes_button {
+  	top: -.2em;
+  	margin-left: .5em;
+  }
+
+  h2 .button-group {
+  	display: inline-block;
+  }
+
   img {
     border: 6px solid $purple;
     border-radius: 3px;

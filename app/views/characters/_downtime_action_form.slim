@@ -1,7 +1,8 @@
+= f.label :game
+= collection_select(:downtime_action, :game_id, @games, :id, :title)
 = f.text_field :title
 = f.text_field :points_spent
 = f.text_field :assets
 = f.text_area :description
 = f.hidden_field :character_id, value: @character.id
-= f.hidden_field :game_id
 = f.button "Save", class: 'button'

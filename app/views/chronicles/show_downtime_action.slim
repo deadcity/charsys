@@ -1,0 +1,23 @@
+.row.character_index_page
+	.small-12.small-centered.columns
+		h2
+			| #{@downtime_action.character.name}: #{@downtime_action.title}
+
+		dl
+			dt Title: 
+			dd #{@downtime_action.title}
+			dt Game: 
+			dd #{@downtime_action.game.title}
+			dt Points Spent: 
+			dd #{@downtime_action.points_spent}
+			dt Assets: 
+			dd #{@downtime_action.assets}
+			dt Description
+			dd #{@downtime_action.description}
+
+		h3 Storyteller Response
+
+		= form_tag(process_downtime_action_path(@chronicle, @downtime_action)) do
+			= label_tag :response
+			= text_field_tag :response, @downtime_action.response
+			= button_tag "Submit", class: 'button, mini-button'

@@ -151,11 +151,20 @@ class ChroniclesController < ApplicationController
 	end
 
 	def show_downtime_action
+		@chronicle = Chronicle.find_by_id(params[:id])
 		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
 	end
 
 	def process_downtime_action
-
+		@chronicle = Chronicle.find_by_id(params[:id])
+		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
+		if @downtime_action.update_attributes(response: params[:response])
+			flash[:success] = "Downtime response saved."
+		else
+			@error = @character.errors.messages
+			flash[:error] = @error
+		end
+		redirect_to show_downtime_action_path(@chronicle, @downtime_action)
 	end
 
 	def games
@@ -213,6 +222,6 @@ class ChroniclesController < ApplicationController
 	end
 
 	def games_params
-		params.require(:game).permit(:title, :game_number, :chronicle_id)
+		params.require(:game).permit(:title, :game_number, :chronicle_id, :active)
 	end
 end

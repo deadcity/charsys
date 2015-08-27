@@ -116,6 +116,7 @@ class CharactersController < ApplicationController
 	def new_downtime_action
 		@character = Character.find_by_id(params[:id])
 		@downtime_action = DowntimeAction.new
+		@games = Game.where(chronicle: @character.chronicle, active: true)
 	end
 
 	def create_downtime_action

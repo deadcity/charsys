@@ -2,5 +2,5 @@
 	.small-12.small-centered.columns
 		h2 New Game for #{@chronicle.title}
 
-		= form_for @game, url: {action: 'create_game', method: 'post'} do |f|
+		= form_for @game, url: {action: 'create_game'} do |f|
 			= render partial: 'game_form', locals: {f: f}
