@@ -731,6 +731,7 @@ javascript:
 		$('.skill-reset').click(function() {
 			$(this).parent().find('input').removeAttr("checked");
 			$(this).parent().find('input[type="hidden"]').val("0");
+			$(this).nextAll().find('.fa').removeClass('fa-circle').addClass('fa-circle-o');
 		});
 
 		$('#character_character_type_id').change(function () {
