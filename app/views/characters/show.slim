@@ -1,7 +1,11 @@
 .character_form_page.character_show_page
 	/ BASIC INFO FOR CHARACTER
 	.row
-		h2 Basics
+		.small-8.columns
+			h2 Basics
+		.small-4.columns
+			- if @character.status == 0 || @character.chronicle.sts.include?(current_user)
+				= link_to "Edit Character", edit_character_path(@character), class: 'button mini-button'
 	.row
 		.small-4.columns
 			h4 
