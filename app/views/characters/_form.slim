@@ -620,7 +620,7 @@ javascript:
 		});
 
 		$('.dot input:checked').each(function () {
-			$(this).find('.fa').removeClass('fa-circle-o').addClass('fa-circle');
+			$(this).parent().find('.fa').removeClass('fa-circle-o').addClass('fa-circle');
 			$(this).parent().prevAll('.dot').find('.fa').removeClass('fa-circle-o').addClass('fa-circle');
 		});
 
