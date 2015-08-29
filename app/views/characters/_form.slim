@@ -347,7 +347,7 @@
 		select name="merits" id="merits"
 			- @merit_categories.each do |merit_category|
 				optgroup label="#{merit_category.merit_category}"
-					- merit_category.merits.each do |merit|
+					- merit_category.merits.order(:name).each do |merit|
 						option value="#{merit.id}" data-allowed-ratings="#{merit.allowed_ratings}" data-has-specification="#{merit.has_specification}" data-has-description="#{merit.has_description}" #{merit.name} #{merit.allowed_ratings}
 		= button_tag 'Add', type: '', class: 'mini-button', id: "merits-add"
 
