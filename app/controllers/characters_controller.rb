@@ -60,6 +60,8 @@ class CharactersController < ApplicationController
 		if @character.nil?
 			raise ActionController::RoutingError.new('Not Found')
 		else
+			renderer = Redcarpet::Render::HTML.new(no_links: true, hard_wrap: true, filter_html: true)
+			@markdown = Redcarpet::Markdown.new(renderer, extensions = {})
 			@chronicle = @character.chronicle
 			@mental_skills = Skill.where({skill_category: 1})
 			@physical_skills = Skill.where({skill_category: 2})
