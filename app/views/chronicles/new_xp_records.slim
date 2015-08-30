@@ -1,14 +1,14 @@
 .row.chronicle_show_page
   .small-12.small-centered.columns
   	h2 Mass Add XP for #{@chronicle.title}
-
   	= form_tag("/chronicles/#{@chronicle.id}/xp_records/new_multiple", method: 'POST') do
   		.row
-  			= label_tag :amount
-  			= text_field_tag :amount
-  		.row
-  			=label_tag :note
-  			= text_field_tag :note
+        .small-4.columns
+    			= label_tag :amount
+    			= text_field_tag :amount
+        .small-8.columns
+    			= label_tag :note
+    			= text_field_tag :note
 	  	- if @characters[0]
 	  		table
 	  			tr
