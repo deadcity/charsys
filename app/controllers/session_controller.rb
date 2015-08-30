@@ -25,10 +25,10 @@ class SessionController < ApplicationController
 
 	def reset_password
 		@user = User.find_by_email(params[:email])
-		random_password = Array.new(10).map { (65 + rand(58)).chr }.join
+		puts random_password = Array.new(10).map { (65 + rand(58)).chr }.join
 		@user.password = random_password
 		@user.save
-		ForgotPasswordMailer.message(@user, random_password).deliver_now
+		ForgotPasswordMailer.reset_password(@user, random_password).deliver_now
 		flash[:success] = "Your password has been reset. You should receive an email with your temporary password shortly."
 		redirect_to :root
 	end
