@@ -1,10 +1,10 @@
 class ForgotPasswordMailer < ActionMailer::Base
   def message(user, newpass)
+  	@newpass = newpass
+  	@user = user
     mail(
-      :subject => 'DCP Charsys: Reset Your Password',
+      :subject => '[DCP Character System] Reset Your Password',
       :to  => user.email,
-      :from => 'storytellers@deadcityproductions.com',
-      :html_body => 'Your new password is #{newpass}.  Please remember to change it to something more memorable after logging in.',
-      :track_opens => 'true')
+      :from => 'storytellers@deadcityproductions.com')
   end
 end

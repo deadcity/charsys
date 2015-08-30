@@ -41,6 +41,12 @@ class CharactersController < ApplicationController
 		@character = Character.new(characters_params)
 		if @character.save
 			flash[:success] = "Your character was saved."
+			if @character.status == 1
+				storytellers = @character.chronicle.sts
+				storytellers.each do |storyteller|
+					CharacterMailer.character_submission(character, st).deliver_now
+				end
+			end
 			redirect_to character_path(@character)
 		else
 			@error = @character.errors.messages
@@ -81,13 +87,22 @@ class CharactersController < ApplicationController
 			@merit_categories = MeritCategory.all
 			@merits = Merit.all
 			redirect_to index_path if @character.user != current_user && @chronicle.sts.exclude?(current_user)
-			redirect_to character_path(@character) if @character.status != 0 && current_user == @user
+			redirect_to character_path(@character) if @character.status != 0 && @chronicle.sts.exclude?(current_user)
 		end
 	end
 
 	def update
 		@character = Character.find_by_id(params[:character][:id])
+		prevstatus = @character.status
 		if @character.update_attributes!(characters_params)
+			if @character.status == 1 && @character.status > prevstatus
+				storytellers = @character.chronicle.sts
+				storytellers.each do |storyteller|
+					CharacterMailer.character_submission(@character, storyteller).deliver_now
+				end
+			elsif @character.status == (3 or 4) && prevstatus < 3
+				CharacterMailer.character_approval(@character).deliver_now
+			end
 			flash[:success] = "Your changes to your character were saved."
 			redirect_to character_path(@character)
 		else
