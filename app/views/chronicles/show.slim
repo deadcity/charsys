@@ -45,10 +45,10 @@
               td
                 = get_status(character.status)
               td
-                = link_to "Edit", edit_character_path(character)
+                = link_to "Edit", edit_character_path(character), class: 'button mini-button'
               td
                 - if character.user(current_user)
                   = form_tag(character_path(character), method: 'DELETE') do
-                    = button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to permanently delete this character?");', class: 'button tiny alert'
+                    = button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to permanently delete this character?");', class: 'button mini-button'
     - else
      | There are no characters in this chronicle yet!
