@@ -1,21 +1,21 @@
-.row.character_index_page
+.row.games_page
 	.small-12.small-centered.columns
 		h2
 			| Games for #{@chronicle.title}
-			= link_to "New Game", new_game_path(@chronicle), class: 'button mini-button'
+			= link_to "New Game", new_game_path(@chronicle), class: 'button mini-button new-game-button'
 
 		- if @games[0]
-			table
+			table#games_table
 				tr
-					th Game Title
 					th Game Number
+					th Game Title
 					th
 					th
 					th
 				- @games.each do |game|
 					tr
-						td #{game.title}
 						td #{game.game_number}
+						td #{game.title}
 						td
 							= link_to "Edit", edit_game_path(@chronicle, game), class: 'button mini-button'
 						td

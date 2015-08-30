@@ -1,5 +1,9 @@
-= f.text_field :title
-= f.number_field :game_number
+.row
+  .small-3.columns
+    = f.number_field :game_number  
+  .small-9.columns
+    = f.text_field :title
+
 = f.check_box :active
 = f.hidden_field :chronicle_id, value: @chronicle.id
 = f.button "Save", class: 'button'
