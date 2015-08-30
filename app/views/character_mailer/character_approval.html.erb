@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Dead City Productions Character System</h1>
+    <h2>Character Approved</h2>
+    <p>Hi, <%= @user.name %>!</p>
+    <p>
+      Your character, <%= @character.name %>, has been approved for <%= @character.chronicle.title %>. Congratulations! To see your finalized character sheet, <%= link_to "click here", character_path(@character) %>.
+    </p>
+  </body>
+</html>
