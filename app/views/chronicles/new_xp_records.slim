@@ -1,6 +1,8 @@
 .row.chronicle_show_page
   .small-12.small-centered.columns
-  	h2 Mass Add XP for #{@chronicle.title}
+  	h2
+  		| Mass Add XP for #{@chronicle.title}
+  		= link_to "Grant Ad-hoc XP", new_xp_record_path(@chronicle), class: 'button mini-button'
   	= form_tag("/chronicles/#{@chronicle.id}/xp_records/new_multiple", method: 'POST') do
   		.row
         .small-4.columns

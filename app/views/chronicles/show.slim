@@ -9,6 +9,8 @@
           = link_to "Grant Experience", new_xp_records_path(@chronicle), class: 'button mini-button grant_experience_button'
         li
           = link_to "Manage Games", games_path(@chronicle), class: 'button mini-button manage_games_button'
+        li
+          = link_to "Print Sheets", print_all_path(@chronicle), class: 'button mini-button print_sheets_button'
     h3
     | Current Storytellers: 
     - if @chronicle.sts
