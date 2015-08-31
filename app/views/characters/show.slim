@@ -239,7 +239,11 @@
 		.small-4.columns
 			h3 Health
 			- @character.health.times do |i|
-				<i class="fa fa-square-o"></i> 
+				span.health-box
+					<i class="fa fa-square-o"></i>
+					span.health-mod
+						- if i > (@character.health - 4)
+							= "#{(@character.health - i) - 4}"
 			- if @character.character_type.power_stat.present?
 				h3
 					= @character.character_type.power_stat
