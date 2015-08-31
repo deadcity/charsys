@@ -34,7 +34,8 @@
 	.small-4.columns
 		= f.label :chronicle_id, "Chronicle"
 		= collection_select(:character, :chronicle_id, Chronicle.all, :id, :title, {})
-		= f.hidden_field :status
+		- if @character.status < 1
+			= f.hidden_field :status
 		
 / ATTRIBUTES
 .row

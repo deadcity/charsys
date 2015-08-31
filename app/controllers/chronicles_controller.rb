@@ -75,7 +75,7 @@ class ChroniclesController < ApplicationController
 
 	def print_all
 		@chronicle = Chronicle.find_by_id(params[:id])
-		@characters = @chronicle.characters
+		@characters = @chronicle.characters.where(status: 3)
 		@mental_skills = Skill.where(skill_category: 1)
 		@physical_skills = Skill.where(skill_category: 2)
 		@social_skills = Skill.where(skill_category: 3)
