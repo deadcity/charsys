@@ -1,0 +1,22 @@
+.row.chronicle_show_page
+  .small-12.small-centered.columns
+  	h2 XP Records for #{@chronicle.title}
+
+  	- if @xp_records[0]
+  		table
+  			tr
+  				th Character
+  				th Amount
+  				th Note
+  				th Date Added
+  			- @xp_records.each do |xp_record|
+  				tr
+  					td #{xp_record.character.name}
+  					td #{xp_record.amount}
+  					td #{xp_record.note}
+  					td #{xp_record.created_at}
+  	ul.button-group
+  		li
+  			= link_to "Add New", new_xp_record_path, class: 'button'
+  		li
+  			= link_to "Mass Add", new_xp_records_path, class: 'button'

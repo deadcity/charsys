@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Dead City Productions Character System</h1>
+    <h2>New Character Submission</h2>
+    <p>Hi, <%= @st_name %>!</p>
+    <p>You've received a new character submission from <%= @user %> for your chronicle "<%= @character.chronicle.title %>. To review this submission, <%= link_to "click here", character_path(@character) %>.</p>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+.row.character_index_page
+	.small-12.small-centered.columns
+		- @characters.each do |character|
+			- if character.downtime_actions.where(game: @game).present?
+				- downtime_actions = character.downtime_actions.where(game: @game)
+				h2 #{character.name}
+
+				dl
+					- downtime_actions.each do |downtime_action|
+						dt #{downtime_action.title}
+						dd #{downtime_action.response}
+

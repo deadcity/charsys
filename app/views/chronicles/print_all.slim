@@ -6,50 +6,55 @@
 		.row
 			.small-4.columns
 				h4 
-					| Name:  
+					strong Name:  
 					= character.name
 			.small-4.columns
 				h4 
-					| Character Type:  
+					strong Character Type:  
 					= character.character_type.name
 			.small-4.columns
 				h4 
-					| Player:  
+					strong Player:  
 					= character.user.name
 		.row
 			.small-4.columns
 				- character.character_type.lineage.present?
 					h4
-						= character.character_type.lineage
-						| :  
+						strong
+							= character.character_type.lineage
+							| :  
 						= character.lineage.name
 			.small-4.columns
 				- character.character_type.sublineage.present?
 					h4 
-						= character.character_type.sublineage
-						| :  
+						strong
+							= character.character_type.sublineage
+							| :  
 						= character.sublineage
 			.small-4.columns
 				- character.character_type.affiliation.present?
 					h4 
-						= character.character_type.affiliation
-						| :  
+						strong
+							= character.character_type.affiliation
+							| :  
 						= character.affiliation.name
 		.row
 			.small-4.columns
 				h4 
-					= character.character_type.behavior_primary
-					| :  
+					strong
+						= character.character_type.behavior_primary
+						| :  
 					= character.behavior_primary.name
 			.small-4.columns
 				h4 
-					= character.character_type.behavior_secondary
-					| :  
+					strong
+						= character.character_type.behavior_secondary
+						| :  
 					= character.behavior_secondary.name
 			.small-4.columns
 				h4 
-				| Chronicle:  
-				= character.chronicle.title
+					strong Chronicle:  
+					= character.chronicle.title
 				
 		/ ATTRIBUTES
 		.row
@@ -264,4 +269,4 @@
 		.row
 			.small-12.columns
 				h2 Printed Notes
-				= character.printed_notes
+				= raw @markdown.render(character.printed_notes)

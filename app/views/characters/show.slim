@@ -1,7 +1,11 @@
 .character_form_page.character_show_page
 	/ BASIC INFO FOR CHARACTER
 	.row
-		h2 Basics
+		.small-8.columns
+			h2 Basics
+		.small-4.columns
+			- if @character.status == 0 || @character.chronicle.sts.include?(current_user)
+				= link_to "Edit Character", edit_character_path(@character), class: 'button mini-button'
 	.row
 		.small-4.columns
 			h4 
@@ -264,45 +268,106 @@
 	.row
 		.small-12.columns
 			h2 Questionnaire
-			h3
-				= @character.character_type.question1
-			p
-				= @character.answer1
-			h3
-				= @character.character_type.question2
-			p
-				= @character.answer2
-			h3
-				= @character.character_type.question3
-			p
-				= @character.answer3
-			h3
-				= @character.character_type.question4
-			p
-				= @character.answer4
-			h3
-				= @character.character_type.question5
-			p
-				= @character.answer5
-			h3
-				= @character.character_type.question6
-			p
-				= @character.answer6
-			h3
-				= @character.character_type.question7
-			= @character.answer7
-			h3
-				= @character.character_type.question8
-			p
-				= @character.answer8
-		
+			<ul class="accordion" data-accordion>
+			  <li class="accordion-navigation">
+			    <a href="#panel1a">
+			    	= @character.character_type.question1
+			    </a>
+			    <div id="panel1a" class="content">
+			      = raw @markdown.render(@character.answer1)
+			    </div>
+			  </li>
+			  <li class="accordion-navigation">
+			    <a href="#panel2a">
+			    	= @character.character_type.question2
+			    </a>
+			    <div id="panel2a" class="content">
+			      = raw @markdown.render(@character.answer2)
+			    </div>
+			  </li>
+			  <li class="accordion-navigation">
+			    <a href="#panel3a">
+			    	= @character.character_type.question3
+			    </a>
+			    <div id="panel3a" class="content">
+			      = raw @markdown.render(@character.answer3)
+			    </div>
+			  </li>
+				<li class="accordion-navigation">
+					<a href="#panel4a">
+						= @character.character_type.question4
+					</a>
+					<div id="panel4a" class="content">
+						= raw @markdown.render(@character.answer4)
+					</div>
+				</li>
+				<li class="accordion-navigation">
+					<a href="#panel5a">
+						= @character.character_type.question5
+					</a>
+					<div id="panel5a" class="content">
+						= raw @markdown.render(@character.answer5)
+					</div>
+				</li>
+				<li class="accordion-navigation">
+					<a href="#panel6a">
+						= @character.character_type.question6
+					</a>
+					<div id="panel6a" class="content">
+						= raw @markdown.render(@character.answer6)
+					</div>
+				</li>
+				<li class="accordion-navigation">
+					<a href="#panel7a">
+						= @character.character_type.question7
+					</a>
+					<div id="panel7a" class="content">
+						= raw @markdown.render(@character.answer7)
+					</div>
+				</li>
+				<li class="accordion-navigation">
+					<a href="#panel8a">
+						= @character.character_type.question8
+					</a>
+					<div id="panel8a" class="content">
+						= raw @markdown.render(@character.answer8)
+					</div>
+				</li>
+			</ul>
+	
+	.row
+		.small-12.columns
+			h2 Wishlist
+			= raw @markdown.render(@character.wishlist)
+
 	.row
 		.small-12.columns
 			h2 Printed Notes
-			= @character.printed_notes
+			= raw @markdown.render(@character.printed_notes)
 
 	- if @character.chronicle.sts.include?(current_user)
 		.row
 			.small-12.columns
 				h2 Storyteller Notes
-				= @character.st_notes
+				= raw @markdown.render(@character.st_notes)
+
+	.row
+		.small-12.columns
+			h2 Experience
+			table
+				tr
+					th
+					th Amount
+					th Notes
+					th Date Added
+				- @character.xp_records.each do |xp|
+					tr
+						td
+						td #{xp.amount}
+						td #{xp.note}
+						td #{xp.created_at}
+				tr
+					th Total
+					td #{@xp_total.to_i}
+					td
+					td

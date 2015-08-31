@@ -6,6 +6,7 @@ class Chronicle < ActiveRecord::Base
 	has_many :users, :through => :user_administers_chronicles, as: :storytellers
 	has_many :chronicle_allows_character_types
 	has_many :character_types, :through => :chronicle_allows_character_types
+	has_many :games
 
 	accepts_nested_attributes_for :user_administers_chronicles
 

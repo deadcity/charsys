@@ -2,10 +2,35 @@
 <html lang="en">
 	<head>
 		<meta charset='utf-8' />
-		<%= stylesheet_link_tag    "application" %>
+		<%= stylesheet_link_tag    "application", media: 'screen, print' %>
     <style type="text/css">
+	    body, body p {
+	    	font-size: 12px;
+	    	line-height: 1em;
+	    }
+
 			h2, h3, h4 {
 				color: #000 !important;
+			}
+
+			.character_show_page {
+				page-break-after: always;
+			}
+
+			.small-4 {
+				float: left !important;
+				width: 33%;
+			}
+
+			.small-6 {
+				float: left;
+				width: 50%;
+			}
+
+			table thead tr th, table thead tr td, table tbody tr td, table tbody tr th {
+				font-size: 12px;
+				line-height: 1em;
+				padding: 5px;
 			}
     </style>
 	</head>

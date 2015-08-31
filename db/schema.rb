@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823025145) do
+ActiveRecord::Schema.define(version: 20150827155956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20150823025145) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "value",        default: 1
+  end
+
+  create_table "character_has_merit", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "merit_id"
+    t.string  "specification"
+    t.text    "description"
+    t.integer "rating"
   end
 
   create_table "character_has_merits", force: :cascade do |t|
@@ -189,6 +197,7 @@ ActiveRecord::Schema.define(version: 20150823025145) do
     t.integer  "status",                default: 0
     t.integer  "behavior_primary_id"
     t.integer  "behavior_secondary_id"
+    t.text     "wishlist"
   end
 
   create_table "chronicle_allows_character_types", force: :cascade do |t|
@@ -202,6 +211,24 @@ ActiveRecord::Schema.define(version: 20150823025145) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "downtime_actions", force: :cascade do |t|
+    t.integer "character_id"
+    t.integer "game_id"
+    t.string  "title"
+    t.string  "points_spent"
+    t.string  "assets"
+    t.text    "description"
+    t.text    "response"
+    t.boolean "submitted",    default: false
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "chronicle_id"
+    t.integer "game_number"
+    t.string  "title"
+    t.boolean "active",       default: false
   end
 
   create_table "lineages", force: :cascade do |t|
@@ -262,6 +289,10 @@ ActiveRecord::Schema.define(version: 20150823025145) do
     t.datetime "updated_at",        null: false
   end
 
+  create_table "statuses", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "user_administers_chronicles", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "chronicle_id"
@@ -282,6 +313,14 @@ ActiveRecord::Schema.define(version: 20150823025145) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "xp_records", force: :cascade do |t|
+    t.integer  "character_id"
+    t.integer  "amount"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

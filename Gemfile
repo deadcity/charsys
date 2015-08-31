@@ -44,11 +44,13 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 gem "font-awesome-rails"
 gem "puma"
 gem "foreman"
+gem "redcarpet"
 
 gem 'rails_12factor', group: :production
 
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
+gem 'pdfkit'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -65,4 +67,5 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'pry'
 end

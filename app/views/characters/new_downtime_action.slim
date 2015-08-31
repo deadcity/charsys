@@ -1,0 +1,7 @@
+.row.character_form_page
+	.small-12.columns
+		h1
+			| New Downtime Action for #{@character.name}
+
+		= form_for @downtime_action, url: {action: 'create_downtime_action', method: 'post'} do |f|
+			= render partial: 'downtime_action_form', locals: {f: f}

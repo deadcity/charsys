@@ -21,6 +21,12 @@
     -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   }
+
+  #character_index_table {
+    .mini-button {
+      margin-bottom: 0em;
+    }
+  }
 }
 
 .character_form_page {
@@ -65,9 +71,34 @@
   textarea {
     height: 150px;
   }
+
+  .dot {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
+
+    .fa {
+      margin-left: 1px;
+    }
+
+    input {
+      margin-left: 50px;
+    }
+  }
+
+  #health_track, #power_stat_track, #willpower_track, #morality_track {
+    .dot {
+      height: 20px;
+    }
+  }
 }
 
 .character_show_page {
+  .mini-button {
+    margin-top: 1em;
+  }
+
   h2 {
     margin-top: 1em;
     margin-left: .5em;

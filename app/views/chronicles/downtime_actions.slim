@@ -1,0 +1,20 @@
+.row.character_index_page
+	.small-12.small-centered.columns
+		h2
+			| Downtime Actions for #{@chronicle.title}: #{@game.title}
+			= link_to "Print Downtimes", print_downtime_actions_path(@chronicle, @game), class: 'button mini-button'
+
+		- if @downtime_actions[0]
+			table
+				tr
+					th Character
+					th Action Title
+					th Game
+					th 
+				- @downtime_actions.each do |downtime_action|
+					tr
+						td #{downtime_action.character.name}
+						td #{downtime_action.title}
+						td #{downtime_action.game.title}
+						td
+							= link_to "Process", show_downtime_action_path(@chronicle, @game, downtime_action)
