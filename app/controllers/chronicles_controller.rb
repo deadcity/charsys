@@ -193,6 +193,7 @@ class ChroniclesController < ApplicationController
 		redirect_to index_path if @chronicle.sts.exclude?(current_user)
 		@game = Game.find_by_id(params[:game_id])
 		@characters = @chronicle.characters
+		render layout: 'print'
 	end
 
 	def games
