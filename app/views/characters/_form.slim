@@ -306,7 +306,7 @@
 		= text_field_tag :skill_specialty
 		= button_tag 'Add Specialty', id: 'add-specialty', class: "mini-button", type: ''
 		ul id="skill-specialties"
-			- @character.skill_specialties.each do |specialty|
+			- @character.skill_specialties.each_with_index do |specialty, i|
 				li #{specialty.skill.name} (#{specialty.specialty})
 					<i class="fa fa-trash-o live-delete"></i>
 					<input type="hidden" name="character[skill_specialties_attributes][][id]" value="#{specialty.id}" />
@@ -367,7 +367,9 @@
 					- if merit.merit.has_description
 						div.description
 							= "#{merit.description}"
-					input type="checkbox" class="hide" name="character[character_has_merits_attributes][][_destroy]"
+					input type="hidden" value="#{merit.id}" name="character[character_has_merits_attributes][][id]"
+					input type="hidden" value="#{merit.merit.id}" name="character[character_has_merits_attributes][][merit_id]"
+					input type="hidden" value="#{@character.id}" name="character[character_has_merits_attributes][][character_id]"
 					.edit-form.hide
 						- if JSON.parse(merit.merit.allowed_ratings).length > 1
 							input type="number" value="#{merit.rating}" name="character[character_has_merits_attributes][][rating]" class="rating-field"
@@ -375,12 +377,17 @@
 							input type="hidden" value="#{merit.rating}" name="character[character_has_merits_attributes][][rating]"
 						- if merit.merit.has_specification
 							input type="text" value="#{merit.specification}" name="character[character_has_merits_attributes][][specification]" class="spec-field"
+						- else
+							input type="hidden" value="#{merit.specification}" name="character[character_has_merits_attributes][][specification]" class="spec-field"
 						- if merit.merit.has_description
 							textarea name="character[character_has_merits_attributes][][description]" class="desc-field" #{merit.description}
+						- else
+							input type="hidden" value="#{merit.description}" name="character[character_has_merits_attributes][][description]" class="desc-field"
 						input type="hidden" value="#{merit.id}" name="character[character_has_merits_attributes][][id]"
 						input type="hidden" value="#{merit.merit.id}" name="character[character_has_merits_attributes][][merit_id]"
 						input type="hidden" value="#{@character.id}" name="character[character_has_merits_attributes][][character_id]"
 						= button_tag 'Save', type: '', class: 'mini-button save-edits'
+					input type="checkbox" class="hide" name="character[character_has_merits_attributes][][_destroy]"
 					
 .row
 	.small-6.large-4.large-offset-2.columns
