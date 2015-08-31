@@ -107,4 +107,16 @@
   h4 {
     font-size: 1em;
   }
+
+  .health-box {
+    display: inline-block;
+    width: 13px;
+    vertical-align: top;
+  }
+
+  .health-box .health-mod {
+    display: block;
+    font-size: .8em;
+    line-height: 1em;
+  }
 }

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get 'admin', to: 'admin#index'
 
+  get 'chronicles/:id/print_all', to: 'chronicles#print_all', as: :print_all
   get 'chronicles/:id/xp_records', to: 'chronicles#xp_records', as: :xp_records
   get 'chronicles/:id/xp_records/new', to: 'chronicles#new_xp_record', as: :new_xp_record
   get 'chronicles/:id/xp_records/new_multiple', to: 'chronicles#new_xp_records', as: :new_xp_records

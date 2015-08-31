@@ -73,6 +73,24 @@ class ChroniclesController < ApplicationController
 		redirect_to chronicles_path
 	end
 
+	def print_all
+		@chronicle = Chronicle.find_by_id(params[:id])
+		@characters = @chronicle.characters.where(status: 3)
+		@mental_skills = Skill.where(skill_category: 1)
+		@physical_skills = Skill.where(skill_category: 2)
+		@social_skills = Skill.where(skill_category: 3)
+		renderer = Redcarpet::Render::HTML.new(no_links: true, hard_wrap: true, filter_html: true)
+		@markdown = Redcarpet::Markdown.new(renderer, extensions = {})
+		respond_to do |format|
+			format.html do
+				render layout: 'print'
+			end
+			format.pdf do
+				render pdf: "#{@chronicle.title.parameterize}"
+			end
+		end
+	end
+
 	def xp_records
 		@chronicle = Chronicle.find_by_id(params[:id])
 		redirect_to index_path if @chronicle.sts.exclude?(current_user)
@@ -175,6 +193,7 @@ class ChroniclesController < ApplicationController
 		redirect_to index_path if @chronicle.sts.exclude?(current_user)
 		@game = Game.find_by_id(params[:game_id])
 		@characters = @chronicle.characters
+		render layout: 'print'
 	end
 
 	def games

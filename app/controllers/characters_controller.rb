@@ -88,6 +88,10 @@ class CharactersController < ApplicationController
 			@mental_attributes = Attrib.where({attribute_category: 1})
 			@merit_categories = MeritCategory.all
 			@merits = Merit.all
+			@status_array = Array.new
+			CHARACTER_STATUS.each_with_index do |i, status|
+				@status_array << [i, status]
+			end
 			redirect_to index_path if @character.user != current_user && @chronicle.sts.exclude?(current_user)
 			redirect_to character_path(@character) if @character.status != 0 && @chronicle.sts.exclude?(current_user)
 		end
@@ -102,7 +106,7 @@ class CharactersController < ApplicationController
 				storytellers.each do |storyteller|
 					CharacterMailer.character_submission(@character, storyteller).deliver_now
 				end
-			elsif @character.status == (3 or 4) && prevstatus < 3
+			elsif @character.status == (2 or 3) && prevstatus < 2
 				CharacterMailer.character_approval(@character).deliver_now
 			end
 			flash[:success] = "Your changes to your character were saved."
@@ -187,7 +191,7 @@ class CharactersController < ApplicationController
 	private
 
 	def characters_params
-		params.require(:character).permit(:name, :sublineage, :max_resource, :behavior_primary_id, :behavior_secondary_id, :lineage_id, :affiliation_id, :user_id, :chronicle_id, :character_type_id, :attribs, :skills, :merits, :health, :willpower, :power_stat, :morality, :size, :speed, :armor_ballistic, :armor_general, :defense, :answer1, :answer2, :answer3, :answer4, :answer5, :answer6, :answer7, :answer8, :printed_notes, :st_notes, :misc, :intelligence, :wits, :resolve, :strength, :dexterity, :stamina, :presence, :manipulation, :composure, :academics, :computer, :crafts, :computer, :investigation, :medicine, :occult, :politics, :science, :athletics, :brawl, :drive, :firearms, :larceny, :stealth, :survival, :weaponry, :animal_ken, :empathy, :expression, :intimidation, :persuasion, :streetwise, :subterfuge, :status, :wishlist, skill_specialties_attributes: [:skill_id, :specialty, :character_id, :id, :_destroy], character_has_powers_attributes: [:character_id, :power_id, :id, :_destroy], character_has_merits_attributes: [:character_id, :merit_id, :specification, :description, :rating, :id])
+		params.require(:character).permit(:name, :sublineage, :max_resource, :behavior_primary_id, :behavior_secondary_id, :lineage_id, :affiliation_id, :user_id, :chronicle_id, :character_type_id, :attribs, :skills, :merits, :health, :willpower, :power_stat, :morality, :size, :speed, :initiative_mod, :armor_ballistic, :armor_general, :defense, :answer1, :answer2, :answer3, :answer4, :answer5, :answer6, :answer7, :answer8, :printed_notes, :st_notes, :misc, :intelligence, :wits, :resolve, :strength, :dexterity, :stamina, :presence, :manipulation, :composure, :academics, :computer, :crafts, :computer, :investigation, :medicine, :occult, :politics, :science, :athletics, :brawl, :drive, :firearms, :larceny, :stealth, :survival, :weaponry, :animal_ken, :empathy, :expression, :intimidation, :persuasion, :streetwise, :subterfuge, :status, :wishlist, skill_specialties_attributes: [:skill_id, :specialty, :character_id, :id, :_destroy], character_has_powers_attributes: [:character_id, :power_id, :id, :_destroy], character_has_merits_attributes: [:character_id, :merit_id, :specification, :description, :rating, :id])
 	end
 
 	def downtime_actions_params

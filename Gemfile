@@ -48,6 +48,10 @@ gem "redcarpet"
 
 gem 'rails_12factor', group: :production
 
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+gem 'pdfkit'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
