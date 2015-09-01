@@ -748,6 +748,37 @@ javascript:
 			$('#merits-list').append(newItem);
 		});
 
+		$('#add-flaw').click(function(e) {
+			e.preventDefault();
+			var $selected = $('#flaws option:selected');
+			var flawId = $selected.val();
+			var flawName = $selected.text();
+			var hasSpec = $selected.attr("data-specification");
+			var hasDesc = $selected.attr("data-description");
+
+			var newItem = "<li>"+flawName;
+			newItem += "<input type='hidden' value='character[character_has_flaws_attributes][][id]' value='' /><input type='hidden' value='character[character_has_flaws_attributes][][flaw_id]' value='"+flawId+"' /><input type='hidden' value='character[character_has_flaws_attributes][][character_id]' value='#{@character.id}' />";
+			newItem += "<div class='edit-form";
+			if ((hasSpec == "false") && (hasDesc == "false")) {
+			 newItem += " hide";
+			}
+			newItem += "''>";
+			if (hasSpec == "true") {
+				newItem += "<input type='text' value='' placeholder='specification' name='character[character_has_flaws_attributes[][specification] />"
+			} else {
+				newItem += "<input type='hidden' value='' name='character[character_has_flaws_attributes[][specification]'' />"
+			}
+			if (hasDesc == "true") {
+				newItem += "<textarea value='' name='character[character_has_flaws_attributes[][specification]>Description</textarea>";
+			} else {
+				newItem += "<input type='hidden' value='' name='character[character_has_flaws_attributes[][description]'' />";
+			}
+			newItem += "<button class='button mini-button' class='save-flaw'>Save</button>";
+			newItem += "</div>";
+			newItem += "</li>";
+			$('#flaws-list').append(newItem);
+		})
+
 		$('.skill-reset').click(function() {
 			$(this).parent().find('input').removeAttr("checked");
 			$(this).parent().find('input[type="hidden"]').val("0");
