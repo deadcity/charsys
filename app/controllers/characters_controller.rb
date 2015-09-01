@@ -102,6 +102,7 @@ class CharactersController < ApplicationController
 	def update
 		@character = Character.find_by_id(params[:character][:id])
 		prevstatus = @character.status
+		puts params[:character][:character_has_flaws_attributes]
 		if @character.update_attributes!(characters_params)
 			if @character.status == 1 && @character.status > prevstatus
 				storytellers = @character.chronicle.sts
