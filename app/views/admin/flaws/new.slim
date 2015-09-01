@@ -1,0 +1,9 @@
+.row.character_form_page
+	.small-12.columns
+		h1
+			| New Flaw
+
+		= form_for @flaw, url: {action: 'create'} do |f|
+			= render partial: 'form', locals: {f: f}
+
+			= f.button "Create"

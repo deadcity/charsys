@@ -58,8 +58,8 @@ Rails.application.routes.draw do
     resources :powers
     resources :power_types
     resources :skill_categories
-    resources :attribute_categories
     resources :affiliations
     resources :merits
+    resources :flaws
   end
 end

@@ -1,0 +1,15 @@
+.row.character_form_page
+	.small-12.columns
+		h1
+			| #{@flaw.character_type.flaw_name}: #{@flaw.name} 
+			= link_to "Edit", edit_admin_flaw_path(@flaw), class: 'button mini-button'
+
+		dl
+			dt Description
+			dd #{@flaw.description}
+
+			dt Specification?
+			dd #{@flaw.requires_specification}
+
+			dt Description?
+			dd #{@flaw.requires_description}

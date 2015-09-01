@@ -31,6 +31,7 @@ class CharactersController < ApplicationController
 			@skill_categories = SkillCategory.all
 			@merit_categories = MeritCategory.all
 			@merits = Merit.all
+			@flaws = Flaw.where(character_type: @character_type)
 			@character = Character.new
 		else
 			redirect_to login_path
@@ -88,6 +89,7 @@ class CharactersController < ApplicationController
 			@mental_attributes = Attrib.where({attribute_category: 1})
 			@merit_categories = MeritCategory.all
 			@merits = Merit.all
+			@flaws = Flaw.where(character_type: @character_type)
 			@status_array = Array.new
 			CHARACTER_STATUS.each_with_index do |i, status|
 				@status_array << [i, status]

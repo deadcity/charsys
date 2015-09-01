@@ -389,6 +389,18 @@
 						input type="hidden" value="#{@character.id}" name="character[character_has_merits_attributes][][character_id]"
 						= button_tag 'Save', type: '', class: 'mini-button save-edits'
 					input type="checkbox" class="hide" name="character[character_has_merits_attributes][][_destroy]"
+- if @character_type.flaw_name.present?
+	.row
+		.small-8.small-centered.columns
+			h3 #{@character_type.flaw_name}
+			select name="flaws" id="flaws"
+				- @flaws.each do |flaw|
+					option value="#{flaw.id}" data-specification="#{flaw.requires_specification}" data-description="#{flaw.requires_description}" #{flaw.name}
+			= button_tag 'Add', type: '', class: 'mini-button', id: 'add-flaw'
+
+			ul#flaws-list
+				- @character.character_has_flaws.each do |flaw|
+					li #{flaw.flaw.name}
 					
 .row
 	.small-6.large-4.large-offset-2.columns
