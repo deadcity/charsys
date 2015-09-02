@@ -405,6 +405,7 @@
 						- if flaw.flaw.requires_specification and flaw.specification.present?
 							= "(#{flaw.specification}) "
 						input type="hidden" name="character[character_has_flaws_attributes][][id]" value="#{flaw.id}"
+						input type="hidden" name="character[character_has_flaws_attributes][][flaw_id]" value="#{flaw.flaw.id}"
 						- if flaw.flaw.requires_specification or flaw.flaw.requires_description
 							<i class='fa fa-pencil edit'></i> 
 						<i class='fa fa-trash-o live-delete'></i>
