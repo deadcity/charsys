@@ -67,7 +67,7 @@ class CharactersController < ApplicationController
 			@physical_skills = Skill.where({skill_category: 2})
 			@social_skills = Skill.where({skill_category: 3})
 			@xp_total = @character.xp_records.sum(:amount)
-			redirect_to index_path if @character.user != current_user && @chronicle.sts.exclude?(current_user)
+			redirect_to :root if @character.user != current_user && @chronicle.sts.exclude?(current_user)
 		end
 	end
 
@@ -92,7 +92,7 @@ class CharactersController < ApplicationController
 			CHARACTER_STATUS.each_with_index do |i, status|
 				@status_array << [i, status]
 			end
-			redirect_to index_path if @character.user != current_user && @chronicle.sts.exclude?(current_user)
+			redirect_to :root if @character.user != current_user && @chronicle.sts.exclude?(current_user)
 			redirect_to character_path(@character) if @character.status != 0 && @chronicle.sts.exclude?(current_user)
 		end
 	end
@@ -126,19 +126,19 @@ class CharactersController < ApplicationController
 
 	def downtime_actions
 		@character = Character.find_by_id(params[:id])
-		redirect_to index_path if @character.user != current_user
+		redirect_to :root if @character.user != current_user
 		@downtime_actions = @character.downtime_actions
 	end
 
 	def downtime_action
 		@character = Character.find_by_id(params[:id])
-		redirect_to index_path if @character.user != current_user
+		redirect_to :root if @character.user != current_user
 		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
 	end
 
 	def new_downtime_action
 		@character = Character.find_by_id(params[:id])
-		redirect_to index_path if @character.user != current_user
+		redirect_to :root if @character.user != current_user
 		@downtime_action = DowntimeAction.new
 		@games = Game.where(chronicle: @character.chronicle, active: true)
 	end
@@ -158,7 +158,7 @@ class CharactersController < ApplicationController
 
 	def edit_downtime_action
 		@character = Character.find_by_id(params[:id])
-		redirect_to index_path if @character.user != current_user
+		redirect_to :root if @character.user != current_user
 		@downtime_action = DowntimeAction.find_by_id(params[:downtime_action_id])
 		@games = Game.where(chronicle: @character.chronicle, active: true)
 	end
