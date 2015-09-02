@@ -21,19 +21,19 @@
 				= @character.user.name
 	.row
 		.small-4.columns
-			- @character.character_type.lineage.present?
+			- if @character.character_type.lineage.present?
 				h4
 					= @character.character_type.lineage
 					| :  
 					= @character.lineage.name
 		.small-4.columns
-			- @character.character_type.sublineage.present?
+			- if @character.character_type.sublineage.present?
 				h4 
 					= @character.character_type.sublineage
 					| :  
 					= @character.sublineage
 		.small-4.columns
-			- @character.character_type.affiliation.present?
+			- if @character.character_type.affiliation.present?
 				h4 
 					= @character.character_type.affiliation
 					| :  
@@ -51,8 +51,8 @@
 				= @character.behavior_secondary.name
 		.small-4.columns
 			h4 
-			| Chronicle:  
-			= @character.chronicle.title
+				| Chronicle:  
+				= @character.chronicle.title
 			
 	/ ATTRIBUTES
 	.row
@@ -356,7 +356,7 @@
 		.row
 			.small-12.columns
 				h2 Storyteller Notes
-				= raw @markdown.render(@character.st_notes)
+				= raw @markdown.render(@character.st_notes.to_s)
 
 	.row
 		.small-12.columns
