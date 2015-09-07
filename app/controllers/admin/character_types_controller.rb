@@ -20,11 +20,15 @@ module Admin
 		end
 
 		def show
-			@character_type = CharacterType.find(params[:id])
+			@character_type = CharacterType.find_by_id(params[:id])
 		end
 
 		def edit
-			@character_type = CharacterType.find(params[:id])
+			@character_type = CharacterType.find_by_id(params[:id])
+		end
+
+		def update
+			@character_type = CharacterType.find_by_id(params[:id])
 			if @character_type.update_attributes!(character_types_params)
 				flash[:success] = "The #{@character_type.name} character type has been updated."
 				redirect_to admin_character_types_path
@@ -35,7 +39,7 @@ module Admin
 		end
 
 		def destroy
-			@character_type = CharacterType.find(params[:id])
+			@character_type = CharacterType.find_by_id(params[:id])
 			flash[:success] = "The #{@character_type.name} character type has been deleted."
 			@character_type.delete
 			redirect_to admin_character_types_path
@@ -44,7 +48,7 @@ module Admin
 		private
 
 		def character_types_params
-			params.require(:character_type).permit(:name, :power_stat, :resource, :morality, :behavior_primary, :behavior_secondary, :question1, :question2, :question3, :question4, :question5, :question6, :question7, :question8)
+			params.require(:character_type).permit(:name, :power_stat, :resource, :morality, :behavior_primary, :behavior_secondary, :flaw_name, :question1, :question2, :question3, :question4, :question5, :question6, :question7, :question8)
 		end
 	end
 end

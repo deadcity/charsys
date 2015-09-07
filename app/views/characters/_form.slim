@@ -389,6 +389,35 @@
 						input type="hidden" value="#{@character.id}" name="character[character_has_merits_attributes][][character_id]"
 						= button_tag 'Save', type: '', class: 'mini-button save-edits'
 					input type="checkbox" class="hide" name="character[character_has_merits_attributes][][_destroy]"
+- if @character_type.flaw_name.present?
+	.row
+		.small-8.small-centered.columns
+			h3 #{@character_type.flaw_name}
+			select name="flaws" id="flaws"
+				- @flaws.each do |flaw|
+					option value="#{flaw.id}" data-specification="#{flaw.requires_specification}" data-description="#{flaw.requires_description}" #{flaw.name}
+			= button_tag 'Add', type: '', class: 'mini-button', id: 'add-flaw'
+
+			ul#flaws-list
+				- @character.character_has_flaws.each do |flaw|
+					li
+						= "#{flaw.flaw.name} "
+						- if flaw.flaw.requires_specification and flaw.specification.present?
+							= "(#{flaw.specification}) "
+						input type="hidden" name="character[character_has_flaws_attributes][][id]" value="#{flaw.id}"
+						input type="hidden" name="character[character_has_flaws_attributes][][flaw_id]" value="#{flaw.flaw.id}"
+						- if flaw.flaw.requires_specification or flaw.flaw.requires_description
+							<i class='fa fa-pencil edit'></i> 
+						<i class='fa fa-trash-o live-delete'></i>
+						input type="checkbox" class="hide" name="character[character_has_flaws_attributes][][_destroy]"
+						.edit-form class="hide"
+							- if flaw.flaw.requires_specification
+								input type="text" name="character[character_has_flaws_attributes][][specification]" value="#{flaw.specification}"
+							- else
+								input type="hidden" name="character[character_has_flaws_attributes][][specification]" value="#{flaw.specification}"
+							- if flaw.flaw.requires_description
+								textarea name="character[character_has_flaws_attributes][][description]" #{flaw.description}
+							button type='' class='button mini-button save-flaw' Save
 					
 .row
 	.small-6.large-4.large-offset-2.columns
@@ -652,6 +681,15 @@ javascript:
 			$(this).nextAll('.edit-form').show();
 		});
 
+		$('body').on('click', '.save-flaw', function(e) {
+			e.preventDefault();
+			$(this).parents('.edit-form').hide();
+			var spec = $(this).parent().find('.spec-field').val();
+			var desc = $(this).parent().find('.desc-field').val();
+			$(this).parents('li').find('.specification').text("("+spec+") ");
+			$(this).parents('li').find('.description').text(desc);
+		});
+
 		$('body').on('click', '.save-edits', function(e) {
 			e.preventDefault();
 			var $parentNode = $(this).parents('li');
@@ -735,6 +773,43 @@ javascript:
 
 			$('#merits-list').append(newItem);
 		});
+
+		$('#add-flaw').click(function(e) {
+			e.preventDefault();
+			var $selected = $('#flaws option:selected');
+			var flawId = $('#flaws').val();
+			var flawName = $selected.text();
+			var hasSpec = $selected.attr("data-specification");
+			var hasDesc = $selected.attr("data-description");
+
+			var newItem = "<li>"+flawName;
+			newItem += "<span class='specification'></span>";
+			newItem += "<input type='hidden' value='character[character_has_flaws_attributes][][id]' value='' /><input type='hidden' name='character[character_has_flaws_attributes][][flaw_id]' value='"+flawId+"' /><input type='hidden' name='character[character_has_flaws_attributes][][character_id]' value='#{@character.id}' />";
+			if (hasSpec == "true" || hasDesc == "true") {
+				newItem += "<i class='fa fa-pencil edit'></i> ";
+			}
+			newItem += "<i class='fa fa-trash-o delete'></i>";
+			newItem += "<div class='description'></div>";
+			newItem += "<div class='edit-form";
+			if (hasSpec == "false" && hasDesc == "false") {
+			 newItem += " hide";
+			}
+			newItem += "''>";
+			if (hasSpec == "true") {
+				newItem += "<input type='text' value='' placeholder='specification' name='character[character_has_flaws_attributes[][specification]' class='spec-field' />"
+			} else {
+				newItem += "<input type='hidden' value='' name='character[character_has_flaws_attributes[][specification]' class='spec-field' />"
+			}
+			if (hasDesc == "true") {
+				newItem += "<textarea value='' name='character[character_has_flaws_attributes[][description]' class='desc-field'>Description</textarea>";
+			} else {
+				newItem += "<input type='hidden' value='' name='character[character_has_flaws_attributes[][description]' class='desc-field' />";
+			}
+			newItem += "<button class='button mini-button save-flaw'>Save</button>";
+			newItem += "</div>";
+			newItem += "</li>";
+			$('#flaws-list').append(newItem);
+		})
 
 		$('.skill-reset').click(function() {
 			$(this).parent().find('input').removeAttr("checked");

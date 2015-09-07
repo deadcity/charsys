@@ -1,0 +1,6 @@
+= f.text_field :name
+= label_tag "Character Type"
+= collection_select(:flaw, :character_type_id, @character_types, :id, :name)
+= f.text_area :description
+= f.check_box :requires_specification
+= f.check_box :requires_description

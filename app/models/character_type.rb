@@ -15,4 +15,5 @@ class CharacterType < ActiveRecord::Base
 	has_many :character_type_has_behavior_secondaries
 	has_many :behavior_primaries, through: :character_type_has_behavior_primaries
 	has_many :behavior_secondaries, through: :character_type_has_behavior_secondaries
+	has_many :flaws
 end

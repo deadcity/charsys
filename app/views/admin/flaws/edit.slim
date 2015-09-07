@@ -1,0 +1,9 @@
+.row.character_form_page
+	.small-12.columns
+		h1
+			| Edit Flaw
+
+		= form_for @flaw, url: {action: 'update'} do |f|
+			= render partial: 'form', locals: {f: f}
+
+			= f.button "Update"

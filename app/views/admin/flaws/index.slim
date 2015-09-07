@@ -1,0 +1,29 @@
+.row.character_index_page
+	.small-12.small-centered.columns
+		h2 
+			| Flaws 
+			= link_to "New Flaw", new_admin_flaw_path, class: "button new_flaw_button mini-button"
+
+		- if @flaws
+			table#flaw_index_table
+				thead
+					tr
+						th Name
+						th Character Type
+						th Specification?
+						th Description?
+						th
+						th
+				tbody
+					- @flaws.each do |flaw|
+						tr
+							td
+								= link_to flaw.name, admin_flaw_path(flaw)
+							td #{flaw.character_type.name}
+							td #{flaw.requires_specification}
+							td #{flaw.requires_description}
+							td
+								= link_to "Edit", edit_admin_flaw_path(flaw), class: 'button mini-button'
+							td
+								= form_tag(admin_flaw_path(flaw), method: 'delete') do
+									= button_tag 'Delete', class: 'button mini-button'

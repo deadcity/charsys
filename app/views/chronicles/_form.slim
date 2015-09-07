@@ -1,0 +1,11 @@
+= f.text_field :title
+
+= label_tag "Storytellers"
+= collection_check_boxes :chronicle, :user_ids, User.all, :id, :name, {}, {multiple: 'multiple', name: 'chronicle[user_administers_chronicles_attributes][][user_id]', id: 'chronicle_user_administers_chronicles_attributes'}
+br
+br 
+= f.submit "Submit", class: "button"
+
+javascript:
+	$('input[type="checkbox"][value="#{current_user.id}"]').attr("checked", "checked");
+	$('input[type="checkbox"][value="#{current_user.id}"]').attr("disabled", "true");
