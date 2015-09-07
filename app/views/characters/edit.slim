@@ -5,11 +5,4 @@
 
 		= form_for @character, url: {action: 'update'} do |f|
 			= f.hidden_field :id
-			
-			- if @chronicle.sts.include? current_user
-				.row
-					.small-4.columns.end
-						h2 Character Status
-						select name="character[status]" id="character_status"
-							= options_for_select(@status_array, @character.status)
 			= render partial: 'form', locals: {f: f}
