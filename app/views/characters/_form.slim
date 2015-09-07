@@ -34,8 +34,7 @@
 	.small-4.columns
 		= f.label :chronicle_id, "Chronicle"
 		= collection_select(:character, :chronicle_id, Chronicle.all, :id, :title, {})
-		- if @character.status < 1
-			= f.hidden_field :status
+		= f.hidden_field :status
 		
 / ATTRIBUTES
 .row
@@ -639,21 +638,41 @@
 			h2 Storyteller Notes
 			= f.text_area :st_notes, label: false
 
-ul.button-group.radius
+ul.button-group.radius#workflow-buttons
 	li
-		= f.button 'Save', type: 'submit', class: 'button'
-	li
-		- if @character.status == 0
-			= f.button 'Save and Submit for Approval', type: 'submit', class: 'button', id: 'submit-button'
+		= f.button 'Save', type: 'submit', class: 'button', "data-status": @character.status
+	- if @character.status == 0
+		li
+			= f.button 'Save and Submit for Approval', type: 'submit', class: 'button', id: 'submit-button', "data-status": '1'
+	- if @chronicle.sts.include?(current_user)
+		- if @character.status >= 1
+			li
+				= f.button 'Reopen to User', type: 'submit', class: 'button', id: 'reopen-button', "data-status": '0'
+		- if @character.status == 1
+			li
+				= f.button 'Approve', type: 'submit', class: 'button', id: 'approve-button', "data-status": '2'
+			li
+				= f.button 'Approve and Activate', type: 'submit', class: 'button', id: 'approve-activate-button', "data-status": 3
+		- if @character.status == 2
+			li
+				= f.button 'Activate', type: 'submit', class: 'button', id: 'activate-button', "data-status": '3'
+		- if @character.status == 2 or @character.status == 3
+			li
+				= f.button 'Decease', type: 'submit', class: 'button', id: 'decease-button', "data-status": '4'
+			li
+				= f.button 'Deactivate', type: 'submit', class: 'button', id: 'deactivate-button', "data-status": '5'
+		- if @character.status == 4 or @character.status == 5
+			li
+				= f.button 'Reactivate', type: 'submit', class: 'button', id: 'reactivate-button', "data-status": '3'
+
 
 javascript:
 	// WELCOME TO HELL
 
 	$(document).ready(function () {
-		$('#submit-button').click(function (e) {
-			e.preventDefault();
-			$('#character_status').val('1');
-			console.log($('#character_status').val());
+		$('#workflow-buttons button').click(function (e) {
+			var charStatus = $(this).attr("data-status");
+			$('#character_status').val(charStatus);
 			$(this).parents('form').submit();
 		});
 
