@@ -8,7 +8,7 @@
 		p#characterTypeHelp.help-text.hide It's recommended that you save your character and reload this form after changing character type.
 	.small-4.columns
 		= f.label :user_id, "Player"
-		= f.hidden_field :user_id, value: current_user.id
+		= f.hidden_field :user_id, value: @user.id
 		= @user.name
 .row
 	.small-4.columns
