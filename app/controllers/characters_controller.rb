@@ -77,7 +77,7 @@ class CharactersController < ApplicationController
 		if @character.nil?
 			raise ActionController::RoutingError.new('Not Found')
 		else
-			@user = User.find_by_id(session[:user_id])
+			@user = @character.user
 			@chronicle = @character.chronicle
 			@chronicles = Chronicle.all
 			@character_type = @character.character_type
