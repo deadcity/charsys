@@ -45,7 +45,7 @@ class CharactersController < ApplicationController
 			if @character.status == 1
 				storytellers = @character.chronicle.sts
 				storytellers.each do |storyteller|
-					CharacterMailer.character_submission(character, st).deliver_now
+					CharacterMailer.character_submission(@character, storyteller).deliver_now
 				end
 			end
 			redirect_to character_path(@character)
