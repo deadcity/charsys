@@ -1,4 +1,22 @@
 .row.character_form_page
+	- if @chronicle.sts.include?(current_user)
+		ul.breadcrumbs
+			li
+				= link_to 'My Chronicles', chronicles_path
+			li
+				= link_to @chronicle.title, chronicle_path(@chronicle)
+			li
+				= link_to @character.name, character_path(@character)
+			li.current
+				= link_to 'Edit', edit_character_path(@character)
+	- else
+		ul.breadcrumbs
+			li
+				=link_to 'My Characters', characters_path
+			li
+				= link_to @character.name, character_path(@character)
+			li.current
+				= link_to 'Edit', edit_character_path(@character)
 	.small-12.columns
 		h1
 			| Edit Character
