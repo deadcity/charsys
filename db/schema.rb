@@ -58,14 +58,6 @@ ActiveRecord::Schema.define(version: 20150901154931) do
     t.text    "description"
   end
 
-  create_table "character_has_merit", force: :cascade do |t|
-    t.integer "character_id"
-    t.integer "merit_id"
-    t.string  "specification"
-    t.text    "description"
-    t.integer "rating"
-  end
-
   create_table "character_has_merits", force: :cascade do |t|
     t.integer "character_id"
     t.integer "merit_id"
@@ -303,10 +295,6 @@ ActiveRecord::Schema.define(version: 20150901154931) do
     t.integer  "skill_category_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-  end
-
-  create_table "statuses", force: :cascade do |t|
-    t.string "name"
   end
 
   create_table "user_administers_chronicles", force: :cascade do |t|
