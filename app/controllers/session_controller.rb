@@ -25,7 +25,7 @@ class SessionController < ApplicationController
 
 	def reset_password
 		@user = User.find_by_email(params[:email])
-		puts random_password = Array.new(10).map { (65 + rand(58)).chr }.join
+		random_password = Array.new(10).map { (65 + rand(58)).chr }.join
 		@user.password = random_password
 		@user.save
 		ForgotPasswordMailer.reset_password(@user, random_password).deliver_now
