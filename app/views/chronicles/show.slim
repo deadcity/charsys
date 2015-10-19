@@ -1,4 +1,9 @@
 .row.chronicle_show_page
+  ul.breadcrumbs
+    li
+      = link_to 'My Chronicles', chronicles_path
+    li.current
+      = link_to @chronicle.title, chronicle_path(@chronicle)
   .small-12.small-centered.columns
     h2
       = @chronicle.title
