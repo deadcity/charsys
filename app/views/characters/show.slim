@@ -1,5 +1,20 @@
 .character_form_page.character_show_page
 	/ BASIC INFO FOR CHARACTER
+	- if @chronicle.sts.include?(current_user)
+		ul.breadcrumbs
+			li
+				= link_to 'My Chronicles', chronicles_path
+			li
+				= link_to @chronicle.title, chronicle_path(@chronicle)
+			li.current
+				= link_to @character.name, character_path(@character)
+	- else	
+		ul.breadcrumbs
+			li
+				=link_to 'My Characters', characters_path
+			li.current
+				= link_to @character.name, character_path(@character)
+				
 	.row
 		.small-8.columns
 			h2 Basics
