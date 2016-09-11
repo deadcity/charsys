@@ -682,7 +682,7 @@ javascript:
 		});
 
 		$('.dot').click(function() {
-			$(this).find('input').attr("checked", "checked");
+			$(this).find('input').attr("checked", "checked").trigger('change');
 			$(this).find('.fa').removeClass('fa-circle-o').addClass('fa-circle');
 			$(this).prevAll('.dot').find('.fa').removeClass('fa-circle-o').addClass('fa-circle');
 			$(this).nextAll('.dot').find('.fa').removeClass('fa-circle').addClass('fa-circle-o');

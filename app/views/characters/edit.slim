@@ -24,3 +24,24 @@
 		= form_for @character, url: {action: 'update'} do |f|
 			= f.hidden_field :id
 			= render partial: 'form', locals: {f: f}
+
+javascript:
+	$(document).ready(function () {
+		function formAutosave () {
+			var action = $('form').attr('action');
+			$.ajax({
+				type: 'POST',
+				url: action,
+				data: $('form').serialize(),
+				success: function(data) {
+					console.log('autosaved!');
+				}
+			});
+		}
+		$('form input, form textarea, form select').on('blur', function () {
+			formAutosave();
+		});
+		$('form input[type="hidden"], form input[type="checkbox"], form input[type="radio"]').on('change', function () {
+			formAutosave();
+		});
+	});
