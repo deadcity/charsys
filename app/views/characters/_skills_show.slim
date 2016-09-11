@@ -1,0 +1,40 @@
+.row
+  .small-4.columns
+    h3 Mental
+    table.skill_tables width="100%"
+      - @mental_skills.each do |skill|
+        tr
+          th
+            = skill.name
+          td
+            - (1..5).each do |i|
+              - if i <= @character[skill.name.downcase.gsub(" ", "_").to_sym]
+                <i class="fa fa-circle"></i> 
+              - else
+                <i class="fa fa-circle-o"></i> 
+  .small-4.columns
+    h3 Physical
+    table.skill_tables width="100%"
+      - @physical_skills.each do |skill|
+        tr
+          th
+            = skill.name
+          td
+            - (1..5).each do |i|
+              - if i <= @character[skill.name.downcase.gsub(" ", "_").to_sym]
+                <i class="fa fa-circle"></i> 
+              - else
+                <i class="fa fa-circle-o"></i> 
+  .small-4.columns
+    h3 Social
+    table.skill_tables width="100%"
+      - @social_skills.each do |skill|
+        tr
+          th
+            = skill.name
+          td
+            - (1..5).each do |i|
+              - if i <= @character[skill.name.downcase.gsub(" ", "_").to_sym]
+                <i class="fa fa-circle"></i> 
+              - else
+                <i class="fa fa-circle-o"></i> 
