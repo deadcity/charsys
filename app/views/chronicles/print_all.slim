@@ -226,7 +226,7 @@
 							= "#{flaw.flaw.name} "
 							- if flaw.flaw.requires_specification and flaw.specification.present?
 								= "(#{flaw.specification})"
-							div.description
+							.description
 								- if flaw.flaw.description.present?
 									= flaw.flaw.description
 								- elsif flaw.description.present?
