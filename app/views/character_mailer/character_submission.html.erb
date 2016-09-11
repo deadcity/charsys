@@ -7,6 +7,6 @@
     <h1>Dead City Productions Character System</h1>
     <h2>New Character Submission</h2>
     <p>Hi, <%= @st_name %>!</p>
-    <p>You've received a new character submission from <%= @user %> for your chronicle "<%= @character.chronicle.title %>. To review this submission, <%= link_to "click here", character_path(@character) %>.</p>
+    <p>You've received a new character submission from <%= @user %> for your chronicle "<%= @character.chronicle.title %>. To review this submission, <a href="http://characters.deadcityproductions.com#{character_path(@character)}">click here.</a>.</p>
   </body>
 </html>
