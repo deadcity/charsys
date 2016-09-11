@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911184631) do
+ActiveRecord::Schema.define(version: 20160911211452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,8 +111,8 @@ ActiveRecord::Schema.define(version: 20160911184631) do
     t.string   "power_stat"
     t.string   "resource"
     t.string   "morality"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "behavior_primary"
     t.string   "behavior_secondary"
     t.string   "question1"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20160911184631) do
     t.string   "affiliation"
     t.string   "sublineage"
     t.string   "flaw_name"
+    t.boolean  "status",             default: true
   end
 
   create_table "characters", force: :cascade do |t|
