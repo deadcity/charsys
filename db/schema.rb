@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911211452) do
+ActiveRecord::Schema.define(version: 20160911215404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 20160911211452) do
     t.string   "sublineage"
     t.string   "flaw_name"
     t.boolean  "status",             default: true
+    t.boolean  "has_touchstone"
   end
 
   create_table "characters", force: :cascade do |t|
@@ -199,6 +200,7 @@ ActiveRecord::Schema.define(version: 20160911211452) do
     t.integer  "behavior_primary_id"
     t.integer  "behavior_secondary_id"
     t.text     "wishlist"
+    t.text     "touchstones",           default: ""
   end
 
   create_table "chronicle_allows_character_types", force: :cascade do |t|
