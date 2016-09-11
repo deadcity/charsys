@@ -299,6 +299,11 @@
 					= @character.character_type.resource
 				- @character.max_resource.times do |i|
 					<i class="fa fa-square-o"></i> 
+	- if @character.character_type.has_touchstone
+		.row
+			.small-12.columns
+				h2 Touchstones
+				= raw @markdown.render(@character.touchstones)
 	/ QUESTIONNAIRE
 	.row
 		.small-12.columns
