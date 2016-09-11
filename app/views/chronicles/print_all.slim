@@ -289,6 +289,11 @@
 				.small-12.columns
 					h2 Touchstones
 					= raw @markdown.render(character.touchstones)
+		- elsif character.character_type.has_integrity_modifiers
+			.row
+				.small-12.columns
+					h2 Integrity Modifiers
+					= raw @markdown.render(character.integrity_modifiers)
 		.row
 			.small-12.columns
 				h2 Printed Notes
