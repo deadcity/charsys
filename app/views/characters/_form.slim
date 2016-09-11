@@ -383,9 +383,6 @@
 							textarea name="character[character_has_merits_attributes][][description]" class="desc-field" #{merit.description}
 						- else
 							input type="hidden" value="#{merit.description}" name="character[character_has_merits_attributes][][description]" class="desc-field"
-						input type="hidden" value="#{merit.id}" name="character[character_has_merits_attributes][][id]"
-						input type="hidden" value="#{merit.merit.id}" name="character[character_has_merits_attributes][][merit_id]"
-						input type="hidden" value="#{@character.id}" name="character[character_has_merits_attributes][][character_id]"
 						= button_tag 'Save', type: '', class: 'mini-button save-edits'
 					input type="checkbox" class="hide" name="character[character_has_merits_attributes][][_destroy]"
 - if @character_type.flaw_name.present?
@@ -759,6 +756,9 @@ javascript:
 			if (meritSpec == "true") {
 				newItem += " <span class='specification'></span>";
 			}
+			if (meritRatings > 1) {
+				newItem += " <span class='rating'></span>";
+			}
 			if (meritSpec == "true" || meritDesc == "true" || meritRatings.length > 1) {
 				newItem += " <i class='fa fa-pencil edit'></i> ";
 			}
@@ -782,11 +782,12 @@ javascript:
 			}
 
 			if (meritDesc == "true") {
-				newItem += "<textarea name='character[character_has_merits_attributes][][description]' class='desc-field'>Description</textarea>";
+				newItem += "<textarea name='character[character_has_merits_attributes][][description]' class='desc-field' placeholder='description'></textarea>";
 			} else {
 				newItem += "<input type='hidden' name='character[character_has_merits_attributes][][description]' value='' />";
 			}
-
+			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][id]' value='' />";
+			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][character_id]' value='#{@character.id}' />";
 			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][merit_id]' value='"+meritId+"' /><button class='save-edits mini-button'>Save</button></div>";
 
 			newItem += "</li>"
