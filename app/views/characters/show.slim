@@ -68,17 +68,21 @@
 					= @character.chronicle.title
 			
 	/ ATTRIBUTES
-	h2 Attributes
-	.show-for-medium-up
-		= render partial: "attributes_show"
-	.show-for-small
-		= render partial: "attributes_show_mobile"
+	.row
+		.small-12.columns
+			h2 Attributes
+			.show-for-medium-up
+				= render partial: "attributes_show"
+			.show-for-small
+				= render partial: "attributes_show_mobile"
 	/ SKILLS
-	h2 Skills
-	.show-for-medium-up
-		= render partial: "skills_show"
-	.show-for-small
-		= render partial: "skills_show_mobile"
+	.row
+		.small-12.columns
+			h2 Skills
+			.show-for-medium-up
+				= render partial: "skills_show"
+			.show-for-small
+				= render partial: "skills_show_mobile"
 	/ 
 	.row
 		.small-12.medium-6.columns
