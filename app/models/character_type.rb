@@ -22,4 +22,8 @@ class CharacterType < ActiveRecord::Base
 	def show_status
 		status ? 'Active' : 'Inactive'
 	end
+
+	def has_integrity_modifiers
+		self.morality == 'Integrity' ? true : false
+	end
 end
