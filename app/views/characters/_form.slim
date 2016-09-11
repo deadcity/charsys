@@ -327,7 +327,7 @@
 				h3
 					= power_type.name
 				select name="#{power_type.name.downcase.underscore}" id="#{power_type.name.downcase.underscore}"
-					- power_type.power_groups.each do |power_group|
+					- power_type.power_groups.order(:name).each do |power_group|
 						optgroup label="#{power_group.name}"
 							- power_group.powers.each do |power|
 								option value="#{power.id}" #{power.rating} - #{power.name}
