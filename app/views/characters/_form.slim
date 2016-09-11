@@ -594,6 +594,12 @@
 			h2 Touchstones
 			h3 <b>Note:</b> <a href="https://guides.github.com/features/mastering-markdown/">Markdown syntax</a> is supported for formatting in all text fields.
 			= f.text_area :touchstones, label: false
+- elsif @character.character_type.has_integrity_modifiers
+	.row
+		.small-12.columns
+			h2 Integrity Modifiers
+			h3 <b>Note:</b> <a href="https://guides.github.com/features/mastering-markdown/">Markdown syntax</a> is supported for formatting in all text fields.
+			= f.text_area :integrity_modifiers, label: false
 
 
 / QUESTIONNAIRE
