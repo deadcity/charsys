@@ -9,7 +9,7 @@
 	.small-4.columns
 		= f.label :user_id, "Player"
 		= f.hidden_field :user_id, value: @user.id
-		= "#{@user.first_name} #{@user.last_name}"
+		= @user.full_name
 .row
 	.small-4.columns
 		- if @character_type.lineage.present?

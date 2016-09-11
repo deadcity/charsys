@@ -15,7 +15,7 @@
 			.small-4.columns
 				h4 
 					strong Player:  
-					= "#{character.user.first_name} #{character.user.last_name}"
+					= character.user.full_name
 		.row
 			.small-4.columns
 				- if character.character_type.lineage.present?
