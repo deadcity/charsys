@@ -588,12 +588,18 @@
 	.small-2.columns
 		= f.text_field :initiative_mod
 
+- if @character_type.has_touchstone
+	.row
+	  .small-12.columns
+			h2 Touchstones
+			h3 <b>Note:</b> <a href="https://guides.github.com/features/mastering-markdown/">Markdown syntax</a> is supported for formatting in all text fields.
+			= f.text_area :touchstones, label: false
+
 
 / QUESTIONNAIRE
 .row
 	.small-12.columns
 		h2 Questionnaire
-		h3 <b>Note:</b> <a href="https://guides.github.com/features/mastering-markdown/">Markdown syntax</a> is supported for formatting in all text fields.
 		h3
 			= @character_type.question1
 		= f.text_area :answer1, label: false
