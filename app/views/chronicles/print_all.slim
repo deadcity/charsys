@@ -219,6 +219,18 @@
 							- if merit.merit.has_description
 								div.description
 									= "#{merit.description}"
+				h2 #{@character.character_type.flaw_name}
+				ul#flaws-list
+					- character.character_has_flaws.each do |flaw|
+						li
+							= "#{flaw.flaw.name} "
+							- if flaw.flaw.requires_specification and flaw.specification.present?
+								= "(#{flaw.specification})"
+							.description
+								- if flaw.flaw.description.present?
+									= flaw.flaw.description
+								- elsif flaw.description.present?
+									= flaw.description
 			.small-4.columns
 				h4
 					| Size:  
