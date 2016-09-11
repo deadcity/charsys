@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	def create
 		user = params[:user]
-		@user = User.new({username: user[:username], name: user[:name], email: user[:email], password: params[:password]})
+		@user = User.new({username: user[:username], name: user[:name], first_name: user[:first_name], last_name: user[:last_name], email: user[:email], password: params[:password]})
 		if @user.valid?
 			@user.save!
 			flash[:success] = "Thanks for registering! You're now logged in."
@@ -33,6 +33,6 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:username, :name, :email, :password)
+		params.require(:user).permit(:username, :name, :first_name, :last_name, :email, :password)
 	end
 end
