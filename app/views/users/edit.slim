@@ -3,8 +3,12 @@
 		fieldset
 			legend Update your account
 			<div class="row">
-				= label_tag :name, "Printed Name"
-				<input type="text" name="user[name]" id="name" placeholder="Name" value="#{@user.name}" />
+				= label_tag :first_name, "First Name"
+				<input type="text" name="user[first_name]" id="first_name" placeholder="First Name" value="#{@user.first_name}" />
+			</div>
+			<div class="row">
+				= label_tag :last_name, "Last Name"
+				<input type="text" name="user[last_name]" id="last_name" placeholder="Last Name" value="#{@user.last_name}" />
 			</div>
 			<div class="row">
 				= label_tag :current_password, "Current Password"
