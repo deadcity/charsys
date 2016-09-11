@@ -121,3 +121,11 @@
     line-height: 1em;
   }
 }
+
+.mobile_tables {
+  white-space: nowrap;
+
+  td {
+    width: 50%;
+  }
+}
