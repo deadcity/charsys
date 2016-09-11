@@ -21,9 +21,9 @@
     - if @chronicle.sts
       - @chronicle.sts.each_with_index do |storyteller, index|
         - if index == @chronicle.sts.length - 1
-          = storyteller.name
+          = storyteller.full_name
         - else
-          = storyteller.name
+          = storyteller.full_name
           | , 
     - if @characters[0]
       table#character_index_table
@@ -42,7 +42,7 @@
               td
                 = link_to character.name, character_path(character)
               td
-                = character.user.name
+                = character.user.full_name
               td
                 - if character.character_type.affiliation.present?
                   = Affiliation.find_by(id: character.affiliation_id).name

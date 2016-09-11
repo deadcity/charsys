@@ -1,8 +1,8 @@
 class CharacterMailer < ActionMailer::Base
 	def character_submission(character, st)
 		@character = character
-		@user = @character.user.name
-		@st_name = st.name
+		@user = @character.user.full_name
+		@st_name = st.full_name
 		mail(
       :subject => "[DCP Character System] New character submission from #{@user}",
       :to  => st.email,
