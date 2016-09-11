@@ -1,5 +1,6 @@
 class CharacterType < ActiveRecord::Base
 	validates :name, presence: true
+	validates :status, presence: true
 
 	has_many :chronicles
 	has_many :characters
@@ -16,4 +17,9 @@ class CharacterType < ActiveRecord::Base
 	has_many :behavior_primaries, through: :character_type_has_behavior_primaries
 	has_many :behavior_secondaries, through: :character_type_has_behavior_secondaries
 	has_many :flaws
+
+
+	def show_status
+		status ? 'Active' : 'Inactive'
+	end
 end

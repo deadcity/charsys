@@ -4,7 +4,7 @@
 		= f.text_field :name
 	.small-4.columns
 		= f.label :character_type
-		= collection_select(:character, :character_type_id, CharacterType.all, :id, :name, {}, {:"aria-describedby" => 'characterTypeHelp'})
+		= collection_select(:character, :character_type_id, CharacterType.all.where(status: true), :id, :name, {}, {:"aria-describedby" => 'characterTypeHelp'})
 		p#characterTypeHelp.help-text.hide It's recommended that you save your character and reload this form after changing character type.
 	.small-4.columns
 		= f.label :user_id, "Player"
