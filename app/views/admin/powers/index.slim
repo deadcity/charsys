@@ -1,0 +1,33 @@
+.row.character_index_page
+	.small-12.small-centered.columns
+		h1 Powers
+
+		p.text-right
+			= link_to "Create New", new_admin_power_path, class: "button button-primary"
+
+		- if @powers.present?
+			- @powers.each do |power_type|
+				h2 
+					= power_type.name
+
+				- power_type.power_groups.each do |power_group|
+					h3
+						= power_group.name
+					table
+						tr
+							th Power Name
+							th Rating
+							th Power Type
+							th Power Group
+						- if power_group.powers.present?
+							- power_group.powers.each do |power|
+								tr
+									td 
+										= link_to power.name, admin_power_path(power)
+									td
+										= power.rating
+						- else
+							tr
+								td.text-center colspan="2" No power types found.
+
+		
