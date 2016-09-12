@@ -20,6 +20,10 @@ table
 		td
 			= f.check_box :has_description, label: false
 	tr
+		th Is Active?
+		td
+			= f.check_box :status, label: false
+	tr
 		td colspan=2
 			= f.hidden_field :id
 			= f.button "Save", type: 'submit', class: 'button'

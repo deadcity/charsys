@@ -11,6 +11,7 @@ default: &default
 
 development:
   <<: *default
+  host: localhost
   database: charsys
 
 # Warning: The database defined as "test" will be erased and

@@ -1,0 +1,7 @@
+	.form-group
+		= f.label :name
+		= f.text_field :name, class: "form-control"
+	.form-group
+		= f.label :character_type_id, "Character Type"
+		= collection_select(:power_type, :character_type_id, CharacterType.all, :id, :name, {}, {class: 'form-control'})
+	= f.button "Create", type: "submit", class: "btn btn-primary"
