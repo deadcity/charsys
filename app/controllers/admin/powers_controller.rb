@@ -14,7 +14,12 @@ module Admin
 
 		def create
 			@power = Power.new(powers_params)
-			
+			if @power.save!
+				flash[:success] = "#{@power.name} successfully created."
+				redirect_to admin_powers_path
+			else
+				flash[:error] = "There was an error creating your power."
+				redirect_to new_admin_power_path
 		end
 
 		def edit
