@@ -9,15 +9,17 @@
 					tr 
 						th Name
 						th
+						th
 				tbody
 					- @chronicles.each do |chronicle|
 						tr
 							td
 								= link_to chronicle.title, chronicle_path(id: chronicle.id)
 							td
-								- if chronicle.sts.first == current_user
-									= form_tag(chronicle_path(chronicle), method: 'DELETE') do
-										= button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to permanently delete this chronicle?");', class: 'button mini-button'
+								= link_to "Edit", edit_chronicle_path(chronicle), class: 'button mini-button'
+							td
+								= form_tag(chronicle_path(chronicle), method: 'DELETE') do
+									= button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to permanently delete this chronicle?");', class: 'button mini-button'
 							
 		- else
 			| You don't have any chronicles yet! Try <a href="#{new_chronicle_path}">making one now</a>!

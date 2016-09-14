@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914044727) do
+ActiveRecord::Schema.define(version: 20160914050102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,6 +217,13 @@ ActiveRecord::Schema.define(version: 20160914044727) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "chronicles_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "chronicle_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "downtime_actions", force: :cascade do |t|
     t.integer "character_id"
     t.integer "game_id"
@@ -308,13 +315,6 @@ ActiveRecord::Schema.define(version: 20160914044727) do
     t.integer  "skill_category_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-  end
-
-  create_table "user_administers_chronicles", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "chronicle_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
   end
 
   create_table "user_is_admins", force: :cascade do |t|
