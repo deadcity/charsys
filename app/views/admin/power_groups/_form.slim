@@ -1,0 +1,6 @@
+	.form-group
+		= f.text_field :name, class: "form-control"
+	.form-group
+		= f.label :power_type_id, "Power Types"
+		= collection_select(:power_group, :power_type_ids, PowerType.all, :id, :name, {selected: @power_group.power_type_ids}, {class: 'form-control', multiple: 'multiple'})
+	= f.button "Create", type: "submit", class: "btn btn-primary"
