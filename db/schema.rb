@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914042211) do
+ActiveRecord::Schema.define(version: 20160914044727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,11 +101,6 @@ ActiveRecord::Schema.define(version: 20160914042211) do
     t.integer "lineage_id"
   end
 
-  create_table "character_type_has_power_types", force: :cascade do |t|
-    t.integer "character_type_id"
-    t.integer "power_type_id"
-  end
-
   create_table "character_types", force: :cascade do |t|
     t.string   "name"
     t.string   "power_stat"
@@ -129,6 +124,11 @@ ActiveRecord::Schema.define(version: 20160914042211) do
     t.string   "flaw_name"
     t.boolean  "status",             default: true
     t.boolean  "has_touchstone"
+  end
+
+  create_table "character_types_power_types", force: :cascade do |t|
+    t.integer "character_type_id"
+    t.integer "power_type_id"
   end
 
   create_table "characters", force: :cascade do |t|

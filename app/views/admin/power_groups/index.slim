@@ -1,7 +1,9 @@
 .row.character_index_page
 	.small-12.small-centered.columns
 
-		h1 Power Groups
+		h2 
+			| Power Groups 
+			= link_to "New Power Group", new_admin_power_group_path, class: "button new_power_group_button"
 		table
 			tr
 				th Power Group
@@ -25,4 +27,4 @@
 					td.text-center colspan="2" No power groups found.
 
 		p.text-right
-			= link_to "Create New", new_admin_power_group_path, class: "btn btn-primary"
+			= link_to "Create New", new_admin_power_group_path, class: "button"
