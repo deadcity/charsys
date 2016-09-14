@@ -26,4 +26,8 @@ class CharacterType < ActiveRecord::Base
 	def has_integrity_modifiers
 		self.morality == 'Integrity' ? true : false
 	end
+
+	def to_s
+		name
+	end
 end

@@ -6,16 +6,26 @@
 			tr
 				th Power Type
 				th Character Type
+				th Status
+				th Edit
+				th Delete
 			- if @power_types.present?
 				- @power_types.each do |power_type|
 					tr
 						td 
 							= link_to power_type.name, admin_power_type_path(power_type)
 						td
-							= power_type.character_type
+							= power_type.character_types.join(", ")
+						td
+							= power_type.status
+						td
+							= link_to "Edit", edit_admin_power_type_path(power_type), class: 'button mini-button'
+						td
+							= form_tag(admin_power_type_path(power_type), method: 'DELETE') do
+								= button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to delete this power type?");', class: 'button mini-button'
 			- else
 				tr
 					td.text-center colspan="2" No power types found.
 
 		p.text-right
-			= link_to "Create New", new_admin_power_type_path, class: "btn btn-primary"
+			= link_to "Create New", new_admin_power_type_path, class: "button"

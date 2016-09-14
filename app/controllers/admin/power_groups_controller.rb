@@ -50,7 +50,7 @@ module Admin
 		private
 
 		def power_groups_params
-			params.require(:power_group).permit(:name, :character_type_id, :power_type_ids)
+			params.require(:power_group).permit(:name, :power_types, :status, :power_type_ids)
 		end
 	end
 end

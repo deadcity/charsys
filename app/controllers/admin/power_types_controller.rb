@@ -25,7 +25,7 @@ module Admin
 		end
 
 		def edit
-			@powerType = PowerType.find(params[:id])
+			@power_type = PowerType.find(params[:id])
 			@character_types = CharacterType.all
 		end
 
