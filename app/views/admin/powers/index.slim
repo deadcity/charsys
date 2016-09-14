@@ -13,12 +13,16 @@
 				- power_type.power_groups.each do |power_group|
 					h3
 						= power_group.name
+
+					p
+						= "Belongs to: "
+						= power_group.power_types.join(", ")
 					table
 						tr
 							th Power Name
 							th Rating
-							th Power Type
-							th Power Group
+							th Edit
+							th Delete
 						- if power_group.powers.present?
 							- power_group.powers.each do |power|
 								tr
@@ -26,6 +30,11 @@
 										= link_to power.name, admin_power_path(power)
 									td
 										= power.rating
+									td
+										= link_to "Edit", edit_admin_power_path(power), class: 'button mini-button'
+									td
+										= form_tag(admin_power_path(power), method: 'DELETE') do
+											= button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to delete this power?");', class: 'button mini-button'
 						- else
 							tr
 								td.text-center colspan="2" No power types found.

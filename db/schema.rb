@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160912035355) do
+ActiveRecord::Schema.define(version: 20160914031103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -266,6 +266,11 @@ ActiveRecord::Schema.define(version: 20160912035355) do
     t.string  "name"
     t.integer "power_type_id"
     t.boolean "status",        default: true
+  end
+
+  create_table "power_groups_types", force: :cascade do |t|
+    t.integer "power_type_id"
+    t.integer "power_group_id"
   end
 
   create_table "power_types", force: :cascade do |t|

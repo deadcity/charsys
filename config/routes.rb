@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     resources :skills
     resources :lineages
     resources :powers
+    resources :power_groups
     resources :power_types
     resources :skill_categories
     resources :affiliations

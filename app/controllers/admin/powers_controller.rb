@@ -20,6 +20,7 @@ module Admin
 			else
 				flash[:error] = "There was an error creating your power."
 				redirect_to new_admin_power_path
+			end
 		end
 
 		def edit
