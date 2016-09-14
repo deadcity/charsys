@@ -2,7 +2,6 @@ module Admin
 	class PowerGroupsController < ApplicationController
 		def index
 			@power_groups = PowerGroup.all
-			puts @power_groups.inspect
 		end
 
 		def show
@@ -19,6 +18,7 @@ module Admin
 
 		def create
 			@power_group = PowerGroup.new(power_groups_params)
+			@power_group.power_type_ids = params[:power_group][:power_type_ids]
 			if @power_group.save!
 				flash[:success] = "The power group #{@power_group.name} was successfully created."
 				redirect_to admin_power_groups_path
@@ -30,6 +30,7 @@ module Admin
 
 		def update
 			@power_group = PowerGroup.find(params[:id])
+			@power_group.power_type_ids = params[:power_group][:power_type_ids]
 			if @power_group.update_attributes!(power_groups_params)
 				flash[:success] = "The power group #{@power_group.name} was successfully updated."
 				redirect_to admin_power_groups_path
@@ -50,7 +51,7 @@ module Admin
 		private
 
 		def power_groups_params
-			params.require(:power_group).permit(:name, :power_types, :status, :power_type_ids)
+			params.require(:power_group).permit(:name, :status, :power_type_ids)
 		end
 	end
 end
