@@ -22,15 +22,15 @@ class CharactersController < ApplicationController
 			@chronicle = Chronicle.last
 			@character = Character.new
 			@user = User.find_by_id(session[:user_id])
-			@chronicles = Chronicle.all
-			@character_type = CharacterType.first
-			@character_types = CharacterType.all
+			@chronicles = Chronicle.where({status: true})
+			@character_types = CharacterType.where({status: true})
+			@character_type = @character_types.first
 			@mental_skills = Skill.where({skill_category: 1})
 			@physical_skills = Skill.where({skill_category: 2})
 			@social_skills = Skill.where({skill_category: 3})
 			@skill_categories = SkillCategory.all
 			@merit_categories = MeritCategory.all
-			@merits = Merit.all
+			@merits = Merit.where({status: true})
 			@flaws = Flaw.where(character_type: @character_type)
 			@character = Character.new
 		else
@@ -79,16 +79,16 @@ class CharactersController < ApplicationController
 		else
 			@user = @character.user
 			@chronicle = @character.chronicle
-			@chronicles = Chronicle.all
+			@chronicles = Chronicle.where({status: true})
 			@character_type = @character.character_type
-			@character_types = CharacterType.all
+			@character_types = CharacterType.where({status: true})
 			@mental_skills = Skill.where({skill_category: 1})
 			@physical_skills = Skill.where({skill_category: 2})
 			@social_skills = Skill.where({skill_category: 3})
 			@skill_categories = SkillCategory.all
 			@mental_attributes = Attrib.where({attribute_category: 1})
 			@merit_categories = MeritCategory.all
-			@merits = Merit.all
+			@merits = Merit.where({status: true})
 			@flaws = Flaw.where(character_type: @character_type)
 			@status_array = Array.new
 			CHARACTER_STATUS.each_with_index do |i, status|
