@@ -1,5 +1,7 @@
-h2 Edit Merit: #{@merit.name}
+.row.character_index_page
+	.small-12.small-centered.columns
+		h2 Edit Merit: #{@merit.name}
 
-= form_for @merit, url: {action: 'update'} do |f|
-	= render partial: 'form', locals: {f: f}
-	
+		= form_for @merit, url: {action: 'update'} do |f|
+			= render partial: 'form', locals: {f: f}
+			

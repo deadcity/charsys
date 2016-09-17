@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914050102) do
+ActiveRecord::Schema.define(version: 20160917033221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -213,8 +213,9 @@ ActiveRecord::Schema.define(version: 20160914050102) do
 
   create_table "chronicles", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "status",     default: true
   end
 
   create_table "chronicles_users", force: :cascade do |t|
@@ -266,7 +267,7 @@ ActiveRecord::Schema.define(version: 20160914050102) do
     t.boolean "has_description"
     t.string  "allowed_ratings"
     t.integer "merit_category_id"
-    t.boolean "status"
+    t.boolean "status",            default: true
   end
 
   create_table "power_groups", force: :cascade do |t|
@@ -282,9 +283,9 @@ ActiveRecord::Schema.define(version: 20160914050102) do
 
   create_table "power_types", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "status"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "status",     default: true
   end
 
   create_table "powers", force: :cascade do |t|

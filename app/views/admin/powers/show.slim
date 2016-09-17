@@ -1,7 +1,19 @@
-dl.dl-horizontal
-	dt Name
-	dd
-		= @power.name
-	dt Belongs to Power Group
-	dd
-		= @power.power_group.name
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Powers', admin_powers_path
+	  li.current
+	    = link_to "#{@power.name}", admin_power_path(@power)
+
+	.small-12.small-centered.columns
+		dl.dl-horizontal
+			dt Name
+			dd
+				= @power.name
+			dt Belongs to Power Group:
+			dd
+				= @power.power_group.name
+
+		= link_to 'Edit Power', edit_admin_power_path(@power), class: 'button mini-button'
