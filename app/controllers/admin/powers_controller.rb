@@ -46,7 +46,7 @@ module Admin
 		private
 
 		def powers_params
-			params.require(:power).permit(:name, :power_group_id, :status)
+			params.require(:power).permit(:name, :power_group_ids, :status)
 		end
 	end
 end
