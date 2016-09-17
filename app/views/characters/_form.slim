@@ -322,14 +322,14 @@
 	h2 Other Traits
 .row
 	#powers-add
-		- @character_type.power_types.each do |power_type|
+		- @character_type.power_types.where({status: true}).each do |power_type|
 			.small-6.columns
 				h3
 					= power_type.name
 				select name="#{power_type.name.downcase.underscore}" id="#{power_type.name.downcase.underscore}"
-					- power_type.power_groups.order(:name).each do |power_group|
+					- power_type.power_groups.order(:name).where({status: true}).each do |power_group|
 						optgroup label="#{power_group.name}"
-							- power_group.powers.each do |power|
+							- power_group.powers.where({status: true}).each do |power|
 								option value="#{power.id}" #{power.rating} - #{power.name}
 				= button_tag 'Add', type: 'submit', class: 'mini-button', id: "#{power_type.name.downcase.underscore}_add"
 
