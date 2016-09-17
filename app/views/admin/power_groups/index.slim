@@ -1,9 +1,15 @@
 .row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li.current
+	    = link_to 'Power Groups', admin_power_groups_path
+
 	.small-12.small-centered.columns
 
 		h2 
 			| Power Groups 
-			= link_to "New Power Group", new_admin_power_group_path, class: "button new_power_group_button"
+			= link_to "New Power Group", new_admin_power_group_path, class: "button new_power_group_button mini-button"
 		table
 			tr
 				th Power Group

@@ -1,4 +1,12 @@
-.row.character_index_page
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Merits', admin_merits_path
+	  li.current
+	    = link_to 'New', new_admin_merit_path
+	    
 	.small-12.small-centered.columns
 
 		h2 New Merit

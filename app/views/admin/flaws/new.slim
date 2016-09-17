@@ -1,7 +1,13 @@
-.row.character_form_page
-	.small-12.columns
-		h1
-			| New Flaw
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Flaws', admin_flaws_path
+	  li.current
+	    = link_to 'New', new_admin_flaw_path
+	.small-12.small-centered.columns
+		h2 New Flaw
 
 		= form_for @flaw, url: {action: 'create'} do |f|
 			= render partial: 'form', locals: {f: f}

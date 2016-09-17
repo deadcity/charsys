@@ -1,4 +1,9 @@
-.row.character_index_page
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li.current
+	    = link_to 'Merits', admin_merits_path
 	.small-12.small-centered.columns
 		h2 
 			| Merits 

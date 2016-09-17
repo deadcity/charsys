@@ -1,2 +1,16 @@
-= form_for @power_type, url: {action: 'update'} do |f|
-	= render partial: 'form', locals: {f: f}
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Power Types', admin_power_types_path
+	  li
+	  	= link_to @power_type.name, admin_power_type_path(@power_type)
+	  li.current
+	  	= link_to 'Edit', edit_admin_power_type_path(@power_type)
+
+	.small-12.small-centered.columns
+		h2 Edit Power Type
+
+		= form_for @power_type, url: {action: 'update'} do |f|
+			= render partial: 'form', locals: {f: f}

@@ -1,0 +1,25 @@
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Power Groups', admin_power_groups_path
+	  li.current
+	  	= link_to @power_group.name, admin_power_group_path(@power_group)
+
+	.small-12.small-centered.columns
+		dl.dl-horizontal
+			dt Name
+			dd
+				= @power_group.name
+			dt Belongs to Power Type
+			dd
+				= @power_group.power_types.join(", ")
+			dt Powers
+			dd
+				ul
+					- @power_group.powers.each do |power|
+						li
+							= link_to power.name, admin_power_path(power)
+
+		= link_to "Edit Power Group", edit_admin_power_group_path(@power_group), class: 'button mini-button'
