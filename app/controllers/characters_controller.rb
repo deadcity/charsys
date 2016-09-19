@@ -29,7 +29,7 @@ class CharactersController < ApplicationController
 			@physical_skills = Skill.where({skill_category: 2})
 			@social_skills = Skill.where({skill_category: 3})
 			@skill_categories = SkillCategory.all
-			@merit_categories = MeritCategory.all
+			@merit_categories = MeritCategory.where({status: true})
 			@merits = Merit.where({status: true})
 			@flaws = Flaw.where(character_type: @character_type)
 			@character = Character.new({character_type: @character_type})
@@ -87,7 +87,7 @@ class CharactersController < ApplicationController
 			@social_skills = Skill.where({skill_category: 3})
 			@skill_categories = SkillCategory.all
 			@mental_attributes = Attrib.where({attribute_category: 1})
-			@merit_categories = MeritCategory.all
+			@merit_categories = MeritCategory.where({status: true})
 			@merits = Merit.where({status: true})
 			@flaws = Flaw.where(character_type: @character_type)
 			@status_array = Array.new
