@@ -45,7 +45,8 @@ class ChroniclesController < ApplicationController
 		if @chronicle.nil?
 			raise ActionController::RoutingError.new('Not Found')
 		else
-			@characters = @chronicle.characters.all
+			@active_characters = @chronicle.characters.where(status: 3)
+			@inactive_characters = @chronicle.characters.where.not(status: 3)
 		end
 	end
 
