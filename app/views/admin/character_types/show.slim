@@ -1,0 +1,30 @@
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Character Types', admin_character_types_path
+	  li.current
+	    = link_to "#{@character_type.name}", admin_character_types_path(@character_type)
+
+	.small-12.small-centered.columns
+
+		dl.dl-horizontal
+			dt Name
+			dd
+				= @character_type.name
+			dt Power Stat
+			dd
+				= @character_type.power_stat
+			dt Resource
+			dd
+				= @character_type.resource
+			dt Morality
+			dd
+				= @character_type.morality
+			dt Behavior (Primary)
+			dd
+				= @character_type.behavior_primary
+			dt Behavior (Secondary)
+			dd
+				= @character_type.behavior_secondary
