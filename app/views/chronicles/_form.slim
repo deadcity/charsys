@@ -2,6 +2,8 @@
 
 = label_tag "Storytellers"
 = collection_check_boxes :chronicle, :user_ids, User.all, :id, :full_name, {selected: @chronicle.user_ids}, {multiple: 'multiple'}
+= f.label :status, "Active?"
+= f.check_box :status, label: false
 br
 br 
 = f.submit "Submit", class: "button"
