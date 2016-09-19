@@ -13,7 +13,7 @@
 			tr
 				th Power Type
 				th Character Type
-				th Status
+				th Active?
 				th Edit
 				th Delete
 			- if @power_types.present?
@@ -24,7 +24,7 @@
 						td
 							= power_type.character_types.join(", ")
 						td
-							= power_type.status
+							= (power_type.status) ? "Yes" : "No"
 						td
 							= link_to "Edit", edit_admin_power_type_path(power_type), class: 'button mini-button'
 						td
