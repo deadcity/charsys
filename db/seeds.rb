@@ -242,15 +242,6 @@ powers = Power.create([
 	{name: 'Resurrection', rating: 5, power_group_id: 36}
 	])
 
-character_type_has_power_type = CharacterTypeHasPowerType.create([
-	{character_type_id: 1, power_type_ids: [1]},
-	{character_type_id: 1, power_type_ids: [2]},
-	{character_type_id: 1, power_type_ids: [3]},
-	{character_type_id: 1, power_type_ids: [4]},
-	{character_type_id: 2, power_type_ids: [1]},
-	{character_type_id: 4, power_type_ids: [5]}
-	])
-
 lineages = Lineage.create([
 	{name: 'Daeva'},
 	{name: 'Gangrel'},
