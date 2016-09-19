@@ -34,7 +34,7 @@ module Admin
 				redirect_to admin_merit_categories_path
 			else
 				flash[:error] = "There was an error updating your merit category."
-				redirect_to edit_admin_merit_category_path
+				redirect_to edit_admin_merit_category_path(params[:id])
 			end
 		end
 
@@ -46,7 +46,7 @@ module Admin
 		private
 
 		def merit_categories_params
-			params.require(:merit_category).permit(:id, :name, :status)
+			params.require(:merit_category).permit(:id, :merit_category, :status)
 		end
 	end
 end
