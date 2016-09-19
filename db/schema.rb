@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160917033221) do
+ActiveRecord::Schema.define(version: 20160919034421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,11 @@ ActiveRecord::Schema.define(version: 20160917033221) do
   create_table "character_type_has_lineages", force: :cascade do |t|
     t.integer "character_type_id"
     t.integer "lineage_id"
+  end
+
+  create_table "character_type_has_power_types", force: :cascade do |t|
+    t.integer "character_type_id"
+    t.integer "power_type_id"
   end
 
   create_table "character_types", force: :cascade do |t|
@@ -258,7 +263,8 @@ ActiveRecord::Schema.define(version: 20160917033221) do
   end
 
   create_table "merit_categories", force: :cascade do |t|
-    t.string "merit_category"
+    t.string  "merit_category"
+    t.boolean "status",         default: true
   end
 
   create_table "merits", force: :cascade do |t|
@@ -316,6 +322,13 @@ ActiveRecord::Schema.define(version: 20160917033221) do
     t.integer  "skill_category_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+  end
+
+  create_table "user_administers_chronicles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "chronicle_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "user_is_admins", force: :cascade do |t|
