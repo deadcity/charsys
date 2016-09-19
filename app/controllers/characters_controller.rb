@@ -32,7 +32,7 @@ class CharactersController < ApplicationController
 			@merit_categories = MeritCategory.all
 			@merits = Merit.where({status: true})
 			@flaws = Flaw.where(character_type: @character_type)
-			@character = Character.new
+			@character = Character.new({character_type: @character_type})
 		else
 			redirect_to login_path
 		end
