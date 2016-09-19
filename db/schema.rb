@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911222852) do
+ActiveRecord::Schema.define(version: 20160919034421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,11 @@ ActiveRecord::Schema.define(version: 20160911222852) do
     t.boolean  "has_touchstone"
   end
 
+  create_table "character_types_power_types", force: :cascade do |t|
+    t.integer "character_type_id"
+    t.integer "power_type_id"
+  end
+
   create_table "characters", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -213,8 +218,16 @@ ActiveRecord::Schema.define(version: 20160911222852) do
 
   create_table "chronicles", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "status",     default: true
+  end
+
+  create_table "chronicles_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "chronicle_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "downtime_actions", force: :cascade do |t|
@@ -250,7 +263,8 @@ ActiveRecord::Schema.define(version: 20160911222852) do
   end
 
   create_table "merit_categories", force: :cascade do |t|
-    t.string "merit_category"
+    t.string  "merit_category"
+    t.boolean "status",         default: true
   end
 
   create_table "merits", force: :cascade do |t|
@@ -259,25 +273,34 @@ ActiveRecord::Schema.define(version: 20160911222852) do
     t.boolean "has_description"
     t.string  "allowed_ratings"
     t.integer "merit_category_id"
+    t.boolean "status",            default: true
   end
 
   create_table "power_groups", force: :cascade do |t|
     t.string  "name"
     t.integer "power_type_id"
+    t.boolean "status",        default: true
+  end
+
+  create_table "power_groups_types", force: :cascade do |t|
+    t.integer "power_type_id"
+    t.integer "power_group_id"
   end
 
   create_table "power_types", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "status",     default: true
   end
 
   create_table "powers", force: :cascade do |t|
     t.string   "name"
     t.integer  "power_group_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "rating"
+    t.boolean  "status",         default: true
   end
 
   create_table "skill_categories", force: :cascade do |t|

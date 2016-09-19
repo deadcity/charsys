@@ -1,0 +1,14 @@
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Powers', admin_powers_path
+	  li.current
+	    = link_to "New", new_admin_power_path
+
+	.small-12.small-centered.columns
+		h2 New Power
+
+		= form_for @power, url: {action: 'create'} do |f|
+			= render partial: 'form', locals: {f: f}

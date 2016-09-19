@@ -1,0 +1,12 @@
+	.form-group
+		= f.text_field :name, class: "form-control"
+	.form-group
+		= f.label :status, "In Use?"
+		= f.check_box :status, label: false
+	.form-group
+		= f.label :power_type_id, "Power Type"
+		= f.collection_radio_buttons(:power_type_ids, PowerType.all.order(:name), :id, :name, {selected: @power_group.power_type_ids}, {class: 'form-control'}) do |b|
+			.radio_field
+				= b.radio_button
+				= b.label
+	= f.button "Create", type: "submit", class: "btn btn-primary"

@@ -1,0 +1,25 @@
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Merit Categories', admin_merit_categories_path
+	  li.current
+	    = link_to @merit_category.merit_category, admin_merit_category_path(@merit_category)
+	.small-12.small-centered.columns
+
+		dl
+			dt Name
+			dd #{@merit_category.merit_category}
+			dt In Use?
+			dd
+				= (@merit_category.status) ? "Yes" : "No"
+			dt Merits
+			dd
+				- if @merit_category.merits.present?
+					ul
+						- @merit_category.merits.each do |merit|
+							li
+								= link_to merit.name, admin_merit_path(merit)
+
+		= link_to "Edit Merit Category", edit_admin_merit_category_path(@merit_category), class: 'button'

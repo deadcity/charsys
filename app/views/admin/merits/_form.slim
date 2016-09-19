@@ -11,14 +11,21 @@ table
 		th Allowed Ratings
 		td
 			= f.text_field :allowed_ratings, label: false
+			p.help-text Enter as a comma-separated list of possible ratings surrounded by brackets, e.g. [1] or [2,3]
 	tr
 		th Has Specification?
 		td
 			= f.check_box :has_specification, label: false
+			p.help-text A specification is a short phrase indicating what the merit is or what it applies to e.g. Police, Politics, a specific character or NPC's name.
 	tr
 		th Has Description?
 		td
 			= f.check_box :has_description, label: false
+			p.help-text A description is a longer block of text that describes the merit in more detail, such as the skills of an NPC retainer or the nature of help a mentor can provide.
+	tr
+		th Is Active?
+		td
+			= f.check_box :status, label: false
 	tr
 		td colspan=2
 			= f.hidden_field :id

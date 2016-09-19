@@ -1,0 +1,39 @@
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li.current
+	    = link_to 'Power Groups', admin_power_groups_path
+
+	.small-12.small-centered.columns
+
+		h2 
+			| Power Groups 
+			= link_to "New Power Group", new_admin_power_group_path, class: "button new_power_group_button mini-button"
+		table
+			tr
+				th Power Group
+				th Power Type(s)
+				th In Use?
+				th Edit
+				th Delete
+			- if @power_groups.present?
+				- @power_groups.each do |power_group|
+					tr
+						td 
+							= link_to power_group.name, admin_power_group_path(power_group)
+						td
+							= power_group.power_types.join(", ")
+						td
+							= (power_group.status) ? "Yes" : "No"
+						td
+							= link_to "Edit", edit_admin_power_group_path(power_group), class: 'button mini-button'
+						td
+							= form_tag(admin_power_group_path(power_group), method: 'DELETE') do
+								= button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to delete this power group?");', class: 'button mini-button'
+			- else
+				tr
+					td.text-center colspan="2" No power groups found.
+
+		p.text-right
+			= link_to "Create New", new_admin_power_group_path, class: "button"

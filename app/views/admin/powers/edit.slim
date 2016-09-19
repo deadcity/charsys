@@ -1,0 +1,17 @@
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Powers', admin_powers_path
+	  li
+	  	= link_to @power.name, admin_power_path(@power)
+	  li.current
+	    = link_to "Edit", edit_admin_power_path(@power)
+
+	.small-12.small-centered.columns
+
+		h2 Edit Power
+
+		= form_for @power, url: {action: 'update'} do |f|
+			= render partial: 'form', locals: {f: f}

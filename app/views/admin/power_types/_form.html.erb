@@ -1,9 +1,0 @@
-	<div class="form-group">
-		<%= f.label :name %>
-		<%= f.text_field :name, class: 'form-control' %>
-	</div>
-	<div class="form-group">
-		<%= f.label :character_type_id, "Character Type" %>
-		<%= collection_select(:power_type, :character_type_id, CharacterType.all, :id, :name, {}, {class: 'form-control'}) %>
-	</div>
-	<button class="btn btn-primary" type="submit">Create</button>

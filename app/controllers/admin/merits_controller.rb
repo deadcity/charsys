@@ -41,7 +41,7 @@ module Admin
 		private
 
 		def merits_params
-			params.require(:merit).permit(:name, :allowed_ratings, :has_specification, :has_description, :merit_category_id)
+			params.require(:merit).permit(:name, :status, :allowed_ratings, :has_specification, :has_description, :merit_category_id, :status)
 		end
 	end
 end

@@ -1,6 +1,15 @@
-.row.character_form_page
-	.small-12.columns
-		h1
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Flaws', admin_flaws_path
+	  li
+	    = link_to @flaw.name, admin_flaw_path(@flaw)
+	  li.current
+	  	= link_to 'Edit', edit_admin_flaw_path(@flaw)
+	.small-12.small-centered.columns
+		h2
 			| Edit Flaw
 
 		= form_for @flaw, url: {action: 'update'} do |f|

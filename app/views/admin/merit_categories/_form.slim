@@ -1,0 +1,6 @@
+	.form-group
+		= f.text_field :merit_category, label: "Name", class: "form-control"
+	.form-group
+		= f.label :status, "In Use?"
+		= f.check_box :status, label: false
+	= f.button "Create", type: "submit", class: "btn btn-primary"

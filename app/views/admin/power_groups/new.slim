@@ -1,0 +1,14 @@
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Power Groups', admin_power_groups_path
+	  li.current
+	  	= link_to "New", new_admin_power_group_path
+
+	.small-12.small-centered.columns
+		h2 New Power Group
+
+		= form_for @power_group, url: {action: 'create'} do |f|
+			= render partial: 'form', locals: {f: f}

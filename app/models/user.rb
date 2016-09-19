@@ -8,8 +8,7 @@ class User < ActiveRecord::Base
 	validates :username, :email, uniqueness: true, presence: true
 
 	has_many :characters
-	has_many :user_administers_chronicles
-	has_many :chronicles, :through => :user_administers_chronicles
+	has_and_belongs_to_many :chronicles
 
 	def full_name
 		"#{first_name} #{last_name}"

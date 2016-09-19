@@ -1,0 +1,9 @@
+	.form-group
+		= f.text_field :name, class: "form-control"
+	.form-group
+		= f.label :status, "Active?"
+		= f.check_box :status, label: false
+	.form-group
+		= f.label :power_group_id, "Power Group"
+		= grouped_collection_select(:power_group, :power_group_id, PowerType.all.order(:name), :power_groups, :name, :id, :name, {}, {class: 'form-control'})
+	= f.button "Create", type: "submit", class: "btn btn-primary"

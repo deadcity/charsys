@@ -1,5 +1,16 @@
-h2 Edit Merit: #{@merit.name}
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Merits', admin_merits_path
+	  li
+	    = link_to @merit.name, admin_merit_path(@merit)
+	  li.current
+	  	= link_to 'Edit', edit_admin_merit_path(@merit)
+	.small-12.small-centered.columns
+		h2 Edit Merit: #{@merit.name}
 
-= form_for @merit, url: {action: 'update'} do |f|
-	= render partial: 'form', locals: {f: f}
-	
+		= form_for @merit, url: {action: 'update'} do |f|
+			= render partial: 'form', locals: {f: f}
+			
