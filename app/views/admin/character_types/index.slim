@@ -15,13 +15,18 @@
 				th In Use?
 				th Edit
 				th Delete
-			- @character_types.each do |character_type|
+			- if @character_types.present?
+				- @character_types.each do |character_type|
+					tr
+						td
+							= link_to character_type.name, admin_character_type_path(character_type)
+						td
+							= (character_type.status) ? "Yes" : "No"
+						td
+							= link_to "Edit", edit_admin_character_type_path(character_type)
+						td
+							= link_to "Delete", admin_character_type_path(character_type, method: 'delete')
+			- else
 				tr
-					td
-						= link_to character_type.name, admin_character_type_path(character_type)
-					td
-						= (@character_type.status) ? "Yes" : "No"
-					td
-						= link_to "Edit", edit_admin_character_type_path(character_type)
-					td
-						= link_to "Delete", admin_character_type_path(character_type, method: 'delete')
+					td colspan="4"
+						= "No character types to display."
