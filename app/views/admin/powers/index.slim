@@ -25,7 +25,7 @@
 						tr
 							th Power Name
 							th Rating
-							th Active?
+							th In Use?
 							th Edit
 							th Delete
 						- if power_group.powers.present?
@@ -36,7 +36,7 @@
 									td
 										= power.rating
 									th
-										= power.status
+										= (power.status) ? "Yes" : "No"
 									td
 										= link_to "Edit", edit_admin_power_path(power), class: 'button mini-button'
 									td
