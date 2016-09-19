@@ -2,7 +2,7 @@
 		= f.text_field :name, class: "form-control"
 	.form-group
 		= f.label :character_type_id, "Character Type"
-		= f.collection_check_boxes(:character_type_ids, CharacterType.all, :id, :name, {selected: @power_type.character_type_ids}, {class: 'form-control', multiple: 'multiple'}) do |b|
+		= f.collection_check_boxes(:character_type_ids, CharacterType.all.order(:name), :id, :name, {selected: @power_type.character_type_ids}, {class: 'form-control', multiple: 'multiple'}) do |b|
 			.check_box_field
 				= b.check_box
 				= b.label
