@@ -3,12 +3,12 @@
 	  li
 	    = link_to 'Admin', admin_path
 	  li
-	    = link_to 'Character Types', admin_character_types_path
+	    = link_to 'Creature Types', admin_character_types_path
 	  li.current
 	    = link_to 'New', new_admin_character_type_path
 
 	.small-12.small-centered.columns
-		h2 New Character Type
+		h2 New Creature Type
 
 		= form_for @character_type, url: {action: 'create'} do |f|
 			= render partial: 'form', locals: {f: f}

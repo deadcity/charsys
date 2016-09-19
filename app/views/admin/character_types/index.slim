@@ -1,7 +1,12 @@
-.row.character_index_page
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li.current
+	    = link_to 'Creature Types', admin_character_types_path
 	.small-12.small-centered.columns
 		h2
-			| Character Types 
+			| Creature Types 
 			= link_to "New Character Type", new_admin_character_type_path, class: "button mini-button"
 
 		table.table

@@ -3,9 +3,9 @@
 	.small-4.columns
 		= f.text_field :name
 	.small-4.columns
-		= f.label :character_type
+		= f.label :character_type, "Creature Type"
 		= collection_select(:character, :character_type_id, CharacterType.all.where(status: true), :id, :name, {}, {:"aria-describedby" => 'characterTypeHelp'})
-		p#characterTypeHelp.help-text.hide It's recommended that you save your character and reload this form after changing character type.
+		p#characterTypeHelp.help-text.hide It's recommended that you save your character and reload this form after changing creature type.
 	.small-4.columns
 		= f.label :user_id, "Player"
 		= f.hidden_field :user_id, value: @user.id
