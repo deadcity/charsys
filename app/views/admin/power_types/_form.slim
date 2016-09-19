@@ -3,6 +3,6 @@
 	.form-group
 		= f.label :character_type_id, "Character Type"
 		= collection_select(:power_type, :character_type_ids, CharacterType.all, :id, :name, {selected: @power_type.character_type_ids}, {class: 'form-control', multiple: 'multiple'})
-		= f.label :status, "Active?"
+		= f.label :status, "In Use?"
 		= f.check_box :status, label: false
 	= f.button "Create", type: "submit", class: "btn btn-primary"

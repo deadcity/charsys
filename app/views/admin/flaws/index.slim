@@ -15,8 +15,8 @@
 					tr
 						th Name
 						th Character Type
-						th Specification?
-						th Description?
+						th Requires Specification?
+						th Requires Description?
 						th
 						th
 				tbody
@@ -25,8 +25,10 @@
 							td
 								= link_to flaw.name, admin_flaw_path(flaw)
 							td #{flaw.character_type.name}
-							td #{flaw.requires_specification}
-							td #{flaw.requires_description}
+							td 
+								= (flaw.requires_specification) ? "Yes" : "No"
+							td
+								= (flaw.requires_description) ? "Yes" : "No"
 							td
 								= link_to "Edit", edit_admin_flaw_path(flaw), class: 'button mini-button'
 							td

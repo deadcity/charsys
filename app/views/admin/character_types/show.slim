@@ -13,6 +13,9 @@
 			dt Name
 			dd
 				= @character_type.name
+			dt In Use?
+			dd
+				= (@character_type.status) ? "Yes" : "No"
 			dt Power Stat
 			dd
 				= @character_type.power_stat

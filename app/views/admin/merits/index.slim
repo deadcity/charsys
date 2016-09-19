@@ -17,7 +17,7 @@
 						th Allowed Ratings
 						th Has Specification?
 						th Has Description?
-						th Active?
+						th In Use?
 						th
 				tbody
 					- @merits.each do |merit|
@@ -33,7 +33,7 @@
 							td
 								= merit.has_description?
 							td
-								= merit.status
+								= (merit.status) ? "Yes" : "No"
 							td
 								= link_to "Edit", edit_admin_merit_path(id: merit.id)
 							

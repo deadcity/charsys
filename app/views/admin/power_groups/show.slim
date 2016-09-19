@@ -12,6 +12,9 @@
 			dt Name
 			dd
 				= @power_group.name
+			dt In Use?
+			dd
+				= (@power_group.status) ? "Yes" : "No"
 			dt Belongs to Power Type
 			dd
 				= @power_group.power_types.join(", ")

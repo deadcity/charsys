@@ -14,6 +14,7 @@
 			tr
 				th Power Group
 				th Power Type(s)
+				th In Use?
 				th Edit
 				th Delete
 			- if @power_groups.present?
@@ -23,6 +24,8 @@
 							= link_to power_group.name, admin_power_group_path(power_group)
 						td
 							= power_group.power_types.join(", ")
+						td
+							= (power_group.status) ? "Yes" : "No"
 						td
 							= link_to "Edit", edit_admin_power_group_path(power_group), class: 'button mini-button'
 						td
