@@ -38,6 +38,10 @@ javascript:
 				}
 			});
 		}
+
+		$('form').on('submit', function() {
+			$(window).unbind("beforeunload");
+		});
 		
 		$(window).bind("beforeunload", function(){
 			formAutosave();
