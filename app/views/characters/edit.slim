@@ -38,10 +38,12 @@ javascript:
 				}
 			});
 		}
-		$('form input, form textarea, form select').on('blur', function () {
-			formAutosave();
+
+		$('form').on('submit', function() {
+			$(window).unbind("beforeunload");
 		});
-		$('form input[type="hidden"], form input[type="checkbox"], form input[type="radio"]').on('change', function () {
+		
+		$(window).bind("beforeunload", function(){
 			formAutosave();
 		});
 	});
