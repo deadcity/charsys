@@ -1,0 +1,21 @@
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Lineages', admin_lineages_path
+	  li.current
+	    = link_to @lineage.name, admin_lineage_path(@lineage)
+	.small-12.small-centered.columns
+
+		dl
+			dt Name
+			dd #{@lineage.name}
+			dt In Use?
+			dd
+				= (@lineage.status) ? "Yes" : "No"
+			dt Used By:
+			dd
+				= @lineage.character_types.join(", ")
+
+		= link_to "Edit Lineage", edit_admin_lineage_path(@lineage), class: 'button'

@@ -1,6 +1,6 @@
 class Affiliation < ActiveRecord::Base
 	validates :name, presence: true
 	
-	belongs_to :character_type
+	has_and_belongs_to_many :character_types
 	has_many :characters
 end

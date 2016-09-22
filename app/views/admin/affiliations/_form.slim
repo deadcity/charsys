@@ -1,0 +1,12 @@
+	.form-group
+		= f.text_field :name, class: "form-control"
+	.form-group
+		= f.label "Creature Types"
+		= f.collection_check_boxes(:character_type_ids, CharacterType.all.order(:name), :id, :name, {checked: @affiliation.character_type_ids}) do |b|
+			.check-box-field
+				= b.check_box
+				= b.label
+	.form-group
+		= f.label :status, "In Use?"
+		= f.check_box :status, label: false
+	= f.button "Save", type: "submit", class: "btn btn-primary"

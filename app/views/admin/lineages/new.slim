@@ -1,0 +1,16 @@
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Lineages', admin_lineages_path
+	  li.current
+	    = link_to 'New', new_admin_lineage_path
+	    
+	.small-12.small-centered.columns
+
+		h2 New Lineage
+
+		= form_for @lineage, url: {action: 'create'} do |f|
+			= render partial: 'form', locals: {f: f}
+			
