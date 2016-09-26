@@ -30,7 +30,7 @@ module Admin
 		def update
 			@affiliation = Affiliation.find(params[:id])
 			if @affiliation.update_attributes!(affiliations_params)
-				flash[:success] = "Your #{@affiliation.character_type.affiliation} was saved."
+				flash[:success] = "Your affiliation was saved."
 				redirect_to admin_affiliations_path
 			else
 				flash[:error] = "There was an error saving your affiliation."
