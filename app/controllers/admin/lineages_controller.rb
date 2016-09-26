@@ -30,7 +30,7 @@ module Admin
 		def update
 			@lineage = Lineage.find(params[:id])
 			if @lineage.update_attributes!(lineages_params)
-				flash[:success] = "Your #{@lineage.character_type.lineage} was saved."
+				flash[:success] = "Your lineage was saved."
 				redirect_to admin_lineages_path
 			else
 				flash[:error] = "There was an error saving your lineage."

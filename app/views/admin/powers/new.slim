@@ -10,5 +10,5 @@
 	.small-12.small-centered.columns
 		h2 New Power
 
-		= form_for @power, url: {action: 'create'}, method: 'POST' do |f|
+		= form_for @power, url: {action: 'create'} do |f|
 			= render partial: 'form', locals: {f: f}

@@ -11,5 +11,5 @@
 
 	.small-12.small-centered.columns
 		h2 Edit Power Group
-		= form_for @power_group, url: {action: 'update'}, method: 'POST' do |f|
+		= form_for @power_group, url: {action: 'update'} do |f|
 			= render partial: 'form', locals: {f: f}

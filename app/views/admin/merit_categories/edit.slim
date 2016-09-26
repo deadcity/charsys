@@ -13,6 +13,6 @@
 
 		h2 Edit Merit Category
 
-		= form_for @merit_category, url: {action: 'update'}, method: 'POST' do |f|
+		= form_for @merit_category, url: {action: 'update'} do |f|
 			= render partial: 'form', locals: {f: f}
 			

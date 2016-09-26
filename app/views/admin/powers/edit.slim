@@ -13,5 +13,5 @@
 
 		h2 Edit Power
 
-		= form_for @power, url: {action: 'update'}, method: 'POST' do |f|
+		= form_for @power, url: {action: 'update'} do |f|
 			= render partial: 'form', locals: {f: f}

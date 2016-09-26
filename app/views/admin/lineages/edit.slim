@@ -13,6 +13,6 @@
 
 		h2 Edit Lineage
 
-		= form_for @lineage, url: {action: 'update'}, method: 'POST' do |f|
+		= form_for @lineage, url: {action: 'update'} do |f|
 			= render partial: 'form', locals: {f: f}
 			

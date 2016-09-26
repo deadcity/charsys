@@ -9,7 +9,7 @@
 	.small-12.small-centered.columns
 		h2 New Flaw
 
-		= form_for @flaw, url: {action: 'create'}, method: 'POST' do |f|
+		= form_for @flaw, url: {action: 'create'} do |f|
 			= render partial: 'form', locals: {f: f}
 
 			= f.button "Create"
