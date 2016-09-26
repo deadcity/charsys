@@ -1,7 +1,6 @@
 class Lineage < ActiveRecord::Base
 	validates :name, presence: true
 	
-	has_many :character_type_has_lineages
-	has_many :character_types, through: :character_type_has_lineage
+	has_and_belongs_to_many :character_types
 	has_many :characters
 end

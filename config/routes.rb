@@ -62,5 +62,7 @@ Rails.application.routes.draw do
     resources :affiliations
     resources :merits
     resources :flaws
+    resources :affiliations
+    resources :lineages
   end
 end

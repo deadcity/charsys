@@ -7,10 +7,8 @@ class CharacterType < ActiveRecord::Base
 	has_many :chronicle_allows_character_types
 	has_many :chronicles, :through => :chronicle_allows_character_types
 	has_and_belongs_to_many :power_types
-	has_many :character_type_has_lineages
-	has_many :lineages, through: :character_type_has_lineages
-	has_many :character_type_has_affiliations
-	has_many :affiliations, through: :character_type_has_affiliations
+	has_and_belongs_to_many :lineages
+	has_and_belongs_to_many :affiliations
 	has_many :character_type_has_behavior_primaries
 	has_many :character_type_has_behavior_secondaries
 	has_many :behavior_primaries, through: :character_type_has_behavior_primaries

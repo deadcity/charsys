@@ -1,0 +1,21 @@
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Affiliations', admin_affiliations_path
+	  li.current
+	    = link_to @affiliation.name, admin_affiliation_path(@affiliation)
+	.small-12.small-centered.columns
+
+		dl
+			dt Name
+			dd #{@affiliation.name}
+			dt In Use?
+			dd
+				= (@affiliation.status) ? "Yes" : "No"
+			dt Used By:
+			dd
+				= @affiliation.character_types.join(", ")
+
+		= link_to "Edit Affiliation", edit_admin_affiliation_path(@affiliation), class: 'button'

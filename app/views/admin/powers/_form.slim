@@ -6,4 +6,4 @@
 	.form-group
 		= f.label :power_group_id, "Power Group"
 		= grouped_collection_select(:power_group, :power_group_id, PowerType.all.order(:name), :power_groups, :name, :id, :name, {}, {class: 'form-control'})
-	= f.button "Create", type: "submit", class: "btn btn-primary"
+	= f.button "Save", type: "submit", class: "btn btn-primary"

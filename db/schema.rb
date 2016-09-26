@@ -11,15 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919034421) do
+ActiveRecord::Schema.define(version: 20160922002348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "affiliations", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "status",     default: true
+  end
+
+  create_table "affiliations_character_types", force: :cascade do |t|
+    t.integer "character_type_id"
+    t.integer "affiliation_id"
   end
 
   create_table "attribs", force: :cascade do |t|
@@ -81,11 +87,6 @@ ActiveRecord::Schema.define(version: 20160919034421) do
     t.integer  "value",        default: 0
   end
 
-  create_table "character_type_has_affiliations", force: :cascade do |t|
-    t.integer "character_type_id"
-    t.integer "affiliation_id"
-  end
-
   create_table "character_type_has_behavior_primaries", force: :cascade do |t|
     t.integer "character_type_id"
     t.integer "behavior_primary_id"
@@ -94,11 +95,6 @@ ActiveRecord::Schema.define(version: 20160919034421) do
   create_table "character_type_has_behavior_secondaries", force: :cascade do |t|
     t.integer "character_type_id"
     t.integer "behavior_secondary_id"
-  end
-
-  create_table "character_type_has_lineages", force: :cascade do |t|
-    t.integer "character_type_id"
-    t.integer "lineage_id"
   end
 
   create_table "character_type_has_power_types", force: :cascade do |t|
@@ -129,6 +125,11 @@ ActiveRecord::Schema.define(version: 20160919034421) do
     t.string   "flaw_name"
     t.boolean  "status",             default: true
     t.boolean  "has_touchstone"
+  end
+
+  create_table "character_types_lineages", force: :cascade do |t|
+    t.integer "character_type_id"
+    t.integer "lineage_id"
   end
 
   create_table "character_types_power_types", force: :cascade do |t|
@@ -258,8 +259,9 @@ ActiveRecord::Schema.define(version: 20160919034421) do
 
   create_table "lineages", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "status",     default: true
   end
 
   create_table "merit_categories", force: :cascade do |t|
