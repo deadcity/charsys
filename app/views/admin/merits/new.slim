@@ -11,6 +11,6 @@
 
 		h2 New Merit
 
-		= form_for @merit, url: {action: 'create'} do |f|
+		= form_for @merit, url: {action: 'create'}, method: 'POST' do |f|
 			= render partial: 'form', locals: {f: f}
 			

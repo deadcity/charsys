@@ -11,6 +11,6 @@
 	.small-12.small-centered.columns
 		h2 Edit Merit: #{@merit.name}
 
-		= form_for @merit, url: {action: 'update'} do |f|
+		= form_for @merit, url: {action: 'update'}, method: 'POST' do |f|
 			= render partial: 'form', locals: {f: f}
 			

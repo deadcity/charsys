@@ -15,7 +15,7 @@ module Admin
 		def create
 			@lineage = Lineage.new(lineages_params)
 			if @lineage.save!
-				flash[:success] = "Your new #{@lineage.character_type.lineage} was created."
+				flash[:success] = "Your new lineage was created."
 				redirect_to admin_lineages_path
 			else
 				flash[:error] = "There was an error saving your lineage."
