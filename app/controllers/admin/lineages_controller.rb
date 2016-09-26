@@ -14,6 +14,7 @@ module Admin
 
 		def create
 			@lineage = Lineage.new(lineages_params)
+			@lineage.character_type_ids = params[:lineage][:character_type_ids]
 			if @lineage.save!
 				flash[:success] = "Your new lineage was created."
 				redirect_to admin_lineages_path
@@ -29,6 +30,7 @@ module Admin
 
 		def update
 			@lineage = Lineage.find(params[:id])
+			@lineage.character_type_ids = params[:lineage][:character_type_ids]
 			if @lineage.update_attributes!(lineages_params)
 				flash[:success] = "Your lineage was saved."
 				redirect_to admin_lineages_path
@@ -48,7 +50,7 @@ module Admin
 		private
 
 		def lineages_params
-			params.require(:lineage).permit(:id, :name, :status, :character_type_id)
+			params.require(:lineage).permit(:id, :name, :status, :character_type_ids)
 		end
 	end
 end

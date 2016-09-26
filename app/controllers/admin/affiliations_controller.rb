@@ -14,6 +14,7 @@ module Admin
 
 		def create
 			@affiliation = Affiliation.new(affiliations_params)
+			@affiliation.character_type_ids = params[:affiliation][:character_type_ids]
 			if @affiliation.save!
 				flash[:success] = "Your new affiliation was created."
 				redirect_to admin_affiliations_path
@@ -29,6 +30,7 @@ module Admin
 
 		def update
 			@affiliation = Affiliation.find(params[:id])
+			@affiliation.character_type_ids = params[:affiliation][:character_type_ids]
 			if @affiliation.update_attributes!(affiliations_params)
 				flash[:success] = "Your affiliation was saved."
 				redirect_to admin_affiliations_path
@@ -48,7 +50,7 @@ module Admin
 		private
 
 		def affiliations_params
-			params.require(:affiliation).permit(:id, :name, :status, :character_type_id)
+			params.require(:affiliation).permit(:id, :name, :status, :character_type_ids)
 		end
 	end
 end
