@@ -14,7 +14,7 @@
 	.small-4.columns
 		- if @character_type.lineage.present?
 			= f.label :lineage, @character_type.lineage
-			= collection_select(:character, :lineage_id, @character_type.lineages, :id, :name, {})
+			= collection_select(:character, :lineage_id, @character_type.lineages.where({status: true}), :id, :name, {})
 			
 	.small-4.columns
 		- if @character_type.sublineage.present?
@@ -23,7 +23,7 @@
 	.small-4.columns
 		- if @character_type.affiliation.present?
 			= f.label :affiliation, @character_type.affiliation
-			= collection_select(:character, :affiliation_id, @character_type.affiliations, :id, :name, {})
+			= collection_select(:character, :affiliation_id, @character_type.affiliations.where({status: true}), :id, :name, {})
 .row
 	.small-4.columns
 		= f.label :behavior_primary, @character_type.behavior_primary
