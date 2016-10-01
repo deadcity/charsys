@@ -97,11 +97,6 @@ ActiveRecord::Schema.define(version: 20160922002348) do
     t.integer "behavior_secondary_id"
   end
 
-  create_table "character_type_has_power_types", force: :cascade do |t|
-    t.integer "character_type_id"
-    t.integer "power_type_id"
-  end
-
   create_table "character_types", force: :cascade do |t|
     t.string   "name"
     t.string   "power_stat"
@@ -324,13 +319,6 @@ ActiveRecord::Schema.define(version: 20160922002348) do
     t.integer  "skill_category_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-  end
-
-  create_table "user_administers_chronicles", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "chronicle_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
   end
 
   create_table "user_is_admins", force: :cascade do |t|
