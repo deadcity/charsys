@@ -269,7 +269,7 @@ affiliations = Affiliation.create([
 	{name: 'Faustians'}
 	])
 
-character_type_has_lineages = CharacterTypeHasLineage.create([
+character_type_has_lineages = CharacterTypesLineage.create([
 	{character_type_id: 1, lineage_id: 1},
 	{character_type_id: 1, lineage_id: 2},
 	{character_type_id: 1, lineage_id: 3},
@@ -287,7 +287,7 @@ character_type_has_lineages = CharacterTypeHasLineage.create([
 	{character_type_id: 4, lineage_id: 10}
 	])
 
-character_type_has_affiliations = CharacterTypeHasAffiliation.create([
+character_type_has_affiliations = AffiliationsCharacterType.create([
 	{character_type_id: 1, affiliation_id: 1},
 	{character_type_id: 1, affiliation_id: 2},
 	{character_type_id: 1, affiliation_id: 3},
