@@ -219,7 +219,7 @@
 							- if merit.merit.has_description
 								div.description
 									= "#{merit.description}"
-				h2 #{@character.character_type.flaw_name}
+				h2 #{character.character_type.flaw_name}
 				ul#flaws-list
 					- character.character_has_flaws.each do |flaw|
 						li
