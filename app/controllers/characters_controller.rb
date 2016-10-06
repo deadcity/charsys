@@ -22,17 +22,17 @@ class CharactersController < ApplicationController
 			@chronicle = Chronicle.last
 			@character = Character.new
 			@user = User.find_by_id(session[:user_id])
-			@chronicles = Chronicle.all
-			@character_type = CharacterType.first
-			@character_types = CharacterType.all
+			@chronicles = Chronicle.where({status: true})
+			@character_types = CharacterType.where({status: true})
+			@character_type = @character_types.first
 			@mental_skills = Skill.where({skill_category: 1})
 			@physical_skills = Skill.where({skill_category: 2})
 			@social_skills = Skill.where({skill_category: 3})
 			@skill_categories = SkillCategory.all
-			@merit_categories = MeritCategory.all
-			@merits = Merit.all
+			@merit_categories = MeritCategory.where({status: true})
+			@merits = Merit.where({status: true})
 			@flaws = Flaw.where(character_type: @character_type)
-			@character = Character.new
+			@character = Character.new({character_type: @character_type})
 		else
 			redirect_to login_path
 		end
@@ -45,7 +45,7 @@ class CharactersController < ApplicationController
 			if @character.status == 1
 				storytellers = @character.chronicle.sts
 				storytellers.each do |storyteller|
-					CharacterMailer.character_submission(character, st).deliver_now
+					CharacterMailer.character_submission(@character, storyteller).deliver_now
 				end
 			end
 			redirect_to character_path(@character)
@@ -77,18 +77,18 @@ class CharactersController < ApplicationController
 		if @character.nil?
 			raise ActionController::RoutingError.new('Not Found')
 		else
-			@user = User.find_by_id(session[:user_id])
+			@user = @character.user
 			@chronicle = @character.chronicle
-			@chronicles = Chronicle.all
+			@chronicles = Chronicle.where({status: true})
 			@character_type = @character.character_type
-			@character_types = CharacterType.all
+			@character_types = CharacterType.where({status: true})
 			@mental_skills = Skill.where({skill_category: 1})
 			@physical_skills = Skill.where({skill_category: 2})
 			@social_skills = Skill.where({skill_category: 3})
 			@skill_categories = SkillCategory.all
 			@mental_attributes = Attrib.where({attribute_category: 1})
-			@merit_categories = MeritCategory.all
-			@merits = Merit.all
+			@merit_categories = MeritCategory.where({status: true})
+			@merits = Merit.where({status: true})
 			@flaws = Flaw.where(character_type: @character_type)
 			@status_array = Array.new
 			CHARACTER_STATUS.each_with_index do |i, status|
@@ -102,7 +102,6 @@ class CharactersController < ApplicationController
 	def update
 		@character = Character.find_by_id(params[:character][:id])
 		prevstatus = @character.status
-		puts params[:character][:character_has_flaws_attributes]
 		if @character.update_attributes!(characters_params)
 			if @character.status == 1 && @character.status > prevstatus
 				storytellers = @character.chronicle.sts
@@ -194,7 +193,7 @@ class CharactersController < ApplicationController
 	private
 
 	def characters_params
-		params.require(:character).permit(:name, :sublineage, :max_resource, :behavior_primary_id, :behavior_secondary_id, :lineage_id, :affiliation_id, :user_id, :chronicle_id, :character_type_id, :attribs, :skills, :merits, :health, :willpower, :power_stat, :morality, :size, :speed, :initiative_mod, :armor_ballistic, :armor_general, :defense, :answer1, :answer2, :answer3, :answer4, :answer5, :answer6, :answer7, :answer8, :answer9, :printed_notes, :st_notes, :misc, :intelligence, :wits, :resolve, :strength, :dexterity, :stamina, :presence, :manipulation, :composure, :academics, :computer, :crafts, :computer, :investigation, :medicine, :occult, :politics, :science, :athletics, :brawl, :drive, :firearms, :larceny, :stealth, :survival, :weaponry, :animal_ken, :empathy, :expression, :intimidation, :persuasion, :streetwise, :subterfuge, :status, :wishlist, skill_specialties_attributes: [:skill_id, :specialty, :character_id, :id, :_destroy], character_has_powers_attributes: [:character_id, :power_id, :id, :_destroy], character_has_merits_attributes: [:character_id, :merit_id, :specification, :description, :rating, :id, :_destroy], character_has_flaws_attributes: [:character_id, :flaw_id, :specification, :description, :id, :_destroy])
+		params.require(:character).permit(:name, :sublineage, :max_resource, :behavior_primary_id, :behavior_secondary_id, :lineage_id, :affiliation_id, :user_id, :chronicle_id, :character_type_id, :attribs, :skills, :merits, :health, :willpower, :power_stat, :morality, :size, :speed, :initiative_mod, :armor_ballistic, :armor_general, :defense, :touchstones, :integrity_modifiers, :answer1, :answer2, :answer3, :answer4, :answer5, :answer6, :answer7, :answer8, :answer9, :printed_notes, :st_notes, :misc, :intelligence, :wits, :resolve, :strength, :dexterity, :stamina, :presence, :manipulation, :composure, :academics, :computer, :crafts, :computer, :investigation, :medicine, :occult, :politics, :science, :athletics, :brawl, :drive, :firearms, :larceny, :stealth, :survival, :weaponry, :animal_ken, :empathy, :expression, :intimidation, :persuasion, :socialize, :streetwise, :subterfuge, :status, :wishlist, skill_specialties_attributes: [:skill_id, :specialty, :character_id, :id, :_destroy], character_has_powers_attributes: [:character_id, :power_id, :id, :_destroy], character_has_merits_attributes: [:character_id, :merit_id, :specification, :description, :rating, :id, :_destroy], character_has_flaws_attributes: [:character_id, :flaw_id, :specification, :description, :id, :_destroy])
 	end
 
 	def downtime_actions_params

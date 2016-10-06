@@ -1,207 +1,104 @@
 .character_form_page.character_show_page
 	/ BASIC INFO FOR CHARACTER
+	- if @chronicle.sts.include?(current_user)
+		ul.breadcrumbs
+			li
+				= link_to 'My Chronicles', chronicles_path
+			li
+				= link_to @chronicle.title, chronicle_path(@chronicle)
+			li.current
+				= link_to @character.name, character_path(@character)
+	- else	
+		ul.breadcrumbs
+			li
+				=link_to 'My Characters', characters_path
+			li.current
+				= link_to @character.name, character_path(@character)
+				
 	.row
-		.small-8.columns
+		.small-6.medium-8.columns
 			h2 Basics
-		.small-4.columns
+		.small-6.medium-4.columns
 			- if @character.status == 0 || @character.chronicle.sts.include?(current_user)
 				= link_to "Edit Character", edit_character_path(@character), class: 'button mini-button'
 	.row
-		.small-4.columns
+		.small-6.medium-4.columns
 			h4 
 				| Name:  
 				= @character.name
-		.small-4.columns
+		.small-6.medium-4.columns
 			h4 
 				| Character Type:  
 				= @character.character_type.name
-		.small-4.columns
+		.small-6.medium-4.columns
 			h4 
 				| Player:  
-				= @character.user.name
-	.row
-		.small-4.columns
+				= @character.user.full_name
+		.small-6.medium-4.columns
 			- if @character.character_type.lineage.present?
 				h4
 					= @character.character_type.lineage
 					| :  
 					= @character.lineage.name
-		.small-4.columns
+		.small-6.medium-4.columns
 			- if @character.character_type.sublineage.present?
 				h4 
 					= @character.character_type.sublineage
 					| :  
 					= @character.sublineage
-		.small-4.columns
+		.small-6.medium-4.columns
 			- if @character.character_type.affiliation.present?
 				h4 
 					= @character.character_type.affiliation
 					| :  
 					= @character.affiliation.name
-	.row
-		.small-4.columns
-			h4 
-				= @character.character_type.behavior_primary
-				| :  
-				= @character.behavior_primary.name
-		.small-4.columns
-			h4 
-				= @character.character_type.behavior_secondary
-				| :  
-				= @character.behavior_secondary.name
-		.small-4.columns
-			h4 
-				| Chronicle:  
-				= @character.chronicle.title
+		.small-6.medium-4.columns
+				h4 
+					= @character.character_type.behavior_primary
+					| :  
+					= @character.behavior_primary.name
+		.small-6.medium-4.columns
+				h4 
+					= @character.character_type.behavior_secondary
+					| :  
+					= @character.behavior_secondary.name
+		.small-6.medium-4.columns.end
+				h4 
+					| Chronicle:  
+					= @character.chronicle.title
 			
 	/ ATTRIBUTES
 	.row
-		h2 Attributes
-		table#attributes_table width="100%" 
-			thead
-				th
-				th Mental
-				th
-				th Social
-				th
-				th Physical
-				th
-			tr
-				th Power
-				td
-					| Intelligence
-				td
-					- (1..5).each do |i|
-						- if i <= @character.intelligence
-							<i class="fa fa-circle"></i> 
-						- else
-							<i class="fa fa-circle-o"></i> 
-				td
-					| Strength
-				td
-					- (1..5).each do |i|
-						- if i <= @character.strength
-							<i class="fa fa-circle"></i> 
-						- else
-							<i class="fa fa-circle-o"></i> 
-				td
-					| Presence
-				td
-					- (1..5).each do |i|
-						- if i <= @character.presence
-							<i class="fa fa-circle"></i> 
-						- else
-							<i class="fa fa-circle-o"></i> 
-			tr
-				th Finesse
-				td
-					| Wits
-				td
-					- (1..5).each do |i|
-						- if i <= @character.wits
-							<i class="fa fa-circle"></i> 
-						- else
-							<i class="fa fa-circle-o"></i> 
-				td
-					| Dexterity
-				td
-					- (1..5).each do |i|
-						- if i <= @character.dexterity
-							<i class="fa fa-circle"></i> 
-						- else
-							<i class="fa fa-circle-o"></i> 
-				td
-					| Manipulation
-				td
-					- (1..5).each do |i|
-						- if i <= @character.manipulation
-							<i class="fa fa-circle"></i> 
-						- else
-							<i class="fa fa-circle-o"></i> 
-			tr
-				th Resistance
-				td
-					| Resolve
-				td
-					- (1..5).each do |i|
-						- if i <= @character.resolve
-							<i class="fa fa-circle"></i> 
-						- else
-							<i class="fa fa-circle-o"></i> 
-				td
-					| Stamina
-				td
-					- (1..5).each do |i|
-						- if i <= @character.stamina
-							<i class="fa fa-circle"></i> 
-						- else
-							<i class="fa fa-circle-o"></i> 
-				td
-					| Composure
-				td
-					- (1..5).each do |i|
-						- if i <= @character.composure
-							<i class="fa fa-circle"></i> 
-						- else
-							<i class="fa fa-circle-o"></i> 
-		
+		.small-12.columns
+			h2 Attributes
+			.show-for-medium-up
+				= render partial: "attributes_show"
+			.show-for-small
+				= render partial: "attributes_show_mobile"
 	/ SKILLS
 	.row
-		h2 Skills
-		.small-4.columns
-			h3 Mental
-			table.skill_tables width="100%"
-				- @mental_skills.each do |skill|
-					tr
-						th
-							= skill.name
-						td
-							- (1..5).each do |i|
-								- if i <= @character[skill.name.downcase.gsub(" ", "_").to_sym]
-									<i class="fa fa-circle"></i> 
-								- else
-									<i class="fa fa-circle-o"></i> 
-		.small-4.columns
-			h3 Physical
-			table.skill_tables width="100%"
-				- @physical_skills.each do |skill|
-					tr
-						th
-							= skill.name
-						td
-							- (1..5).each do |i|
-								- if i <= @character[skill.name.downcase.gsub(" ", "_").to_sym]
-									<i class="fa fa-circle"></i> 
-								- else
-									<i class="fa fa-circle-o"></i> 
-		.small-4.columns
-			h3 Social
-			table.skill_tables width="100%"
-				- @social_skills.each do |skill|
-					tr
-						th
-							= skill.name
-						td
-							- (1..5).each do |i|
-								- if i <= @character[skill.name.downcase.gsub(" ", "_").to_sym]
-									<i class="fa fa-circle"></i> 
-								- else
-									<i class="fa fa-circle-o"></i> 
+		.small-12.columns
+			h2 Skills
+			.show-for-medium-up
+				= render partial: "skills_show"
+			.show-for-small
+				= render partial: "skills_show_mobile"
+	/ 
 	.row
-		.small-6.columns
+		.small-12.medium-6.columns
 			h2 Skill Specialties
 			ul id="skill-specialties"
 				- @character.skill_specialties.each do |specialty|
 					li #{specialty.skill.name} (#{specialty.specialty})
 		
-		.small-6.columns
+		.small-12.medium-6.columns
 			h2 Other Traits
 			ul#power-list
 				- @character.character_has_powers.each do |power|
 					li #{power.power.power_group.name}: #{power.power.name}
 
 	.row
-		.small-8.columns
+		.small-12.medium-8.columns
 			h2 Merits
 			ul#merits-list
 				- @character.character_has_merits.each do |merit|
@@ -228,7 +125,8 @@
 									= flaw.flaw.description
 								- elsif flaw.description.present?
 									= flaw.description
-		.small-4.columns
+		.small-12.medium-4.columns
+			h2 Vitals
 			h4
 				| Size:  
 				= @character.size
@@ -239,7 +137,7 @@
 				| Defense:  
 				= @character.defense
 			h4
-				| Initiative Mod:
+				| Initiative Mod:  
 				= @character.initiative_mod
 			h4 
 				| Armor, Ballistic:  
@@ -249,7 +147,7 @@
 				= @character.armor_general
 					
 	.row
-		.small-4.columns
+		.small-12.medium-4.columns
 			h3 Health
 			- @character.health.times do |i|
 				span.health-box
@@ -266,7 +164,7 @@
 					- else
 						<i class="fa fa-circle-o"></i> 
 
-		.small-4.columns
+		.small-12.medium-4.columns
 			h3 Willpower
 			- @character.willpower.times do |i|
 				<i class="fa fa-square-o"></i> 
@@ -278,12 +176,22 @@
 				- else
 					<i class="fa fa-circle-o"></i> 
 
-		.small-4.columns
+		.small-12.medium-4.columns
 			- if @character.character_type.resource.present?
 				h3
 					= @character.character_type.resource
 				- @character.max_resource.times do |i|
 					<i class="fa fa-square-o"></i> 
+	- if @character.character_type.has_touchstone
+		.row
+			.small-12.columns
+				h2 Touchstones
+				= raw @markdown.render(@character.touchstones)
+	- elsif @character.character_type.has_integrity_modifiers
+		.row
+			.small-12.columns
+				h2 Integrity Modifiers
+				= raw @markdown.render(@character.integrity_modifiers)
 	/ QUESTIONNAIRE
 	.row
 		.small-12.columns

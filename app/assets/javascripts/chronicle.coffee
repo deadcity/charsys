@@ -3,3 +3,5 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
   $("#chronicle_index_table").DataTable()
+  $("#chron_active_chars_table").DataTable()
+  $("#chron_inactive_chars_table").DataTable()

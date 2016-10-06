@@ -1,15 +1,49 @@
 .row.character_form_page
+	- if @chronicle.sts.include?(current_user)
+		ul.breadcrumbs
+			li
+				= link_to 'My Chronicles', chronicles_path
+			li
+				= link_to @chronicle.title, chronicle_path(@chronicle)
+			li
+				= link_to @character.name, character_path(@character)
+			li.current
+				= link_to 'Edit', edit_character_path(@character)
+	- else
+		ul.breadcrumbs
+			li
+				=link_to 'My Characters', characters_path
+			li
+				= link_to @character.name, character_path(@character)
+			li.current
+				= link_to 'Edit', edit_character_path(@character)
 	.small-12.columns
 		h1
 			| Edit Character
 
 		= form_for @character, url: {action: 'update'} do |f|
 			= f.hidden_field :id
-			
-			- if @chronicle.sts.include? current_user
-				.row
-					.small-4.columns.end
-						h2 Character Status
-						select name="character[status]" id="character_status"
-							= options_for_select(@status_array, @character.status)
 			= render partial: 'form', locals: {f: f}
+
+javascript:
+	$(document).ready(function () {
+		function formAutosave () {
+			var action = $('form').attr('action');
+			$.ajax({
+				type: 'POST',
+				url: action,
+				data: $('form').serialize(),
+				success: function(data) {
+					return true;
+				}
+			});
+		}
+
+		$('form').on('submit', function() {
+			$(window).unbind("beforeunload");
+		});
+		
+		$(window).bind("beforeunload", function(){
+			formAutosave();
+		});
+	});

@@ -1,0 +1,20 @@
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li
+	    = link_to 'Creature Types', admin_character_types_path
+	  li
+	    = link_to "#{@character_type.name}", admin_character_type_path(@character_type)
+	  li.current
+	  	= link_to "Edit", edit_admin_character_type_path(@character_type)
+
+	.small-12.small-centered.columns
+
+		h2
+			= "Edit Creature Type: #{@character_type.name}"
+
+		= form_for @character_type, url: {action: 'update'} do |f|
+			= render partial: 'form', locals: {f: f}
+
+			= f.button 'Update', type: 'submit', class: 'button'

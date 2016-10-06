@@ -8,7 +8,8 @@
     <h2>Character Approved</h2>
     <p>Hi, <%= @user.name %>!</p>
     <p>
-      Your character, <%= @character.name %>, has been approved for <%= @character.chronicle.title %>. Congratulations! To see your finalized character sheet, <%= link_to "click here", character_path(@character) %>.
+      Your character, <%= @character.name %>, has been approved for <%= @character.chronicle.title %>. Congratulations! To see your finalized character sheet, <a href="http://characters.deadcityproductions.com#{character_path(@character)}">click here.</a>
+
     </p>
   </body>
 </html>

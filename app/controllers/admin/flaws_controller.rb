@@ -10,7 +10,7 @@ module Admin
 
 		def new
 			@flaw = Flaw.new
-			@character_types = CharacterType.where("flaw_name != ''")
+			@character_types = CharacterType.where.not(flaw_name: '')
 		end
 
 		def create

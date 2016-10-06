@@ -1,4 +1,9 @@
 .row.chronicle_show_page
+  ul.breadcrumbs
+    li
+      = link_to 'My Chronicles', chronicles_path
+    li.current
+      = link_to @chronicle.title, chronicle_path(@chronicle)
   .small-12.small-centered.columns
     h2
       = @chronicle.title
@@ -16,12 +21,14 @@
     - if @chronicle.sts
       - @chronicle.sts.each_with_index do |storyteller, index|
         - if index == @chronicle.sts.length - 1
-          = storyteller.name
+          = storyteller.full_name
         - else
-          = storyteller.name
+          = storyteller.full_name
           | , 
-    - if @characters[0]
-      table#character_index_table
+          
+    h3 Active Characters
+    - if @active_characters[0]
+      table#chron_active_chars_table
         thead
           tr
             th Name
@@ -32,12 +39,12 @@
             th 
             th 
         tbody
-          - @characters.each do |character|
+          - @active_characters.each do |character|
             tr
               td
                 = link_to character.name, character_path(character)
               td
-                = character.user.name
+                = character.user.full_name
               td
                 - if character.character_type.affiliation.present?
                   = Affiliation.find_by(id: character.affiliation_id).name
@@ -53,4 +60,40 @@
                   = form_tag(character_path(character), method: 'DELETE') do
                     = button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to permanently delete this character?");', class: 'button mini-button'
     - else
-     | There are no characters in this chronicle yet!
+      | There are no active characters in this chronicle yet!
+
+    h3 Inactive Characters
+    - if @inactive_characters[0]
+      table#chron_inactive_chars_table
+        thead
+          tr
+            th Name
+            th Player
+            th Affiliation
+            th Lineage
+            th Status
+            th 
+            th 
+        tbody
+          - @inactive_characters.each do |character|
+            tr
+              td
+                = link_to character.name, character_path(character)
+              td
+                = character.user.full_name
+              td
+                - if character.character_type.affiliation.present?
+                  = Affiliation.find_by(id: character.affiliation_id).name
+              td
+                - if character.character_type.lineage.present?
+                  = Lineage.find_by(id: character.lineage_id).name
+              td
+                = get_status(character.status)
+              td
+                = link_to "Edit", edit_character_path(character), class: 'button mini-button'
+              td
+                - if character.user(current_user)
+                  = form_tag(character_path(character), method: 'DELETE') do
+                    = button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to permanently delete this character?");', class: 'button mini-button'
+    - else
+     | There are no inactive characters in this chronicle!

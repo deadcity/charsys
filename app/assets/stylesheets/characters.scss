@@ -112,11 +112,20 @@
     display: inline-block;
     width: 13px;
     vertical-align: top;
+    margin-left: .4em;
   }
 
   .health-box .health-mod {
     display: block;
     font-size: .8em;
     line-height: 1em;
+  }
+}
+
+.mobile_tables {
+  white-space: nowrap;
+
+  td {
+    width: 50%;
   }
 }

@@ -15,24 +15,26 @@
 			.small-4.columns
 				h4 
 					strong Player:  
-					= character.user.name
+					= character.user.full_name
 		.row
 			.small-4.columns
-				- character.character_type.lineage.present?
+				- if character.character_type.lineage.present?
 					h4
 						strong
 							= character.character_type.lineage
 							| :  
 						= character.lineage.name
 			.small-4.columns
-				- character.character_type.sublineage.present?
+				- if character.character_type.sublineage.present? and character.sublineage.present?
 					h4 
 						strong
 							= character.character_type.sublineage
 							| :  
 						= character.sublineage
+				- else
+					h4
 			.small-4.columns
-				- character.character_type.affiliation.present?
+				- if character.character_type.affiliation.present?
 					h4 
 						strong
 							= character.character_type.affiliation
@@ -64,9 +66,9 @@
 					th
 					th Mental
 					th
-					th Social
-					th
 					th Physical
+					th
+					th Social
 					th
 				tr
 					th Power
@@ -217,6 +219,18 @@
 							- if merit.merit.has_description
 								div.description
 									= "#{merit.description}"
+				h2 #{character.character_type.flaw_name}
+				ul#flaws-list
+					- character.character_has_flaws.each do |flaw|
+						li
+							= "#{flaw.flaw.name} "
+							- if flaw.flaw.requires_specification and flaw.specification.present?
+								= "(#{flaw.specification})"
+							.description
+								- if flaw.flaw.description.present?
+									= flaw.flaw.description
+								- elsif flaw.description.present?
+									= flaw.description
 			.small-4.columns
 				h4
 					| Size:  
@@ -270,6 +284,16 @@
 						= character.character_type.resource
 					- character.max_resource.times do |i|
 						<i class="fa fa-square-o"></i> 
+		- if character.character_type.has_touchstone
+			.row
+				.small-12.columns
+					h2 Touchstones
+					= raw @markdown.render(character.touchstones)
+		- elsif character.character_type.has_integrity_modifiers
+			.row
+				.small-12.columns
+					h2 Integrity Modifiers
+					= raw @markdown.render(character.integrity_modifiers)
 		.row
 			.small-12.columns
 				h2 Printed Notes

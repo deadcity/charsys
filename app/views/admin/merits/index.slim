@@ -1,8 +1,13 @@
-.row.character_index_page
+.row
+	ul.breadcrumbs
+	  li
+	    = link_to 'Admin', admin_path
+	  li.current
+	    = link_to 'Merits', admin_merits_path
 	.small-12.small-centered.columns
 		h2 
 			| Merits 
-			= link_to "New Merit", new_admin_merit_path, class: "button new_merit_button"
+			= link_to "New Merit", new_admin_merit_path, class: "button new_merit_button mini-button"
 		- if @merits
 			table#merit_index_table
 				thead
@@ -12,6 +17,8 @@
 						th Allowed Ratings
 						th Has Specification?
 						th Has Description?
+						th In Use?
+						th
 						th
 				tbody
 					- @merits.each do |merit|
@@ -27,7 +34,12 @@
 							td
 								= merit.has_description?
 							td
+								= (merit.status) ? "Yes" : "No"
+							td
 								= link_to "Edit", edit_admin_merit_path(id: merit.id)
+							td
+								= form_tag(admin_merit_path(merit), method: 'DELETE') do
+									= button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to delete this merit?");', class: 'button mini-button'
 							
 		- else
 			| There are no merits entered yet. <a href="#{new_admin_merit_path}">Create one now!</a>

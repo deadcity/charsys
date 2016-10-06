@@ -1,3 +1,14 @@
-h2 Edit Chronicle
-= form_for @chronicle, url: {action: "update"} do |f|
-	= render partial: 'form', locals: {f: f}
+ul.breadcrumbs
+	li
+		= link_to 'My Chronicles', chronicles_path
+	li
+		= link_to @chronicle.title, chronicle_path(@chronicle)
+	li.current
+		= link_to 'Edit', edit_chronicle_path(@chronicle)
+	
+.row
+	.small-12.small-centered.columns
+
+		h2 Edit Chronicle
+		= form_for @chronicle, url: {action: "update"} do |f|
+			= render partial: 'form', locals: {f: f}

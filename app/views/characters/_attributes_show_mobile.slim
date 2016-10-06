@@ -1,0 +1,92 @@
+.row
+  .small-12.columns
+    h4 Mental
+    table.mobile_tables width="100%"
+      tr
+        td Intelligence
+        td
+          - (1..5).each do |i|
+            - if i <= @character.intelligence
+              <i class="fa fa-circle"></i> 
+            - else
+              <i class="fa fa-circle-o"></i> 
+      tr
+        td
+          | Wits
+        td
+          - (1..5).each do |i|
+            - if i <= @character.wits
+              <i class="fa fa-circle"></i> 
+            - else
+              <i class="fa fa-circle-o"></i> 
+      tr
+        td
+          | Resolve
+        td
+          - (1..5).each do |i|
+            - if i <= @character.resolve
+              <i class="fa fa-circle"></i> 
+            - else
+              <i class="fa fa-circle-o"></i> 
+.row
+  .small-12.columns
+    h4 Physical
+    table.mobile_tables width="100%"
+      tr
+        td
+          | Strength
+        td
+          - (1..5).each do |i|
+            - if i <= @character.strength
+              <i class="fa fa-circle"></i> 
+            - else
+              <i class="fa fa-circle-o"></i> 
+      tr
+        td
+          | Dexterity
+        td
+          - (1..5).each do |i|
+            - if i <= @character.dexterity
+              <i class="fa fa-circle"></i> 
+            - else
+              <i class="fa fa-circle-o"></i> 
+      tr
+        td
+          | Stamina
+        td
+          - (1..5).each do |i|
+            - if i <= @character.stamina
+              <i class="fa fa-circle"></i> 
+            - else
+              <i class="fa fa-circle-o"></i> 
+.row
+  .small-12.columns
+    h4 Social
+    table.mobile_tables width="100%"
+      tr
+        td
+          | Presence
+        td
+          - (1..5).each do |i|
+            - if i <= @character.presence
+              <i class="fa fa-circle"></i> 
+            - else
+              <i class="fa fa-circle-o"></i> 
+      tr
+        td
+          | Manipulation
+        td
+          - (1..5).each do |i|
+            - if i <= @character.manipulation
+              <i class="fa fa-circle"></i> 
+            - else
+              <i class="fa fa-circle-o"></i> 
+      tr
+        td
+          | Composure
+        td
+          - (1..5).each do |i|
+            - if i <= @character.composure
+              <i class="fa fa-circle"></i> 
+            - else
+              <i class="fa fa-circle-o"></i> 

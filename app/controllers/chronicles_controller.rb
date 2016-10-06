@@ -7,7 +7,7 @@ class ChroniclesController < ApplicationController
 
 	def index
 		if current_user
-			@chronicles = current_user.chronicles.all
+			@chronicles = current_user.chronicles
 		else
 			redirect_to login_path
 		end
@@ -22,8 +22,14 @@ class ChroniclesController < ApplicationController
 	end
 
 	def create
-		@chronicle = current_user.chronicles.create(title: params[:chronicle][:title])
-		if @chronicle.save
+		@chronicle = Chronicle.new(title: params[:chronicle][:title])
+		@chronicle.user_ids = params[:chronicle][:user_ids]
+		# sanity check 
+		unless @chronicle.user_ids.include?(current_user.id)
+			@chronicle.user_ids << current_user.id
+		end
+		puts @chronicle.user_ids
+		if @chronicle.save!
 			flash[:success] = "New chronicle #{@chronicle.title} successfully created."
 			session[:current_chronicle] = @chronicle.id
 			redirect_to chronicles_path
@@ -39,7 +45,8 @@ class ChroniclesController < ApplicationController
 		if @chronicle.nil?
 			raise ActionController::RoutingError.new('Not Found')
 		else
-			@characters = @chronicle.characters.all
+			@active_characters = @chronicle.characters.where(status: 3)
+			@inactive_characters = @chronicle.characters.where.not(status: 3)
 		end
 	end
 
@@ -58,6 +65,11 @@ class ChroniclesController < ApplicationController
 
 	def update
 		@chronicle = Chronicle.find_by_id(params[:id])
+		@chronicle.user_ids = params[:chronicle][:user_ids]
+		# sanity check 
+		unless @chronicle.user_ids.include?(current_user.id)
+			@chronicle.user_ids << current_user.id
+		end
 		if @chronicle.update!(chronicles_params)
 			flash[:success] = "The chronicle has been updated."
 			redirect_to edit_chronicle_path
@@ -251,7 +263,7 @@ class ChroniclesController < ApplicationController
 	private
 
 	def chronicles_params
-		params.require(:chronicle).permit(:title, chronicle_has_character_types_attributes: [:character_type_id, :chronicle_id, :id], user_administers_chronicles_attributes: [:user_id, :chronicle_id, :id])
+		params.require(:chronicle).permit(:title, :user_ids, chronicle_has_character_types_attributes: [:character_type_id, :chronicle_id, :id], user_administers_chronicles_attributes: [:user_id, :chronicle_id, :id])
 	end
 
 	def games_params

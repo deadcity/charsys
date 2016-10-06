@@ -15,6 +15,7 @@ module Admin
 
 		def create
 			@power_type = PowerType.new(power_types_params)
+			@power_type.character_type_ids = params[:power_type][:character_type_ids]
 			if @power_type.save!
 				flash[:success] = "Your power type was successfully created."
 				redirect_to admin_power_types_path
@@ -25,13 +26,14 @@ module Admin
 		end
 
 		def edit
-			@powerType = PowerType.find(params[:id])
+			@power_type = PowerType.find(params[:id])
 			@character_types = CharacterType.all
 		end
 
 		def update
 			@power_type = PowerType.find(params[:id])
-			if @power_type.update!(power_types_params)
+			@power_type.character_type_ids = params[:power_type][:character_type_ids]
+			if @power_type.update_attributes!(power_types_params)
 				flash[:success] = "The #{@power_type.name} power type was successfully updated."
 				redirect_to admin_power_types_path
 			else
@@ -50,7 +52,7 @@ module Admin
 		private
 
 		def power_types_params
-			params.require(:power_type).permit(:name, :character_type_id)
+			params.require(:power_type).permit(:name, :status, :character_type_ids)
 		end
 	end
 end

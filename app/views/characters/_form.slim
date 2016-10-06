@@ -3,18 +3,18 @@
 	.small-4.columns
 		= f.text_field :name
 	.small-4.columns
-		= f.label :character_type
-		= collection_select(:character, :character_type_id, CharacterType.all, :id, :name, {}, {:"aria-describedby" => 'characterTypeHelp'})
-		p#characterTypeHelp.help-text.hide It's recommended that you save your character and reload this form after changing character type.
+		= f.label :character_type, "Creature Type"
+		= collection_select(:character, :character_type_id, CharacterType.all.where(status: true), :id, :name, {}, {:"aria-describedby" => 'characterTypeHelp'})
+		p#characterTypeHelp.help-text.hide It's recommended that you save your character and reload this form after changing creature type.
 	.small-4.columns
 		= f.label :user_id, "Player"
-		= f.hidden_field :user_id, value: current_user.id
-		= @user.name
+		= f.hidden_field :user_id, value: @user.id
+		= @user.full_name
 .row
 	.small-4.columns
 		- if @character_type.lineage.present?
 			= f.label :lineage, @character_type.lineage
-			= collection_select(:character, :lineage_id, @character_type.lineages, :id, :name, {})
+			= collection_select(:character, :lineage_id, @character_type.lineages.where({status: true}), :id, :name, {})
 			
 	.small-4.columns
 		- if @character_type.sublineage.present?
@@ -23,7 +23,7 @@
 	.small-4.columns
 		- if @character_type.affiliation.present?
 			= f.label :affiliation, @character_type.affiliation
-			= collection_select(:character, :affiliation_id, @character_type.affiliations, :id, :name, {})
+			= collection_select(:character, :affiliation_id, @character_type.affiliations.where({status: true}), :id, :name, {})
 .row
 	.small-4.columns
 		= f.label :behavior_primary, @character_type.behavior_primary
@@ -33,9 +33,8 @@
 		= collection_select(:character, :behavior_secondary_id, @character_type.behavior_secondaries, :id, :name)
 	.small-4.columns
 		= f.label :chronicle_id, "Chronicle"
-		= collection_select(:character, :chronicle_id, Chronicle.all, :id, :title, {})
-		- if @character.status < 1
-			= f.hidden_field :status
+		= collection_select(:character, :chronicle_id, Chronicle.where({status: true}), :id, :title, {})
+		= f.hidden_field :status
 		
 / ATTRIBUTES
 .row
@@ -45,9 +44,9 @@
 			th
 			th Mental
 			th
-			th Social
-			th
 			th Physical
+			th
+			th Social
 			th
 		tr
 			th Power
@@ -323,14 +322,14 @@
 	h2 Other Traits
 .row
 	#powers-add
-		- @character_type.power_types.each do |power_type|
+		- @character_type.power_types.where({status: true}).each do |power_type|
 			.small-6.columns
 				h3
 					= power_type.name
 				select name="#{power_type.name.downcase.underscore}" id="#{power_type.name.downcase.underscore}"
-					- power_type.power_groups.each do |power_group|
+					- power_type.power_groups.order(:name).where({status: true}).each do |power_group|
 						optgroup label="#{power_group.name}"
-							- power_group.powers.each do |power|
+							- power_group.powers.where({status: true}).each do |power|
 								option value="#{power.id}" #{power.rating} - #{power.name}
 				= button_tag 'Add', type: 'submit', class: 'mini-button', id: "#{power_type.name.downcase.underscore}_add"
 
@@ -348,7 +347,7 @@
 		select name="merits" id="merits"
 			- @merit_categories.each do |merit_category|
 				optgroup label="#{merit_category.merit_category}"
-					- merit_category.merits.order(:name).each do |merit|
+					- merit_category.merits.order(:name).where({status: true}).each do |merit|
 						option value="#{merit.id}" data-allowed-ratings="#{merit.allowed_ratings}" data-has-specification="#{merit.has_specification}" data-has-description="#{merit.has_description}" #{merit.name} #{merit.allowed_ratings}
 		= button_tag 'Add', type: '', class: 'mini-button', id: "merits-add"
 
@@ -384,9 +383,6 @@
 							textarea name="character[character_has_merits_attributes][][description]" class="desc-field" #{merit.description}
 						- else
 							input type="hidden" value="#{merit.description}" name="character[character_has_merits_attributes][][description]" class="desc-field"
-						input type="hidden" value="#{merit.id}" name="character[character_has_merits_attributes][][id]"
-						input type="hidden" value="#{merit.merit.id}" name="character[character_has_merits_attributes][][merit_id]"
-						input type="hidden" value="#{@character.id}" name="character[character_has_merits_attributes][][character_id]"
 						= button_tag 'Save', type: '', class: 'mini-button save-edits'
 					input type="checkbox" class="hide" name="character[character_has_merits_attributes][][_destroy]"
 - if @character_type.flaw_name.present?
@@ -592,12 +588,24 @@
 	.small-2.columns
 		= f.text_field :initiative_mod
 
+- if @character_type.has_touchstone
+	.row
+	  .small-12.columns
+			h2 Touchstones
+			h3 <b>Note:</b> <a href="https://guides.github.com/features/mastering-markdown/">Markdown syntax</a> is supported for formatting in all text fields.
+			= f.text_area :touchstones, label: false
+- elsif @character.character_type.has_integrity_modifiers
+	.row
+		.small-12.columns
+			h2 Integrity Modifiers
+			h3 <b>Note:</b> <a href="https://guides.github.com/features/mastering-markdown/">Markdown syntax</a> is supported for formatting in all text fields.
+			= f.text_area :integrity_modifiers, label: false
+
 
 / QUESTIONNAIRE
 .row
 	.small-12.columns
 		h2 Questionnaire
-		h3 <b>Note:</b> <a href="https://guides.github.com/features/mastering-markdown/">Markdown syntax</a> is supported for formatting in all text fields.
 		h3
 			= @character_type.question1
 		= f.text_area :answer1, label: false
@@ -643,21 +651,41 @@
 			h2 Storyteller Notes
 			= f.text_area :st_notes, label: false
 
-ul.button-group.radius
+ul.button-group.radius#workflow-buttons
 	li
-		= f.button 'Save', type: 'submit', class: 'button'
-	li
-		- if @character.status == 0
-			= f.button 'Save and Submit for Approval', type: 'submit', class: 'button', id: 'submit-button'
+		= f.button 'Save', type: 'submit', class: 'button', "data-status": @character.status
+	- if @character.status == 0
+		li
+			= f.button 'Save and Submit for Approval', type: 'submit', class: 'button', id: 'submit-button', "data-status": '1'
+	- if @chronicle.sts.include?(current_user)
+		- if @character.status >= 1
+			li
+				= f.button 'Reopen to User', type: 'submit', class: 'button', id: 'reopen-button', "data-status": '0'
+		- if @character.status == 1
+			li
+				= f.button 'Approve', type: 'submit', class: 'button', id: 'approve-button', "data-status": '2'
+			li
+				= f.button 'Approve and Activate', type: 'submit', class: 'button', id: 'approve-activate-button', "data-status": 3
+		- if @character.status == 2
+			li
+				= f.button 'Activate', type: 'submit', class: 'button', id: 'activate-button', "data-status": '3'
+		- if @character.status == 2 or @character.status == 3
+			li
+				= f.button 'Decease', type: 'submit', class: 'button', id: 'decease-button', "data-status": '4'
+			li
+				= f.button 'Deactivate', type: 'submit', class: 'button', id: 'deactivate-button', "data-status": '5'
+		- if @character.status == 4 or @character.status == 5
+			li
+				= f.button 'Reactivate', type: 'submit', class: 'button', id: 'reactivate-button', "data-status": '3'
+
 
 javascript:
 	// WELCOME TO HELL
 
 	$(document).ready(function () {
-		$('#submit-button').click(function (e) {
-			e.preventDefault();
-			$('#character_status').val('1');
-			console.log($('#character_status').val());
+		$('#workflow-buttons button').click(function (e) {
+			var charStatus = $(this).attr("data-status");
+			$('#character_status').val(charStatus);
 			$(this).parents('form').submit();
 		});
 
@@ -667,7 +695,7 @@ javascript:
 		});
 
 		$('.dot').click(function() {
-			$(this).find('input').attr("checked", "checked");
+			$(this).find('input').attr("checked", "checked").trigger('change');
 			$(this).find('.fa').removeClass('fa-circle-o').addClass('fa-circle');
 			$(this).prevAll('.dot').find('.fa').removeClass('fa-circle-o').addClass('fa-circle');
 			$(this).nextAll('.dot').find('.fa').removeClass('fa-circle').addClass('fa-circle-o');
@@ -744,6 +772,9 @@ javascript:
 			if (meritSpec == "true") {
 				newItem += " <span class='specification'></span>";
 			}
+			if (meritRatings > 1) {
+				newItem += " <span class='rating'></span>";
+			}
 			if (meritSpec == "true" || meritDesc == "true" || meritRatings.length > 1) {
 				newItem += " <i class='fa fa-pencil edit'></i> ";
 			}
@@ -767,11 +798,12 @@ javascript:
 			}
 
 			if (meritDesc == "true") {
-				newItem += "<textarea name='character[character_has_merits_attributes][][description]' class='desc-field'>Description</textarea>";
+				newItem += "<textarea name='character[character_has_merits_attributes][][description]' class='desc-field' placeholder='description'></textarea>";
 			} else {
 				newItem += "<input type='hidden' name='character[character_has_merits_attributes][][description]' value='' />";
 			}
-
+			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][id]' value='' />";
+			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][character_id]' value='#{@character.id}' />";
 			newItem += "<input type='hidden' name='character[character_has_merits_attributes][][merit_id]' value='"+meritId+"' /><button class='save-edits mini-button'>Save</button></div>";
 
 			newItem += "</li>"
