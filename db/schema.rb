@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901154931) do
+ActiveRecord::Schema.define(version: 20161006012344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20150901154931) do
     t.string   "affiliation"
     t.string   "sublineage"
     t.string   "flaw_name"
+    t.string   "question9"
   end
 
   create_table "characters", force: :cascade do |t|
@@ -161,6 +162,7 @@ ActiveRecord::Schema.define(version: 20150901154931) do
     t.integer  "armor_general"
     t.text     "st_notes"
     t.text     "printed_notes"
+    t.integer  "status",                default: 0
     t.integer  "intelligence",          default: 1
     t.integer  "wits",                  default: 1
     t.integer  "resolve",               default: 1
@@ -194,10 +196,10 @@ ActiveRecord::Schema.define(version: 20150901154931) do
     t.integer  "socialize",             default: 0
     t.integer  "streetwise",            default: 0
     t.integer  "subterfuge",            default: 0
-    t.integer  "status",                default: 0
     t.integer  "behavior_primary_id"
     t.integer  "behavior_secondary_id"
     t.text     "wishlist"
+    t.text     "answer9"
   end
 
   create_table "chronicle_allows_character_types", force: :cascade do |t|
