@@ -202,7 +202,7 @@
 			    	= @character.character_type.question1
 			    </a>
 			    <div id="panel1a" class="content">
-			      = raw @markdown.render(@character.answer1)
+			      = raw @markdown.render(@character.answer1.to_s)
 			    </div>
 			  </li>
 			  <li class="accordion-navigation">
@@ -210,7 +210,7 @@
 			    	= @character.character_type.question2
 			    </a>
 			    <div id="panel2a" class="content">
-			      = raw @markdown.render(@character.answer2)
+			      = raw @markdown.render(@character.answer2.to_s)
 			    </div>
 			  </li>
 			  <li class="accordion-navigation">
@@ -218,7 +218,7 @@
 			    	= @character.character_type.question3
 			    </a>
 			    <div id="panel3a" class="content">
-			      = raw @markdown.render(@character.answer3)
+			      = raw @markdown.render(@character.answer3.to_s)
 			    </div>
 			  </li>
 				<li class="accordion-navigation">
@@ -226,7 +226,7 @@
 						= @character.character_type.question4
 					</a>
 					<div id="panel4a" class="content">
-						= raw @markdown.render(@character.answer4)
+						= raw @markdown.render(@character.answer4.to_s)
 					</div>
 				</li>
 				<li class="accordion-navigation">
@@ -234,7 +234,7 @@
 						= @character.character_type.question5
 					</a>
 					<div id="panel5a" class="content">
-						= raw @markdown.render(@character.answer5)
+						= raw @markdown.render(@character.answer5.to_s)
 					</div>
 				</li>
 				<li class="accordion-navigation">
@@ -242,7 +242,7 @@
 						= @character.character_type.question6
 					</a>
 					<div id="panel6a" class="content">
-						= raw @markdown.render(@character.answer6)
+						= raw @markdown.render(@character.answer6.to_s)
 					</div>
 				</li>
 				<li class="accordion-navigation">
@@ -250,7 +250,7 @@
 						= @character.character_type.question7
 					</a>
 					<div id="panel7a" class="content">
-						= raw @markdown.render(@character.answer7)
+						= raw @markdown.render(@character.answer7.to_s)
 					</div>
 				</li>
 				<li class="accordion-navigation">
@@ -258,15 +258,15 @@
 						= @character.character_type.question8
 					</a>
 					<div id="panel8a" class="content">
-						= raw @markdown.render(@character.answer8)
+						= raw @markdown.render(@character.answer8.to_s)
 					</div>
 				</li>
 				<li class="accordion-navigation">
 					<a href="#panel9a">
 						= @character.character_type.question9
 					</a>
-					<div id="panel8a" class="content">
-						= raw @markdown.render(@character.answer9)
+					<div id="panel9a" class="content">
+						= raw @markdown.render(@character.answer9.to_s)
 					</div>
 				</li>
 			</ul>
