@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922002348) do
+ActiveRecord::Schema.define(version: 20161006012344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 20160922002348) do
     t.string   "affiliation"
     t.string   "sublineage"
     t.string   "flaw_name"
+    t.string   "question9"
     t.boolean  "status",             default: true
     t.boolean  "has_touchstone"
   end
@@ -201,6 +202,7 @@ ActiveRecord::Schema.define(version: 20160922002348) do
     t.integer  "behavior_primary_id"
     t.integer  "behavior_secondary_id"
     t.text     "wishlist"
+    t.text     "answer9"
     t.text     "touchstones",           default: ""
     t.text     "integrity_modifiers",   default: ""
   end

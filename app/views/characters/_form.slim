@@ -630,6 +630,10 @@
 		h3
 			= @character_type.question8
 		= f.text_area :answer8, label: false
+		- if @character_type.question9.present?
+			h3
+				= @character_type.question9
+			= f.text_area :answer9, label: false
 
 .row
 	.small-12.columns
