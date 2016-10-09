@@ -30,7 +30,7 @@
 							td
 							  = get_status(character.status)
 							td
-								- if character.status == 0 || character.chronicle.sts.include?(current_user)
+								- if character.status == 0 || (character.chronicle.present? && character.chronicle.sts.include?(current_user))
 									= link_to "Edit", edit_character_path(character), class: 'button mini-button'
 							td
 								= form_tag(character_path(character), method: 'DELETE') do
