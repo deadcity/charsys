@@ -197,78 +197,87 @@
 		.small-12.columns
 			h2 Questionnaire
 			<ul class="accordion" data-accordion>
-			  <li class="accordion-navigation">
-			    <a href="#panel1a">
-			    	= @character.character_type.question1
-			    </a>
-			    <div id="panel1a" class="content">
-			      = raw @markdown.render(@character.answer1.to_s)
-			    </div>
-			  </li>
-			  <li class="accordion-navigation">
-			    <a href="#panel2a">
-			    	= @character.character_type.question2
-			    </a>
-			    <div id="panel2a" class="content">
-			      = raw @markdown.render(@character.answer2.to_s)
-			    </div>
-			  </li>
-			  <li class="accordion-navigation">
-			    <a href="#panel3a">
-			    	= @character.character_type.question3
-			    </a>
-			    <div id="panel3a" class="content">
-			      = raw @markdown.render(@character.answer3.to_s)
-			    </div>
-			  </li>
-				<li class="accordion-navigation">
-					<a href="#panel4a">
-						= @character.character_type.question4
-					</a>
-					<div id="panel4a" class="content">
-						= raw @markdown.render(@character.answer4.to_s)
-					</div>
-				</li>
-				<li class="accordion-navigation">
-					<a href="#panel5a">
-						= @character.character_type.question5
-					</a>
-					<div id="panel5a" class="content">
-						= raw @markdown.render(@character.answer5.to_s)
-					</div>
-				</li>
-				<li class="accordion-navigation">
-					<a href="#panel6a">
-						= @character.character_type.question6
-					</a>
-					<div id="panel6a" class="content">
-						= raw @markdown.render(@character.answer6.to_s)
-					</div>
-				</li>
-				<li class="accordion-navigation">
-					<a href="#panel7a">
-						= @character.character_type.question7
-					</a>
-					<div id="panel7a" class="content">
-						= raw @markdown.render(@character.answer7.to_s)
-					</div>
-				</li>
-				<li class="accordion-navigation">
-					<a href="#panel8a">
-						= @character.character_type.question8
-					</a>
-					<div id="panel8a" class="content">
-						= raw @markdown.render(@character.answer8.to_s)
-					</div>
-				</li>
-				<li class="accordion-navigation">
-					<a href="#panel9a">
-						= @character.character_type.question9
-					</a>
-					<div id="panel9a" class="content">
-						= raw @markdown.render(@character.answer9.to_s)
-					</div>
-				</li>
+				- if @character.character_type.question1.present?
+				  <li class="accordion-navigation">
+				    <a href="#panel1a">
+				    	= @character.character_type.question1
+				    </a>
+				    <div id="panel1a" class="content">
+				      = raw @markdown.render(@character.answer1.to_s)
+				    </div>
+				  </li>
+				- if @character.character_type.question2.present?
+				  <li class="accordion-navigation">
+				    <a href="#panel2a">
+				    	= @character.character_type.question2
+				    </a>
+				    <div id="panel2a" class="content">
+				      = raw @markdown.render(@character.answer2.to_s)
+				    </div>
+				  </li>
+				- if @character.character_type.question3.present?
+				  <li class="accordion-navigation">
+				    <a href="#panel3a">
+				    	= @character.character_type.question3
+				    </a>
+				    <div id="panel3a" class="content">
+				      = raw @markdown.render(@character.answer3.to_s)
+				    </div>
+				  </li>
+				- if @character.character_type.question4.present?
+					<li class="accordion-navigation">
+						<a href="#panel4a">
+							= @character.character_type.question4
+						</a>
+						<div id="panel4a" class="content">
+							= raw @markdown.render(@character.answer4.to_s)
+						</div>
+					</li>
+				- if @character.character_type.question5.present?
+					<li class="accordion-navigation">
+						<a href="#panel5a">
+							= @character.character_type.question5
+						</a>
+						<div id="panel5a" class="content">
+							= raw @markdown.render(@character.answer5.to_s)
+						</div>
+					</li>
+				- if @character.character_type.question6.present?
+					<li class="accordion-navigation">
+						<a href="#panel6a">
+							= @character.character_type.question6
+						</a>
+						<div id="panel6a" class="content">
+							= raw @markdown.render(@character.answer6.to_s)
+						</div>
+					</li>
+				- if @character.character_type.question7.present?
+					<li class="accordion-navigation">
+						<a href="#panel7a">
+							= @character.character_type.question7
+						</a>
+						<div id="panel7a" class="content">
+							= raw @markdown.render(@character.answer7.to_s)
+						</div>
+					</li>
+				- if @character.character_type.question8.present?
+					<li class="accordion-navigation">
+						<a href="#panel8a">
+							= @character.character_type.question8
+						</a>
+						<div id="panel8a" class="content">
+							= raw @markdown.render(@character.answer8.to_s)
+						</div>
+					</li>
+				- if @character.character_type.question9.present?
+					<li class="accordion-navigation">
+						<a href="#panel9a">
+							= @character.character_type.question9
+						</a>
+						<div id="panel9a" class="content">
+							= raw @markdown.render(@character.answer9.to_s)
+						</div>
+					</li>
 			</ul>
 	
 	.row

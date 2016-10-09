@@ -20,7 +20,8 @@
 							td
 								= link_to character.name, character_path(id: character.id)
 							td
-								= character.chronicle.title
+								- if character.chronicle.present?
+									= character.chronicle
 							td
 								- if character.character_type.affiliation.present?
 									= Affiliation.find_by(id: character.affiliation_id).name
