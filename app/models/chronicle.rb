@@ -10,4 +10,8 @@ class Chronicle < ActiveRecord::Base
 	def sts
 		self.users
 	end
+
+	def to_s
+		self.title
+	end
 end

@@ -97,6 +97,11 @@ ActiveRecord::Schema.define(version: 20161006012344) do
     t.integer "behavior_secondary_id"
   end
 
+  create_table "character_type_has_power_types", force: :cascade do |t|
+    t.integer "character_type_id"
+    t.integer "power_type_id"
+  end
+
   create_table "character_types", force: :cascade do |t|
     t.string   "name"
     t.string   "power_stat"
@@ -118,9 +123,9 @@ ActiveRecord::Schema.define(version: 20161006012344) do
     t.string   "affiliation"
     t.string   "sublineage"
     t.string   "flaw_name"
-    t.string   "question9"
     t.boolean  "status",             default: true
     t.boolean  "has_touchstone"
+    t.string   "question9"
   end
 
   create_table "character_types_lineages", force: :cascade do |t|
@@ -202,9 +207,9 @@ ActiveRecord::Schema.define(version: 20161006012344) do
     t.integer  "behavior_primary_id"
     t.integer  "behavior_secondary_id"
     t.text     "wishlist"
-    t.text     "answer9"
     t.text     "touchstones",           default: ""
     t.text     "integrity_modifiers",   default: ""
+    t.text     "answer9"
   end
 
   create_table "chronicle_allows_character_types", force: :cascade do |t|
@@ -321,6 +326,13 @@ ActiveRecord::Schema.define(version: 20161006012344) do
     t.integer  "skill_category_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+  end
+
+  create_table "user_administers_chronicles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "chronicle_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "user_is_admins", force: :cascade do |t|
