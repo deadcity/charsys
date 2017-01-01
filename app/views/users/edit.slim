@@ -3,12 +3,20 @@
 		fieldset
 			legend Update your account
 			<div class="row">
+				= label_tag :username
+				<input type="text" name="user[username]" id="username" placeholder="Username" value="#{@user.username}" />
+			</div>
+			<div class="row">
 				= label_tag :first_name, "First Name"
 				<input type="text" name="user[first_name]" id="first_name" placeholder="First Name" value="#{@user.first_name}" />
 			</div>
 			<div class="row">
 				= label_tag :last_name, "Last Name"
 				<input type="text" name="user[last_name]" id="last_name" placeholder="Last Name" value="#{@user.last_name}" />
+			</div>
+			<div class="row">
+				= label_tag :email, "Email Address"
+				<input type="email" name="user[email]" id="email" placeholder="Email Address" value="#{@user.email}" />
 			</div>
 			<div class="row">
 				= label_tag :current_password, "Current Password"
