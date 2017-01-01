@@ -7,25 +7,32 @@
     li.current
       = link_to 'Mass Add XP', create_xp_records_path(@chronicle)
   .small-12.small-centered.columns
-  	h2
-  		| Mass Add XP for #{@chronicle.title}
-  		= link_to "Grant Ad-hoc XP", new_xp_record_path(@chronicle), class: 'button mini-button'
-  	= form_tag("/chronicles/#{@chronicle.id}/xp_records/new_multiple", method: 'POST') do
-  		.row
+    h2
+      | Mass Add XP for #{@chronicle.title}
+      = link_to "Grant Ad-hoc XP", new_xp_record_path(@chronicle), class: 'button mini-button'
+    = form_tag("/chronicles/#{@chronicle.id}/xp_records/new_multiple", method: 'POST') do
+      .row
         .small-4.columns
-    			= label_tag :amount
-    			= text_field_tag :amount
+          = label_tag :amount
+          = text_field_tag :amount
         .small-8.columns
-    			= label_tag :note
-    			= text_field_tag :note
-	  	- if @characters[0]
-	  		table
-	  			tr
-	  				th Character
-	  				th XP?
-	  			- @characters.each do |character|
-	  				tr
-	  					td #{character.name}
-	  					td
-	  						= check_box_tag "character_id[]", character.id, true
-	  	= button_tag "Save", type: 'submit'
+          = label_tag :note
+          = text_field_tag :note
+      - if @characters[0]
+        table
+          thead
+            tr
+              th Character
+              th Player Name
+              th Status
+              th XP?
+          tbody
+            - @characters.each do |character|
+              tr
+                td #{character.name}
+                td #{character.user.first_name} #{character.user.last_name}
+                td #{get_status(character.status)}
+                td
+                  = check_box_tag "character_id[]", character.id, true
+
+      = button_tag "Save", type: 'submit'
