@@ -10,7 +10,13 @@ class ApplicationController < ActionController::Base
 			return true
 		end
 		return false
-	end
+  end
+  
+  def authenticate_user!
+      unless is_logged_in? 
+          redirect_to login_path
+      end
+  end
 
 	def is_admin?
 

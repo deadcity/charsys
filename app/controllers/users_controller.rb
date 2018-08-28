@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	before_action :authenticate_user!, only: [:edit, :update]
+
 	def create
 		user = params[:user]
 		@user = User.new({username: user[:username], name: user[:name], first_name: user[:first_name], last_name: user[:last_name], email: user[:email], password: params[:password]})

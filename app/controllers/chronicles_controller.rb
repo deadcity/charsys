@@ -1,5 +1,8 @@
 class ChroniclesController < ApplicationController
 	CHARACTER_STATUS = ['In Progress', 'Submitted', 'Approved', 'Active', 'Deceased', 'Inactive']
+	
+	before_action :authenticate_user!
+
 	def get_status(status)
 		return CHARACTER_STATUS[status]
 	end
@@ -7,7 +10,7 @@ class ChroniclesController < ApplicationController
 
 	def index
 		if current_user
-			@chronicles = current_user.chronicles
+			@chronicles = Chronicle.all
 		else
 			redirect_to login_path
 		end
@@ -41,12 +44,16 @@ class ChroniclesController < ApplicationController
 
 	def show
 		@chronicle = Chronicle.find_by_id(params[:id])
-		redirect_to chronicles_path if @chronicle.sts.exclude?(current_user)
 		if @chronicle.nil?
 			raise ActionController::RoutingError.new('Not Found')
 		else
-			@active_characters = @chronicle.characters.where(status: 3)
-			@inactive_characters = @chronicle.characters.where.not(status: 3)
+			unless @chronicle.sts.exclude?(current_user)
+				@active_characters = @chronicle.characters.where(status: 3)
+				@inactive_characters = @chronicle.characters.where.not(status: 3)
+			else
+				@active_characters = @chronicle.characters.where({user_id: current_user, status: 3})
+				@inactive_characters = @chronicle.characters.where(user_id: current_user).where.not(status: 3)
+			end
 		end
 	end
 

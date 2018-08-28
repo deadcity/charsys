@@ -1,21 +1,24 @@
 .row.chronicle_show_page
   ul.breadcrumbs
     li
-      = link_to 'My Chronicles', chronicles_path
+      = link_to 'Chronicles', chronicles_path
     li.current
       = link_to @chronicle.title, chronicle_path(@chronicle)
   .small-12.small-centered.columns
     h2
       = @chronicle.title
       ul.button-group
+        - if @chronicle.sts.include?(current_user)
+          li
+            = link_to "Edit Chronicle", edit_chronicle_path(id: @chronicle.id), class: "button edit_chronicle_button mini-button" 
+          li
+            = link_to "Grant Experience", new_xp_records_path(@chronicle), class: 'button mini-button grant_experience_button'
+          li
+            = link_to "Manage Games", games_path(@chronicle), class: 'button mini-button manage_games_button'
+          li
+            = link_to "Print Sheets", print_all_path(@chronicle), class: 'button mini-button print_sheets_button'
         li
-          = link_to "Edit Chronicle", edit_chronicle_path(id: @chronicle.id), class: "button edit_chronicle_button mini-button" 
-        li
-          = link_to "Grant Experience", new_xp_records_path(@chronicle), class: 'button mini-button grant_experience_button'
-        li
-          = link_to "Manage Games", games_path(@chronicle), class: 'button mini-button manage_games_button'
-        li
-          = link_to "Print Sheets", print_all_path(@chronicle), class: 'button mini-button print_sheets_button'
+          = link_to "New Character", new_character_path, class: 'button mini-button'
     h3
     | Current Storytellers: 
     - if @chronicle.sts
@@ -60,7 +63,10 @@
                   = form_tag(character_path(character), method: 'DELETE') do
                     = button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to permanently delete this character?");', class: 'button mini-button'
     - else
-      | There are no active characters in this chronicle yet!
+      - if @chronicle.sts.include?(current_user)
+        | There are no active characters in this chronicle yet!
+      - else
+        | You have no active characters in this chronicle yet!
 
     h3 Inactive Characters
     - if @inactive_characters[0]
@@ -96,4 +102,7 @@
                   = form_tag(character_path(character), method: 'DELETE') do
                     = button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to permanently delete this character?");', class: 'button mini-button'
     - else
-     | There are no inactive characters in this chronicle!
+      - if @chronicle.sts.include?(current_user)
+        | There are no inactive characters in this chronicle!
+      - else 
+        | You have no inactive characters in this chronicle.

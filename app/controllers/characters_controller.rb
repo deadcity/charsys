@@ -2,6 +2,9 @@ require 'json'
 
 class CharactersController < ApplicationController
 	CHARACTER_STATUS = ['In Progress', 'Submitted', 'Approved', 'Active', 'Deceased', 'Inactive']
+	
+	before_action :authenticate_user!
+
 	def get_status(status)
 		return CHARACTER_STATUS[status]
 	end
