@@ -14,6 +14,18 @@
 		p.help-text The character type's morality/stability mechanic, e.g. Humanity, Integrity, etc.
 	
 	.row
+		= f.text_field :lineage
+		p.help-text The character type's family trait, e.g. Clan, Tribe, Path, etc.
+
+	.row
+		= f.text_field :sublineage
+		p.help-text The character type's subfamily trait, e.g. Bloodline, Legacy, etc.
+
+	.row
+		= f.text_field :affiliation
+		p.help-text The character type's association trait, e.g. Covenant, Order, etc.
+
+	.row
 		= f.text_field :behavior_primary
 		p.help-text Such as Mask, Virtue, etc.
 	

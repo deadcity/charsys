@@ -15,7 +15,7 @@
 		- if @character_type.lineage.present?
 			= f.label :lineage, @character_type.lineage
 			= collection_select(:character, :lineage_id, @character_type.lineages.where({status: true}), :id, :name, {})
-			
+				
 	.small-4.columns
 		- if @character_type.sublineage.present?
 			= f.label :sublineage, @character_type.sublineage

@@ -31,3 +31,28 @@
 			dt Behavior (Secondary)
 			dd
 				= @character_type.behavior_secondary
+			dt Lineage Name
+			dd
+				= @character_type.lineage
+			dt Sublineage Name
+			dd
+				= @character_type.sublineage
+			dt Lineages
+			dd
+				table
+					tbody
+						- @character_type.lineages.each do |lineage|
+							tr
+								td
+									= link_to lineage.name, admin_lineage_path(lineage)
+			dt Affiliation Name
+			dd
+				= @character_type.affiliation
+			dt Affiliations
+			dd
+				table
+					tbody
+						- @character_type.affiliations.each do |affiliation|
+							tr
+								td
+									= link_to affiliation.name, admin_affiliation_path(affiliation)
