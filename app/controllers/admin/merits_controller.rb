@@ -38,6 +38,11 @@ module Admin
 			end
 		end
 
+		def destroy
+			@merit = Merit.find(params[:id])
+			@merit.delete
+		end
+
 		private
 
 		def merits_params

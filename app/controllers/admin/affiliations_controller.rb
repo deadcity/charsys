@@ -15,7 +15,7 @@ module Admin
 		def create
 			@affiliation = Affiliation.new(affiliations_params)
 			if @affiliation.save!
-				flash[:success] = "Your new #{@affiliation.character_type.affiliation} was created."
+				flash[:success] = "Your new affiliation was created."
 				redirect_to admin_affiliations_path
 			else
 				flash[:error] = "There was an error saving your affiliation."
@@ -29,8 +29,8 @@ module Admin
 
 		def update
 			@affiliation = Affiliation.find(params[:id])
-			if @affiliation.update_attributes!(affilations_params)
-				flash[:success] = "Your #{@affiliation.character_type.affiliation} was saved."
+			if @affiliation.update_attributes!(affiliations_params)
+				flash[:success] = "Your affiliation was saved."
 				redirect_to admin_affiliations_path
 			else
 				flash[:error] = "There was an error saving your affiliation."
@@ -48,7 +48,7 @@ module Admin
 		private
 
 		def affiliations_params
-			params.require(:affiliation).permit(:id, :name, :status, :character_type_id)
+			params.require(:affiliation).permit(:id, :name, :status, { character_type_ids: [] })
 		end
 	end
 end
