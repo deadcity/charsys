@@ -15,7 +15,7 @@ module Admin
 		def create
 			@power = Power.new(powers_params)
 			if @power.save!
-				flash[:success] = "#{@power.name} successfully created."
+				flash[:success] = "#{powers_params} successfully created."
 				redirect_to admin_powers_path
 			else
 				flash[:error] = "There was an error creating your power."
@@ -46,7 +46,7 @@ module Admin
 		private
 
 		def powers_params
-			params.require(:power).permit(:name, :power_group_ids, :status)
+			params.require(:power).permit(:name, :rating, :status, :power_group_id)
 		end
 	end
 end

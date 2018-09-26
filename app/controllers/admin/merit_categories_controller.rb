@@ -17,9 +17,9 @@ module Admin
 		end
 
 		def create
-			@merit_category = MeritCategory.new(merit_category_params)
+			@merit_category = MeritCategory.new(merit_categories_params)
 			if @merit_category.save!
-				flash[:success] = "Your merit category, #{@merit_category.name}, was created."
+				flash[:success] = "Your merit category, #{@merit_category.merit_category}, was created."
 				redirect_to admin_merit_categories_path
 			else
 				flash[:error] = "There was an error creating your merit category."
@@ -30,7 +30,7 @@ module Admin
 		def update
 			@merit_category = MeritCategory.find(params[:id])
 			if @merit_category.update_attributes!(merit_categories_params)
-				flash[:success] = "Your merit category was successfully updated."
+				flash[:success] = "Your merit category, #{@merit_category.merit_category}, was successfully updated."
 				redirect_to admin_merit_categories_path
 			else
 				flash[:error] = "There was an error updating your merit category."

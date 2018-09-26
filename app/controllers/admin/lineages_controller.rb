@@ -15,7 +15,7 @@ module Admin
 		def create
 			@lineage = Lineage.new(lineages_params)
 			if @lineage.save!
-				flash[:success] = "Your new #{@lineage.character_type.lineage} was created."
+				flash[:success] = "Your new lineage was created."
 				redirect_to admin_lineages_path
 			else
 				flash[:error] = "There was an error saving your lineage."
@@ -30,7 +30,7 @@ module Admin
 		def update
 			@lineage = Lineage.find(params[:id])
 			if @lineage.update_attributes!(lineages_params)
-				flash[:success] = "Your #{@lineage.character_type.lineage} was saved."
+				flash[:success] = "Your lineage was saved."
 				redirect_to admin_lineages_path
 			else
 				flash[:error] = "There was an error saving your lineage."
@@ -48,7 +48,7 @@ module Admin
 		private
 
 		def lineages_params
-			params.require(:lineage).permit(:id, :name, :status, :character_type_id)
+			params.require(:lineage).permit(:id, :name, :status, { character_type_ids: [] })
 		end
 	end
 end

@@ -29,8 +29,8 @@
 							td
 								= link_to "Edit", edit_admin_affiliation_path(affiliation), class: 'button mini-button'
 							td
-								= form_tag(admin_affiliation_path(affiliation), method: 'DELETE') do
-									= button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to delete this merit category?");', class: 'button mini-button'
+								= form_tag(admin_affiliation_path(affiliation), method: :delete) do
+									= button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to delete this affiliation?");', class: 'button mini-button'
 							
 		- else
 			| There are no affiliations entered yet. <a href="#{new_admin_affiliation_path}">Create one now!</a>
