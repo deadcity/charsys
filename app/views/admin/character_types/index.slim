@@ -25,7 +25,8 @@
 						td
 							= link_to "Edit", edit_admin_character_type_path(character_type)
 						td
-							= link_to "Delete", admin_character_type_path(character_type, method: 'delete')
+							= form_tag(admin_character_type_path(character_type), method: :delete) do
+								= button_tag "Delete", type: 'submit', onClick: 'return confirm("Are you sure you want to delete this character type?");', class: 'button mini-button'
 			- else
 				tr
 					td colspan="4"
