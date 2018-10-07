@@ -53,15 +53,17 @@
 					| :  
 					= @character.affiliation.name
 		.small-6.medium-4.columns
+			- if @character.behavior_primary.present?
 				h4 
 					= @character.character_type.behavior_primary
 					| :  
-					= @character.behavior_primary
+					= @character.behavior_primary.name
 		.small-6.medium-4.columns
+			- if @character.behavior_secondary.present?
 				h4 
 					= @character.character_type.behavior_secondary
 					| :  
-					= @character.behavior_secondary
+					- @character.behavior_secondary.name
 		.small-6.medium-4.columns.end
 				h4 
 					| Chronicle:  
